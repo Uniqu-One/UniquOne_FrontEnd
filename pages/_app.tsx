@@ -1,8 +1,17 @@
-import type { AppProps } from 'next/app'
-import '../styles/reset.css'
+import type { AppProps } from "next/app";
+import { ThemeProvider } from '@emotion/react'
+import {color} from "../styles/theme";
+import "../styles/reset.css";
+
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return (
+    <>
+    <ThemeProvider theme={color}>
+      <Component {...pageProps} />
+    </ThemeProvider>
+    </>
+  );
 }
 
-export default MyApp
+export default MyApp;

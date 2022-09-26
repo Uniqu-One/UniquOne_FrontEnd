@@ -1,16 +1,12 @@
-import styled from '@emotion/styled'
 import type { NextPage } from 'next'
-
-const DIVBOX = styled.div`
-  background-color: blue;
-  width: 100px;
-  height: 100px;
-`
+import FooterTmp from '../components/common/tmp/FooterTmp'
+import TopTmp from '../components/common/tmp/TopTmp'
 
 const Home: NextPage = () => {
   return (
     <div>
-      <DIVBOX/>
+      <TopTmp/>
+      <FooterTmp/>
     </div>
   )
 }

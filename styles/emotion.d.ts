@@ -1,11 +1,14 @@
 import "@emotion/react";
 
+// type themeId = 'teal' | 'lightgray'
+// map으로 돌려서 사용도 가능
+
 declare module "@emotion/react" {
   export interface Theme {
-    primary_purple: string;
-    primary_pgray_d: string;
-    primary_pgray_m: string;
-    primary_pgray_l: string;
-    primary_red: string;
+    p_pruple: stirng,
+    p_gray_dk: stirng,
+    p_gray_md: stirng,
+    p_gray_lt: stirng,
+    p_red: stirng,
   }
 }

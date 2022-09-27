@@ -1,7 +1,13 @@
 export const color = {
-  primary_purple: "BE55FF",
-  primary_pgray_d: "5B5B5B",
-  primary_pgray_m: "949494",
-  primary_pgray_l: "EFEFEF",
-  primary_red: "FF1D55",
+  p_pruple: "#BE55FF",
+  p_gray_dk: "#5B5B5B",
+  p_gray_md: "#949494",
+  p_gray_lt: "#EFEFEF",
+  p_red: "#FF1D55",
 };
+
+export const size = {
+  16:"1rem",
+  14:"0.875rem",
+  12:"0.75rem"
+}

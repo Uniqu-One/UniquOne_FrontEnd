@@ -1,6 +1,5 @@
 import styled from '@emotion/styled'
 import React from 'react'
-import FooterIconMol from '../mol/FooterIconMol'
 import FooterIconOrg from '../org/FooterIconOrg'
 
 const FooterBox = styled.div`
@@ -10,7 +9,7 @@ const FooterBox = styled.div`
   width: 100vw;
   height: 54px;
   
-  border-top: 0.5px solid gray;
+  border-top: 0.5px solid ;
 `
 
 function FooterTmp() {

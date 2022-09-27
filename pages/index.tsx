@@ -1,16 +1,16 @@
-import styled from '@emotion/styled'
 import type { NextPage } from 'next'
-
-const DIVBOX = styled.div`
-  background-color: blue;
-  width: 100px;
-  height: 100px;
-`
+import UniStarMol from '../components/common/mol/UniStarMol'
+import FooterTmp from '../components/common/tmp/FooterTmp'
+import ToastTmp from '../components/common/tmp/ToastTmp'
+import TopTmp from '../components/common/tmp/TopTmp'
 
 const Home: NextPage = () => {
   return (
     <div>
-      <DIVBOX/>
+      <TopTmp type='main'/>
+      <UniStarMol/>
+      <ToastTmp/>
+      <FooterTmp/>
     </div>
   )
 }

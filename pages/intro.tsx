@@ -1,10 +1,10 @@
 import styled from "@emotion/styled";
 import React from "react";
-import { GradiantBack } from "../../components/common/atm/GradiantBackAtm";
-import LoginFindLink from "../../components/common/mol/LoginFindLink";
-import LogoIconMol from "../../components/common/mol/LogoIconMol";
-import BtnTmp from "../../components/common/tmp/BtnTmp";
-import { color } from "../../styles/theme";
+import { GradiantBack } from "../components/common/atm/GradiantBackAtm";
+import LoginFindLink from "../components/common/mol/LoginFindLink";
+import LogoIconMol from "../components/common/mol/LogoIconMol";
+import BtnTmp from "../components/common/tmp/BtnTmp";
+import { color } from "../styles/theme";
 
 const IntroTitleStyle = styled.h1`
   font-size: 30px;
@@ -55,7 +55,7 @@ const IntroIntervalStyle = styled.div`
   
 `;
 
-function index() {
+function intro() {
   return (
     <>
     <GradiantBack>
@@ -68,7 +68,7 @@ function index() {
         <BtnTmp size="naver" />
         <BtnTmp size="google" />
         <p>or</p>
-        <BtnTmp size="entry" value="이메일로 시작하기" />
+        <BtnTmp size="email" value="이메일로 시작하기" />
         <p>이미 계정을 소유하고 계신가요?</p>
         <LoginFindLink text="로그인하기" link="/login"/>
       </IntroIntervalStyle>
@@ -77,4 +77,4 @@ function index() {
   );
 }
 
-export default index;
+export default intro;

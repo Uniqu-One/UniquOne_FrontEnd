@@ -52,10 +52,8 @@ function InputFormMol(props: {
     }
   }, [props.value]);
 
-  console.log(removeIcon);
-
   return (
-    <>
+    <> 
       <FormStyle>
         <p>{props.label}</p>
         <input
@@ -68,10 +66,12 @@ function InputFormMol(props: {
         {removeIcon ? (
           <span>
             <i data-eva="close-circle-outline" data-eva-width="20px"></i>
-          </span>
+          </span> 
         ) : (
           <></>
         )}
+
+
       </FormStyle>
     </>
   );

@@ -7,7 +7,7 @@ import { TopBoxMol } from "../mol/TopBoxMol";
 
 export const TopOptionalOrg = (props: {
   left: string;
-  text: string;
+  text?: string;
   right?: string;
 }) => {
   useEvaIcon();
@@ -15,7 +15,6 @@ export const TopOptionalOrg = (props: {
 
   return (
     <TopBoxMol>
-      
       {props.left === "back" ? (
         <TopIconAtm onClick={() => router.back()}>
           <i data-eva="arrow-ios-back"></i>
@@ -26,19 +25,17 @@ export const TopOptionalOrg = (props: {
         </TopIconAtm>
       )}
 
-
       <TopTitleAtm>
         <p>{props.text}</p>
       </TopTitleAtm>
 
-      {props.right === 'check' ? (
+      {props.right === "check" ? (
         <TopIconAtm>
           <i data-eva="checkmark"></i>
         </TopIconAtm>
       ) : (
         <TopIconAtm></TopIconAtm>
       )}
-
     </TopBoxMol>
   );
 };

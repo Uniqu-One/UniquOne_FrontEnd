@@ -24,14 +24,10 @@ function TopPostOrg() {
     <TopPostMol>
       <TopPostStyle>
         <span>
-          <i
-            data-eva="star-outline"
-          ></i>
+          <i data-eva="star-outline"></i>
         </span>
         <span>
-          <i
-            data-eva="search-outline"
-          ></i>
+          <i data-eva="search-outline"></i>
         </span>
       </TopPostStyle>
     </TopPostMol>

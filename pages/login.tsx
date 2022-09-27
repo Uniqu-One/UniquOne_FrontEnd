@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
 import Link from "next/link";
 import React from "react";
-import LoginFindLink from "../../components/common/mol/LoginFindLink";
-import TopTmp from "../../components/common/tmp/TopTmp";
-import LoginTmp from "../../components/login/LoginTmp";
+import LoginFindLink from "../components/common/mol/LoginFindLink";
+import TopTmp from "../components/common/tmp/TopTmp";
+import LoginTmp from "../components/login/LoginTmp";
 
 const LoginPageInterval = styled.div`
   div {
@@ -19,16 +19,16 @@ const LoginPageInterval = styled.div`
   }
 `;
 
-function index() {
+function login() {
   return (
     <>
-      <TopTmp type="arrowText" />
+      <TopTmp type="arrowText" text="로그인"/>
       <LoginPageInterval>
         <LoginTmp />
         <LoginFindLink text="혹시 비밀번호를 잊으셨나요?" link="/find"/>
       </LoginPageInterval>
     </>
-  );
+  ); 
 }
 
-export default index;
+export default login;

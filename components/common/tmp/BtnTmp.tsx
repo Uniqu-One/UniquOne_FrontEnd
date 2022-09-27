@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import Link from "next/link";
 import React from "react";
 import { color } from "../../../styles/theme";
 
@@ -64,6 +65,15 @@ function BtnTmp(props: {
         <GoogleButtonLgStyle color="google">
           <p>구글계정으로 시작하기</p>
         </GoogleButtonLgStyle>
+      );
+
+    case "email":
+      return (
+        <Link href={"/signup"}>
+        <ButtonLgStyle status={true}>
+          <p>{props.value}</p>
+        </ButtonLgStyle>
+        </Link>
       );
 
     default:

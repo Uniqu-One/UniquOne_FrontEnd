@@ -16,13 +16,13 @@ function TopTmp(props: {
       return <TopMainOrg />;
 
     case "arrowText":
-      return <TopOptionalOrg left="back" text="로그인" />;
+      return <TopOptionalOrg left="back" text={props.text} />;
 
     case "post":
       return <TopPostOrg/>
 
-    case "style":
-      return <TopOptionalOrg left="cancel" text="스타일 등록"/>
+    // case "style":
+    //   return <TopOptionalOrg left="cancel" text="스타일 등록"/>
 
     default:
       return <TopOptionalOrg left="back" text="DEFAULT" />;

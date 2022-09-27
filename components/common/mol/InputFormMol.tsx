@@ -1,9 +1,11 @@
 import styled from "@emotion/styled";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import useEvaIcon from "../../../hooks/useEvaIcon";
 import { color } from "../../../styles/theme";
 
 const FormStyle = styled.div`
-margin: 0 18px 3px;
+  position: relative;
+  margin: 0 18px 3px;
   height: 42px;
   line-height: 42px;
   display: flex;
@@ -21,23 +23,55 @@ margin: 0 18px 3px;
     width: 70%;
     border: none;
   }
+  span {
+    position: absolute;
+    right: 0;
+    top: 8px;
+    fill: ${color.p_gray_dk};
+    width: 48;
+  }
 `;
 
 function InputFormMol(props: {
-  onChangeValue:Function
-  ref?:any
-  name:string;
+  onChangeValue: Function;
+  name: string;
   label: string;
   type: string;
   text: string;
-  value?:string;
-  
+  value?: string;
 }) {
+  const [removeIcon, setRemoveIcon] = useState(false);
+
+  useEvaIcon();
+
+  useEffect(() => {
+    if (props.value !== "") {
+      setRemoveIcon(true);
+    } else {
+      setRemoveIcon(false);
+    }
+  }, [props.value]);
+
+  console.log(removeIcon);
+
   return (
     <>
       <FormStyle>
         <p>{props.label}</p>
-        <input name={props.name} onChange={(e) => props.onChangeValue(e)} type={props.type} placeholder={props.text} />
+        <input
+          name={props.name}
+          onChange={(e) => props.onChangeValue(e)}
+          type={props.type}
+          placeholder={props.text}
+        />
+
+        {removeIcon ? (
+          <span>
+            <i data-eva="close-circle-outline" data-eva-width="20px"></i>
+          </span>
+        ) : (
+          <></>
+        )}
       </FormStyle>
     </>
   );

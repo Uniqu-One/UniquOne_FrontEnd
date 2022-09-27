@@ -15,11 +15,11 @@ export const LoginFindLinkStyle = styled.div`
   }
 `;
 
-function LoginFindLink() {
+function LoginFindLink(props:{text:string, link:string}) {
   return (
-    <Link href={"/"}>
+    <Link href={props.link}>
     <LoginFindLinkStyle>
-      <a>혹시 비밀번호를 잊으셨나요?</a>
+      <a>{props.text}</a>
     </LoginFindLinkStyle>
   </Link>
   )

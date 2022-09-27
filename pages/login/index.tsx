@@ -25,7 +25,7 @@ function index() {
       <TopTmp type="arrowText" />
       <LoginPageInterval>
         <LoginTmp />
-        <LoginFindLink/>
+        <LoginFindLink text="혹시 비밀번호를 잊으셨나요?" link="/find"/>
       </LoginPageInterval>
     </>
   );

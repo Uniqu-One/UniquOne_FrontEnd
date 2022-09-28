@@ -2,31 +2,29 @@ import React, { useState } from "react";
 import InputFormMol from "../common/mol/InputFormMol";
 import BtnTmp from "../common/tmp/BtnTmp";
 
-
 function SignupFormTmp() {
   const [inputs, setInputs] = useState({
     email: "",
-    authNum:"",
-    userPwd:"",
-    nickName:""
+    authNum: "",
+    userPwd: "",
+    nickName: "",
   });
 
   const [signUpStage, SetSignUpStage] = useState({
-      mailSend: false,
-      mailAuth: false,
-      next: false,
-      create: false,
-      singup: false,
-    });
+    mailSend: false,
+    mailAuth: false,
+    next: false,
+    create: false,
+    singup: false,
+  });
 
   const { email, authNum, userPwd, nickName } = inputs;
 
   const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-
     //authNumCheck
-    if(e.target.name === 'authNum'){
-      if(+e.target.value > 99999){
-        e.target.value = e.target.value.slice(0,6)
+    if (e.target.name === "authNum") {
+      if (+e.target.value > 99999) {
+        e.target.value = e.target.value.slice(0, 6);
       }
     }
 
@@ -37,8 +35,9 @@ function SignupFormTmp() {
   };
 
   return (
-    <> 
+    <>
       <InputFormMol
+        show={true}
         onChangeValue={onChangeValue}
         name="email"
         label="이메일"
@@ -47,8 +46,8 @@ function SignupFormTmp() {
         value={email}
       />
 
-
-<InputFormMol
+      <InputFormMol
+        show={true}
         onChangeValue={onChangeValue}
         name="authNum"
         label="인증번호"
@@ -57,7 +56,8 @@ function SignupFormTmp() {
         value={authNum}
       />
 
-<InputFormMol
+      <InputFormMol
+        show={true}
         onChangeValue={onChangeValue}
         name="userPwd"
         label="비밀번호"
@@ -66,7 +66,8 @@ function SignupFormTmp() {
         value={userPwd}
       />
 
-<InputFormMol
+      <InputFormMol
+        show={true}
         onChangeValue={onChangeValue}
         name="nickName"
         label="닉네임"

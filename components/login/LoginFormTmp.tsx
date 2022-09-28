@@ -7,7 +7,7 @@ import BtnTmp from "../common/tmp/BtnTmp";
 
 
 
-function LoginTmp() {
+function LoginFormTmp() {
   const [inputs, setInputs] = useState({
     email: "",
     userPwd: "",
@@ -34,6 +34,7 @@ function LoginTmp() {
   return (
     <>
         <InputFormMol
+          show={true}
           onChangeValue={onChangeValue}
           name="email"
           label="이메일"
@@ -42,16 +43,17 @@ function LoginTmp() {
           value={email}
         />
         <InputFormMol
+          show={true}
           onChangeValue={onChangeValue}
           name="userPwd"
           label="비밀번호"
           type="password"
           text="비밀번호를 입력해주세요"
           value={userPwd}
-        />
+        />   
       <BtnTmp size="lg" value="로그인" status={next} />
     </>
   );
 }
 
-export default LoginTmp;
+export default LoginFormTmp;

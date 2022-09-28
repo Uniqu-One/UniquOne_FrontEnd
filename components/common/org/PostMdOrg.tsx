@@ -4,10 +4,7 @@ import Link from "next/link";
 import React from "react";
 import UniStarMol from "../mol/UniStarMol";
 
-// TODO - 메인 카테고리 부분 스타일은 나중에 손보기
-
-const PostLgOrgStyle = styled.div`
-  width: calc((95%)/2);
+const PostMdOrgStyle = styled.div`
   position: relative;
   
   img {
@@ -21,22 +18,22 @@ const PostLgOrgStyle = styled.div`
   }
 `;
 
-function PostLgOrg(props:{opt?:string}) {
+function PostMdOrg(props:{opt?:string}) {
   return (
-    <PostLgOrgStyle >
+    <PostMdOrgStyle >
       <Link href={"/"}>
         <Image
           src="/assets/images/postImage.jpg"
           alt="포스트 더미 이미지"
-          width={250}
-          height={250}
+          width={148}
+          height={148}
         />
       </Link>
 
       {props.opt ? <UniStarMol/>: <span></span>}
 
-    </PostLgOrgStyle>
+    </PostMdOrgStyle>
   );
 }
 
-export default PostLgOrg;
+export default PostMdOrg;

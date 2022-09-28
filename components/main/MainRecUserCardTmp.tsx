@@ -5,11 +5,9 @@ import MainContentTitleAtm from "./MainContentTitleAtm";
 import MainRecUserCardMol from "./MainRecUserCardMol";
 import { mainRecUserCardsDummy } from "../../public/assets/datas/mainRecUserCardsDummy";
 
-const length = mainRecUserCardsDummy.length;
-
 const MainRecUserCardContainerStyle = styled.div`
   background-color: ${color.p_gray_lt};
-  padding: 18px 18px 18px;
+  padding: 18px 0px 18px 18px;
 
   > h2 {
     margin-bottom: 12px;
@@ -17,7 +15,7 @@ const MainRecUserCardContainerStyle = styled.div`
 
   > div {
     overflow-x: scroll;
-    background-color: red;
+    /* background-color: red; */
 
     > div {  
       /* background-color: blue; */

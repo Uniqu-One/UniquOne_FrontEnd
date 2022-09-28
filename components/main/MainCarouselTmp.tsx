@@ -1,9 +1,36 @@
-import React from 'react'
+import styled from "@emotion/styled";
+import React from "react";
+import Slider from "react-slick";
+import MainCarouselMol from "./MainCarouselMol";
+import {mainCarouselDummy} from "../../public/assets/datas/mainCarouselDummy"
+
+const MainCarouselStyle = styled.div`
+  .slick-arrow{
+    display: none !important;
+  }
+`;
 
 function MainCarouselTmp() {
+
+  console.log(mainCarouselDummy)
+
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 400,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
   return (
-    <div>MainCarouselTmp</div>
-  )
+    <MainCarouselStyle>
+      <Slider {...settings}>
+
+        {mainCarouselDummy.map((slide) => {
+          return <MainCarouselMol key={slide.id} title={slide.title} subTitle={slide.subTitle} width={mainCarouselDummy.length}/>
+        })}
+      </Slider>
+    </MainCarouselStyle>
+  );
 }
 
-export default MainCarouselTmp
+export default MainCarouselTmp;

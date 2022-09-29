@@ -16,7 +16,7 @@ const MainRecOneUserMolStyle = styled.div`
       border-radius: 6px;
     }
 
-    :first-child {
+    :first-of-type {
       padding-top: 18px;
       padding-bottom: 12px;
       /* background-color: red; */

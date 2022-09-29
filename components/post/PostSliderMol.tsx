@@ -43,6 +43,7 @@ function PostSliderMol(props: { postId: number }) {
   const router = useRouter();
   const postId = router.query.postId
 
+  // TODO - 뒤로 슬라이드해도 이동되는 버그 수정하기
 
   const [settings, setSettings] = useState({
     beforeChange: (e: number) => {

@@ -1,6 +1,4 @@
 import styled from "@emotion/styled";
-import Link from "next/link";
-import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import PostFollowMol from "./PostFollowMol";
 import PostFuncBarMol from "./PostFuncBarMol";

@@ -3,6 +3,8 @@ import Link from "next/link";
 import React from "react";
 import { color } from "../../../styles/theme";
 
+//TODO - 나중에 Mol단위 Org단위로 다 분해해야함
+
 const ButtonLgCommonStyle = styled.div`
   height: 42px;
   text-align: center;
@@ -12,24 +14,24 @@ const ButtonLgCommonStyle = styled.div`
   margin: 0 18px;
 `;
 
-const ButtonLgStyle = styled(ButtonLgCommonStyle)<{ status?: string | boolean; color?: string }>`
+const ButtonLgStyle = styled(ButtonLgCommonStyle)<{status?: string | boolean;color?: string;}>`
   background-color: ${(props) =>
     props.status ? `${color.p_pruple}` : `${color.p_gray_lt}`};
   color: ${(props) => (props.status ? `white` : `${color.p_gray_dk}`)};
 `;
 
 const KaKaoButtonLgStyle = styled(ButtonLgCommonStyle)`
-  background-color:#FAE64D;
-  color: #381F1F;
+  background-color: #fae64d;
+  color: #381f1f;
 `;
 
 const NaverButtonLgStyle = styled(ButtonLgCommonStyle)`
-background-color:#5AC466;
-color: white;
+  background-color: #5ac466;
+  color: white;
 `;
 
 const GoogleButtonLgStyle = styled(ButtonLgCommonStyle)`
-  background-color:white;
+  background-color: white;
   color: #000000;
 `;
 
@@ -70,9 +72,11 @@ function BtnTmp(props: {
     case "email":
       return (
         <Link href={"/signup"}>
-        <ButtonLgStyle status={true}>
-          <p>{props.value}</p>
-        </ButtonLgStyle>
+          <a>
+            <ButtonLgStyle status={true}>
+              <p>{props.value}</p>
+            </ButtonLgStyle>
+          </a>
         </Link>
       );
 

@@ -9,6 +9,7 @@ export const TopMainOrg = () => {
   return (
     <TopBoxMol>
       <Link href="/">
+        <a>
         <TopLogoAtm>
           <Image
             src="/assets/icons/uniquOneLogoGradient.svg"
@@ -16,10 +17,9 @@ export const TopMainOrg = () => {
             width={30}
             height={30}
           />
-          <a>
             <h1>UNIQUONE</h1>
-          </a>
         </TopLogoAtm>
+        </a>
       </Link>
       <TopIconAtm>
         <i data-eva="bell-outline"></i>

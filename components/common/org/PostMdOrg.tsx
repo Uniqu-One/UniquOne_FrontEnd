@@ -6,32 +6,33 @@ import UniStarMol from "../mol/UniStarMol";
 
 const PostMdOrgStyle = styled.div`
   position: relative;
-  
+
   img {
     border-radius: 9px;
   }
 
-  > span:last-child{
+  > span:last-child {
     position: absolute;
     right: 12px;
     bottom: 12px;
   }
 `;
 
-function PostMdOrg(props:{opt?:string}) {
+function PostMdOrg(props: { opt?: string }) {
   return (
-    <PostMdOrgStyle >
+    <PostMdOrgStyle>
       <Link href={"/"}>
-        <Image
-          src="/assets/images/postImage.jpg"
-          alt="포스트 더미 이미지"
-          width={148}
-          height={148}
-        />
+        <a>
+          <Image
+            src="/assets/images/postImage.jpg"
+            alt="포스트 더미 이미지"
+            width={148}
+            height={148}
+          />
+        </a>
       </Link>
 
-      {props.opt ? <UniStarMol/>: <span></span>}
-
+      {props.opt ? <UniStarMol /> : <span></span>}
     </PostMdOrgStyle>
   );
 }

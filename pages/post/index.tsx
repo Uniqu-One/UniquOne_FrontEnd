@@ -15,7 +15,7 @@ const PostIntervalStyle = styled.div`
       margin-top: 48px;
     }
 
-    :nth-last-child(2) {
+    :nth-last-of-type(2)  {
       margin-bottom: 54px;
     }
   }

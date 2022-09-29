@@ -8,10 +8,10 @@ const TopPostStyle = styled.div`
   justify-content: right;
   span {
     margin: auto 0;
-    :first-child {
+    :first-of-type {
       margin-right: 6px;
     }
-    :last-child {
+    :last-of-type {
       margin-right: 18px;
     }
   }

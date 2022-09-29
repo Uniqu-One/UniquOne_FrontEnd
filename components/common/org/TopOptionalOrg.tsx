@@ -29,9 +29,9 @@ export const TopOptionalOrg = (props: {
         <p>{props.text}</p>
       </TopTitleAtm>
 
-      {props.right === "check" ? (
+      {props.right ? (
         <TopIconAtm>
-          <i data-eva="checkmark"></i>
+          <i data-eva={props.right}></i>
         </TopIconAtm>
       ) : (
         <TopIconAtm></TopIconAtm>

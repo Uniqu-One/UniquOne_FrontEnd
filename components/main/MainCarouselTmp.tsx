@@ -5,9 +5,7 @@ import MainCarouselMol from "./MainCarouselMol";
 import {mainCarouselDummy} from "../../public/assets/datas/mainCarouselDummy"
 
 const MainCarouselStyle = styled.div`
-  .slick-arrow{
-    display: none !important;
-  }
+
 `;
 
 function MainCarouselTmp() {

@@ -2,6 +2,7 @@ import styled from '@emotion/styled'
 import React from 'react'
 import UniStarMol from '../common/mol/UniStarMol'
 import PostCommentAtm from './PostCommentAtm'
+import PostCommentMol from './PostCommentMol'
 import PostHeartAtm from './PostHeartAtm'
 
 const PostFuncBarMolStyle = styled.div`
@@ -11,6 +12,7 @@ const PostFuncBarMolStyle = styled.div`
   justify-content: space-between;
   
   div{
+    z-index: 300;
     margin: auto 21px auto 18px;
     
     :first-of-type{
@@ -26,7 +28,7 @@ function PostFuncBarMol() {
     <PostFuncBarMolStyle>
       <div>
         <PostHeartAtm/>
-        <PostCommentAtm/>
+        <PostCommentMol/>
       </div>
 
       <div>

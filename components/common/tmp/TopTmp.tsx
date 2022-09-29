@@ -19,6 +19,9 @@ function TopTmp(props: {
     case "arrowText":
       return <TopOptionalOrg left="back" text={props.text} />;
 
+    case "comment":
+      return <TopOptionalOrg left="back" text={"댓글"} right={"email-outline"}/>;
+
     case "post":
       return <TopPostOrg/>
 

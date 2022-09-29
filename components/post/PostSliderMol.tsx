@@ -53,7 +53,7 @@ function PostSliderMol(props: { postId: number }) {
     },
     afterChange:(e:number) => {
       if(e===0){
-        router.back()
+        router.push(`/post`);
       }
     },
 

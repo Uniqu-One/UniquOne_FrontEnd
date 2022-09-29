@@ -1,11 +1,13 @@
 import React from 'react'
-import CommentMol from './CommentMol'
+import CommentBarOrg from './CommentBarOrg'
+import CommentOrg from './CommentOrg'
 
 function CommentTmp() {
   return (
     <>
-      <CommentMol type="head"/>
-      <CommentMol type="tail"/>
+      <CommentOrg type="head"/>
+      <CommentOrg type="tail"/>
+      <CommentBarOrg/>
     </>
   )
 }

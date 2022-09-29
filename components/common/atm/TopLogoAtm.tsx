@@ -7,9 +7,6 @@ export const TopLogoAtm = styled.div`
   letter-spacing: -0.05rem;
   display: flex;
 
-  /* img{
-    color: red;
-  } */
 
   style{
     fill: #e277de;

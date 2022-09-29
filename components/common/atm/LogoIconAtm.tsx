@@ -1,9 +1,9 @@
 import Image from 'next/image'
 import React from 'react'
 
-function LogoIconAtm() {
+function LogoIconAtm(props:{width:number, height:number, color?:'string'}) {
   return (
-    <Image src="/assets/icons/logoIcon.svg" alt="logoIcon" width={160} height={160}/>
+    <Image src="/assets/icons/logoIcon.svg" alt="logoIcon" width={props.width} height={props.height}/>
   )
 }
 

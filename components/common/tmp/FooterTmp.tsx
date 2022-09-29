@@ -17,7 +17,7 @@ const FooterBox = styled.div`
 function FooterTmp() {
   return (
     <FooterBox>
-        <FooterIconOrg></FooterIconOrg>
+        <FooterIconOrg/>
     </FooterBox>
   )
 }

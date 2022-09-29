@@ -7,7 +7,7 @@ function LogoIconMol() {
   const router = useRouter()
   return (
     <div onClick={()=>router.push('/')}>
-      <LogoIconAtm />
+      <LogoIconAtm width={160} height={160}/>
     </div>
   );
 }

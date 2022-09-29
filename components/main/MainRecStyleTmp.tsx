@@ -5,6 +5,7 @@ import MainRecStyleSelectMol from "./MainRecStyleSelectMol";
 import MainRecStyleSlideMol from "./MainRecStyleSlideMol";
 
 const MainRecStyleIntervalTmpStyle = styled.div`
+  margin-top: 30px;
   padding-top: 18px;
   padding-bottom: 18px;
   background-color: ${color.p_gray_lt};

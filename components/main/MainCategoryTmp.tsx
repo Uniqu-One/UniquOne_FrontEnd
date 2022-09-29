@@ -20,7 +20,7 @@ const MainCategoryContainerStyle = styled.div`
 `
 
 function MainCategoryTmp() {
-  console.log(mainCategoryDummy)
+  // console.log(mainCategoryDummy)
   return (
     <MainCategoryBoxStyle>
       <MainCategoryContainerStyle>

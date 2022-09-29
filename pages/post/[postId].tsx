@@ -1,10 +1,11 @@
 import styled from "@emotion/styled";
-import React, { useEffect } from "react";
+import { useRouter } from "next/router";
+import React from "react";
 import FooterTmp from "../../components/common/tmp/FooterTmp";
 import TopTmp from "../../components/common/tmp/TopTmp";
 import PostCardTmp from "../../components/post/PostCardTmp";
-import PostTypeTmp from "../../components/post/PostTypeTmp";
-import { postListDummy } from "../../public/assets/datas/postListDummy";
+import PostSingleBodyMol from "../../components/post/PostSingleBodyMol";
+import PostSingleCornMol from "../../components/post/PostSingleCornMol";
 
 const PostIntervalStyle = styled.div`
   width: 100vw;
@@ -21,23 +22,23 @@ const PostIntervalStyle = styled.div`
   }
 `;
 
-function index() {
+function PostId() {
+  const router = useRouter();
+  const postId = Number(router.query.postId);
 
   return (
     <>
       <PostIntervalStyle>
-        <TopTmp type="post" />
+        <TopTmp type="post"/>
 
-        <PostTypeTmp type="rec" />
+        <PostCardTmp postId={postId}/>
+        <PostSingleBodyMol/>
+        <PostSingleCornMol/>
 
-        {postListDummy.map((post) => {
-          return <PostCardTmp key={post.id} postId={post.id}/>;
-        })}
-
-        <FooterTmp />
+        <FooterTmp/>
       </PostIntervalStyle>
     </>
   );
 }
 
-export default index;
+export default PostId;

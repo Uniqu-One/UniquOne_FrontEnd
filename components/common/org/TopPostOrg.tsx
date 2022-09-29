@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import React from "react";
 import useEvaIcon from "../../../hooks/useEvaIcon";
-import { TopBoxMol } from "../mol/TopBoxMol";
 import { TopPostMol } from "../mol/TopPostMol";
 
 const TopPostStyle = styled.div`

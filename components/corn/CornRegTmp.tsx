@@ -6,14 +6,18 @@ import SignupTitleSubAtm from "../signup/SignupTitleSubAtm";
 import CornRegDescMol from "./CornRegDescMol";
 import CornRegImageMol from "./CornRegImageMol";
 import CornRegNameMol from "./CornRegNameMol";
+import { AnimatePresence, motion } from "framer-motion";
 
 const CornRegTmpStyle = styled.div`
+  overflow: hidden;
   div {
     :last-of-type {
       margin-top: 36px;
     }
   }
 `;
+
+//TODO - 애니메이션 조금 더 자연스럽게 진행하기
 
 export type CornInputTypes = {
   inputs: {
@@ -39,40 +43,63 @@ function CornRegTmp() {
 
   return (
     <>
-      <Toaster />
-      <CornRegTmpStyle>
-        {cornPage === "reg-1" && (
-          <>
-            <SignupTitleSubAtm type={cornPage} />
-            <CornRegNameMol
-              inputs={inputs}
-              setInputs={setInputs}
-              onChangeValue={onChangeValue}
-              setCornPage={setCornPage}
-              cornPage={cornPage}
-            />
-          </>
-        )}
-        {cornPage === "reg-2" && (
-          <>
-            <SignupTitleSubAtm type={cornPage} />
-            <CornRegDescMol
-              inputs={inputs}
-              setInputs={setInputs}
-              onChangeValue={onChangeValue}
-              setCornPage={setCornPage}
-              cornPage={cornPage}
-            />
-          </>
-        )}
+      <AnimatePresence>
+        <Toaster />
+        <CornRegTmpStyle>
+          {cornPage === "reg-1" && (
+            <>
+              <motion.div
+                initial={{ x: 300, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                exit={{ x: -300, opacity: 0 }}
+                transition={{ duration: 0.35 }}
+              >
+                <SignupTitleSubAtm type={cornPage} />
+                <CornRegNameMol
+                  inputs={inputs}
+                  setInputs={setInputs}
+                  onChangeValue={onChangeValue}
+                  setCornPage={setCornPage}
+                  cornPage={cornPage}
+                />
+              </motion.div>
+            </>
+          )}
+          {cornPage === "reg-2" && (
+            <>
+              <motion.div
+                initial={{ x: 300, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                exit={{ x: -300, opacity: 0 }}
+                transition={{ duration: 0.35 }}
+              >
+                <SignupTitleSubAtm type={cornPage} />
+                <CornRegDescMol
+                  inputs={inputs}
+                  setInputs={setInputs}
+                  onChangeValue={onChangeValue}
+                  setCornPage={setCornPage}
+                  cornPage={cornPage}
+                />
+              </motion.div>
+            </>
+          )}
 
-        {cornPage === "reg-3" && (
-          <>
-            <SignupTitleSubAtm type={cornPage} />
-            <CornRegImageMol/>
-          </>
-        )}
-      </CornRegTmpStyle>
+          {cornPage === "reg-3" && (
+            <>
+              <motion.div
+                initial={{ x: 300, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                exit={{ x: -300, opacity: 0 }}
+                transition={{ duration: 0.35 }}
+              >
+                <SignupTitleSubAtm type={cornPage} />
+                <CornRegImageMol />
+              </motion.div>
+            </>
+          )}
+        </CornRegTmpStyle>
+      </AnimatePresence>
     </>
   );
 }

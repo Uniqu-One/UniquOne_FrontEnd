@@ -29,6 +29,7 @@ const IntroIntervalStyle = styled.div`
   div{
     :nth-child(1){
       padding-top: 104px;
+      /* background-color: red; */
       margin-bottom: 12px;
     }
     :nth-child(3){
@@ -45,6 +46,7 @@ const IntroIntervalStyle = styled.div`
       margin-bottom: 6px;
     }
     :nth-child(7){
+      
       margin-top: 6px;
       margin-bottom: 18px;
     }

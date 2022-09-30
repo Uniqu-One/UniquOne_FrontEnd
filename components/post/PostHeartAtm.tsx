@@ -1,5 +1,5 @@
 import React from 'react'
-import useEvaIcon from '../../hooks/useEvaIcon'
+import useEvaIcon from '../../lib/hooks/useEvaIcon'
 import { color } from '../../styles/theme'
 
 

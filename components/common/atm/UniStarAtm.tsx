@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import Image from "next/image";
 import React from "react";
-import useEvaIcon from "../../../hooks/useEvaIcon";
+import useEvaIcon from "../../../lib/hooks/useEvaIcon";
 
 const StarStyle = styled.i`
   width: 24px;

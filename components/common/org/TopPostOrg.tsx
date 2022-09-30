@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
-import React from "react";
-import useEvaIcon from "../../../hooks/useEvaIcon";
+import React, { useState } from "react";
+import useEvaIcon from "../../../lib/hooks/useEvaIcon";
+import SearchModalTmp from "../../search/SearchModalTmp";
 import { TopPostMol } from "../mol/TopPostMol";
 
 const TopPostStyle = styled.div`
@@ -19,17 +20,20 @@ const TopPostStyle = styled.div`
 
 function TopPostOrg() {
   useEvaIcon();
+
   return (
-    <TopPostMol>
-      <TopPostStyle>
-        <span>
-          <i data-eva="star-outline"></i>
-        </span>
-        <span>
-          <i data-eva="search-outline"></i>
-        </span>
-      </TopPostStyle>
-    </TopPostMol>
+    <>
+      <TopPostMol>
+        <TopPostStyle>
+          <span>
+            <i data-eva="star-outline"></i>
+          </span>
+          <span>
+            <i data-eva="search-outline"></i>
+          </span>
+        </TopPostStyle>
+      </TopPostMol>
+    </>
   );
 }
 

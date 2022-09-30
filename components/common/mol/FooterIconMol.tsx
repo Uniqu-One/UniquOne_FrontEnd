@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React, { useEffect } from "react";
-import useEvaIcon from "../../../hooks/useEvaIcon";
+import useEvaIcon from "../../../lib/hooks/useEvaIcon";
 import { FooterIconAtm } from "../atm/FooterIconAtm";
 import { color } from "../../../styles/theme";
 

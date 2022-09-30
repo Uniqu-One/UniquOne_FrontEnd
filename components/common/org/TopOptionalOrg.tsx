@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import React from "react";
-import useEvaIcon from "../../../hooks/useEvaIcon";
+import useEvaIcon from "../../../lib/hooks/useEvaIcon";
 import { TopIconAtm } from "../atm/TopIconAtm";
 import { TopTitleAtm } from "../atm/TopTitleAtm";
 import { TopBoxMol } from "../mol/TopBoxMol";

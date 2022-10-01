@@ -11,7 +11,7 @@ const FooterBox = styled.div`
   width: 100vw;
   height: 54px;
   border-top: 0.5px solid ;
-  z-index: 500;
+  z-index: 2;
 `
 
 function FooterTmp() {

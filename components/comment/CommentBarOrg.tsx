@@ -8,7 +8,7 @@ const CommentBarOrgStyle = styled.div<{inputStatus:boolean}>`
   position: fixed;
   bottom: 0;
   left: 0;
-  z-index: 500;
+  z-index: 1;
   width: 100vw;
   height: 66px;
   background-color: white;

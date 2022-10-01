@@ -4,7 +4,7 @@ import { TopOptionalOrg } from "../org/TopOptionalOrg";
 import TopPostOrg from "../org/TopPostOrg";
 
 function TopTmp(props: {
-  type: string;
+  type?: string;
   left?: string;
   text?: string;
   right?: string;
@@ -25,12 +25,7 @@ function TopTmp(props: {
       return (
         <TopOptionalOrg left="star-outline" text={"마이 페이지"} right={"settings-outline"} />
       );
-
-    case "setting":
-      return(
-        <TopOptionalOrg left="back" text={props.text} />
-      )
-
+      
     case "post":
       return <TopPostOrg />;
 
@@ -38,7 +33,7 @@ function TopTmp(props: {
     //   return <TopOptionalOrg left="cancel" text="스타일 등록"/>
 
     default:
-      return <TopOptionalOrg left="back" text="DEFAULT" />;
+      return <TopOptionalOrg left="back" text={props.text} />;
   }
 }
 

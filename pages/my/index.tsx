@@ -18,7 +18,9 @@ function index() {
     <TopTmp type='my'/>
 
     <ProfileBoxTmp/>
+    
     <ProfileInterVal/>
+
     <ProfileContentTmp/>
     
     <FooterTmp/>

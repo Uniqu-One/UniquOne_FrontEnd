@@ -3,6 +3,7 @@ import React from "react";
 import { color, styleColor } from "../../styles/theme";
 import BtnTmp from "../common/tmp/BtnTmp";
 import ProfileBoxTopMol from "./ProfileBoxTopMol";
+import ProfileBoxUnderMol from "./ProfileBoxUnderMol";
 
 const ProfileBoxTmpStyle = styled.div`
   margin: 18px 18px 0px 18px;
@@ -29,20 +30,7 @@ function ProfileBoxTmp() {
     <>
       <ProfileBoxTmpStyle>
         <ProfileBoxTopMol />
-
-        <div>
-          <p>
-            시나모롤 덕후샵은 어쩔티비 저쩔시구 우짤래미 드등드시나모롤 덕후샵은
-            어쩔티비 저쩔시구 우짤래미 드등드을을시나모롤 덕후샵은 어쩔티비
-            저쩔시구 우짤래미 드등드시나모롤 덕후샵은 어쩔티비 저쩔시구 우짤래미
-            드등드을을시나모롤 덕후샵은 어쩔티비 저쩔시구 우짤래미
-            드등드시나모롤 덕후샵은 어쩔티비 저쩔시구 우짤래미 드등드을을
-          </p>
-        </div>
-
-        <div>
-          <span>http://www.instagram.com</span>
-        </div>
+        <ProfileBoxUnderMol />
       </ProfileBoxTmpStyle>
       <div>
         <BtnTmp size="default" value="콘 수정" />

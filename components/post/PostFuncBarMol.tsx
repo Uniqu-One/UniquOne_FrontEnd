@@ -12,7 +12,7 @@ const PostFuncBarMolStyle = styled.div`
   justify-content: space-between;
   
   div{
-    z-index: 300;
+    z-index: 1;
     margin: auto 21px auto 18px;
     
     :first-of-type{

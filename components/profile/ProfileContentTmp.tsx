@@ -1,8 +1,6 @@
 import styled from "@emotion/styled";
-import { AnimatePresence } from "framer-motion";
 import React, { useState } from "react";
 import { color } from "../../styles/theme";
-import Paging from "../animation/paging";
 import PostMdOrg from "../common/org/PostMdOrg";
 
 const ProfileContentTmpStyle = styled.div`

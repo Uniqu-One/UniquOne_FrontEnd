@@ -11,7 +11,7 @@ const MainCarouselCardStyle = styled.div`
 
   .carousel_desc {
     position: absolute;
-    z-index: 500;
+    z-index: 1;
     margin-left: 24px;
     bottom: 32px;
     color: white;

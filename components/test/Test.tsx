@@ -1,84 +1,60 @@
-import * as React from "react";
-import { motion } from "framer-motion";
-import styled from "@emotion/styled";
-import UniStarMol from "../common/mol/UniStarMol";
-import UniStarAtm from "../common/atm/UniStarAtm";
-import { useState } from "react";
 
-const Test = () => {
-  const [count, setCount] = useState(0);
-  const [temp, setTemp] = useState(false)
+import { useEffect, useState } from 'react'
+import { BottomSheet } from 'react-spring-bottom-sheet'
 
-  const handleSetCount = () => {
-    if (count === 3) {
-      setCount(count - 3);
-    } else {
-      setCount(count + 1);
-    }
-  };
-  
 
-  React.useEffect(() => {
-    setTimeout(() => {
-      
-      setTemp(true)
-    }, 1000);
-  },[])
+const SimpleFixturePage =() =>{
+  const [open, setOpen] = useState(false)
 
-  React.useEffect(() => {
-    
-  },[count])
+  // Ensure it animates in when loaded
+  useEffect(() => {
+    setOpen(false)
+  }, [])
+
+  function onDismiss() {
+    setOpen(false)
+  }
 
   return (
     <>
 
-{temp ? <span onClick={handleSetCount}>
-        <motion.div
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{
-            default: {
-              duration: 0.1,
-              ease: [0, 0.71, 0.2, 1.01],
-            },
-            scale: {
-              type: "spring",
-              damping: 5,
-              stiffness: 100,
-              restDelta: 0.001,
-            },
-          }}
+      <div>
+        <button onClick={() => setOpen(true)}>Open</button>
+        <BottomSheet
+          open={open}
+          onDismiss={() => setOpen(false)}
         >
-          
-            <UniStarAtm count={count} />
-          
-        </motion.div>
-      </span>: <></>}
-
-      <span onClick={handleSetCount}>
-        <motion.div
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{
-            default: {
-              duration: 0.1,
-              ease: [0, 0.71, 0.2, 1.01],
-            },
-            scale: {
-              type: "spring",
-              damping: 5,
-              stiffness: 100,
-              restDelta: 0.001,
-            },
-          }}
-        >
-          
-            <UniStarAtm count={count} />
-          
-        </motion.div>
-      </span>
+          <div>
+            <p>
+              Using onDismiss lets users close the sheet by swiping
+              it down, tapping on the backdrop or by hitting  on
+              their keyboard.              Using onDismiss lets users close the sheet by swiping
+              it down, tapping on the backdrop or by hitting  on
+              their keyboard.              Using onDismiss lets users close the sheet by swiping
+              it down, tapping on the backdrop or by hitting  on
+              their keyboard.              Using onDismiss lets users close the sheet by swiping
+              it down, tapping on the backdrop or by hitting  on
+              their keyboard.              Using onDismiss lets users close the sheet by swiping
+              it down, tapping on the backdrop or by hitting  on
+              their keyboard.              Using onDismiss lets users close the sheet by swiping
+              it down, tapping on the backdrop or by hitting  on
+              their keyboard.
+            </p>
+            {/* <div>
+              <div className="bg-gray-200 block rounded-md h-10 w-full my-10" />
+              <p>
+                The height adjustment is done automatically, it just works™!
+              </p>
+              <div className="bg-gray-200 block rounded-md h-10 w-full my-10" />
+            </div> */}
+            {/* <button onClick={onDismiss} className="w-full">
+              Dismiss
+            </button> */}
+          </div>
+        </BottomSheet>
+      </div>
     </>
-  );
-};
+  )
+}
 
-export default Test;
+export default SimpleFixturePage

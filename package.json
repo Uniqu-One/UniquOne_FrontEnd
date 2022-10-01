@@ -26,6 +26,7 @@
     "react-helmet": "^6.1.0",
     "react-hot-toast": "^2.4.0",
     "react-slick": "^0.29.0",
+    "react-spring-bottom-sheet": "^3.4.1",
     "styled-components": "^5.3.6"
   },
   "devDependencies": {

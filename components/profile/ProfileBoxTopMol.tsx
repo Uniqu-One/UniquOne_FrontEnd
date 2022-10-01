@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import { color } from "../../styles/theme";
 import UserImgAtm from "../common/atm/UserImgAtm";
@@ -10,30 +11,29 @@ const ProfileBoxTopMolStyle = styled.div`
   div {
     margin: auto 0;
   }
-  .userInfo{
+  .userInfo {
     margin-left: 12px;
     color: ${color.p_gray_dk};
-    div{
+    div {
       display: flex;
       margin: 6px 0px;
     }
-    .userInfo_head{
+    .userInfo_head {
       /* background-color: lightseagreen; */
       line-height: 20px;
-      h3{
+      h3 {
         color: black;
         font-weight: 750;
         margin-right: 3px;
       }
 
-      span{
+      span {
         color: ${color.p_pruple};
       }
     }
 
-    .userInfo_tail{
-
-      span{
+    .userInfo_tail {
+      span {
         margin-left: 3px;
         margin-right: 9px;
         font-weight: 700;
@@ -49,12 +49,27 @@ function ProfileBoxTopMol() {
         <div>
           <UserImgAtm width={78} height={78} />
         </div>
-        
+
         <div className="userInfo">
           <div className="userInfo_head">
-            <div><h3>폼폼푸린 덕후샵</h3></div>
-            <div><Image src="/assets/icons/uniquOneLogo.svg" alt="logo icon" width={20} height={20} /></div>
-            <div><span>★★★★★</span>(7)</div>
+            <div>
+              <h3>폼폼푸린 덕후샵</h3>
+            </div>
+            <div>
+              <Image
+                src="/assets/icons/uniquOneLogo.svg"
+                alt="logo icon"
+                width={20}
+                height={20}
+              />
+            </div>
+            <div>
+              <Link href={"/my/review"}>
+                <a>
+                  <span>★★★★★</span>(7)
+                </a>
+              </Link>
+            </div>
           </div>
 
           <div className="userInfo_tail">

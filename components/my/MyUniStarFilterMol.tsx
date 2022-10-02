@@ -1,17 +1,18 @@
 import styled from '@emotion/styled'
 import React from 'react'
+import BottomSheetRadioMol from '../bottom_sheet/BottomSheetRadioMol'
 
 const MyUniStarFilterMolStyle = styled.div`
-background-color: red;
+
 height: 500;
 z-index: 1;
 
 `
 
-function MyUniStarFilterMol() {
+function MyUniStarFilterMol(props:{setOpen:Function}) {
   return (
     <MyUniStarFilterMolStyle>
-      <div>fun</div>
+      <BottomSheetRadioMol setOpen={props.setOpen}/>
     </MyUniStarFilterMolStyle>
   )
 }

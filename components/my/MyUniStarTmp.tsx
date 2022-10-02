@@ -32,12 +32,13 @@ function MyUniStarTmp() {
 
   // Ensure it animates in when loaded
   useEffect(() => {
-    setOpen(false);
+    setOpen(true);
   }, []);
 
   function onDismiss() {
     setOpen(false);
   }
+
 
   return (
     <>
@@ -59,9 +60,9 @@ function MyUniStarTmp() {
       <BottomSheet
         open={open}
         onDismiss={() => setOpen(false)}
-        snapPoints={({ minHeight }) => 100}
+        // snapPoints={}
       >
-        <MyUniStarFilterMol/>
+        <MyUniStarFilterMol setOpen={setOpen}/>
       </BottomSheet>
     </>
   );

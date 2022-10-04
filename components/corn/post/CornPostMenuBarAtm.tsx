@@ -34,7 +34,7 @@ function CornPostMenuBarAtm(props: {
 
   const [tempMenu, setTempMenu] = useState("");
 
-  // console.log(tempMenu)
+  console.log(tempMenu)
 
   const handleOpenSelect = (name: string) => {
     setOpen((prev) => !prev);

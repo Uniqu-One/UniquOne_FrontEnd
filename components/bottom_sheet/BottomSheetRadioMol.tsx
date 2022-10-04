@@ -56,7 +56,7 @@ function BottomSheetRadioMol(props: {
   tempMenu: string;
 }) {
   const { setOpen } = props;
-  const [tempIdx, setTempIdx] = useState(0);
+  const [tempIdx, setTempIdx] = useState(999);
 
   const handleChangeIdx = (selectedTab:string, idx: number) => {
     setTempIdx(idx);
@@ -128,7 +128,18 @@ if(props.tempMenu === "category"){
   </BottomSheetRadioMolStyle>}
   }
 
+  if(props.tempMenu === "look"){
+    return(
+      <div>LOOK</div>
+    )
+  }
 
+  if(props.tempMenu === "color"){
+    return(
+      <div>COLOR</div>
+    )
+  }
+  
 
   return (
     <BottomSheetRadioMolStyle>

@@ -1,13 +1,11 @@
 import React, { ReactElement, useState } from "react";
-import { toast, Toaster } from "react-hot-toast";
-import { makeNewWord } from "../../lib/utils/makeNewWord";
-import InputFormMol from "../common/mol/InputFormMol";
-import BtnTmp from "../common/tmp/BtnTmp";
+import InputFormMol from "../../common/mol/InputFormMol";
+import BtnTmp from "../../common/tmp/BtnTmp";
 import { CornInputTypes } from "./CornRegTmp";
 
 function CornRegDescMol(props: CornInputTypes) {
   const { inputs, setInputs, onChangeValue,setCornPage } = props;
-  console.log('this page is rendering')
+  // console.log('this page is rendering')
 
   return (
 

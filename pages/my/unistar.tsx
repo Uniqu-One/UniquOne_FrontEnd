@@ -6,6 +6,8 @@ import MyUniStarTmp from '../../components/my/MyUniStarTmp'
 import { ProfileContentsStyle } from '../../components/profile/ProfileContentTmp'
 
 function UniStar() {
+
+  //TODO - default check 오류 해결
   return (
     <>
     <TopTmp type="setting" text="유니스타"/>

@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import React from "react";
-import BtnTmp from "../common/tmp/BtnTmp";
+import BtnTmp from "../../common/tmp/BtnTmp";
 
 function CornRegImageMol() {
 

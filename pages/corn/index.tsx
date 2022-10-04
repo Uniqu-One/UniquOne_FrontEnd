@@ -1,14 +1,12 @@
-import { useRouter } from "next/router";
-import React, { useEffect } from "react";
+import React from "react";
+import FooterTmp from "../../components/common/tmp/FooterTmp";
+import CornMainTmp from "../../components/corn/main/CornMainTmp";
 
 function Index() {
-  const router = useRouter();
-
-  useEffect(() => {
-    router.push("/corn/reg")
-  },[])
-
-  return <div>Index</div>;
+  return <>
+  <CornMainTmp/>
+  <FooterTmp/>
+  </>
 }
 
 export default Index;

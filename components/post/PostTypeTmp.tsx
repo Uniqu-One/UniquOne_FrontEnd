@@ -23,7 +23,7 @@ div{
 `
 
 function PostTypeTmp(props:{type:string}) {
-  console.log(props.type)
+  // console.log(props.type)
   return (
     <PostTypeTmpStyle type={props.type}>
       <div ><h3 className="following">팔로잉</h3></div>

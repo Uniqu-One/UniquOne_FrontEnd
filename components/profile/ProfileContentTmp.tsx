@@ -65,7 +65,7 @@ function ProfileContentTmp() {
   const tabs = ["전체", "상품", "스타일"];
   const [tempTab, setTempTab] = useState(0);
 
-  console.log(tempTab);
+  // console.log(tempTab);
 
   return (
     <>

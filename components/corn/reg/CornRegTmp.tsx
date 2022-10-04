@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
 import { Toaster } from "react-hot-toast";
-import BtnTmp from "../common/tmp/BtnTmp";
-import SignupTitleSubAtm from "../signup/SignupTitleSubAtm";
+import BtnTmp from "../../common/tmp/BtnTmp";
+import SignupTitleSubAtm from "../../signup/SignupTitleSubAtm";
 import CornRegDescMol from "./CornRegDescMol";
 import CornRegImageMol from "./CornRegImageMol";
 import CornRegNameMol from "./CornRegNameMol";

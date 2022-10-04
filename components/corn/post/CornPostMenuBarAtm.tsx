@@ -1,10 +1,12 @@
 import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
 import { BottomSheet } from "react-spring-bottom-sheet";
+import { useRecoilState } from "recoil";
 import useEvaIcon from "../../../lib/hooks/useEvaIcon";
+import { CornPostState } from "../../../states/recoil/CornPostState";
 import { color } from "../../../styles/theme";
+import { postDataType } from "../../../types/postDataType";
 import BottomSheetRadioMol from "../../bottom_sheet/BottomSheetRadioMol";
-import { postDataType } from "./CornPostTmp";
 
 const CornPostMenuBarAtmStyle = styled.div`
   color: ${color.p_gray_dk};
@@ -24,26 +26,22 @@ const CornPostMenuBarAtmStyle = styled.div`
 `;
 
 function CornPostMenuBarAtm(props: {
-  menu: { title: string; select?: string; name: string };
-  setPostData: Function;
+  menu: { title: string; select: string; name: string };
 }) {
   useEvaIcon();
 
+  const [postData, setPostData] = useRecoilState(CornPostState);
   const { title, select, name } = props.menu;
-  const { setPostData } = props;
-
   const [tempMenu, setTempMenu] = useState("");
-
-  console.log(tempMenu)
 
   const handleOpenSelect = (name: string) => {
     setOpen((prev) => !prev);
     setTempMenu(name);
   };
 
-  const handleTempSelect = (selectedTab:string) => {
-    setPostData((prev: postDataType) => {
-      let newData = prev;
+  const handleTempSelect = (selectedTab: string) => {
+    setPostData(() => {
+      let newData = { ...postData };
       newData[name] = selectedTab;
       setOpen(false);
 

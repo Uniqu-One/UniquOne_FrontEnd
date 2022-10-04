@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { toast, Toaster } from "react-hot-toast";
+import Paging from "../animation/paging";
 import FooterTmp from "../common/tmp/FooterTmp";
 import PostTmp from "../common/tmp/PostTmp";
 
@@ -16,22 +17,20 @@ const MyStyleSelectContentMolStyle = styled.div`
       margin: 3px 0px;
     }
   }
-  .unSelected{
+  .unSelected {
     opacity: 40%;
   }
 `;
 
 function MyStyleSelectContentMol() {
-
   const notify = () => toast.error("최소한 하나의 스타일을 선택해주세요!");
-
 
   const router = useRouter();
 
   const STYLE_DUMMY = [1, 2, 3, 4, 5, 6];
 
   const [selected, setSelected] = useState<number[]>([]);
-  const [btnStatus,setStatus] = useState(false)
+  const [btnStatus, setStatus] = useState(false);
 
   const handleChangeList = (item: number) => {
     if (selected.includes(item)) {
@@ -43,42 +42,42 @@ function MyStyleSelectContentMol() {
   };
 
   const handleSubmitStyle = () => {
-    if(btnStatus){
-      router.replace('/redirect/style');
+    if (btnStatus) {
+      router.replace("/redirect/style");
     } else {
-      notify()
+      notify();
     }
-  }
+  };
 
   useEffect(() => {
-
-    if(selected.length >0){
-      setStatus(true)
+    if (selected.length > 0) {
+      setStatus(true);
     } else {
-      setStatus(false)
+      setStatus(false);
     }
-
-  },[selected])
+  }, [selected]);
 
   return (
     <>
-      <Toaster/>
+      <Toaster />
       <MyStyleSelectContentMolStyle>
         {STYLE_DUMMY.map((item) => {
-
-          const status = (selected.includes(item))
-          console.log(status);
-          
+          const status = selected.includes(item);
 
           return (
-            <div key={item} onClick={() => handleChangeList(item)} className={status ? "selected":"unSelected"}>
-              <PostTmp type="lg" />
+            <div
+              key={item}
+              onClick={() => handleChangeList(item)}
+              className={status ? "selected" : "unSelected"}
+            >
+                <PostTmp type="lg" />
             </div>
           );
         })}
       </MyStyleSelectContentMolStyle>
-      <div onClick={()=>handleSubmitStyle()}>
-      <FooterTmp type="btn" text="선택 완료하기" status={btnStatus} />
+
+      <div onClick={() => handleSubmitStyle()}>
+        <FooterTmp type="btn" text="선택 완료하기" status={btnStatus} />
       </div>
     </>
   );

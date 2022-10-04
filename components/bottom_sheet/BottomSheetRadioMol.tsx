@@ -3,7 +3,12 @@ import React, { useState } from "react";
 import { color } from "../../styles/theme";
 import {postMenuListData} from "../../public/assets/datas/postMenuListData"
 import { title } from "process";
+import BottomSheetTopMol from "./BottomSheetTopMol";
+import TopTmp from "../common/tmp/TopTmp";
+import BottomSheetRoundBoxAtm from "./BottomSheetRoundBoxAtm";
+import BottomLookMol from "./BottomLookMol";
 
+//TODO - 메뉴별로 컴포넌트 그냥 나누는게 좋을듯
 const BottomSheetRadioMolStyle = styled.div`
   > div {
     :first-of-type {
@@ -19,6 +24,7 @@ const BottomSheetRadioMolStyle = styled.div`
       flex-direction: column;
     }
   }
+
 
   label {
     accent-color: ${color.p_pruple};
@@ -48,6 +54,7 @@ const BottomSheetRadioMolStyle = styled.div`
   }
 `;
 
+
 const UniStarFilterMenu = ["전체", "1 Star", "2 Star", "3 Star"];
 
 function BottomSheetRadioMol(props: {
@@ -64,14 +71,14 @@ function BottomSheetRadioMol(props: {
     setOpen(false);
   };
 
-  console.log(props.tempMenu)
+
 
 if(props.tempMenu === "type" || props.tempMenu === "condition"){
 {
   
   return <BottomSheetRadioMolStyle>
   <div>
-    <h3>정렬</h3>
+    <h3>{props.tempMenu === "type" ? "포스트 분류":"상태"}</h3>
   </div>
   <div>
     {postMenuListData[props.tempMenu].map((menu, idx) => {
@@ -130,7 +137,7 @@ if(props.tempMenu === "category"){
 
   if(props.tempMenu === "look"){
     return(
-      <div>LOOK</div>
+      <BottomLookMol setOpen={setOpen}/>
     )
   }
 

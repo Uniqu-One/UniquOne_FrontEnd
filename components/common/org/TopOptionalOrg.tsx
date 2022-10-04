@@ -7,7 +7,7 @@ import { TopTitleAtm } from "../atm/TopTitleAtm";
 import { TopBoxMol } from "../mol/TopBoxMol";
 
 export const TopOptionalOrg = (props: {
-  left: string;
+  left?: string;
   text?: string;
   right?: string;
 }) => {
@@ -33,6 +33,8 @@ export const TopOptionalOrg = (props: {
           </Link>
         </TopIconAtm>
       )}
+
+
 
       {/* TEXT */}
 

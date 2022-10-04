@@ -1,7 +1,10 @@
 import styled from '@emotion/styled'
 import React, { useState } from 'react'
+import { useRecoilState } from 'recoil';
+import { CornPostState } from '../../../states/recoil/CornPostState';
 import { color } from '../../../styles/theme';
-import { postDataType } from './CornPostTmp';
+import { postDataType } from '../../../types/postDataType';
+
 
 
 const CornPostDescInputMolStyle = styled.div`
@@ -24,9 +27,11 @@ p{
   }
 `
 
-function CornPostDescInputMol(props:{postData:postDataType, setPostData:Function}) {
+function CornPostDescInputMol() {
 
-  const {postData, setPostData} = props;
+  const [postData, setPostData] = useRecoilState(CornPostState);
+  
+  console.log(postData)
 
   const [count, setCount] = useState(1000)
 
@@ -34,9 +39,10 @@ function CornPostDescInputMol(props:{postData:postDataType, setPostData:Function
     
     if(e.target.value.length<1001){
 
-      setPostData((prev:postDataType) => {
+      setPostData(() => {
   
-        let newData = prev;
+        
+        let newData = {...postData};
         newData.desc = e.target.value
   
         return {...newData};

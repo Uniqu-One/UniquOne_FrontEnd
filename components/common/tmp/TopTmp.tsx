@@ -25,7 +25,12 @@ function TopTmp(props: {
       return (
         <TopOptionalOrg left="star-outline" text={"마이 페이지"} right={"settings-outline"} />
       );
-      
+     
+    case "look" || "color":
+      return(
+        <TopOptionalOrg left="back" text={props.text} right="arrow-ios-back-outline" />
+      )
+
     case "post":
       return <TopPostOrg />;
 

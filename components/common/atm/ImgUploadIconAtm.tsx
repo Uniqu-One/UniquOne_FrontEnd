@@ -3,26 +3,22 @@ import React from "react";
 import { color } from "../../../styles/theme";
 
 const ImgUploadIconAtmStyle = styled.div`
-  width: 120px;
-  height: 120px;
-  border-radius: 100%;
-  border: 3px dashed ${color.p_gray_md};
-
-  margin: 38px auto !important;
-  text-align: center;
   div {
-    height: 120px;
-    line-height: 136px;
+    height: 54px;
+    line-height: 68px;
     margin: auto !important;
     position: relative;
-    display: inline-block;
 
     span {
-      :first-of-type {
-      }
+
+
       :last-of-type {
+        /* background-color: red; */
         position: absolute;
+        height: 14px;
+        width: 14px;
         left: -3px;
+        top: -15px;
       }
     }
   }

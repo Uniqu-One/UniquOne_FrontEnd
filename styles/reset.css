@@ -30,6 +30,7 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
+	font-family: 'Noto Sans KR', sans-serif;
 	line-height: 1;
 }
 ol, ul {
@@ -50,5 +51,15 @@ table {
 a{
 	text-decoration: none;
 	color: black;
+}
+
+textarea{
+	letter-spacing: -0.03rem;
+	font-family: 'Noto Sans KR', sans-serif;
+
+}
+
+input{
+	letter-spacing: -0.03rem;
 }
 

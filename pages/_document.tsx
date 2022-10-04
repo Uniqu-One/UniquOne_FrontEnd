@@ -15,6 +15,8 @@ export default function Document() {
   type="text/css"
   href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
 />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+  </link>
       </Head>
       <body>
         <Main />

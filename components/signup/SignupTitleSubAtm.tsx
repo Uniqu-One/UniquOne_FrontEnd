@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import React from "react";
 import useEvaIcon from "../../lib/hooks/useEvaIcon";
 import { color } from "../../styles/theme";
+import ImgUploadIconAtm from "../common/atm/ImgUploadIconAtm";
 
 const SignupTitleSubBox = styled.div`
   margin-left: 18px;
@@ -14,35 +15,7 @@ const SignupTitleSubBox = styled.div`
     margin-bottom: 3px;
   }
 
-  .ImgUpload {
-    
-    width: 120px;
-    height: 120px;
-    border-radius: 100%;
-    border: 3px dashed ${color.p_gray_md};
-    /* background-color: lightblue; */
-    margin: 38px auto !important;
-    text-align: center;
-    div{
-      height: 120px;
-      line-height: 136px;
-      margin: auto !important;
-      position: relative;
-      display: inline-block;
-      /* background-color: peachpuff; */
-      span{
-        :first-of-type{
-          /* background-color: red; */
-        }
-        :last-of-type{
-          
-          position: absolute;
-          left: -3px;
-          /* background-color: black; */
-        }
-      }
-    }
-  }
+
 `;
 
 const SignupTitleStyle = styled.h2`
@@ -105,26 +78,7 @@ function SignupTitleSubAtm(props: { type?: string }) {
             <SignupTitleStyle>
               마지막으로 Corn을 잘 나타낼 수 있는 사진을 선택해주세요!
             </SignupTitleStyle>
-            <div className="ImgUpload">
-              <div>
-                <span className="camera">
-                  <i
-                    data-eva="camera-outline"
-                    data-eva-fill={color.p_gray_dk}
-                    data-eva-height="30px"
-                    data-eva-width="30px"
-                  ></i>
-                </span>
-                <span className="plus">
-                  <i
-                    data-eva="plus-circle"
-                    data-eva-fill={color.p_pruple}
-                    data-eva-height="14px"
-                    data-eva-width="14px"
-                  ></i>
-                </span>
-              </div>
-            </div>
+            <ImgUploadIconAtm/>
             <SignupSubeStyle>
               사진을 통해 다른 유저가
             </SignupSubeStyle>

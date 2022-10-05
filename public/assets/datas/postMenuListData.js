@@ -50,7 +50,7 @@ export const postMenuListData = {
     { name: "yellow", code: "#FFF18F" },
     { name: "red", code: "#FF3F2D" },
     { name: "wine", code: "#CB0A00" },
-    { name: "orange", code: "E86D2C" },
+    { name: "orange", code: "#E86D2C" },
     { name: "pink", code: "#E46DB0" },
     { name: "purple", code: "#BE55FF" },
     { name: "blue", code: "#3F95FF" },

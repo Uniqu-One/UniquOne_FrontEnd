@@ -10,7 +10,6 @@ const BottomSheetRoundBoxAtmStyle = styled.div<{ status: boolean }>`
   border: 0.5px solid ${color.p_gray_lt};
   color: ${(props) => (props.status ? "white" : color.p_gray_dk)};
   background-color: ${(props) => (props.status ? color.p_pruple : "white")};
-
   font-weight: 500;
   display: inline-block;
   padding: 3px 12px;
@@ -22,7 +21,7 @@ function BottomSheetRoundBoxAtm(props: {
   setTempSelect: Function;
   tempSelect: string[];
 }) {
-  const [postData, setPostData] = useRecoilState(CornPostState)
+
   const [status, setStatus] = useState(false);
   const { setTempSelect, tempSelect, menu } = props;
   const handleCheckMenu = () => {
@@ -45,12 +44,14 @@ function BottomSheetRoundBoxAtm(props: {
   };
 
   useEffect(() => {
-    if(postData[menu]){
+
+    if(tempSelect.includes(menu)){
       setStatus(true)
-    } else{
+    } else {
       setStatus(false)
     }
-  }, []);
+
+  },[tempSelect])
 
   return (
     <>

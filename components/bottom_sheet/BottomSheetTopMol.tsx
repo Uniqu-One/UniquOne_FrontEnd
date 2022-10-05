@@ -16,50 +16,85 @@ const BottomSheetTopMolStyle = styled.div`
   /* background-color: red; */
   padding: 0px 18px;
   border-bottom: 0.5px solid ${color.p_gray_md};
-  div{
-    svg{
+  div {
+    svg {
       margin: auto 0;
       height: 100%;
       /* background-color: lightblue; */
     }
-    
   }
-  .checked{
+  .checked {
     fill: ${color.p_pruple};
   }
-`
+`;
 
-
-function BottomSheetTopMol(props:{type:string, setOpen:Function, tempSelect:string[], setTempSelect:Function}) {
-
-  useEvaIcon()
-  const notify = () => toast.error("룩을 두개 이하로 선택해주세요");
+function BottomSheetTopMol(props: {
+  type: string;
+  setOpen: Function;
+  tempSelect: string[];
+  setTempSelect: Function;
+}) {
+  useEvaIcon();
+  const notify = () => toast.error("선택한 옵션의 개수를 확인해주세요");
   const [postData, setPostData] = useRecoilState(CornPostState);
 
-  const handlePostData = () => {
-
-    if(props.tempSelect.length >2){
-      notify()
+  const handlePostLookData = () => {
+    if (props.tempSelect.length > 2 || props.tempSelect.length < 1) {
+      notify();
       return;
     } else {
-      const newData = {...postData};
-      newData.look = [...props.tempSelect]
-      setPostData(newData)
-      props.setOpen(false)
+      const newData = { ...postData };
+      newData.look = [...props.tempSelect];
+      setPostData({...newData});
+      props.setOpen(false);
     }
+  };
 
-    
-  }
+  const handleColorLookData = () => {
+    if (props.tempSelect.length > 2 || props.tempSelect.length < 1) {
+      notify();
+      return;
+    } else {
+      const newData = { ...postData };
+      newData.color = [...props.tempSelect];
+      setPostData(newData);
+      props.setOpen(false);
+    }
+  };
 
   return (
     <>
-    <Toaster/>
+      <Toaster />
 
-      <BottomSheetTopMolStyle>
-        <div onClick={() => props.setOpen(false)}><i data-eva="arrow-ios-back-outline"></i></div>
-        <div>{props.type === "look" ? "룩":"색상"}</div>
-        <div onClick={()=>handlePostData()} className={props.tempSelect.length>0 ? "checked": "unchecked"}><i data-eva="checkmark-outline"></i></div>
-      </BottomSheetTopMolStyle>
+      {props.type === "look" && (
+        <BottomSheetTopMolStyle>
+          <div onClick={() => props.setOpen(false)}>
+            <i data-eva="arrow-ios-back-outline"></i>
+          </div>
+          <div>룩</div>
+          <div
+            onClick={() => handlePostLookData()}
+            className={props.tempSelect.length > 0 ? "checked" : "unchecked"}
+          >
+            <i data-eva="checkmark-outline"></i>
+          </div>
+        </BottomSheetTopMolStyle>
+      )}
+
+      {props.type === "color" && (
+        <BottomSheetTopMolStyle>
+          <div onClick={() => props.setOpen(false)}>
+            <i data-eva="arrow-ios-back-outline"></i>
+          </div>
+          <div>색상</div>
+          <div
+            onClick={() => handleColorLookData()}
+            className={props.tempSelect.length > 0 ? "checked" : "unchecked"}
+          >
+            <i data-eva="checkmark-outline"></i>
+          </div>
+        </BottomSheetTopMolStyle>
+      )}
     </>
   );
 }

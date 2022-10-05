@@ -1,9 +1,11 @@
 import styled from "@emotion/styled";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { color } from "../../styles/theme";
 import BottomSheetTopMol from "./BottomSheetTopMol";
 import { postMenuListData } from "../../public/assets/datas/postMenuListData";
 import BottomSheetRoundBoxAtm from "./BottomSheetRoundBoxAtm";
+import { useRecoilState } from "recoil";
+import { CornPostState } from "../../states/recoil/CornPostState";
 
 const LookStyle = styled.div`
   margin: 18px 18px 30px;
@@ -20,9 +22,15 @@ const LookStyle = styled.div`
 `;
 
 function BottomSheetLookMol(props: { setOpen: Function }) {
-  const [tempSelect, setTempSelect] = useState([]);
+  const [tempSelect, setTempSelect] = useState<string[]>([]);
 
-  
+  const [postData, setPostData] = useRecoilState(CornPostState);
+
+  useEffect(() => {
+    if (postData.look.length > 0) {
+      setTempSelect([...postData.look])
+    }
+  }, []);
 
   return (
     <>

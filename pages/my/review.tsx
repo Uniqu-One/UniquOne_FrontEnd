@@ -9,7 +9,7 @@ function review() {
     <>
       <TopTmp text="마이 리뷰" />
         
-      <MyReviewTmp/>
+      <MyReviewTmp type="my"/>
 
       <FooterTmp />
     </>

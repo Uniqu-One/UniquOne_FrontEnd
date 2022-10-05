@@ -2,9 +2,6 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/my/review": "pages/my/review.js",
-  "/404": "pages/404.js",
-  "/my": "pages/my.js",
-  "/corn/post": "pages/corn/post.js",
-  "/profile/[userId]": "pages/profile/[userId].js"
+  "/profile/[userId]": "pages/profile/[userId].js",
+  "/404": "pages/404.js"
 }

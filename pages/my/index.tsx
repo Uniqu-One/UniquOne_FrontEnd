@@ -17,7 +17,7 @@ function index() {
     <>
     <TopTmp type='my'/>
 
-    <ProfileBoxTmp/>
+    <ProfileBoxTmp type="my"/>
     
     <ProfileInterVal/>
 

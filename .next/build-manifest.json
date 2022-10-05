@@ -30,21 +30,6 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/corn/post": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/corn/post.js"
-    ],
-    "/my": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/my.js"
-    ],
-    "/my/review": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/my/review.js"
-    ],
     "/profile/[userId]": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",

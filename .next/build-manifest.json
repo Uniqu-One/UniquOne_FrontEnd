@@ -25,10 +25,30 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
+    "/corn": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/corn.js"
+    ],
     "/corn/post": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/corn/post.js"
+    ],
+    "/my/review": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/my/review.js"
+    ],
+    "/profile/[userId]": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/profile/[userId].js"
+    ],
+    "/profile/[userId]/review": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/profile/[userId]/review.js"
     ]
   },
   "ampFirstPages": []

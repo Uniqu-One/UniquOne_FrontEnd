@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React from "react";
 import { color } from "../../styles/theme";
 import UserImgAtm from "../common/atm/UserImgAtm";
@@ -42,7 +43,11 @@ const ProfileBoxTopMolStyle = styled.div`
   }
 `;
 
-function ProfileBoxTopMol() {
+function ProfileBoxTopMol(props: { type: string }) {
+
+  const router = useRouter()
+  const userId = router.query.userId
+
   return (
     <>
       <ProfileBoxTopMolStyle>
@@ -64,7 +69,7 @@ function ProfileBoxTopMol() {
               />
             </div>
             <div>
-              <Link href={"/my/review"}>
+              <Link href={props.type==="my" ? "/my/review":`/profile/${userId}/review`}>
                 <a>
                   <span>★★★★★</span>(7)
                 </a>

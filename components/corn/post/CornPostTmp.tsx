@@ -65,9 +65,8 @@ function CornPostTmp() {
         />
         <CornPostTagsInputMol postData={postData} setPostData={setPostData} />
 
-        <CornPostDetailsOrg postData={postData} setPostData={setPostData} />
-        
-        
+
+        <CornPostDetailsOrg />
       </CornPostTmpStyle>
 
       <FooterTmp type="btn" text="스타일 업로드 하기" status={buttonStatus}/>

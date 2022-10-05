@@ -34,6 +34,8 @@ export const TopOptionalOrg = (props: {
         </TopIconAtm>
       )}
 
+      {props.left === "nt" && <TopIconAtm></TopIconAtm>}
+
       {/* TEXT */}
 
       <TopTitleAtm>
@@ -53,6 +55,12 @@ export const TopOptionalOrg = (props: {
       )}
 
       {props.right === "email-outline" && (
+        <TopIconAtm>
+          <i data-eva={props.right}></i>
+        </TopIconAtm>
+      )}
+
+      {props.right === "bell-outline" && (
         <TopIconAtm>
           <i data-eva={props.right}></i>
         </TopIconAtm>

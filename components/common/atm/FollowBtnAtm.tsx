@@ -5,12 +5,12 @@ import { color } from '../../../styles/theme'
 const FollowBtnAtmStyle = styled.h3<{follow:boolean}>`
   box-sizing: border-box;
   background-color: ${(props) => props.follow ? color.p_gray_md : color.p_pruple}  ;
-  /* width: 78px; */
+  width: 72px;
   text-align: center;
   padding: 9px 18px;
-  font-size: 0.875rem;
+  font-size: 0.85rem;
   color: white;
-  font-weight: 550;
+  font-weight: 600;
   border-radius: 6px;
 `
 

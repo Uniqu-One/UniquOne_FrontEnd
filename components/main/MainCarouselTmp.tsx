@@ -10,7 +10,7 @@ const MainCarouselStyle = styled.div`
 
 function MainCarouselTmp() {
 
-  // console.log(mainCarouselDummy)
+  
 
   const settings = {
     dots: false,

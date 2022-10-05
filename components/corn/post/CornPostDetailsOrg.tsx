@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
+import { useRecoilState } from "recoil";
+import { CornPostState } from "../../../states/recoil/CornPostState";
 import { color } from "../../../styles/theme";
 import CornPostMenuBarAtm from "./CornPostMenuBarAtm";
 import { postDataType } from "./CornPostTmp";
@@ -12,11 +14,11 @@ const CornPostDetailsOrgStyle = styled.div`
   }
 `;
 
-function CornPostDetailsOrg(props: {
-  postData: postDataType;
-  setPostData: Function;
-}) {
-  const { type, category, condition, look, color } = props.postData;
+function CornPostDetailsOrg() {
+  
+  const [postData,setPostData] = useRecoilState(CornPostState);
+
+  const {type, category, condition,look,color} = postData
 
   const DETAIL_MENU = [
     { title: "포스트 분류", select: type, name: "type" },
@@ -33,7 +35,6 @@ function CornPostDetailsOrg(props: {
 
     if(type === "" || type === "스타일" ){
       setSlice(1)
-      //TODO - 데이터 초기화 작업
     } else{
       setSlice(5)
     }
@@ -50,7 +51,6 @@ function CornPostDetailsOrg(props: {
           <CornPostMenuBarAtm
             key={menu.title}
             menu={menu}
-            setPostData={props.setPostData}
           />
         );
       })}

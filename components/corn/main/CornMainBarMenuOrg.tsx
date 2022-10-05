@@ -18,7 +18,6 @@ function CornMainBarMenuOrg(props:{menu:{title:string, menus:menuType[]}}) {
 
   const {title, menus} = props.menu;
 
-  // console.log(title, menus)
   return (
     <>
     <CornMainBarMenuOrgStyle>

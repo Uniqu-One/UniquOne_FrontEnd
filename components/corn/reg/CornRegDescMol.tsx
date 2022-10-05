@@ -5,7 +5,7 @@ import { CornInputTypes } from "./CornRegTmp";
 
 function CornRegDescMol(props: CornInputTypes) {
   const { inputs, setInputs, onChangeValue,setCornPage } = props;
-  // console.log('this page is rendering')
+  
 
   return (
 

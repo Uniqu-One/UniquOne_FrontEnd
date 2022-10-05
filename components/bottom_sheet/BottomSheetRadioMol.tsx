@@ -1,8 +1,16 @@
 import styled from "@emotion/styled";
 import React, { useState } from "react";
 import { color } from "../../styles/theme";
-import {postMenuListData} from "../../public/assets/datas/postMenuListData"
+import { postMenuListData } from "../../public/assets/datas/postMenuListData";
 import { title } from "process";
+
+import BottomSheetTopMol from "./BottomSheetTopMol";
+import TopTmp from "../common/tmp/TopTmp";
+import BottomSheetRoundBoxAtm from "./BottomSheetRoundBoxAtm";
+import BottomSheetLookMol from "./BottomSheetLookMol";
+import { useRecoilState } from "recoil";
+import { CornPostState } from "../../states/recoil/CornPostState";
+import BottomSheetColorMol from "./BottomSheetColorMol";
 
 const BottomSheetRadioMolStyle = styled.div`
   > div {
@@ -26,7 +34,7 @@ const BottomSheetRadioMolStyle = styled.div`
     border-bottom: 1px solid ${color.p_gray_lt};
 
     display: flex;
-    p{
+    p {
       padding: 12px 0px;
       margin-left: 9px;
       display: flex;
@@ -38,7 +46,6 @@ const BottomSheetRadioMolStyle = styled.div`
       font-size: 0.8rem;
       color: ${color.p_gray_md};
       font-weight: 400;
-      
     }
   }
 
@@ -48,98 +55,138 @@ const BottomSheetRadioMolStyle = styled.div`
   }
 `;
 
-const UniStarFilterMenu = ["전체", "1 Star", "2 Star", "3 Star"];
 
 function BottomSheetRadioMol(props: {
   setOpen: Function;
   handleTempSelect: Function;
   tempMenu: string;
 }) {
-  const { setOpen } = props;
-  const [tempIdx, setTempIdx] = useState(999);
+  const [postData, setPostData] = useRecoilState(CornPostState);
 
-  const handleChangeIdx = (selectedTab:string, idx: number) => {
+  const { setOpen } = props;
+  const [tempIdx, setTempIdx] = useState(0);
+
+  const handleChangeIdx = (selectedTab: string, idx: number) => {
     setTempIdx(idx);
-    props.handleTempSelect(selectedTab)
+    props.handleTempSelect(selectedTab);
     setOpen(false);
   };
 
-  console.log(props.tempMenu)
 
-if(props.tempMenu === "type" || props.tempMenu === "condition"){
-{
-  
-  return <BottomSheetRadioMolStyle>
-  <div>
-    <h3>정렬</h3>
-  </div>
-  <div>
-    {postMenuListData[props.tempMenu].map((menu, idx) => {
+  if (props.tempMenu === "type") {
+    {
       return (
-        <label
-          key={idx}
-          htmlFor={menu.title}
-          onClick={() => handleChangeIdx(menu.title, idx)}
-        >
-          <input
-            type="radio"
-            name={menu.title}
-            value={menu.title}
-            checked={tempIdx === idx ? true : false}
-            readOnly
-          />
-          <p>{menu.title}<span>{menu.desc}</span></p>
-          
-          
-        </label>
+        <BottomSheetRadioMolStyle>
+          <div>
+            <h3>포스트 분류</h3>
+          </div>
+          <div>
+            {postMenuListData[props.tempMenu].map((menu, idx) => {
+              return (
+                <label
+                  key={idx}
+                  htmlFor={menu.title}
+                  onClick={() => handleChangeIdx(menu.title, idx)}
+                >
+                  <input
+                    type="radio"
+                    name={menu.title}
+                    value={menu.title}
+                    checked={postData.type === menu.title ? true : false}
+                    readOnly
+                  />
+                  <p>
+                    {menu.title}
+                    <span>{menu.desc}</span>
+                  </p>
+                </label>
+              );
+            })}
+          </div>
+        </BottomSheetRadioMolStyle>
       );
-    })}
-  </div>
-</BottomSheetRadioMolStyle>}
-}
-
-if(props.tempMenu === "category"){
-  {
-    
-    return <BottomSheetRadioMolStyle>
-    <div>
-      <h3>정렬</h3>
-    </div>
-    <div>
-      {postMenuListData[props.tempMenu].map((menu, idx) => {
-        return (
-          <label
-            key={idx}
-            htmlFor={menu}
-            onClick={() => handleChangeIdx(menu, idx)}
-          >
-            <input
-              type="radio"
-              name={menu}
-              value={menu}
-              checked={tempIdx === idx ? true : false}
-              readOnly
-            />
-            <p>{menu}</p>
-          </label>
-        );
-      })}
-    </div>
-  </BottomSheetRadioMolStyle>}
+    }
   }
 
-  if(props.tempMenu === "look"){
-    return(
-      <div>LOOK</div>
-    )
+  if (props.tempMenu === "condition") {
+    {
+      return (
+        <BottomSheetRadioMolStyle>
+          <div>
+            <h3>상태</h3>
+          </div>
+          <div>
+            {postMenuListData[props.tempMenu].map((menu, idx) => {
+              return (
+                <label
+                  key={idx}
+                  htmlFor={menu.title}
+                  onClick={() => handleChangeIdx(menu.title, idx)}
+                >
+                  <input
+                    type="radio"
+                    name={menu.title}
+                    value={menu.title}
+                    checked={postData.condition === menu.title ? true : false}
+                    // checked={tempIdx === idx ? true : false}
+                    readOnly
+                  />
+                  <p>
+                    {menu.title}
+                    <span>{menu.desc}</span>
+                  </p>
+                </label>
+              );
+            })}
+          </div>
+        </BottomSheetRadioMolStyle>
+      );
+    }
   }
 
-  if(props.tempMenu === "color"){
-    return(
-      <div>COLOR</div>
-    )
+  if (props.tempMenu === "category") {
+    {
+      return (
+        <BottomSheetRadioMolStyle>
+          <div>
+            <h3>정렬</h3>
+          </div>
+          <div>
+            {postMenuListData[props.tempMenu].map((menu, idx) => {
+              return (
+                <label
+                  key={idx}
+                  htmlFor={menu}
+                  onClick={() => handleChangeIdx(menu, idx)}
+                >
+                  <input
+                    type="radio"
+                    name={menu}
+                    value={menu}
+                    checked={postData.category === menu ? true : false}
+                    // checked={tempIdx === idx ? true : false}
+                    readOnly
+                  />
+                  <p>{menu}</p>
+                </label>
+              );
+            })}
+          </div>
+        </BottomSheetRadioMolStyle>
+      );
+    }
   }
-  
+
+
+  if (props.tempMenu === "look") {
+    return <BottomSheetLookMol setOpen={setOpen} />;
+  }
+
+  if (props.tempMenu === "color") {
+    return <BottomSheetColorMol setOpen={setOpen}/>;
+  }
+
+  const UniStarFilterMenu = ["전체", "1 Star", "2 Star", "3 Star"];
 
   return (
     <BottomSheetRadioMolStyle>
@@ -147,12 +194,12 @@ if(props.tempMenu === "category"){
         <h3>정렬</h3>
       </div>
       <div>
-        { UniStarFilterMenu.map((menu, idx) => {
+        {UniStarFilterMenu.map((menu, idx) => {
           return (
             <label
               key={idx}
               htmlFor={menu}
-              onClick={() => handleChangeIdx("",idx)}
+              onClick={() => handleChangeIdx("", idx)}
             >
               <input
                 type="radio"

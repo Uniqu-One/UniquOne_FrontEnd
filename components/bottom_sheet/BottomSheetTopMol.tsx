@@ -38,7 +38,8 @@ function BottomSheetTopMol(props: {
   useEvaIcon();
   const notify = () => toast.error("선택한 옵션의 개수를 확인해주세요");
   const [postData, setPostData] = useRecoilState(CornPostState);
-  const [searchFilterData, setSearchFilterData] = useRecoilState(SearchFilterState)
+  const [searchFilterData, setSearchFilterData] =
+    useRecoilState(SearchFilterState);
 
   const handlePostLookData = () => {
     if (props.tempSelect.length > 2 || props.tempSelect.length < 1) {
@@ -47,7 +48,7 @@ function BottomSheetTopMol(props: {
     } else {
       const newData = { ...postData };
       newData.look = [...props.tempSelect];
-      setPostData({...newData});
+      setPostData({ ...newData });
       props.setOpen(false);
     }
   };
@@ -64,15 +65,28 @@ function BottomSheetTopMol(props: {
     }
   };
 
-
   const handleUpdateColorData = () => {
+    const newData = { ...searchFilterData };
+    newData["색상"] = [...props.tempSelect];
+    setSearchFilterData(newData);
+    props.setOpen(false);
+  };
 
-      const newData = {...searchFilterData}
-      newData["색상"] = [...props.tempSelect]
-      setSearchFilterData(newData)
-      props.setOpen(false);
+  const handleUpdateLookData = () => {
+    const newData = { ...searchFilterData };
+    newData["룩"] = [...props.tempSelect];
+    setSearchFilterData(newData);
+    props.setOpen(false);
+  };
+
+  const handleUpdateConditionData = () => {
+
+    const newData = { ...searchFilterData };
+    newData["상태"] = [...props.tempSelect];
+    setSearchFilterData(newData);
+
+    props.setOpen(false);
   }
-
 
   return (
     <>
@@ -108,8 +122,7 @@ function BottomSheetTopMol(props: {
         </BottomSheetTopMolStyle>
       )}
 
-
-{props.type === "searchColor" && (
+      {props.type === "searchColor" && (
         <BottomSheetTopMolStyle>
           <div onClick={() => props.setOpen(false)}>
             <i data-eva="arrow-ios-back-outline"></i>
@@ -119,6 +132,33 @@ function BottomSheetTopMol(props: {
             onClick={() => handleUpdateColorData()}
             className={props.tempSelect.length > 0 ? "checked" : "unchecked"}
           >
+            <i data-eva="checkmark-outline"></i>
+          </div>
+        </BottomSheetTopMolStyle>
+      )}
+
+      {props.type === "searchLook" && (
+        <BottomSheetTopMolStyle>
+          <div onClick={() => props.setOpen(false)}>
+            <i data-eva="arrow-ios-back-outline"></i>
+          </div>
+          <div>룩</div>
+          <div
+            onClick={() => handleUpdateLookData()}
+            className={props.tempSelect.length > 0 ? "checked" : "unchecked"}
+          >
+            <i data-eva="checkmark-outline"></i>
+          </div>
+        </BottomSheetTopMolStyle>
+      )}
+
+      {props.type === "searchCondition" && (
+        <BottomSheetTopMolStyle>
+          <div>
+            <i data-eva="arrow-ios-back-outline" style={{ fill: "white" }}></i>
+          </div>
+          <div>상태</div>
+          <div onClick={() => handleUpdateConditionData()}>
             <i data-eva="checkmark-outline"></i>
           </div>
         </BottomSheetTopMolStyle>

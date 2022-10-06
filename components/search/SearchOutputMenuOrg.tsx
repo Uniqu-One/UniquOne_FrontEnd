@@ -6,6 +6,9 @@ import SearchOutputMenuTopMol from "./SearchOutputMenuTopMol";
 const SearchOutputMenuOrgOverFlowStyle = styled.div`
 
   overflow: scroll;
+  ::-webkit-scrollbar{
+    display: none;
+  }
 `;
 
 function SearchOutputMenuOrg() {

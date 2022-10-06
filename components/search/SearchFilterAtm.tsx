@@ -47,7 +47,7 @@ function SearchFilterAtm(props: { filter: string }) {
   return (
     <SearchFilterAtmStyle status={menuSelStatus}>
       <div>
-        {searchFilterData[filterName][0] ? (
+        {searchFilterData[filterName][0]? (
           <p>{searchFilterData[filterName].join(", ")}</p>
         ) : (
           <p>{props.filter}</p>

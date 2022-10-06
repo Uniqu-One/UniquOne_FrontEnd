@@ -24,16 +24,14 @@ const PostLgOrgStyle = styled.div`
 function PostLgOrg(props:{opt?:string}) {
   return (
     <PostLgOrgStyle >
-      <Link href={"/"}>
-        <a>
+
         <Image
           src="/assets/images/postImage.jpg"
           alt="포스트 더미 이미지"
           width={250}
           height={250}
         />
-        </a>
-      </Link>
+
 
       {props.opt ? <UniStarMol/>: <span></span>}
 

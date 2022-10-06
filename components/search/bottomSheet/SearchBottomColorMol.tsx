@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
-import BottomSheetColorAtm from "./BottomSheetColorAtm";
-import { postMenuListData } from "../../public/assets/datas/postMenuListData";
 import styled from "@emotion/styled";
-import BottomSheetTopMol from "./BottomSheetTopMol";
-import { color } from "../../styles/theme";
-import { CornPostState } from "../../states/recoil/CornPostState";
+import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
+import { postMenuListData } from "../../../public/assets/datas/postMenuListData";
+import { SearchFilterState } from "../../../states/recoil/SearchFilterState";
+import { color } from "../../../styles/theme";
+import BottomSheetColorAtm from "../../bottom_sheet/BottomSheetColorAtm";
+import BottomSheetTopMol from "../../bottom_sheet/BottomSheetTopMol";
 
-const BottomSheetColorMolStyle = styled.div`
+const SearchColorBottomMolStyle = styled.div`
   h4 {
     text-align: center;
     color: ${color.p_gray_md};
@@ -26,22 +26,24 @@ const BottomSheetColorMolStyle = styled.div`
   }
 `;
 
-function BottomSheetColorMol(props: { setOpen: Function, type?:string}) {
+function SearchColorBottomMol(props: { setOpen: Function}) {
   const [tempSelect, setTempSelect] = useState<string[]>([]);
 
-  const [postData, setPostData] = useRecoilState(CornPostState);
+  const [searchFilterData, setSearchFilterData] = useRecoilState(SearchFilterState)
+
 
   useEffect(() => {
-    if (postData.look.length > 0) {
-      setTempSelect([...postData.color]);
+    if (searchFilterData["색상"].length > 0) {
+      setTempSelect([...searchFilterData["색상"]]);
     }
   },[]);
 
+
   return (
     <>
-      <BottomSheetColorMolStyle>
+      <SearchColorBottomMolStyle>
         <BottomSheetTopMol
-          type="color"
+          type="searchColor"
           setOpen={props.setOpen}
           tempSelect={tempSelect}
           setTempSelect={setTempSelect}
@@ -49,7 +51,7 @@ function BottomSheetColorMol(props: { setOpen: Function, type?:string}) {
 
 
         
-        <h4>2개까지 선택 가능합니다.</h4>
+        
         <div className="colorAtmStyle">
           {postMenuListData.color.map((menu) => {
             return <BottomSheetColorAtm key={menu.name} menu={menu} 
@@ -58,9 +60,9 @@ function BottomSheetColorMol(props: { setOpen: Function, type?:string}) {
             />;
           })}
         </div>
-      </BottomSheetColorMolStyle>
+      </SearchColorBottomMolStyle>
     </>
   );
 }
 
-export default BottomSheetColorMol;
+export default SearchColorBottomMol;

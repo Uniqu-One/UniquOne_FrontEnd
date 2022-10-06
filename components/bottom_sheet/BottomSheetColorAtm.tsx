@@ -31,6 +31,7 @@ function BottomSheetColorAtm(props: {
   menu: { name: string; code: string };
   setTempSelect: Function;
   tempSelect: string[];
+  type?:string;
 }) {
   const { name, code } = props.menu;
 
@@ -62,12 +63,19 @@ function BottomSheetColorAtm(props: {
   }, [tempSelect]);
 
   return (
+
+
+    
+
     <BottomSheetColorAtmStyle code={code} onClick={()=>handleCheckMenu()} status={status}>
       <div>
         <div className="colorChip"></div>
         <p>{name}</p>
       </div>
     </BottomSheetColorAtmStyle>
+
+
+
   );
 }
 

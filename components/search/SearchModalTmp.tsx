@@ -1,18 +1,13 @@
-import styled from "@emotion/styled";
 import React from "react";
-
-const SearchModalTmpStyle = styled.div`
-  width: 100vw;
-  height: 100vh;
-  background-color: white;
-  z-index: 1;
-`;
+import SearchBarMol from "./SearchBarMol";
+import SearchRecentMol from "./SearchRecentMol";
 
 function SearchModalTmp() {
   return (
-    <SearchModalTmpStyle>
-      <div>SearchModalTmp</div>
-    </SearchModalTmpStyle>
+    <>
+      <SearchBarMol />
+      <SearchRecentMol/>
+    </>
   );
 }
 

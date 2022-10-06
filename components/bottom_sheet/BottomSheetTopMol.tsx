@@ -4,6 +4,7 @@ import { toast, Toaster } from "react-hot-toast";
 import { useRecoilState } from "recoil";
 import useEvaIcon from "../../lib/hooks/useEvaIcon";
 import { CornPostState } from "../../states/recoil/CornPostState";
+import { SearchFilterState } from "../../states/recoil/SearchFilterState";
 import { color } from "../../styles/theme";
 import { postDataType } from "../../types/postDataType";
 
@@ -37,6 +38,7 @@ function BottomSheetTopMol(props: {
   useEvaIcon();
   const notify = () => toast.error("선택한 옵션의 개수를 확인해주세요");
   const [postData, setPostData] = useRecoilState(CornPostState);
+  const [searchFilterData, setSearchFilterData] = useRecoilState(SearchFilterState)
 
   const handlePostLookData = () => {
     if (props.tempSelect.length > 2 || props.tempSelect.length < 1) {
@@ -61,6 +63,16 @@ function BottomSheetTopMol(props: {
       props.setOpen(false);
     }
   };
+
+
+  const handleUpdateColorData = () => {
+
+      const newData = {...searchFilterData}
+      newData["색상"] = [...props.tempSelect]
+      setSearchFilterData(newData)
+      props.setOpen(false);
+  }
+
 
   return (
     <>
@@ -89,6 +101,22 @@ function BottomSheetTopMol(props: {
           <div>색상</div>
           <div
             onClick={() => handleColorLookData()}
+            className={props.tempSelect.length > 0 ? "checked" : "unchecked"}
+          >
+            <i data-eva="checkmark-outline"></i>
+          </div>
+        </BottomSheetTopMolStyle>
+      )}
+
+
+{props.type === "searchColor" && (
+        <BottomSheetTopMolStyle>
+          <div onClick={() => props.setOpen(false)}>
+            <i data-eva="arrow-ios-back-outline"></i>
+          </div>
+          <div>색상</div>
+          <div
+            onClick={() => handleUpdateColorData()}
             className={props.tempSelect.length > 0 ? "checked" : "unchecked"}
           >
             <i data-eva="checkmark-outline"></i>

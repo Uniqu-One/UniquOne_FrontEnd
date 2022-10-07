@@ -58,8 +58,8 @@ const BottomSheetRadioMolStyle = styled.div`
 
 function BottomSheetRadioMol(props: {
   setOpen: Function;
-  handleTempSelect: Function;
-  tempMenu: string;
+  handleTempSelect?: Function;
+  tempMenu?: string;
 }) {
   const [postData, setPostData] = useRecoilState(CornPostState);
 
@@ -68,8 +68,12 @@ function BottomSheetRadioMol(props: {
 
   const handleChangeIdx = (selectedTab: string, idx: number) => {
     setTempIdx(idx);
-    props.handleTempSelect(selectedTab);
-    setOpen(false);
+
+    if(props.handleTempSelect){
+      props.handleTempSelect(selectedTab);
+      setOpen(false);
+    }
+    
   };
 
 

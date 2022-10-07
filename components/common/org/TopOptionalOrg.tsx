@@ -15,6 +15,12 @@ export const TopOptionalOrg = (props: {
   useEvaIcon();
   const router = useRouter();
 
+  let tempFunc:Function;
+
+  if(props.function){
+    tempFunc = props.function
+  }
+
   return (
     <TopBoxMol>
       {/* left */}
@@ -24,6 +30,14 @@ export const TopOptionalOrg = (props: {
           <i data-eva="arrow-ios-back"></i>
         </TopIconAtm>
       )}
+
+
+    {props.left === "close-outline" && (
+        <TopIconAtm onClick={() => tempFunc()}>
+          <i data-eva="close-outline"></i>
+        </TopIconAtm>
+      )}
+
 
       {props.left === "star-outline" && (
         <TopIconAtm>
@@ -36,6 +50,9 @@ export const TopOptionalOrg = (props: {
       )}
 
       {props.left === "nt" && <TopIconAtm></TopIconAtm>}
+
+
+
 
       {/* TEXT */}
 

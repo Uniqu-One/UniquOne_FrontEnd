@@ -4,8 +4,9 @@ import React, { useState } from "react";
 import FooterTmp from "../../../components/common/tmp/FooterTmp";
 import TopTmp from "../../../components/common/tmp/TopTmp";
 import PostCardTmp from "../../../components/post/PostCardTmp";
-import PostSingleBodyOrg from "../../../components/post/PostSingleBodyOrg";
-import PostSingleCornOrg from "../../../components/post/PostSingleCornOrg";
+import PostSingleBodyOrg from "../../../components/post/single/PostSingleBodyOrg";
+import PostSingleCornOrg from "../../../components/post/single/PostSingleCornOrg";
+import PostSingleFooterTmp from "../../../components/post/single/PostSingleFooterTmp";
 import { color } from "../../../styles/theme";
 
 const PostIntervalStyle = styled.div`
@@ -44,7 +45,7 @@ function PostId() {
         <PostSingleCornOrg/>
         <PostSingleDummyIntervalStyle/>
 
-        <FooterTmp/>
+        <PostSingleFooterTmp/>
       </PostIntervalStyle>
     </>
   );

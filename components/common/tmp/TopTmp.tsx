@@ -8,10 +8,15 @@ function TopTmp(props: {
   left?: string;
   text?: string;
   right?: string;
+  function?:Function;
 }) {
   switch (props.type) {
+
+
     case "main":
       return <TopMainOrg />;
+
+
 
     case "arrowText":
       return <TopOptionalOrg left="back" text={props.text} />;
@@ -31,6 +36,8 @@ function TopTmp(props: {
         <TopOptionalOrg left="nt" text={props.text} right={"bell-outline"} />
       );
 
+      case "postOffer":
+        return <TopOptionalOrg left="close-outline" text={"가격제안"} function={props.function}/>
 
       case "cornEdit":
         return (

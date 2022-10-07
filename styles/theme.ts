@@ -5,6 +5,7 @@ export const color = {
   p_gray_md: "#949494",
   p_gray_lt: "#EFEFEF",
   p_red: "#FF1D55",
+  p_green:"#00D22E"
 };
 
 export const size = {

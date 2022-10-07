@@ -32,6 +32,11 @@ function TopTmp(props: {
       );
 
 
+      case "cornEdit":
+        return (
+          <TopOptionalOrg left="back" text={props.text} right={"checkmark-outline"} />
+        );
+
     case "post":
       return <TopPostOrg />;
 

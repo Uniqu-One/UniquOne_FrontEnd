@@ -10,6 +10,7 @@ export const TopOptionalOrg = (props: {
   left: string;
   text?: string;
   right?: string;
+  function?: Function;
 }) => {
   useEvaIcon();
   const router = useRouter();
@@ -63,6 +64,14 @@ export const TopOptionalOrg = (props: {
       {props.right === "bell-outline" && (
         <TopIconAtm>
           <i data-eva={props.right}></i>
+        </TopIconAtm>
+      )}
+
+      {props.right === "checkmark-outline" && (
+        <TopIconAtm>
+          <div>
+            <i data-eva={props.right}></i>
+          </div>
         </TopIconAtm>
       )}
 

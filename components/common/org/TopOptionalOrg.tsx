@@ -10,9 +10,16 @@ export const TopOptionalOrg = (props: {
   left?: string;
   text?: string;
   right?: string;
+  function?: Function;
 }) => {
   useEvaIcon();
   const router = useRouter();
+
+  let tempFunc:Function;
+
+  if(props.function){
+    tempFunc = props.function
+  }
 
   return (
     <TopBoxMol>
@@ -24,6 +31,14 @@ export const TopOptionalOrg = (props: {
         </TopIconAtm>
       )}
 
+
+    {props.left === "close-outline" && (
+        <TopIconAtm onClick={() => tempFunc()}>
+          <i data-eva="close-outline"></i>
+        </TopIconAtm>
+      )}
+
+
       {props.left === "star-outline" && (
         <TopIconAtm>
           <Link href={"/my/unistar"}>
@@ -34,6 +49,8 @@ export const TopOptionalOrg = (props: {
         </TopIconAtm>
       )}
 
+
+      {props.left === "nt" && <TopIconAtm></TopIconAtm>}
 
 
       {/* TEXT */}
@@ -57,6 +74,20 @@ export const TopOptionalOrg = (props: {
       {props.right === "email-outline" && (
         <TopIconAtm>
           <i data-eva={props.right}></i>
+        </TopIconAtm>
+      )}
+
+      {props.right === "bell-outline" && (
+        <TopIconAtm>
+          <i data-eva={props.right}></i>
+        </TopIconAtm>
+      )}
+
+      {props.right === "checkmark-outline" && (
+        <TopIconAtm>
+          <div>
+            <i data-eva={props.right}></i>
+          </div>
         </TopIconAtm>
       )}
 

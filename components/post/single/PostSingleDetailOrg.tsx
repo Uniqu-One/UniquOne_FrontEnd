@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import React from "react";
-import SmBtnAtm from "../common/atm/SmBtnAtm";
+import SmBtnAtm from "../../common/atm/SmBtnAtm";
 
 const PostSingleDetailBoxStyle = styled.div`
   margin-top: 18px;

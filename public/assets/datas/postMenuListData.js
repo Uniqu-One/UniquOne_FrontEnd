@@ -1,4 +1,5 @@
 export const postMenuListData = {
+
   type: [
     { title: "판매중", desc: "현재 스타일을 유저에게 판매 하고 싶어요!" },
     { title: "나눔", desc: "현재 스타일을 다른 유저에게 나눠주고 싶어요!" },
@@ -41,21 +42,20 @@ export const postMenuListData = {
   ],
   color: [
     { name: "black", code: "#000000" },
-    { name: "gray:", code: "#DCDCDC" },
+    { name: "gray", code: "#DCDCDC" },
     { name: "white", code: "#FFFFFF" },
     { name: "brown", code: "#594034" },
-    { name: "apric", codeot: "#E8BD87" },
+    { name: "apric", code: "#E8BD87" },
     { name: "cream", code: "#EFE6B8" },
     { name: "yellow", code: "#FFF18F" },
     { name: "red", code: "#FF3F2D" },
-    { name: "wine:", code: "#CB0A00" },
-    { name: "orange", code: "E86D2C" },
-    { name: "pink:", code: "#E46DB0" },
+    { name: "wine", code: "#CB0A00" },
+    { name: "orange", code: "#E86D2C" },
+    { name: "pink", code: "#E46DB0" },
     { name: "purple", code: "#BE55FF" },
-    { name: "blue:", code: "#3F95FF" },
-    { name: "navy:", code: "#003DA8" },
+    { name: "blue", code: "#3F95FF" },
+    { name: "navy", code: "#003DA8" },
     { name: "green", code: "#72AD34" },
     { name: "khaki", code: "#8A7F32" },
-    { name: "multi", code: "null" },
   ],
 };

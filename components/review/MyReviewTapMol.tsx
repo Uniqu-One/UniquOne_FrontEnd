@@ -26,9 +26,9 @@ const MyReviewTapMolStyle = styled.div`
   }
 `;
 
-function MyReviewTapMol(props:{tabs:string[], tempTab:number, setTempTab:Function}) {
+function MyReviewTapMol(props:{tabs:string[], tempTab:number, setTempTab:Function, count?:number[]}) {
   
-  const {tabs, tempTab, setTempTab} = props
+  const {tabs, tempTab, setTempTab, count} = props
   
   return (
     <>
@@ -39,12 +39,13 @@ function MyReviewTapMol(props:{tabs:string[], tempTab:number, setTempTab:Functio
             {tempTab === idx ? (
               <h3>
                 {tab}
-                <span>(4)</span>
+                {count!==undefined ? <span>(4)</span>: null}
+                
               </h3>
             ) : (
               <h4>
                 {tab}
-                <span>(4)</span>
+                {count!==undefined ? <span>(4)</span>: null}
               </h4>
             )}
           </div>

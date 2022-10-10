@@ -9,8 +9,9 @@ const CornPostState = atom<postDataType>({
     type: "",
     category: "",
     condition: "",
-    look: "",
-    color: "",
+
+    look: [],
+    color: [],
   }
 })
 

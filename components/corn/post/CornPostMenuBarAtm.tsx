@@ -26,12 +26,22 @@ const CornPostMenuBarAtmStyle = styled.div`
 `;
 
 function CornPostMenuBarAtm(props: {
+<<<<<<< HEAD
   menu: { title: string; select: string; name: string };
+=======
+  menu: { title: string; select: string | string[]; name: string };
+>>>>>>> 52d6e1793de3bd9cc5199230c332d16269c36b93
 }) {
   useEvaIcon();
 
   const [postData, setPostData] = useRecoilState(CornPostState);
+<<<<<<< HEAD
   const { title, select, name } = props.menu;
+=======
+
+  const { title, select, name } = props.menu;
+
+>>>>>>> 52d6e1793de3bd9cc5199230c332d16269c36b93
   const [tempMenu, setTempMenu] = useState("");
 
   const handleOpenSelect = (name: string) => {
@@ -50,9 +60,13 @@ function CornPostMenuBarAtm(props: {
   };
 
   const [open, setOpen] = useState(false);
+  
   useEffect(() => {
     setOpen(false);
   }, []);
+  
+
+
   return (
     <>
       <CornPostMenuBarAtmStyle onClick={() => handleOpenSelect(name)}>
@@ -60,7 +74,11 @@ function CornPostMenuBarAtm(props: {
           <h4>{title}</h4>
         </div>
         <div className="right">
-          <p>{select}</p>
+          <p>
+            {typeof select === "object" && select.length === 2
+              ? select.join(", ")
+              : select}
+          </p>
           <i data-eva="arrow-ios-forward-outline"></i>
         </div>
       </CornPostMenuBarAtmStyle>

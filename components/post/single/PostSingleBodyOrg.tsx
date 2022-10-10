@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import React from "react";
-import { color } from "../../styles/theme";
+import { color } from "../../../styles/theme";
 import PostSingleDetailOrg from "./PostSingleDetailOrg";
 import PostSingleTagMol from "./PostSingleTagMol";
 

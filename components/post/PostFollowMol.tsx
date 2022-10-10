@@ -9,7 +9,6 @@ height: 54px;
 /* background-color: lightblue; */
 display: flex;
 div {
-  /* background-color: lightblue; */
   margin: auto 0;
   margin-left: 12px;
 }

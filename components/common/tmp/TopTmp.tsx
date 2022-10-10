@@ -8,10 +8,15 @@ function TopTmp(props: {
   left?: string;
   text?: string;
   right?: string;
+  function?:Function;
 }) {
   switch (props.type) {
+
+
     case "main":
       return <TopMainOrg />;
+
+
 
     case "arrowText":
       return <TopOptionalOrg left="back" text={props.text} />;
@@ -25,14 +30,24 @@ function TopTmp(props: {
       return (
         <TopOptionalOrg left="star-outline" text={"마이 페이지"} right={"settings-outline"} />
       );
-     
-    case "look" || "color":
-      return(
-        <TopOptionalOrg left="back" text={props.text} right="arrow-ios-back-outline" />
-      )
+
+    
+      case "chat":
+      return (
+        <TopOptionalOrg left="nt" text={props.text} right={"bell-outline"} />
+      );
+
+      case "postOffer":
+        return <TopOptionalOrg left="close-outline" text={"가격제안"} function={props.function}/>
+
+      case "cornEdit":
+        return (
+          <TopOptionalOrg left="back" text={props.text} right={"checkmark-outline"} />
+        );
 
     case "post":
       return <TopPostOrg />;
+
 
     // case "style":
     //   return <TopOptionalOrg left="cancel" text="스타일 등록"/>

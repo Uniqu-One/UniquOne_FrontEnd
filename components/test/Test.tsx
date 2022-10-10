@@ -1,60 +1,30 @@
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
-import { useEffect, useState } from 'react'
-import { BottomSheet } from 'react-spring-bottom-sheet'
+const tabs = [1, 2, 3, 4, 5];
 
-
-const SimpleFixturePage =() =>{
-  const [open, setOpen] = useState(false)
-
-  // Ensure it animates in when loaded
-  useEffect(() => {
-    setOpen(false)
-  }, [])
-
-  function onDismiss() {
-    setOpen(false)
-  }
+export default function TEST() {
+  const [selectedTab, setSelectedTab] = useState(tabs[0]);
 
   return (
-    <>
-
-      <div>
-        <button onClick={() => setOpen(true)}>Open</button>
-        <BottomSheet
-          open={open}
-          onDismiss={() => setOpen(false)}
-        >
-          <div>
-            <p>
-              Using onDismiss lets users close the sheet by swiping
-              it down, tapping on the backdrop or by hitting  on
-              their keyboard.              Using onDismiss lets users close the sheet by swiping
-              it down, tapping on the backdrop or by hitting  on
-              their keyboard.              Using onDismiss lets users close the sheet by swiping
-              it down, tapping on the backdrop or by hitting  on
-              their keyboard.              Using onDismiss lets users close the sheet by swiping
-              it down, tapping on the backdrop or by hitting  on
-              their keyboard.              Using onDismiss lets users close the sheet by swiping
-              it down, tapping on the backdrop or by hitting  on
-              their keyboard.              Using onDismiss lets users close the sheet by swiping
-              it down, tapping on the backdrop or by hitting  on
-              their keyboard.
-            </p>
-            {/* <div>
-              <div className="bg-gray-200 block rounded-md h-10 w-full my-10" />
-              <p>
-                The height adjustment is done automatically, it just works™!
-              </p>
-              <div className="bg-gray-200 block rounded-md h-10 w-full my-10" />
-            </div> */}
-            {/* <button onClick={onDismiss} className="w-full">
-              Dismiss
-            </button> */}
-          </div>
-        </BottomSheet>
-      </div>
-    </>
-  )
+    <div className="window">
+      <nav>
+        <ul>
+          {tabs.map((item) => {
+            console.log(item);
+            return (
+              <li key={item}
+                className={item === selectedTab ? "selected" : ""}
+                onClick={() => setSelectedTab(item)}
+              >
+                {item === selectedTab ? (
+                  <motion.div className="underline" layoutId="underline" />
+                ) : null}
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
+    </div>
+  );
 }
-
-export default SimpleFixturePage

@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import React from "react";
+import { color } from "../../../styles/theme";
 import FooterIconOrg from "../org/FooterIconOrg";
 import BtnTmp from "./BtnTmp";
 
@@ -11,7 +12,7 @@ const FooterBox = styled.div`
   padding-bottom: 54px;
   width: 100vw;
   height: 54px;
-  border-top: 0.5px solid;
+  border-top: 0.5px solid ${color.p_gray_md};
   z-index: 2;
 
   .footerBtn {

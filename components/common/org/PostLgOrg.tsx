@@ -7,7 +7,7 @@ import UniStarMol from "../mol/UniStarMol";
 // TODO - 메인 카테고리 부분 스타일은 나중에 손보기
 
 const PostLgOrgStyle = styled.div`
-  width: calc( ( 100vw - 48px ) / 2);
+  width: calc((95%)/2);
   position: relative;
   
   img {

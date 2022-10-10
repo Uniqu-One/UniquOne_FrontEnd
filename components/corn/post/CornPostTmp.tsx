@@ -9,6 +9,20 @@ import CornPostDescInputMolStyle from "./CornPostDescInputMol";
 import CornPostDetailsOrg from "./CornPostDetailsOrg";
 import CornPostTagsInputMol from "./CornPostTagsInputMol";
 
+<<<<<<< HEAD
+=======
+export interface postDataType {
+  [index: string]: string;
+  desc: string;
+  tags: string;
+  type: string;
+  category: string;
+  condition: string;
+  look: string;
+  color: string;
+}
+
+>>>>>>> 52d6e1793de3bd9cc5199230c332d16269c36b93
 const CornPostTmpStyle = styled.div`
   margin: 0 18px;
 `;
@@ -17,10 +31,22 @@ const CornPostTmpStyle = styled.div`
 
 function CornPostTmp() {
   const [postData, setPostData] = useRecoilState(CornPostState);
+<<<<<<< HEAD
   const [buttonStatus, setButtonStatus] = useState(false);
 
   useEffect(() => {
     if (postData.type === "스타일") {
+=======
+
+  const [buttonStatus, setButtonStatus] = useState(false);
+
+  useEffect(() => {
+    if (
+      postData.type === "스타일" &&
+      postData.desc !== "" &&
+      postData.tags !== ""
+    ) {
+>>>>>>> 52d6e1793de3bd9cc5199230c332d16269c36b93
       setButtonStatus(true);
     } else {
       setButtonStatus(false);
@@ -41,7 +67,11 @@ function CornPostTmp() {
         <CornPostDescInputMolStyle />
         <CornPostTagsInputMol />
 
+<<<<<<< HEAD
         <CornPostDetailsOrg/>
+=======
+        <CornPostDetailsOrg />
+>>>>>>> 52d6e1793de3bd9cc5199230c332d16269c36b93
       </CornPostTmpStyle>
 
       <FooterTmp type="btn" text="스타일 업로드 하기" status={buttonStatus} />

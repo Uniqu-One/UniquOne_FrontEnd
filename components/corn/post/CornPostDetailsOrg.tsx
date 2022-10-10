@@ -16,10 +16,17 @@ const CornPostDetailsOrgStyle = styled.div`
 `;
 
 function CornPostDetailsOrg() {
+<<<<<<< HEAD
 
   const [postData, setPostData] = useRecoilState(CornPostState)
 
   const { type, category, condition, look, color } = postData;
+=======
+  
+  const [postData,setPostData] = useRecoilState(CornPostState);
+
+  const {type, category, condition,look,color} = postData
+>>>>>>> 52d6e1793de3bd9cc5199230c332d16269c36b93
 
   const DETAIL_MENU = [
     { title: "포스트 분류", select: type, name: "type" },
@@ -36,7 +43,6 @@ function CornPostDetailsOrg() {
 
     if(type === "" || type === "스타일" ){
       setSlice(1)
-      //TODO - 데이터 초기화 작업
     } else{
       setSlice(5)
     }

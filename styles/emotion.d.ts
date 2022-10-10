@@ -10,6 +10,7 @@ declare module "@emotion/react" {
     p_gray_md: stirng;
     p_gray_lt: stirng;
     p_red: stirng;
+    p_green:string;
   }
 }
 

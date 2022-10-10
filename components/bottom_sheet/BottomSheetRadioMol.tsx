@@ -2,24 +2,11 @@ import styled from "@emotion/styled";
 import React, { useState } from "react";
 import { color } from "../../styles/theme";
 import { postMenuListData } from "../../public/assets/datas/postMenuListData";
-import { title } from "process";
-import BottomSheetTopMol from "./BottomSheetTopMol";
-import TopTmp from "../common/tmp/TopTmp";
-import BottomSheetRoundBoxAtm from "./BottomSheetRoundBoxAtm";
-import BottomLookMol from "./BottomLookMol";
-
-<<<<<<< HEAD
-//TODO - 메뉴별로 컴포넌트 그냥 나누는게 좋을듯
-=======
-import BottomSheetTopMol from "./BottomSheetTopMol";
-import TopTmp from "../common/tmp/TopTmp";
-import BottomSheetRoundBoxAtm from "./BottomSheetRoundBoxAtm";
 import BottomSheetLookMol from "./BottomSheetLookMol";
 import { useRecoilState } from "recoil";
 import { CornPostState } from "../../states/recoil/CornPostState";
 import BottomSheetColorMol from "./BottomSheetColorMol";
 
->>>>>>> 52d6e1793de3bd9cc5199230c332d16269c36b93
 const BottomSheetRadioMolStyle = styled.div`
   > div {
     :first-of-type {
@@ -64,11 +51,7 @@ const BottomSheetRadioMolStyle = styled.div`
   }
 `;
 
-<<<<<<< HEAD
 
-const UniStarFilterMenu = ["전체", "1 Star", "2 Star", "3 Star"];
-=======
->>>>>>> 52d6e1793de3bd9cc5199230c332d16269c36b93
 
 function BottomSheetRadioMol(props: {
   setOpen: Function;
@@ -91,21 +74,9 @@ function BottomSheetRadioMol(props: {
   };
 
 
-<<<<<<< HEAD
 
-if(props.tempMenu === "type" || props.tempMenu === "condition"){
-{
-  
-  return <BottomSheetRadioMolStyle>
-  <div>
-    <h3>{props.tempMenu === "type" ? "포스트 분류":"상태"}</h3>
-  </div>
-  <div>
-    {postMenuListData[props.tempMenu].map((menu, idx) => {
-=======
   if (props.tempMenu === "type") {
     {
->>>>>>> 52d6e1793de3bd9cc5199230c332d16269c36b93
       return (
         <BottomSheetRadioMolStyle>
           <div>
@@ -208,16 +179,10 @@ if(props.tempMenu === "type" || props.tempMenu === "condition"){
     }
   }
 
-<<<<<<< HEAD
-  if(props.tempMenu === "look"){
-    return(
-      <BottomLookMol setOpen={setOpen}/>
-    )
-=======
+
 
   if (props.tempMenu === "look") {
     return <BottomSheetLookMol setOpen={setOpen} />;
->>>>>>> 52d6e1793de3bd9cc5199230c332d16269c36b93
   }
 
   if (props.tempMenu === "color") {

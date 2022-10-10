@@ -1,14 +1,4 @@
-<<<<<<< HEAD
-import styled from '@emotion/styled'
-import React from 'react'
-import { color } from '../../styles/theme'
 
-const BottomSheetRoundBoxAtmStyle = styled.div`
-  height: 30px;
-  line-height: 30px;
-  border: 0.5px solid ${color.p_gray_md};
-  color: ${color.p_gray_dk};
-=======
 import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
@@ -21,27 +11,11 @@ const BottomSheetRoundBoxAtmStyle = styled.div<{ status: boolean }>`
   border: 0.5px solid ${color.p_gray_lt};
   color: ${(props) => (props.status ? "white" : color.p_gray_dk)};
   background-color: ${(props) => (props.status ? color.p_pruple : "white")};
->>>>>>> 52d6e1793de3bd9cc5199230c332d16269c36b93
   font-weight: 500;
   display: inline-block;
   padding: 3px 12px;
   border-radius: 9px;
-<<<<<<< HEAD
-`
 
-function BottomSheetRoundBoxAtm(props:{menu:string}) {
-  return (
-    <>
-      <BottomSheetRoundBoxAtmStyle>
-        <p>{props.menu}</p>
-      </BottomSheetRoundBoxAtmStyle>
-
-    </>
-  )
-}
-
-export default BottomSheetRoundBoxAtm
-=======
 `;
 
 function BottomSheetRoundBoxAtm(props: {
@@ -94,4 +68,3 @@ function BottomSheetRoundBoxAtm(props: {
 }
 
 export default BottomSheetRoundBoxAtm;
->>>>>>> 52d6e1793de3bd9cc5199230c332d16269c36b93

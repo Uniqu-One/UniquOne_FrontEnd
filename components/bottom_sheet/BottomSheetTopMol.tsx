@@ -1,17 +1,12 @@
 import styled from "@emotion/styled";
 import React from "react";
-<<<<<<< HEAD
-import useEvaIcon from "../../lib/hooks/useEvaIcon";
-import { color } from "../../styles/theme";
-=======
+
 import { toast, Toaster } from "react-hot-toast";
 import { useRecoilState } from "recoil";
 import useEvaIcon from "../../lib/hooks/useEvaIcon";
 import { CornPostState } from "../../states/recoil/CornPostState";
 import { SearchFilterState } from "../../states/recoil/SearchFilterState";
 import { color } from "../../styles/theme";
-import { postDataType } from "../../types/postDataType";
->>>>>>> 52d6e1793de3bd9cc5199230c332d16269c36b93
 
 const BottomSheetTopMolStyle = styled.div`
   height: 48px;
@@ -22,34 +17,14 @@ const BottomSheetTopMolStyle = styled.div`
   /* background-color: red; */
   padding: 0px 18px;
   border-bottom: 0.5px solid ${color.p_gray_md};
-<<<<<<< HEAD
-  div{
-    svg{
-=======
+
   div {
     svg {
->>>>>>> 52d6e1793de3bd9cc5199230c332d16269c36b93
       margin: auto 0;
       height: 100%;
       /* background-color: lightblue; */
     }
-<<<<<<< HEAD
-    
-  }
-`
 
-function BottomSheetTopMol(props:{type:string, setOpen:Function}) {
-
-  useEvaIcon()
-
-  return (
-    <>
-      <BottomSheetTopMolStyle>
-        <div onClick={() => props.setOpen(false)}><i data-eva="arrow-ios-back-outline"></i></div>
-        <div>{props.type === "look" ? "룩":"색상"}</div>
-        <div><i data-eva="checkmark-outline"></i></div>
-      </BottomSheetTopMolStyle>
-=======
   }
   .checked {
     fill: ${color.p_pruple};
@@ -190,7 +165,6 @@ function BottomSheetTopMol(props: {
           </div>
         </BottomSheetTopMolStyle>
       )}
->>>>>>> 52d6e1793de3bd9cc5199230c332d16269c36b93
     </>
   );
 }

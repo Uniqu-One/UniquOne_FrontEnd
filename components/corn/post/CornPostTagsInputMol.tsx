@@ -3,11 +3,7 @@ import React, { useState } from "react";
 import { useRecoilState } from "recoil";
 import { CornPostState } from "../../../states/recoil/CornPostState";
 import { color } from "../../../styles/theme";
-<<<<<<< HEAD
-import { postDataType } from "../../../types/postDataType";
 
-=======
->>>>>>> 52d6e1793de3bd9cc5199230c332d16269c36b93
 
 const CornPostTagsInputMolStyle = styled.div`
   color: ${color.p_gray_dk};
@@ -27,12 +23,8 @@ const CornPostTagsInputMolStyle = styled.div`
 `;
 
 function CornPostTagsInputMol() {
-<<<<<<< HEAD
-  const [postData, setPostData] = useRecoilState(CornPostState)
-=======
-  const [postData,setPostData] = useRecoilState(CornPostState)
 
->>>>>>> 52d6e1793de3bd9cc5199230c332d16269c36b93
+  const [postData,setPostData] = useRecoilState(CornPostState)
 
   const [count, setCount] = useState(5);
 

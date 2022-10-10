@@ -29,13 +29,7 @@ p{
 
 function CornPostDescInputMol() {
 
-<<<<<<< HEAD
-  const [postData, setPostData] = useRecoilState(CornPostState);
-  
-  console.log(postData)
-=======
   const [postData,setPostData] = useRecoilState(CornPostState)
->>>>>>> 52d6e1793de3bd9cc5199230c332d16269c36b93
 
   const [count, setCount] = useState(1000)
 
@@ -45,10 +39,7 @@ function CornPostDescInputMol() {
 
       setPostData(() => {
   
-<<<<<<< HEAD
-        
-=======
->>>>>>> 52d6e1793de3bd9cc5199230c332d16269c36b93
+
         let newData = {...postData};
         newData.desc = e.target.value
   

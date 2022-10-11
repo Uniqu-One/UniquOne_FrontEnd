@@ -76,13 +76,14 @@ const BoxStyle = styled.div`
   border-radius: 6px;
   font-size: 0.875rem;
   color: ${color.p_gray_dk};
+  background-color: white;
 `;
 
 const Box = (props: { text: string }) => {
   return <BoxStyle>{props.text}</BoxStyle>;
 };
 
-export default function App() {
+export default function ChatRoomButtonMol() {
   useEvaIcon();
   const [tempMenu, setTempMenu] = useState(MENU[0]);
   const [isOpen, setIsOpen] = useState(false);

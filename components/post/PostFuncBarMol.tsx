@@ -13,14 +13,21 @@ const PostFuncBarMolStyle = styled.div`
   
   div{
     z-index: 1;
-    margin: auto 21px auto 18px;
+    
     
     :first-of-type{
-        svg{
+      margin: auto 21px auto 18px;  
+        svg{          
           margin-right: 9px;
         }
     }
+    :last-of-type{
+      margin: auto 9px auto 0;
+      /* background-color: red; */
+    }
   }
+
+  
 `
 
 function PostFuncBarMol() {
@@ -31,7 +38,8 @@ function PostFuncBarMol() {
         <PostCommentMol/>
       </div>
 
-      <div>
+      <div className='uni_star'>
+
         <UniStarMol/>
       </div>
     </PostFuncBarMolStyle>

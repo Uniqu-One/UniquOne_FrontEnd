@@ -6,6 +6,8 @@ import { color } from "../../styles/theme";
 
 const MENU = ["판매 중", "거래 중", "판매완료"];
 
+//TODO - 리팩토링 필요
+
 const ButtonStyle = styled.div<{ tempMenu: string }>`
   > div {
     /* text-align: center; */

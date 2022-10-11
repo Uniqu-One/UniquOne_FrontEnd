@@ -39,7 +39,7 @@ const ChatRoomReceiveAtmStyle = styled.div`
 
 `;
 
-function ChatRoomReceiveAtm() {
+function ChatRoomReceiveAtm(props:{text:string}) {
   return (
     <>
       <ChatRoomReceiveAtmStyle>
@@ -52,7 +52,7 @@ function ChatRoomReceiveAtm() {
           />
         </div>
         <div className="chat">
-          <div className="bubble"><p>채팅 버블채팅</p></div>
+          <div className="bubble"><p>{props.text}</p></div>
           <div className="time"><p>오후 9:56</p></div>
         </div>
       </ChatRoomReceiveAtmStyle>

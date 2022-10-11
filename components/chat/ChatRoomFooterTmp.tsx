@@ -33,7 +33,7 @@ const ChatRoomFooterTmpStyle = styled.div<{sendStatus:boolean}>`
   }
 `;
 
-function ChatRoomFooterTmp() {
+function ChatRoomFooterTmp(props:{handleSendMessage:Function}) {
   useEvaIcon();
 
   const [tempChat, setTempChat] = useState("")
@@ -55,7 +55,7 @@ function ChatRoomFooterTmp() {
         <div>
           <input type="text" placeholder="메세지 보내기" onChange={(e)=>setTempChat(e.target.value)}/>
         </div>
-        <div>
+        <div onClick={() => props.handleSendMessage()}>
           <i
             data-eva="paper-plane-outline"
             data-eva-height="30px"

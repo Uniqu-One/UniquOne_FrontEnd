@@ -35,13 +35,13 @@ const ChatRoomSendAtmStyle = styled.div`
 
 `;
 
-function ChatRoomSendAtm() {
+function ChatRoomSendAtm(props:{text:string}) {
   return (
     <>
       <ChatRoomSendAtmStyle>
         <div className="chat">
         <div className="time"><p>오후 9:56</p></div>
-          <div className="bubble"><p>채팅 버블채팅 버블채팅 </p></div>
+          <div className="bubble"><p>{props.text}</p></div>
         </div>
       </ChatRoomSendAtmStyle>
     </>

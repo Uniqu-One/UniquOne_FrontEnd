@@ -12,16 +12,27 @@ const ChatRoomOneDayTmpStyle = styled.div`
   }
 `;
 
-function ChatRoomOneDayTmp() {
+function ChatRoomOneDayTmp(props: {
+  chatData: { senderId: number; message: string; regData: null }[];
+  setChatData: Function;
+}) {
+  const { chatData, setChatData } = props;
+
   return (
     <>
       <ChatRoomOneDayTmpStyle>
         <h2>22년 9월 17일</h2>
-        <ChatRoomReceiveAtm />
-        <ChatRoomReceiveAtm />
-        <ChatRoomSendAtm />
-        <ChatRoomReceiveAtm />
-        <ChatRoomSendAtm />
+
+        {chatData.map((chat, idx) => {
+          if (chat.senderId === 1) {
+            return <ChatRoomSendAtm key={idx} text={chat.message} />;
+          } else {
+            console.log(chat);
+            {
+              return <ChatRoomReceiveAtm key={idx} text={chat.message} />;
+            }
+          }
+        })}
       </ChatRoomOneDayTmpStyle>
     </>
   );

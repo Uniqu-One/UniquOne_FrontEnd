@@ -60,12 +60,12 @@ border-bottom: 1px solid ${color.p_gray_lt};
 }
 `;
 
-function ChatBoxMol() {
+function ChatBoxMol(props:{chatRoomId:string}) {
 
 const router = useRouter()
 
   const handleEnterRoom =() => {
-    router.push("/chat/1")
+    router.push(`/chat/${props.chatRoomId}`)
   }
 
   return (

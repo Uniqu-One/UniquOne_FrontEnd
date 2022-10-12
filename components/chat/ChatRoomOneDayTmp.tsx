@@ -3,6 +3,7 @@ import React from "react";
 import { color } from "../../styles/theme";
 import ChatRoomReceiveAtm from "./ChatRoomReceiveAtm";
 import ChatRoomSendAtm from "./ChatRoomSendAtm";
+import { chatDataType } from "./ChatRoomTmp";
 
 const ChatRoomOneDayTmpStyle = styled.div`
 padding-top: 126px;
@@ -15,7 +16,7 @@ padding-bottom: 70px;
 `;
 
 function ChatRoomOneDayTmp(props: {
-  chatData: { senderId: number; message: string; regData: null }[];
+  chatData:chatDataType[];
   setChatData: Function;
 }) {
   const { chatData, setChatData } = props;
@@ -25,7 +26,7 @@ function ChatRoomOneDayTmp(props: {
       <ChatRoomOneDayTmpStyle>
         <h2>22년 9월 17일</h2>
 
-        {chatData.map((chat, idx) => {
+        {chatData!==undefined && chatData.map((chat, idx) => {
           if (chat.senderId === 1) {
             return <ChatRoomSendAtm key={idx} text={chat.message} />;
           } else {

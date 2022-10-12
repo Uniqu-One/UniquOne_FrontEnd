@@ -8,33 +8,36 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import styled from "@emotion/styled";
 
-const ChatRoomTmpStyle = styled.div`
-  padding-top: 48px;
-`;
+export type chatDataType = {
+  senderId: number;
+  message: string;
+  regDate: string;
+};
 
 function ChatRoomTmp() {
-  const route = useRouter();
+  console.log(process.env.NEXT_PUBLIC_URL)
+  const socket = new SockJS("http://3.38.92.156:8000/ws-stomp");
+  const ws = Stomp.over(() => socket);
+  ws.debug = () => {};
 
-  const socket = new SockJS("http://10.10.10.143:8080/ws-stomp");
-  const ws = Stomp.over(socket);
-  const [chatData, setChatData] = useState([]);
+  const route = useRouter();
+  const [chatData, setChatData] = useState<chatDataType[]>([]);
 
   const connect = () => {
-    ws.connect({}, (frame: any) => {
-      ws.subscribe(`/sub/chat/room/${route.query.roomId}`, (messgae) => {
-        let recv = JSON.parse(messgae.body);
-        console.log(recv);
+    ws.connect({}, () => {
+      ws.subscribe(`/sub/chat/room/${route.query.roomId}`, (message) => {
+        let recv = JSON.parse(message.body);
+        console.log(recv, "!!");
       });
     });
   };
-
   connect();
 
   useEffect(() => {
     {
       route.query.roomId &&
         axios
-          .get(`http://10.10.10.143:8080/chat/room/all/${route.query.roomId}/1`)
+          .get(`http://3.38.92.156:8000/chat/room/all/${route.query.roomId}/1`)
           .then((res) => {
             return setChatData(res.data.chatResponseDtos);
           })
@@ -42,37 +45,18 @@ function ChatRoomTmp() {
     }
   }, [route.query.roomId]);
 
-  const handleSendMessage = async () => {
-    await ws.send(
-      "/pub/chat/message",
-      {
-        type: "TALK",
-        chatRoomId: route.query.roomId,
-        senderId: 1,
-        message: "1",
-      },
-      JSON.stringify({
-        type: "TALK",
-        chatRoomId: route.query.roomId,
-        senderId: 1,
-        message: "1",
-      })
-    );
-  };
-
   return (
     <>
-      
-        <ChatRoomItemBox />
-        
-        <ChatRoomOneDayTmp chatData={chatData} setChatData={setChatData} />
-        <ChatRoomFooterTmp
-          handleSendMessage={handleSendMessage}
-          ws={ws}
-          roomId={
-            typeof route.query.roomId === "string" ? route.query.roomId : ""
-          }
-        />
+      <ChatRoomItemBox />
+
+      <ChatRoomOneDayTmp chatData={chatData} setChatData={setChatData} />
+      <ChatRoomFooterTmp
+        setChatData={setChatData}
+        ws={ws}
+        roomId={
+          typeof route.query.roomId === "string" ? route.query.roomId : ""
+        }
+      />
     </>
   );
 }

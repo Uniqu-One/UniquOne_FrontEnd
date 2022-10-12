@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
 import useEvaIcon from "../../lib/hooks/useEvaIcon";
 import { color } from "../../styles/theme";
+import { chatDataType } from "./ChatRoomTmp";
 
 const ChatRoomFooterTmpStyle = styled.div<{ sendStatus: boolean }>`
   background-color: white;
@@ -34,41 +35,41 @@ const ChatRoomFooterTmpStyle = styled.div<{ sendStatus: boolean }>`
 `;
 
 function ChatRoomFooterTmp(props: {
-  handleSendMessage: Function;
   ws: any;
   roomId: string;
+  setChatData: Function;
 }) {
   useEvaIcon();
 
   const [tempChat, setTempChat] = useState("");
   const [sendStatus, setSendStatus] = useState(false);
-  const ws = props.ws;
+  const { ws, roomId, setChatData } = props;
 
   const handleSendMessage = () => {
-
-    if(tempChat !== ""){
+    if (tempChat !== "") {
       ws.send(
         "/pub/chat/message",
         {
           type: "TALK",
-          chatRoomId: props.roomId,
+          chatRoomId: roomId,
           senderId: 1,
           message: tempChat,
         },
         JSON.stringify({
           type: "TALK",
-          chatRoomId: props.roomId,
+          chatRoomId: roomId,
           senderId: 1,
           message: tempChat,
         })
       );
-      
-    };
-
-    setTempChat("")
-
     }
 
+    setChatData((prev: chatDataType[]) => {
+      return [...prev, { senderId: 1, message: tempChat, regDate: new Date() }];
+    });
+
+    setTempChat("");
+  };
 
   useEffect(() => {
     if (tempChat !== "") {

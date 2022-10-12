@@ -12,6 +12,7 @@ function ChatRoomTmp() {
 
   const socket = new SockJS("http://10.10.10.143:8080/ws-stomp");
   const ws = Stomp.over(socket);
+  const [chatData, setChatData] = useState([]);
 
   const connect = () => {
     ws.connect({}, (frame: any) => {
@@ -24,7 +25,7 @@ function ChatRoomTmp() {
 
   connect();
 
-  const [chatData, setChatData] = useState([]);
+  
 
   useEffect(() => {
     {
@@ -32,15 +33,14 @@ function ChatRoomTmp() {
         axios
           .get(`http://10.10.10.143:8080/chat/room/all/${route.query.roomId}/1`)
           .then((res) => {
-            // console.log(res)
             return setChatData(res.data.chatResponseDtos);
           })
           .catch((err) => console.error(err));
     }
   }, [route.query.roomId]);
 
-  const handleSendMessage = () => {
-    ws.send(
+  const handleSendMessage = async () => {
+    await ws.send(
       "/pub/chat/message",
       {
         type: "TALK",
@@ -54,16 +54,20 @@ function ChatRoomTmp() {
         senderId: 1,
         message: "1",
       })
-    );
+    )
   };
-
-
 
   return (
     <>
       <ChatRoomItemBox />
       <ChatRoomOneDayTmp chatData={chatData} setChatData={setChatData} />
-      <ChatRoomFooterTmp handleSendMessage={handleSendMessage}/>
+      <ChatRoomFooterTmp
+        handleSendMessage={handleSendMessage}
+        ws={ws}
+        roomId={
+          typeof route.query.roomId === "string" ? route.query.roomId : ""
+        }
+      />
     </>
   );
 }

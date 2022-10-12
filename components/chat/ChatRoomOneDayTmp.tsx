@@ -27,7 +27,6 @@ function ChatRoomOneDayTmp(props: {
           if (chat.senderId === 1) {
             return <ChatRoomSendAtm key={idx} text={chat.message} />;
           } else {
-            console.log(chat);
             {
               return <ChatRoomReceiveAtm key={idx} text={chat.message} />;
             }

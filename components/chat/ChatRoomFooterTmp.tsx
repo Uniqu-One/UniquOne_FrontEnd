@@ -3,8 +3,7 @@ import React, { useEffect, useState } from "react";
 import useEvaIcon from "../../lib/hooks/useEvaIcon";
 import { color } from "../../styles/theme";
 
-const ChatRoomFooterTmpStyle = styled.div<{sendStatus:boolean}>`
-
+const ChatRoomFooterTmpStyle = styled.div<{ sendStatus: boolean }>`
   height: 66px;
   width: 100vw;
   position: fixed;
@@ -14,7 +13,7 @@ const ChatRoomFooterTmpStyle = styled.div<{sendStatus:boolean}>`
   justify-content: space-between;
   border-top: 0.5px solid ${color.p_gray_lt};
 
-  div{
+  div {
     margin: auto 0;
   }
 
@@ -25,38 +24,71 @@ const ChatRoomFooterTmpStyle = styled.div<{sendStatus:boolean}>`
     border: 0.5px solid ${color.p_gray_md};
     border-radius: 12px;
     padding-left: 12px;
-
   }
 
-  svg{
+  svg {
     margin-right: 18px;
-    fill: ${(props) => props.sendStatus ? color.p_pruple :color.p_gray_md}   ;
+    fill: ${(props) => (props.sendStatus ? color.p_pruple : color.p_gray_md)};
   }
 `;
 
-function ChatRoomFooterTmp(props:{handleSendMessage:Function}) {
+function ChatRoomFooterTmp(props: {
+  handleSendMessage: Function;
+  ws: any;
+  roomId: string;
+}) {
   useEvaIcon();
 
-  const [tempChat, setTempChat] = useState("")
-  const [sendStatus, setSendStatus] = useState(false)
+  const [tempChat, setTempChat] = useState("");
+  const [sendStatus, setSendStatus] = useState(false);
+  const ws = props.ws;
 
-  useEffect(() => {
+  const handleSendMessage = () => {
 
-    if(tempChat!==""){
-      setSendStatus(true)
-    } else{
-      setSendStatus(false)
+    if(tempChat !== ""){
+      ws.send(
+        "/pub/chat/message",
+        {
+          type: "TALK",
+          chatRoomId: props.roomId,
+          senderId: 1,
+          message: tempChat,
+        },
+        JSON.stringify({
+          type: "TALK",
+          chatRoomId: props.roomId,
+          senderId: 1,
+          message: tempChat,
+        })
+      );
+      
+    };
+
+    setTempChat("")
+
     }
 
-  },[tempChat])
+
+  useEffect(() => {
+    if (tempChat !== "") {
+      setSendStatus(true);
+    } else {
+      setSendStatus(false);
+    }
+  }, [tempChat]);
 
   return (
     <>
       <ChatRoomFooterTmpStyle sendStatus={sendStatus}>
         <div>
-          <input type="text" placeholder="메세지 보내기" onChange={(e)=>setTempChat(e.target.value)}/>
+          <input
+            type="text"
+            placeholder="메세지 보내기"
+            onChange={(e) => setTempChat(e.target.value)}
+            value={tempChat}
+          />
         </div>
-        <div onClick={() => props.handleSendMessage()}>
+        <div onClick={() => handleSendMessage()}>
           <i
             data-eva="paper-plane-outline"
             data-eva-height="30px"

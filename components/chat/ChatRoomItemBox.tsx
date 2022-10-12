@@ -5,9 +5,14 @@ import { color } from "../../styles/theme";
 import ChatRoomButtonMol from "./ChatRoomButtonMol";
 
 const ChatRoomItemBoxStyle = styled.div`
-  padding: 0 18px;
+  padding-top: 48px ;
+
+  position: fixed;
+  width: 100vw;
+  background-color: white;
+  z-index: 4;
   height: 66px;
-  
+
   display: flex;
   justify-content: space-between;
   border-bottom: 0.5px solid ${color.p_gray_lt};
@@ -18,6 +23,7 @@ const ChatRoomItemBoxStyle = styled.div`
   }
   .left {
     margin: auto 0;
+    margin-left: 18px;
     display: flex;
 
     .text {
@@ -38,35 +44,38 @@ const ChatRoomItemBoxStyle = styled.div`
     }
   }
   .button {
+    margin-right: 18px;
     z-index: 5;
     margin-top: 18px;
   }
+
 `;
 
 function ChatRoomItemBox() {
   return (
     <>
       <ChatRoomItemBoxStyle>
-        <div className="left">
-          <div>
-            <Image
-              src="/assets/images/postImage.jpg"
-              alt="dummy image"
-              width={42}
-              height={42}
-            />
-          </div>
-          <div className="text">
-            <h4>에스테틱 골저러스 페브라스</h4>
-            <h4>
-              27,000원<span>(오퍼가능)</span>
-            </h4>
-          </div>
-        </div>
 
-        <div className="button">
-          <ChatRoomButtonMol />
-        </div>
+          <div className="left">
+            <div>
+              <Image
+                src="/assets/images/postImage.jpg"
+                alt="dummy image"
+                width={42}
+                height={42}
+              />
+            </div>
+            <div className="text">
+              <h4>에스테틱 골저러스 페브라스</h4>
+              <h4>
+                27,000원<span>(오퍼가능)</span>
+              </h4>
+            </div>
+          </div>
+
+          <div className="button">
+            <ChatRoomButtonMol />
+          </div>
       </ChatRoomItemBoxStyle>
     </>
   );

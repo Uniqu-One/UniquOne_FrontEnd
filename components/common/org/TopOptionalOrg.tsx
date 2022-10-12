@@ -24,7 +24,6 @@ export const TopOptionalOrg = (props: {
   return (
     <TopBoxMol>
       {/* left */}
-
       {props.left === "back" && (
         <TopIconAtm onClick={() => router.back()}>
           <i data-eva="arrow-ios-back"></i>

@@ -6,6 +6,11 @@ import SockJS from "sockjs-client";
 import StompJs, { Stomp } from "@stomp/stompjs";
 import axios from "axios";
 import { useRouter } from "next/router";
+import styled from "@emotion/styled";
+
+const ChatRoomTmpStyle = styled.div`
+  padding-top: 48px;
+`;
 
 function ChatRoomTmp() {
   const route = useRouter();
@@ -18,14 +23,12 @@ function ChatRoomTmp() {
     ws.connect({}, (frame: any) => {
       ws.subscribe(`/sub/chat/room/${route.query.roomId}`, (messgae) => {
         let recv = JSON.parse(messgae.body);
-        console.log(recv)
+        console.log(recv);
       });
     });
   };
 
   connect();
-
-  
 
   useEffect(() => {
     {
@@ -54,20 +57,22 @@ function ChatRoomTmp() {
         senderId: 1,
         message: "1",
       })
-    )
+    );
   };
 
   return (
     <>
-      <ChatRoomItemBox />
-      <ChatRoomOneDayTmp chatData={chatData} setChatData={setChatData} />
-      <ChatRoomFooterTmp
-        handleSendMessage={handleSendMessage}
-        ws={ws}
-        roomId={
-          typeof route.query.roomId === "string" ? route.query.roomId : ""
-        }
-      />
+      
+        <ChatRoomItemBox />
+        
+        <ChatRoomOneDayTmp chatData={chatData} setChatData={setChatData} />
+        <ChatRoomFooterTmp
+          handleSendMessage={handleSendMessage}
+          ws={ws}
+          roomId={
+            typeof route.query.roomId === "string" ? route.query.roomId : ""
+          }
+        />
     </>
   );
 }

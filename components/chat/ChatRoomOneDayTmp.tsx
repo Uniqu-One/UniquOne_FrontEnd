@@ -5,6 +5,8 @@ import ChatRoomReceiveAtm from "./ChatRoomReceiveAtm";
 import ChatRoomSendAtm from "./ChatRoomSendAtm";
 
 const ChatRoomOneDayTmpStyle = styled.div`
+padding-top: 126px;
+padding-bottom: 70px;
   h2 {
     font-size: 0.875rem;
     color: ${color.p_gray_md};

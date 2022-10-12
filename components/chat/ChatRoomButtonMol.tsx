@@ -69,6 +69,7 @@ const itemVariants: Variants = {
 };
 
 const BoxStyle = styled.div`
+
   width: 96px;
   height: 32px;
   line-height: 32px;
@@ -135,7 +136,7 @@ export default function ChatRoomButtonMol() {
             },
             closed: {},
           }}
-          style={{ pointerEvents: isOpen ? "auto" : "none" }}
+          style={{ pointerEvents: isOpen ? "auto" : "none"}}
         >
           {MENU.map((menu) => {
             return (

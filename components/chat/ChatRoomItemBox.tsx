@@ -7,7 +7,7 @@ import ChatRoomButtonMol from "./ChatRoomButtonMol";
 const ChatRoomItemBoxStyle = styled.div`
   padding: 0 18px;
   height: 66px;
-  /* background-color: red; */
+  
   display: flex;
   justify-content: space-between;
   border-bottom: 0.5px solid ${color.p_gray_lt};
@@ -38,7 +38,7 @@ const ChatRoomItemBoxStyle = styled.div`
     }
   }
   .button {
-    /* background-color: red; */
+    z-index: 5;
     margin-top: 18px;
   }
 `;

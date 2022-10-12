@@ -4,6 +4,7 @@ import useEvaIcon from "../../lib/hooks/useEvaIcon";
 import { color } from "../../styles/theme";
 
 const ChatRoomFooterTmpStyle = styled.div<{sendStatus:boolean}>`
+
   height: 66px;
   width: 100vw;
   position: fixed;

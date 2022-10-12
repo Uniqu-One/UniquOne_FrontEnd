@@ -8,11 +8,12 @@ function ChatTmp() {
   useEffect(() => {
     axios
       .get("http://10.10.10.143:8080/chat/1")
-      .then((res) => setChatRoomList([...res.data]))
+      .then((res) => {
+        console.log(res);
+        return setChatRoomList([...res.data]);
+      })
       .catch((err) => console.error(err));
   }, []);
-
-  console.log(chatRoomList);
 
   return (
     <>

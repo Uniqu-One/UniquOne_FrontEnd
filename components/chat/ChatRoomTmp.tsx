@@ -17,7 +17,7 @@ function ChatRoomTmp() {
     ws.connect({}, (frame: any) => {
       ws.subscribe(`/sub/chat/room/${route.query.roomId}`, (messgae) => {
         let recv = JSON.parse(messgae.body);
-        // console.log(recv)
+        console.log(recv)
       });
     });
   };

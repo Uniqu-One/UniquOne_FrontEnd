@@ -1,9 +1,16 @@
+import styled from "@emotion/styled";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { chatListDataType } from "../../types/chat/chatListDataType";
 import ChatBoxMol from "./ChatBoxMol";
 
+const ChatBoxMolStyle = styled.div`
+  padding-top: 50px;
+  padding-bottom: 50px;
+`;
+
 function ChatTmp() {
-  const [chatRoomList, setChatRoomList] = useState<{ chatRoomId: string }[]>(
+  const [chatRoomDatas, setChatRoomDatas] = useState<chatListDataType[]>(
     []
   );
 
@@ -13,19 +20,20 @@ function ChatTmp() {
     axios
       .get(process.env.NEXT_PUBLIC_URL + "/chat/1")
       .then((res) => {
-        console.log(res);
-        return setChatRoomList([...res.data]);
+        return setChatRoomDatas([...res.data]);
       })
       .catch((err) => console.error(err));
   }, []);
 
   return (
     <>
-      {chatRoomList.map((room) => {
-        return (
-          <ChatBoxMol chatRoomId={room.chatRoomId} key={room.chatRoomId} />
-        );
-      })}
+      <ChatBoxMolStyle>
+        {chatRoomDatas.map((chatData) => {
+          return (
+            <ChatBoxMol key={chatData.chatRoomId} chatData={chatData}/>
+          );
+        })}
+      </ChatBoxMolStyle>
     </>
   );
 }

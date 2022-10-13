@@ -25,8 +25,7 @@ const SignupFormTmpStyle = styled.div`
 `;
 
 function SignupFormTmp() {
-
-  const router = useRouter()
+  const router = useRouter();
 
   const [signupInput, setSignupInput] = useState({
     email: "",
@@ -89,6 +88,7 @@ function SignupFormTmp() {
 
     if (tempLevel === "authNum" && authNum !== "") {
       if (await SignupUtils.checkAuthCode(email, +authNum)) {
+        toast.success("인증번호가 확인되었습니다!");
         SetSignUpStage((prev) => ({ ...prev, mailAuth: true }));
         setTempLevel("userPwd");
       } else {
@@ -105,19 +105,21 @@ function SignupFormTmp() {
     if (tempLevel === "nickName" && nickName === "") {
       const randomNick = await SignupUtils.makeRandomWord();
       setSignupInput((prev) => ({ ...prev, nickName: randomNick }));
-      toast.success('닉네임이 자동생성 되었습니다 :>')
+      toast.success("닉네임이 자동생성 되었습니다 :>");
     }
 
     if (tempLevel === "nickName" && nickName !== "") {
-
-      if(await SignupUtils.checkNickName(nickName)){
-        toast.error('중복되는 닉네임입니다 :(')
+      if (await SignupUtils.checkNickName(nickName)) {
+        toast.error("중복되는 닉네임입니다 :(");
       } else {
-        SignupUtils.signup(signupInput)
-        router.push('/')
+        if (await SignupUtils.signup(signupInput)) {
+          router.replace("/redirect/signup");
+        } else {
+          toast.error(
+            "회원가입에 실패하였습니다. 입력 정보를 다시한번 확인해주세요"
+          );
+        }
       }
-
-
     }
   };
 

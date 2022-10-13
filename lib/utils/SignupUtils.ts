@@ -48,7 +48,7 @@ export const SignupUtils = {
       });
   },
 
-  signup: (signupInput: {
+  signup: async (signupInput: {
     email: string;
     userPwd: string;
     nickName: string;
@@ -57,13 +57,19 @@ export const SignupUtils = {
     const password = signupInput.userPwd;
     const nickname = signupInput.nickName;
 
-    axios
+    return await axios
       .post(`${process.env.NEXT_PUBLIC_URL_AWS}/signup`, {
         email,
         password,
         nickname,
       })
-      .then((res) => console.log(res))
-      .catch((err) => console.error(err));
+      .then((res) => {
+        console.log(res);
+        return true;
+      })
+      .catch((err) => {
+        console.error(err);
+        return false;
+      });
   },
 };

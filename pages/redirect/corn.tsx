@@ -6,7 +6,7 @@ function corn() {
   
   return (
     <>
-      <RedirectTmp/>
+      <RedirectTmp type="corn"/>
     </>
   );
 }

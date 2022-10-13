@@ -3,7 +3,7 @@ import ChatRoomFooterTmp from "./ChatRoomFooterTmp";
 import ChatRoomItemBox from "./ChatRoomItemBox";
 import ChatRoomOneDayTmp from "./ChatRoomOneDayTmp";
 import SockJS from "sockjs-client";
-import StompJs, { Stomp } from "@stomp/stompjs";
+import StompJs, { CompatClient, Stomp } from "@stomp/stompjs";
 import axios from "axios";
 import { useRouter } from "next/router";
 import styled from "@emotion/styled";
@@ -15,32 +15,60 @@ export type chatDataType = {
 };
 
 function ChatRoomTmp() {
-  const socket = new SockJS(process.env.NEXT_PUBLIC_URL+"/ws-stomp");
-  const ws = Stomp.over(() => socket);
-  ws.debug = () => {};
+  const socket = new SockJS(process.env.NEXT_PUBLIC_URL + "/chat/ws-stomp");
 
   const route = useRouter();
+
   const [chatData, setChatData] = useState<chatDataType[]>([]);
+  const [roomId, setRoomId] = useState("");
+  const [ws, setWs] = useState<CompatClient>();
 
   const connect = () => {
-    ws.connect({}, () => {
-      ws.subscribe(`/sub/chat/room/${route.query.roomId}`, (message) => {
-        let recv = JSON.parse(message.body);
-        console.log(recv, "!!");
+    if (ws) {
+      ws.connect({}, () => {
+        ws.subscribe(
+          `/sub/chat/room/${route.query.roomId}`,
+          (recMessage: { body: string }) => {
+            let recv = JSON.parse(recMessage.body);
+
+            const { message, senderId, regDate } = recv;
+
+            setChatData((prev) => [...prev, { message, senderId, regDate }]);
+            console.log(message, senderId, regDate, "!!");
+          }
+        );
       });
-    });
+    }
   };
-  connect();
 
   useEffect(() => {
     {
       route.query.roomId &&
         axios
-          .get(`http://3.38.92.156:8000/chat/room/all/${route.query.roomId}/1`)
+          .get(
+            `${process.env.NEXT_PUBLIC_URL}/chat/room/all/${route.query.roomId}/1`
+          )
           .then((res) => {
             return setChatData(res.data.chatResponseDtos);
           })
           .catch((err) => console.error(err));
+    }
+  }, [roomId]);
+
+  useEffect(() => {
+    if (roomId !== "") {
+      connect();
+      return () => {
+        ws?.disconnect();
+      };
+    }
+  }, [roomId]);
+
+  useEffect(() => {
+    const query = route.query;
+    if (typeof query.roomId === "string" && query.roomId !== "") {
+      setRoomId(query.roomId);
+      setWs(Stomp.over(() => socket));
     }
   }, [route.query.roomId]);
 

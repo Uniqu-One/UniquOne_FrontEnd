@@ -46,7 +46,7 @@ function ChatRoomFooterTmp(props: {
   const { ws, roomId, setChatData } = props;
 
   const handleSendMessage = () => {
-    if (tempChat !== "") {
+    if (tempChat !== "" && ws !== undefined) {
       ws.send(
         "/pub/chat/message",
         {
@@ -64,9 +64,9 @@ function ChatRoomFooterTmp(props: {
       );
     }
 
-    setChatData((prev: chatDataType[]) => {
-      return [...prev, { senderId: 1, message: tempChat, regDate: new Date() }];
-    });
+    // setChatData((prev: chatDataType[]) => {
+    //   return [...prev, { senderId: 1, message: tempChat, regDate: new Date() }];
+    // });
 
     setTempChat("");
   };

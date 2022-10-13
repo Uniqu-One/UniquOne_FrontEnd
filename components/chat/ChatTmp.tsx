@@ -20,7 +20,8 @@ function ChatTmp() {
     axios
       .get(process.env.NEXT_PUBLIC_URL + "/chat/1")
       .then((res) => {
-        return setChatRoomDatas([...res.data]);
+        
+        return setChatRoomDatas([...res.data.data]);
       })
       .catch((err) => console.error(err));
   }, []);

@@ -14,8 +14,8 @@ export type chatDataType = {
 };
 
 function ChatRoomTmp() {
-  const socket = new SockJS(process.env.NEXT_PUBLIC_URL + "/chat/ws-stomp");
-
+  let socket = new SockJS(process.env.NEXT_PUBLIC_URL + "/chat/ws-stomp");
+  let reconnect = 0;
   const route = useRouter();
 
   const [chatData, setChatData] = useState<chatDataType[]>([]);
@@ -24,18 +24,44 @@ function ChatRoomTmp() {
 
   const scrollRef = useRef<null | HTMLDivElement>(null);
 
-  const connect = () => {
-    if (ws) {
-      ws.connect({}, () => {
-        ws.subscribe(
-          `/sub/chat/room/${route.query.roomId}`,
-          (recMessage: { body: string }) => {
-            let recv = JSON.parse(recMessage.body);
-            const { message, senderId, regDate } = recv;
-            setChatData((prev) => [...prev, { message, senderId, regDate }]);
+  const connect = async () => {
+    if (ws !== undefined) {
+      ws.connect(
+        {},
+        () => {
+          ws.subscribe(
+            `/sub/chat/room/${route.query.roomId}`,
+            (recMessage: { body: string }) => {
+              let recv = JSON.parse(recMessage.body);
+              console.log(recv, "!!");
+              const { message, senderId, regDate } = recv;
+              setChatData((prev) => [...prev, { message, senderId, regDate }]);
+            }
+          );
+
+          ws.send(
+            "/pub/chat/message",
+            {},
+            JSON.stringify({
+              type: "ENTER",
+              chatRoomId: "634763a8390e7444c3f49bae",
+              senderId: 1,
+            })
+          );
+        },
+        (err: any) => {
+          if (reconnect++ <= 5) {
+            setTimeout(() => {
+              console.log("reconnect");
+              socket = new SockJS(
+                process.env.NEXT_PUBLIC_URL + "/chat/ws-stomp"
+              );
+              setWs(Stomp.over(socket));
+              connect();
+            }, 10 * 1000);
           }
-        );
-      });
+        }
+      );
     }
   };
 
@@ -47,7 +73,7 @@ function ChatRoomTmp() {
             `${process.env.NEXT_PUBLIC_URL}/chat/room/all/${route.query.roomId}/1`
           )
           .then((res) => {
-            return setChatData(res.data.chatResponseDtos);
+            return setChatData(res.data.data.chatResponseDtos);
           })
           .catch((err) => console.error(err));
     }
@@ -56,6 +82,7 @@ function ChatRoomTmp() {
   useEffect(() => {
     if (roomId !== "") {
       connect();
+
       return () => {
         ws?.disconnect();
       };

@@ -114,7 +114,7 @@ function SignupFormTmp() {
         toast.error('중복되는 닉네임입니다 :(')
       } else {
         SignupUtils.signup(signupInput)
-        router.push('/',{})
+        router.push('/')
       }
 
 

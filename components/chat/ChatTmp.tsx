@@ -7,6 +7,8 @@ function ChatTmp() {
     []
   );
 
+  //TODO - useQuery로 변경 || is Loading / Error / output 형태로 진행
+
   useEffect(() => {
     axios
       .get(process.env.NEXT_PUBLIC_URL + "/chat/1")

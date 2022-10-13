@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ChatRoomFooterTmp from "./ChatRoomFooterTmp";
 import ChatRoomItemBox from "./ChatRoomItemBox";
 import ChatRoomOneDayTmp from "./ChatRoomOneDayTmp";
@@ -6,7 +6,6 @@ import SockJS from "sockjs-client";
 import StompJs, { CompatClient, Stomp } from "@stomp/stompjs";
 import axios from "axios";
 import { useRouter } from "next/router";
-import styled from "@emotion/styled";
 
 export type chatDataType = {
   senderId: number;
@@ -23,6 +22,8 @@ function ChatRoomTmp() {
   const [roomId, setRoomId] = useState("");
   const [ws, setWs] = useState<CompatClient>();
 
+  const scrollRef = useRef<null | HTMLDivElement>(null);
+
   const connect = () => {
     if (ws) {
       ws.connect({}, () => {
@@ -30,11 +31,8 @@ function ChatRoomTmp() {
           `/sub/chat/room/${route.query.roomId}`,
           (recMessage: { body: string }) => {
             let recv = JSON.parse(recMessage.body);
-
             const { message, senderId, regDate } = recv;
-
             setChatData((prev) => [...prev, { message, senderId, regDate }]);
-            console.log(message, senderId, regDate, "!!");
           }
         );
       });
@@ -72,11 +70,17 @@ function ChatRoomTmp() {
     }
   }, [route.query.roomId]);
 
+  useEffect(() => {
+    scrollRef?.current?.scrollIntoView({ behavior: "smooth" });
+  }, [chatData]);
+
   return (
     <>
       <ChatRoomItemBox />
 
       <ChatRoomOneDayTmp chatData={chatData} setChatData={setChatData} />
+      <div ref={scrollRef} />
+
       <ChatRoomFooterTmp
         setChatData={setChatData}
         ws={ws}

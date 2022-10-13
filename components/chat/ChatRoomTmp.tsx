@@ -15,8 +15,7 @@ export type chatDataType = {
 };
 
 function ChatRoomTmp() {
-  console.log(process.env.NEXT_PUBLIC_URL)
-  const socket = new SockJS("http://3.38.92.156:8000/ws-stomp");
+  const socket = new SockJS(process.env.NEXT_PUBLIC_URL+"/ws-stomp");
   const ws = Stomp.over(() => socket);
   ws.debug = () => {};
 

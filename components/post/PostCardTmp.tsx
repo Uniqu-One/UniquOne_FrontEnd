@@ -9,6 +9,7 @@ const PostCarTmpStyle = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 12px 21px 0px 18px;
+  padding-top: 3px;
 `;
 
 function PostCardTmp(props: { postId: number }) {

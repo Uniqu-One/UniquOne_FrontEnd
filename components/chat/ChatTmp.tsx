@@ -3,11 +3,13 @@ import React, { useEffect, useState } from "react";
 import ChatBoxMol from "./ChatBoxMol";
 
 function ChatTmp() {
-  const [chatRoomList, setChatRoomList] = useState<{}[]>([]);
+  const [chatRoomList, setChatRoomList] = useState<{ chatRoomId: string }[]>(
+    []
+  );
 
   useEffect(() => {
     axios
-      .get("http://3.38.92.156:8000/chat/1")
+      .get(process.env.NEXT_PUBLIC_URL + "/chat/1")
       .then((res) => {
         console.log(res);
         return setChatRoomList([...res.data]);

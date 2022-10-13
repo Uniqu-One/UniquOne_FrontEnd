@@ -7,6 +7,7 @@ import { TopPostMol } from "../mol/TopPostMol";
 const TopPostStyle = styled.div`
   display: flex;
   justify-content: right;
+  
   span {
     margin: auto 0;
     :first-of-type {

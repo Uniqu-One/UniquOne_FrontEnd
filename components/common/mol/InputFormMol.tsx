@@ -42,6 +42,7 @@ function InputFormMol(props: {
   type: string;
   text: string;
   value?: string;
+  handleButtonClick?:Function
 }) {
   const [removeIcon, setRemoveIcon] = useState(false);
 

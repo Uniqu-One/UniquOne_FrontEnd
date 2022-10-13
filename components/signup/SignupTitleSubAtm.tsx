@@ -7,7 +7,7 @@ import ImgUploadIconAtm from "../common/atm/ImgUploadIconAtm";
 const SignupTitleSubBox = styled.div`
   margin-left: 18px;
   margin-right: 18px;
-  margin-top: 24px;
+  padding-top: 72px;
   h2 {
     margin-bottom: 12px;
   }

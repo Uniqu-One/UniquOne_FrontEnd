@@ -39,7 +39,7 @@ function InputFormMol(props: {
   onChangeValue: Function;
   name: string;
   label?: string;
-  type: string;
+  type?: string;
   text: string;
   value?: string;
   handleButtonClick?:Function

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 import useEvaIcon from "../../../lib/hooks/useEvaIcon";
+import { color } from "../../../styles/theme";
 import { TopIconAtm } from "../atm/TopIconAtm";
 import { TopTitleAtm } from "../atm/TopTitleAtm";
 import { TopBoxMol } from "../mol/TopBoxMol";
@@ -11,14 +12,15 @@ export const TopOptionalOrg = (props: {
   text?: string;
   right?: string;
   function?: Function;
+  status?: boolean;
 }) => {
   useEvaIcon();
   const router = useRouter();
 
-  let tempFunc:Function;
+  let tempFunc: Function;
 
-  if(props.function){
-    tempFunc = props.function
+  if (props.function) {
+    tempFunc = props.function;
   }
 
   return (
@@ -30,13 +32,11 @@ export const TopOptionalOrg = (props: {
         </TopIconAtm>
       )}
 
-
-    {props.left === "close-outline" && (
+      {props.left === "close-outline" && (
         <TopIconAtm onClick={() => tempFunc()}>
           <i data-eva="close-outline"></i>
         </TopIconAtm>
       )}
-
 
       {props.left === "star-outline" && (
         <TopIconAtm>
@@ -48,9 +48,7 @@ export const TopOptionalOrg = (props: {
         </TopIconAtm>
       )}
 
-
       {props.left === "nt" && <TopIconAtm></TopIconAtm>}
-
 
       {/* TEXT */}
 
@@ -84,7 +82,11 @@ export const TopOptionalOrg = (props: {
 
       {props.right === "checkmark-outline" && (
         <TopIconAtm>
-          <div>
+          <div
+            style={{
+              fill: `${props.status ? color.p_pruple : color.p_gray_dk}`,
+            }}
+          >
             <i data-eva={props.right}></i>
           </div>
         </TopIconAtm>

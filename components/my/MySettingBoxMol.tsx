@@ -11,6 +11,7 @@ export type settingSingleMenuType = {
 };
 
 const MySettingBoxMolStyle = styled.div`
+  padding-top: 50px;
   margin: 0 18px;
 
   h3 {
@@ -37,7 +38,7 @@ function MySettingBoxMol() {
                   (menu: settingSingleMenuType, idx: number) => {
                     {
                       return (
-                        <Link href={menu.link} key={idx}>
+                        <Link href={menu.link} key={idx+100}>
                           <a>
                             <MySettingBoxAtm title={menu.title} />
                           </a>

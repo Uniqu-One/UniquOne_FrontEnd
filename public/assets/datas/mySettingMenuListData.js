@@ -9,8 +9,8 @@ export const mySettingMenuListData = [
   {
     회원: [
       { title: "마이스타일 변경", link: "/#" },
-      { title: "닉네임 변경", link: "/#" },
-      { title: "비밀번호 변경", link: "/#" },
+      { title: "닉네임 변경", link: "/my/user/nickName" },
+      { title: "비밀번호 변경", link: "/my/user/password" },
       { title: "내 팔로우 보기", link: "/#" },
       { title: "회원 탈퇴", link: "/#" },
       { title: "로그아웃", link: "/#" },

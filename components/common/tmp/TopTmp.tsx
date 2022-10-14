@@ -8,14 +8,12 @@ function TopTmp(props: {
   left?: string;
   text?: string;
   right?: string;
-  function?:Function;
+  function?: Function;
+  status?: boolean;
 }) {
   switch (props.type) {
-
-
     case "main":
       return <TopMainOrg />;
-
 
     case "arrowText":
       return <TopOptionalOrg left="back" text={props.text} />;
@@ -27,28 +25,58 @@ function TopTmp(props: {
 
     case "my":
       return (
-        <TopOptionalOrg left="star-outline" text={"마이 페이지"} right={"settings-outline"} />
+        <TopOptionalOrg
+          left="star-outline"
+          text={"마이 페이지"}
+          right={"settings-outline"}
+        />
       );
 
-    
-      case "chat":
+    case "chat":
       return (
         <TopOptionalOrg left="nt" text={props.text} right={"bell-outline"} />
       );
 
-      case "postOffer":
-        return <TopOptionalOrg left="close-outline" text={"가격제안"} function={props.function}/>
+    case "postOffer":
+      return (
+        <TopOptionalOrg
+          left="close-outline"
+          text={"가격제안"}
+          function={props.function}
+        />
+      );
 
-      case "cornEdit":
-        return (
-          <TopOptionalOrg left="back" text={props.text} right={"checkmark-outline"} />
-        );
+    case "cornEdit":
+      return (
+        <TopOptionalOrg
+          left="back"
+          text={props.text}
+          right={"checkmark-outline"}
+        />
+      );
+
+    case "edit":
+      return (
+        <TopOptionalOrg
+          left="back"
+          text={props.text}
+          right={"checkmark-outline"}
+          status={props.status}
+        />
+      );
 
     case "post":
       return <TopPostOrg />;
 
-      case "qna":
-        return <TopOptionalOrg left="close-outline" text={props.text} right={"checkmark-outline"} function={props.function}/>
+    case "qna":
+      return (
+        <TopOptionalOrg
+          left="close-outline"
+          text={props.text}
+          right={"checkmark-outline"}
+          function={props.function}
+        />
+      );
 
     default:
       return <TopOptionalOrg left="back" text={props.text} />;

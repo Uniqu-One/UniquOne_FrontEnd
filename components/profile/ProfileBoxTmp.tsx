@@ -7,9 +7,11 @@ import ProfileBoxTopMol from "./ProfileBoxTopMol";
 import ProfileBoxUnderMol from "./ProfileBoxUnderMol";
 
 const ProfileBoxTmpStyle = styled.div`
-  margin: 18px 18px 0px 18px;
+  padding-top: 50px;
+  margin: 0 18px ;
   > div {
     :first-of-type {
+      margin-top: 12px;
       margin-bottom: 21px;
     }
 

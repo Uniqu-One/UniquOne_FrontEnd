@@ -4,6 +4,8 @@ import { color } from "../../styles/theme";
 import { motion } from "framer-motion";
 
 const MyReviewTapMolStyle = styled.div`
+
+padding-top: 50px;
   > div {
     height: 48px;
     display: flex;
@@ -54,7 +56,7 @@ function MyReviewTapMol(props: {
               <h3 className={tempTab === idx ? "selected" : undefined}>
                 {tab}
                 {count !== undefined ? <span>(4)</span> : <></>}
-                {tempTab === idx ? <motion.div className="underline" layoutId="underline" /> : <></>}
+                {tempTab === idx ? <motion.div className="underline" layoutId="line" /> : <></>}
               </h3>
             </div>
           ))}

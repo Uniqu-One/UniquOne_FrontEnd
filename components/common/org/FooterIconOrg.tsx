@@ -13,9 +13,11 @@ const FooterMargin = styled.div`
 
 function FooterIconOrg() {
   return (
+    <>
     <FooterMargin>
-      <FooterIconMol></FooterIconMol>
+      <FooterIconMol/>
     </FooterMargin>
+    </>
   )
 }
 

@@ -14,7 +14,7 @@ export type chatDataType = {
 };
 
 function ChatRoomTmp() {
-  let socket = new SockJS(process.env.NEXT_PUBLIC_URL + "/chat/ws-stomp");
+  let socket = new SockJS(process.env.NEXT_PUBLIC_URL_AWS + "/chat/ws-stomp");
   let reconnect = 0;
   const route = useRouter();
 
@@ -55,7 +55,7 @@ function ChatRoomTmp() {
             setTimeout(() => {
               console.log("reconnect");
               socket = new SockJS(
-                process.env.NEXT_PUBLIC_URL + "/chat/ws-stomp"
+                process.env.NEXT_PUBLIC_URL_AWS + "/chat/ws-stomp"
               );
               setWs(Stomp.over(socket));
               connect();
@@ -71,7 +71,7 @@ function ChatRoomTmp() {
       route.query.roomId &&
         axios
           .get(
-            `${process.env.NEXT_PUBLIC_URL}/chat/room/all/${route.query.roomId}/1`
+            `${process.env.NEXT_PUBLIC_URL_AWS}/chat/room/all/${route.query.roomId}/1`
           )
           .then((res) => {
             return setChatData(res.data.data.chatResponseDtos);

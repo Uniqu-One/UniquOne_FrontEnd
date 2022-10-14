@@ -7,6 +7,8 @@ import MyUniStarFilterMol from "./MyUniStarFilterMol";
 
 
 const MyUniStarTmpStyle = styled.div`
+
+  padding-top: 50px;
   font-size: 0.875rem;
   height: 42px;
   display: flex;
@@ -21,9 +23,6 @@ const MyUniStarTmpStyle = styled.div`
   }
 `;
 
-const ModalStyle = styled.div`
-z-index: 1;
-`
 
 function MyUniStarTmp() {
   useEvaIcon();
@@ -32,7 +31,7 @@ function MyUniStarTmp() {
 
   // Ensure it animates in when loaded
   useEffect(() => {
-    setOpen(true);
+    setOpen(false);
   }, []);
 
   function onDismiss() {

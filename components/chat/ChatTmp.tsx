@@ -18,7 +18,7 @@ function ChatTmp() {
 
   useEffect(() => {
     axios
-      .get(process.env.NEXT_PUBLIC_URL + "/chat/1")
+      .get(process.env.NEXT_PUBLIC_URL_AWS + "/chat/1")
       .then((res) => {
         
         return setChatRoomDatas([...res.data.data]);

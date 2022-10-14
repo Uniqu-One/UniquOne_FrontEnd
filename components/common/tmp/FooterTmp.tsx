@@ -27,17 +27,21 @@ const FooterBox = styled.div`
 function FooterTmp(props: { type?: string; text?: string; status?: boolean }) {
   if (props.type === "btn") {
     return (
+      <>
       <FooterBox>
         <div className="footerBtn">
           <BtnTmp size="lg" value={props.text} status={props.status} />
         </div>
       </FooterBox>
+      </>
     );
   } else {
     return (
+      <>
       <FooterBox>
         <FooterIconOrg />
       </FooterBox>
+      </>
     );
   }
 }

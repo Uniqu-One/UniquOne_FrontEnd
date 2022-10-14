@@ -9,5 +9,5 @@ export interface chatListDataType {
   postType?: null;
   receiverId: number;
   receiverName: string;
-  regDate: string;
+  msgRegDate: string;
 }

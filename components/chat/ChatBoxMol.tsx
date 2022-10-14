@@ -68,8 +68,7 @@ function ChatBoxMol(props: { chatData: chatListDataType }) {
     router.push(`/chat/${props.chatData.chatRoomId}`);
   };
 
-  console.log(props.chatData);
-  const { chatRoomId, message } = props.chatData;
+  const { chatRoomId, message, msgRegDate } = props.chatData;
   return (
     <>
       <ChatBoxMolStyle>
@@ -79,7 +78,7 @@ function ChatBoxMol(props: { chatData: chatListDataType }) {
 
             <div>
               <h4>
-                userID<span>28분전</span>
+                userID<span>{msgRegDate}</span>
               </h4>
               <p>{message}</p>
             </div>

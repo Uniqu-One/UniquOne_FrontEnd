@@ -10,20 +10,23 @@ const ChatBoxMolStyle = styled.div`
 `;
 
 function ChatTmp() {
-  const [chatRoomDatas, setChatRoomDatas] = useState<chatListDataType[]>(
-    []
-  );
 
-  //TODO - useQuery로 변경 || is Loading / Error / output 형태로 진행
+  const [chatRoomDatas, setChatRoomDatas] = useState<chatListDataType[]>([]);
+  
 
   useEffect(() => {
-    axios
-      .get(process.env.NEXT_PUBLIC_URL_AWS + "/chat/1")
+
+    //비동기적으로 변경해야함
+    setTimeout(() => {
+      axios
+      .get(process.env.NEXT_PUBLIC_URL_SY + "/chat/1")
       .then((res) => {
-        
         return setChatRoomDatas([...res.data.data]);
       })
       .catch((err) => console.error(err));
+    },100)
+
+    
   }, []);
 
   return (

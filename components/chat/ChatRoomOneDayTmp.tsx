@@ -28,6 +28,9 @@ function ChatRoomOneDayTmp(props: {
 
         {chatData!==undefined && chatData.map((chat, idx) => {
           if (chat.senderId === 1) {
+            
+            console.log(chat.regDate)
+
             return <ChatRoomSendAtm key={idx} text={chat.message} />;
           } else {
             {

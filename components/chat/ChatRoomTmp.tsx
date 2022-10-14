@@ -14,9 +14,9 @@ export type chatDataType = {
 };
 
 function ChatRoomTmp() {
-  let socket = new SockJS(process.env.NEXT_PUBLIC_URL_AWS + "/chat/ws-stomp");
+  let socket = new SockJS(process.env.NEXT_PUBLIC_URL_SY + "/chat/ws-stomp");
   let reconnect = 0;
-  const route = useRouter();
+  const router = useRouter();
 
   const [chatData, setChatData] = useState<chatDataType[]>([]);
   const [roomId, setRoomId] = useState("");
@@ -30,10 +30,10 @@ function ChatRoomTmp() {
         {},
         () => {
           ws.subscribe(
-            `/sub/chat/room/${route.query.roomId}`,
+            `/sub/chat/room/${router.query.roomId}`,
             (recMessage: { body: string }) => {
               let recv = JSON.parse(recMessage.body);
-              console.log(recv, "!!");
+              // console.log(recv, "!!");
               const { message, senderId, regDate } = recv;
               setChatData((prev) => [...prev, { message, senderId, regDate }]);
             }
@@ -45,7 +45,7 @@ function ChatRoomTmp() {
             JSON.stringify({
               type: "ENTER",
               //chat Room ID 변경하기
-              chatRoomId: "634763a8390e7444c3f49bae",
+              chatRoomId: roomId,
               senderId: 1,
             })
           );
@@ -55,7 +55,7 @@ function ChatRoomTmp() {
             setTimeout(() => {
               console.log("reconnect");
               socket = new SockJS(
-                process.env.NEXT_PUBLIC_URL_AWS + "/chat/ws-stomp"
+                process.env.NEXT_PUBLIC_URL_SY + "/chat/ws-stomp"
               );
               setWs(Stomp.over(socket));
               connect();
@@ -68,10 +68,10 @@ function ChatRoomTmp() {
 
   useEffect(() => {
     {
-      route.query.roomId &&
+      router.query.roomId &&
         axios
           .get(
-            `${process.env.NEXT_PUBLIC_URL_AWS}/chat/room/all/${route.query.roomId}/1`
+            `${process.env.NEXT_PUBLIC_URL_SY}/chat/room/all/${router.query.roomId}/1`
           )
           .then((res) => {
             return setChatData(res.data.data.chatResponseDtos);
@@ -91,15 +91,25 @@ function ChatRoomTmp() {
   }, [roomId]);
 
   useEffect(() => {
-    const query = route.query;
+    const query = router.query;
     if (typeof query.roomId === "string" && query.roomId !== "") {
       setRoomId(query.roomId);
       setWs(Stomp.over(() => socket));
     }
-  }, [route.query.roomId]);
+  }, [router.query.roomId]);
 
   useEffect(() => {
     scrollRef?.current?.scrollIntoView({ behavior: "smooth" });
+
+    //채팅 없을 시 채팅방 삭제
+    return () => {
+      if (roomId !== "" && chatData === undefined) {
+        axios
+          .post(`${process.env.NEXT_PUBLIC_URL_SY}/chat/room/${roomId}`)
+          .then((res) => console.log(res.status))
+          .catch((err) => console.log(err));
+      }
+    };
   }, [chatData]);
 
   return (
@@ -113,7 +123,7 @@ function ChatRoomTmp() {
         setChatData={setChatData}
         ws={ws}
         roomId={
-          typeof route.query.roomId === "string" ? route.query.roomId : ""
+          typeof router.query.roomId === "string" ? router.query.roomId : ""
         }
       />
     </>

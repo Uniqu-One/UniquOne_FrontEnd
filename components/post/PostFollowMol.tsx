@@ -23,14 +23,14 @@ function PostFollowMol() {
 
   const handleFollowStatus = () => {
     if (followStatus) {
+      
       failNotify();
-    } else {
+    } else {  
       successNotify();
     }
 
     setFollowStatus(!followStatus);
   };
-
   return (
     <>
       <Toaster />

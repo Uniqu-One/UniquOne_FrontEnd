@@ -3,10 +3,12 @@ import React from 'react'
 import FooterIconMol from '../mol/FooterIconMol'
 
 const FooterMargin = styled.div`
-  margin:auto 24px;
-  height: 54px;
-  display: flex;
-  justify-content: space-between;
+  margin: auto 24px;
+  div{
+    height: 54px;
+    display: flex;
+    justify-content: space-between;
+  }
 `
 
 function FooterIconOrg() {

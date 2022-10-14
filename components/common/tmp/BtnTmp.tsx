@@ -3,8 +3,6 @@ import Link from "next/link";
 import React from "react";
 import { color } from "../../../styles/theme";
 
-//TODO - 나중에 Mol단위 Org단위로 다 분해해야함
-
 const ButtonLgCommonStyle = styled.div`
   height: 42px;
   text-align: center;

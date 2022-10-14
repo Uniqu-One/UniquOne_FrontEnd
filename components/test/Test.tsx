@@ -9,7 +9,7 @@ const TestStyle = styled.div`
   }
 
   .box2 {
-    background-color: red;
+    background-color: lightgray;
     height: 50px;
   }
 `;
@@ -22,11 +22,12 @@ function Test() {
   const settings = {
     dots: false,
     infinite: false,
-    speed: 500,
+    speed: 1,
     slidesToShow: 1,
     slidesToScroll: 0.2,
 
-    afterChange: (current) => {
+    afterChange: (current:number) => {
+      console.log('after 큽니다.')
       setTemp(current)
     },
     // beforeChange: (current, next) => {
@@ -38,11 +39,15 @@ function Test() {
   useEffect(() => {
     console.log(temp)
     if(temp > 0.2){
-      console.log('큽니다.');
-      sliderRef.current.slickGoTo(0.2)
+      console.log('큽니다.'); 
+      setTimeout(() => {
+        // @ts-ignore
+        sliderRef.current.slickGoTo(0.2)
+      }, (10));
+
     }
 
-  },[temp])
+  },[temp,sliderRef.current])
 
   return (
     <>

@@ -1,47 +1,63 @@
 import styled from "@emotion/styled";
-import { useState } from "react";
-import { motion } from "framer-motion";
+import React, { useEffect, useRef, useState } from "react";
+import Slider from "react-slick";
 
 const TestStyle = styled.div`
-
-.menu{
-  display: flex;
-  justify-content: space-between;
-  .icon{
-    width: 45px;
-    height: 45px;
+  .box1 {
     background-color: lightblue;
+    height: 50px;
   }
-  .point{
-    width: 16px;
-    height: 16px;
+
+  .box2 {
     background-color: red;
-    margin: 1px auto;
+    height: 50px;
   }
-}
 `;
 
-export default function Test() {
-  const list = [0, 1, 2, 3, 4];
+function Test() {
 
-  const [templist, setTempList] = useState(0)
+  const sliderRef = useRef(null);
+  const [temp,setTemp] = useState(0)
 
-  const handleTempMenu = (idx:number) => {
-    setTempList(idx)
-  }
+  const settings = {
+    dots: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 0.2,
+
+    afterChange: (current) => {
+      setTemp(current)
+    },
+    // beforeChange: (current, next) => {
+      
+    // },
+  };
+
+
+  useEffect(() => {
+    console.log(temp)
+    if(temp > 0.2){
+      console.log('큽니다.');
+      sliderRef.current.slickGoTo(0.2)
+    }
+
+  },[temp])
 
   return (
     <>
       <TestStyle>
-        <div className="menu">
-        {list.map((menu,idx) => {
-          return <div key={menu} onClick={() => handleTempMenu(idx)}>
-            <div className="icon">hi</div>
-            {templist===idx && <motion.div layoutId="underline" className="point"></motion.div>}
-          </div>;
-        })}
-        </div>
+        <Slider ref={sliderRef} {...settings}>
+          <div className="box1">
+            <p>100</p>
+          </div>
+          <div className="box2">
+            <p>200</p>
+          </div>
+        </Slider>
       </TestStyle>
     </>
   );
 }
+
+export default Test;

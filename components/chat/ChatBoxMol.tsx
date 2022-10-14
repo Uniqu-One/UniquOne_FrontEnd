@@ -7,9 +7,13 @@ import UserImgAtm from "../common/atm/UserImgAtm";
 import PostTmp from "../common/tmp/PostTmp";
 
 const ChatBoxMolStyle = styled.div`
+  
+  
   padding: 12px 18px 0px;
   border-bottom: 1px solid ${color.p_gray_lt};
+
   > div {
+    
     :first-of-type {
       display: flex;
       justify-content: space-between;
@@ -56,6 +60,16 @@ const ChatBoxMolStyle = styled.div`
       margin: auto 0;
     }
   }
+
+  .chatBox{
+    width: 100%;
+  }
+
+  .delte_room{
+    background-color: red;
+    width: 70px;
+  }
+
 `;
 
 
@@ -72,7 +86,7 @@ function ChatBoxMol(props: { chatData: chatListDataType }) {
   return (
     <>
       <ChatBoxMolStyle>
-        <div onClick={() => handleEnterRoom()}>
+        <div className="chatBox" onClick={() => handleEnterRoom()}>
           <div className="left">
             <UserImgAtm width={54} height={54} />
 

@@ -8,7 +8,7 @@ export const LoginFindLinkStyle = styled.div`
   font-size: 0.75rem;
   text-align: center;
   width: 100vw;
-
+margin-top: 9px;
   a {
     color: ${color.p_gray_md};
     text-decoration: underline;

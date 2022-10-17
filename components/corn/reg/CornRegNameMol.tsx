@@ -1,3 +1,5 @@
+import styled from "@emotion/styled";
+import axios from "axios";
 import React, { ReactElement, useState } from "react";
 import { toast, Toaster } from "react-hot-toast";
 import { makeNewWord } from "../../../lib/utils/makeNewWord";
@@ -6,7 +8,7 @@ import BtnTmp from "../../common/tmp/BtnTmp";
 import { CornInputTypes } from "./CornRegTmp";
 
 function CornRegNameMol(props: CornInputTypes) {
-  const { inputs, setInputs, onChangeValue,setCornPage } = props;
+  const { inputs, setInputs, onChangeValue, setCornPage,showErrorToast } = props;
 
   const hanleMakeNewWord = () => {
     const notify = () => toast.success("아이디가 자동생성완료되었습니다!");
@@ -20,6 +22,27 @@ function CornRegNameMol(props: CornInputTypes) {
     });
   };
 
+  const handleCheckCornName = () => {
+    axios
+      .post(`${process.env.NEXT_PUBLIC_URL_AWS}/posts/corns/existstitle`, {
+        title: inputs.cornName,
+      })
+      .then((res) => {
+        
+        if (res.data.data.ExistsTitle === true) {
+          setCornPage("reg-2");
+          return true;
+        } else {
+          {showErrorToast && showErrorToast('중복된 콘 네임입니다 ㅠ')}
+          return false;
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        return false;
+      });
+  };
+
   return (
     <>
       <InputFormMol
@@ -31,7 +54,7 @@ function CornRegNameMol(props: CornInputTypes) {
         value={inputs.cornName}
       />
       {inputs.cornName ? (
-        <div onClick={() => setCornPage("reg-2")}>
+        <div onClick={() => handleCheckCornName()}>
           <BtnTmp size="lg" value="다음" status={true} />
         </div>
       ) : (

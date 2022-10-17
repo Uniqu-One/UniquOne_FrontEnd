@@ -30,20 +30,24 @@ const RedirectTmpStyle = styled.div`
   }
 `;
 
-
-
 function RedirectTmp(props: { type: string }) {
   const type = props.type;
+
   useEffect(() => {
-    toast.success("회원가입이 완료되었습니다!");
+    if(type === "corn"){
+      toast.success("콘 개설이 완료되었습니다!");
+    } else {
+      toast.success("회원가입이 완료되었습니다!");
+    }
+
   }, []);
-  
+
   return (
     <>
       <Toaster />
       <Confetti
         width={390}
-        height={2000}
+        height={600}
         opacity={0.5}
         // recycle={false}
         gravity={0.1}
@@ -64,8 +68,11 @@ function RedirectTmp(props: { type: string }) {
             width={270}
             height={270}
           />
-
-          <BtnTmp size="default" value="나의 Corn으로 이동" />
+          <Link href="/corn">
+            <a>
+              <BtnTmp size="default" value="나의 Corn으로 이동" />
+            </a>
+          </Link>
           <Link href="/">
             <p>홈으로 가기</p>
           </Link>

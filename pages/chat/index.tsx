@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ChatTmp from "../../components/chat/ChatTmp";
+
 import FooterTmp from "../../components/common/tmp/FooterTmp";
 import TopTmp from "../../components/common/tmp/TopTmp";
 

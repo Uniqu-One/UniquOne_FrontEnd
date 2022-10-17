@@ -14,8 +14,6 @@ const SignupTitleSubBox = styled.div`
   p {
     margin-bottom: 3px;
   }
-
-
 `;
 
 const SignupTitleStyle = styled.h2`
@@ -31,8 +29,17 @@ const SignupSubeStyle = styled.p`
   }
 `;
 
-function SignupTitleSubAtm(props: { type?: string }) {
+function SignupTitleSubAtm(props: { type?: string, setImgFile?:Function }) {
   useEvaIcon();
+
+  const onLoadFile = (e:React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files;
+    if(props.setImgFile){
+      if(file){
+        props.setImgFile(file[0])
+      }
+    }
+  }
 
   switch (props.type) {
     case "reg-1":
@@ -78,10 +85,12 @@ function SignupTitleSubAtm(props: { type?: string }) {
             <SignupTitleStyle>
               마지막으로 Corn을 잘 나타낼 수 있는 사진을 선택해주세요!
             </SignupTitleStyle>
-            <ImgUploadIconAtm/>
-            <SignupSubeStyle>
-              사진을 통해 다른 유저가
-            </SignupSubeStyle>
+            
+            
+              <ImgUploadIconAtm />
+            <input type="file" id="image" accept="img/*" onChange={onLoadFile}></input>
+
+            <SignupSubeStyle>사진을 통해 다른 유저가</SignupSubeStyle>
             <SignupSubeStyle>
               내 콘을 기억할 수 있게 만들어 주세요!
             </SignupSubeStyle>

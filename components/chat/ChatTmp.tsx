@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import axios from "axios";
-import { AnimatePresence,motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
 import Slider from "react-slick";
 import { chatListDataType } from "../../types/chat/chatListDataType";
@@ -61,40 +61,39 @@ function ChatTmp() {
 
   const handleOpenModal = () => {
     setDeleteCofirmModal(true);
-  }
+  };
 
   return (
     <>
-    <AnimatePresence>
+      <AnimatePresence>
         {deleteCofirmModal && (
           <motion.div
             style={{
               width: "100vw",
               height: "100vh",
               borderRadius: 15,
-              backgroundColor:"lightblue",
-              
-              zIndex:2000,
-              bottom:0,
-              left:0
-              
+              backgroundColor: "lightblue",
+
+              zIndex: 2000,
+              bottom: 0,
+              left: 0,
             }}
             initial={{ opacity: 0, scale: 0.75 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0 }}
-          ><div>modalalal</div></motion.div>
+          >
+            <div>modalalal</div>
+          </motion.div>
         )}
-</AnimatePresence>
+      </AnimatePresence>
 
       <ChatBoxMolStyle>
-        {chatRoomDatas.map((chatData) => {
+        {chatRoomDatas.map((chatData, idx) => {
           return (
-            <>
-              <Slider ref={sliderRef} {...settings}>
-                <ChatBoxMol key={chatData.chatRoomId} chatData={chatData} />
-                <ChatDeleteIconMol handleOpenModal={handleOpenModal}/>
-              </Slider>
-            </>
+            <Slider ref={sliderRef} {...settings} key={idx}>
+              <ChatBoxMol key={chatData.chatRoomId} chatData={chatData} />
+              <ChatDeleteIconMol handleOpenModal={handleOpenModal} />
+            </Slider>
           );
         })}
       </ChatBoxMolStyle>

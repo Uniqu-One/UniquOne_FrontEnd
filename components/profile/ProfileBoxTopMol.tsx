@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
+import { ProfileDataType } from "../../lib/utils/ProfileUtils";
 import { color } from "../../styles/theme";
 import UserImgAtm from "../common/atm/UserImgAtm";
 
@@ -43,21 +44,23 @@ const ProfileBoxTopMolStyle = styled.div`
   }
 `;
 
-function ProfileBoxTopMol(props: { type: string }) {
+function ProfileBoxTopMol(props: { type: string, profileBoxData:ProfileDataType }) {
   const router = useRouter();
   const userId = router.query.userId;
+
+  const {title, postEA, followerEA,followingEA,imgUrl,reviewEA} = props.profileBoxData
 
   return (
     <>
       <ProfileBoxTopMolStyle>
         <div>
-          <UserImgAtm width={78} height={78} />
+          <UserImgAtm width={78} height={78} url={imgUrl}/>
         </div>
 
         <div className="userInfo">
           <div className="userInfo_head">
             <div>
-              <h3>폼폼푸린 덕후샵</h3>
+              <h3>{title}</h3>
             </div>
             <div>
               <Image
@@ -76,7 +79,7 @@ function ProfileBoxTopMol(props: { type: string }) {
                 }
               >
                 <a>
-                  <span>★★★★★</span>(7)
+                  <span>★★★★★</span>{'('}{reviewEA}{')'}
                 </a>
               </Link>
             </div>
@@ -84,19 +87,19 @@ function ProfileBoxTopMol(props: { type: string }) {
 
           <div className="userInfo_tail">
             <p>
-              포스트<span>123</span>
+              포스트<span>{postEA}</span>
             </p>
             <Link href={{
               pathname : "/my/follow",
               query : {click : "follow"}
             }}>
               <a>
-                팔로워<span>1423</span>
+                팔로워<span>{followerEA}</span>
               </a>
             </Link>
             <Link href={"/my/follow"}>
               <a>
-                팔로잉<span>1523</span>
+                팔로잉<span>{followingEA}</span>
               </a>
             </Link>
           </div>

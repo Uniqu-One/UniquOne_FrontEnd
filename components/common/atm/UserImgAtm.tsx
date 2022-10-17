@@ -10,12 +10,12 @@ display: flex; justify-content:center;
   }
 `;
 
-function UserImgAtm(props: { width: number; height: number }) {
+function UserImgAtm(props: { width: number; height: number ; url?:string}) {
   return (
     <>
       <UserImgAtmStyle>
         <Image
-          src="/assets/images/dummyUserImg.jpg"
+          src={props.url ? props.url:"/assets/images/dummyUserImg.jpg"}
           alt="user dummy image"
           width={props.width}
           height={props.height}

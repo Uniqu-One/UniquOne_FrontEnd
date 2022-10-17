@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { CornUtils } from "../../../lib/utils/CornUtils";
 import { GradiantBack } from "../../common/atm/GradiantBackAtm";
 import CornMainDashBoxAtm from "./CornMainDashBoxAtm";
 
@@ -40,6 +41,8 @@ const CornMainDashMolStyle = styled(GradiantBack)`
 function CornMainDashMol() {
 
   const DASH_MENU = ["팔로우","좋아요","유니스타","오퍼"]
+  const userData = CornUtils.myinfo()
+
 
   return (
     <CornMainDashMolStyle>

@@ -1,10 +1,11 @@
 import styled from "@emotion/styled";
 import Image from "next/image";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { color } from "../../../styles/theme";
 
 const CornImgChangeMolStyle = styled.div`
   text-align: center;
+  padding-top: 50px;
   img {
     border-radius: 100%;
   }
@@ -20,10 +21,9 @@ const CornImgChangeMolStyle = styled.div`
   }
 `;
 
-
 // TODO - any 치트키 변경하기
 
-function CornImgChangeMol() {
+function CornImgChangeMol(props:{cornImg:string,setCornProfile:Function}) {
   const photoInput = useRef<HTMLInputElement>(null);
 
   const handleClickInput = () => {
@@ -34,37 +34,39 @@ function CornImgChangeMol() {
 
   const [imageSrc, setImgSrc] = useState<string>("");
 
-  const encodeFileToBase64 = (fileBlob:Blob) => {
-    const reader:any = new FileReader();
+  const encodeFileToBase64 = (fileBlob: Blob) => {
+    const reader: any = new FileReader();
 
     reader.readAsDataURL(fileBlob);
 
-    return new Promise((resolve:any) => {
+    return new Promise((resolve: any) => {
       reader.onload = () => {
-
-        if(reader.result !== null){
+        if (reader.result !== null) {
           setImgSrc(reader.result);
-  
+
           resolve();
         }
-
       };
     });
   };
 
-
   const handleChangeImg = (e: React.FormEvent) => {
-    
-    const target = (e.target as HTMLInputElement)
+    const target = e.target as HTMLInputElement;
 
-    if(target.files !== null){
+    if (target.files !== null) {
       
-      encodeFileToBase64(target.files[0])
+        encodeFileToBase64(target.files[0]);
+        //TODO - 타입 지정 변경해아함
+        //TODO - 여기서 img 파일이 파일리스트로 들어가니 주의
+        props.setCornProfile((prev:any) => ({...prev,img:target.files[0]}))
+      
+      
     }
-
-    
-    
   };
+
+  useEffect(() => {
+    setImgSrc(props.cornImg)
+  },[])
 
   return (
     <CornImgChangeMolStyle>

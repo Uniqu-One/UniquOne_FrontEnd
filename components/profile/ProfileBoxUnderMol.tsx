@@ -1,20 +1,23 @@
+import Link from "next/link";
 import React from "react";
 
-function ProfileBoxUnderMol() {
+
+
+function ProfileBoxUnderMol(props: { desc: string; link: string }) {
+  const { desc, link } = props;
+
   return (
     <>
       <div>
-        <p>
-          시나모롤 덕후샵은 어쩔티비 저쩔시구 우짤래미 드등드시나모롤 덕후샵은
-          어쩔티비 저쩔시구 우짤래미 드등드을을시나모롤 덕후샵은 어쩔티비
-          저쩔시구 우짤래미 드등드시나모롤 덕후샵은 어쩔티비 저쩔시구 우짤래미
-          드등드을을시나모롤 덕후샵은 어쩔티비 저쩔시구 우짤래미 드등드시나모롤
-          덕후샵은 어쩔티비 저쩔시구 우짤래미 드등드을을
-        </p>
+        <p>{desc}</p>
       </div>
 
       <div>
-        <span>http://www.instagram.com</span>
+        <Link href={`http://${link}`}>
+          <a>
+            <span>{link}</span>
+          </a>
+        </Link>
       </div>
     </>
   );

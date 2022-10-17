@@ -1,30 +1,18 @@
 import styled from "@emotion/styled";
 import axios from "axios";
+import { AnimatePresence,motion } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
 import Slider from "react-slick";
-import useEvaIcon from "../../lib/hooks/useEvaIcon";
-import { color } from "../../styles/theme";
 import { chatListDataType } from "../../types/chat/chatListDataType";
 import ChatBoxMol from "./ChatBoxMol";
+import ChatDeleteIconMol from "./ChatDeleteIconMol";
 
 const ChatBoxMolStyle = styled.div`
   padding-top: 50px;
   padding-bottom: 50px;
-
-  .room_delete_icon {
-    background-color: ${color.p_gray_md};
-    height: 76px;
-    div {
-      fill: white;
-      padding-left: 4.5vw;
-      padding-top: 24px;
-    }
-  }
 `;
 
 function ChatTmp() {
-  useEvaIcon();
-
   const [chatRoomDatas, setChatRoomDatas] = useState<chatListDataType[]>([
     { message: "테스트 메세지", msgRegDate: "N분전" },
   ]);
@@ -51,8 +39,8 @@ function ChatTmp() {
       setTimeout(() => {
         // @ts-ignore
         // TODO - 타입은 추론가능하나, 이후에 수정 필요
-        sliderRef?.current?.slickGoTo(0.15);
-      }, 8);
+        sliderRef?.current?.slickGoTo(0);
+      }, 10);
     }
   }, [temp, sliderRef.current]);
 
@@ -69,21 +57,42 @@ function ChatTmp() {
         });
     }, 100);
   }, []);
+  const [deleteCofirmModal, setDeleteCofirmModal] = useState(false);
+
+  const handleOpenModal = () => {
+    setDeleteCofirmModal(true);
+  }
 
   return (
     <>
+    <AnimatePresence>
+        {deleteCofirmModal && (
+          <motion.div
+            style={{
+              width: "100vw",
+              height: "100vh",
+              borderRadius: 15,
+              backgroundColor:"lightblue",
+              
+              zIndex:2000,
+              bottom:0,
+              left:0
+              
+            }}
+            initial={{ opacity: 0, scale: 0.75 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0 }}
+          ><div>modalalal</div></motion.div>
+        )}
+</AnimatePresence>
+
       <ChatBoxMolStyle>
         {chatRoomDatas.map((chatData) => {
           return (
             <>
               <Slider ref={sliderRef} {...settings}>
                 <ChatBoxMol key={chatData.chatRoomId} chatData={chatData} />
-                <div className="room_delete_icon">
-                  <div>
-                    {/* onClick 방 나가기 함수 붙이기 */}
-                    <i data-eva="trash-outline"></i>
-                  </div>
-                </div>
+                <ChatDeleteIconMol handleOpenModal={handleOpenModal}/>
               </Slider>
             </>
           );

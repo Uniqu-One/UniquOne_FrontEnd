@@ -1,6 +1,6 @@
 export interface postDataType {
-  [index: string]: string | string[] | File | null | File[] | null[];
-  imgList: File[] | null[] | File | null;
+  [index: string]: string | string[] | null | File[] | null[];
+  imgList: File[] | null[] | null;
   desc: string;
   tags: string;
   type: string;

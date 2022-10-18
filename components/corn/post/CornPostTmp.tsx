@@ -45,7 +45,6 @@ function CornPostTmp() {
     <>
       <CornPostTmpStyle>
         <CornPostUploadIconMol />
-
         <CornPostDescInputMolStyle />
         <CornPostTagsInputMol />
         <CornPostDetailsOrg />

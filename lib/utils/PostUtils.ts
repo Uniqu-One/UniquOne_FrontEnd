@@ -54,16 +54,18 @@ export const PostUtils = {
     }
 
     const formData = new FormData();
-    clearImgList.forEach((image) => formData.append("imgfile", image));
+    clearImgList.forEach((image) => {
+      formData.append("imgfilelist", image)
+    });
 
     const postDatas = {
       dsc: desc,
       postTagLine: tags,
-      postType: type,
+      postType: "SALE",
       postCategoryName: category,
       conditions: condition,
-      lookLine: look,
-      color: color,
+      lookLine: look.join(','),
+      color: color.join(','),
     };
 
     const blob = new Blob([JSON.stringify(postDatas)], {
@@ -72,15 +74,21 @@ export const PostUtils = {
 
     formData.append("postInputDto", blob);
 
-    await axios({
+    return await axios({
       method: "POST",
-      url: `${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/reg/1`,
+      url: `${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/reg/8`,
       headers: {
         "Content-Type": "multipart/form-data",
       },
       data: formData,
     })
-      .then((res) => console.log(res))
-      .catch((err) => console.error(err));
+      .then((res) => {
+        console.log(res)
+        return true;
+      })
+      .catch((err) => {
+        console.error(err)
+        return false;
+      });
   },
 };

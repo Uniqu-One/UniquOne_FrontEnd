@@ -1,65 +1,63 @@
 import styled from "@emotion/styled";
-import React, { useEffect, useRef, useState } from "react";
-import Slider from "react-slick";
+import { AnimatePresence, motion } from "framer-motion";
+import React, { useState } from "react";
 
 const TestStyle = styled.div`
-  .box1 {
-    background-color: lightblue;
-    height: 50px;
-  }
+display: flex;
 
-  .box2 {
-    background-color: lightgray;
-    height: 50px;
+  .box{
+  background-color: red;
+  display: flex;
+  justify-content: space-between;
+  }
+  .underBox{
+    background-color: lightblue;
+    width: 100px;
+    height: 100px;
+    position: fixed;
+    top: 100px;
+    
   }
 `;
 
 function Test() {
+  const [selectedId, setSelectedId] = useState<string | null>("");
 
-  const sliderRef = useRef(null);
-  const [temp,setTemp] = useState(0)
-
-  const settings = {
-    dots: false,
-    infinite: false,
-    speed: 1,
-    slidesToShow: 1,
-    slidesToScroll: 0.2,
-
-    afterChange: (current:number) => {
-      console.log('after 큽니다.')
-      setTemp(current)
+  const items = [
+    {
+      id: "id1",
+      subtitle: "sub",
+      title: "title",
     },
-    // beforeChange: (current, next) => {
-      
-    // },
-  };
-
-
-  useEffect(() => {
-    console.log(temp)
-    if(temp > 0.2){
-      console.log('큽니다.'); 
-      setTimeout(() => {
-        // @ts-ignore
-        sliderRef.current.slickGoTo(0.2)
-      }, (10));
-
-    }
-
-  },[temp,sliderRef.current])
+    {
+      id: "id2",
+      subtitle: "sub2",
+      title: "title2",
+    },
+  ];
 
   return (
     <>
       <TestStyle>
-        <Slider ref={sliderRef} {...settings}>
-          <div className="box1">
-            <p>100</p>
-          </div>
-          <div className="box2">
-            <p>200</p>
-          </div>
-        </Slider>
+        {items.map((item) => (
+          <motion.div
+            className="box"
+            key={item.id}
+            layoutId={item.id}
+            onClick={() => setSelectedId(item.id)}
+          >
+            <motion.h2>{item.title}</motion.h2>
+          </motion.div>
+        ))}
+
+        <AnimatePresence>
+          {selectedId && (
+            <motion.div layoutId={selectedId} className="underBox" onClick={() => setSelectedId(null)}>
+              <motion.h5>"gkdl"</motion.h5>
+              <motion.h2>"gkdl"</motion.h2>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </TestStyle>
     </>
   );

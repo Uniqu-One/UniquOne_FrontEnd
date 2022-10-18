@@ -6,6 +6,7 @@ import { color } from "../../../styles/theme";
 import CornPostUploadCameraIconAtm from "./CornPostUploadCameraIconAtm";
 import CornPostUploadPlusIconAtm from "./CornPostUploadPlusIconAtm";
 import CornPostUploadRemoveIconMol from "./CornPostUploadRemoveIconMol";
+import { AnimatePresence, motion } from "framer-motion";
 
 const CornPostUploadIconOrgStyle = styled.div`
   padding: 12px 0;
@@ -45,27 +46,28 @@ const CornPostUploadIconOrgStyle = styled.div`
 function CornPostUploadIconOrg(props: {
   image: Blob | null | File;
   idx: number;
-
   setImages: Function;
+  setSelectedId: Function;
+  setPreViewImg: Function;
 }) {
   useEvaIcon();
 
-  const image = 1;
-  const { idx, setImages } = props;
+  const { idx, setImages, setSelectedId, setPreViewImg } = props;
   const [imageSrc, setImgSrc] = useState<string>("");
-
-  // const image = props.image
   const imageInput = useRef<HTMLInputElement>(null);
 
   const encodeFileToBase64 = (fileBlob: Blob) => {
     const reader: any = new FileReader();
-
     reader.readAsDataURL(fileBlob);
-
     return new Promise((resolve: any) => {
       reader.onload = () => {
         if (reader.result !== null) {
           setImgSrc(reader.result);
+          setPreViewImg((prev: string[] | null[]) => {
+            let newPreViewList = [...prev];
+            newPreViewList[idx] = reader.result;
+            return [...newPreViewList];
+          });
           resolve();
         }
       };
@@ -82,7 +84,6 @@ function CornPostUploadIconOrg(props: {
           return [...newImagesList];
         }
       });
-
       encodeFileToBase64(target.files[0]);
     }
   };
@@ -102,43 +103,53 @@ function CornPostUploadIconOrg(props: {
       newImageList[idx] = null;
       return [...newImageList];
     });
+    setPreViewImg((prev: string[] | null[]) => {
+      let newPreViewImgList = [...prev];
+      newPreViewImgList[idx] = "";
+      return [...newPreViewImgList];
+    });
   };
 
   return (
-    <CornPostUploadIconOrgStyle>
-      <div className="dot_box">
-        {imageSrc === "" && (
-          <div className="icon" onClick={handleClickInput}>
-            <CornPostUploadCameraIconAtm />
-            <CornPostUploadPlusIconAtm />
-            <input
-              type="file"
-              id="image"
-              accept="img/*"
-              ref={imageInput}
-              onChange={(e) => handleChangeImage(e)}
-              style={{ display: "none" }}
-            ></input>
-          </div>
-        )}
-
-        {imageSrc !== "" && (
-          <div className="previeImg">
-            <Image
-              src={imageSrc}
-              alt="dummy image"
-              // width={100}
-              // height={100}
-              layout="fill"
-            ></Image>
-
-            <div onClick={() => handleRemoveImage()}>
-              <CornPostUploadRemoveIconMol />
+    <>
+      <CornPostUploadIconOrgStyle>
+        <motion.div
+          className="dot_box"
+          key={String(idx)}
+          layoutId={String(idx)}
+        >
+          {imageSrc === "" && (
+            <div className="icon" onClick={handleClickInput}>
+              <CornPostUploadCameraIconAtm />
+              <CornPostUploadPlusIconAtm />
+              <input
+                type="file"
+                id="image"
+                accept="image/*"
+                ref={imageInput}
+                onChange={(e) => handleChangeImage(e)}
+                style={{ display: "none" }}
+              ></input>
             </div>
-          </div>
-        )}
-      </div>
-    </CornPostUploadIconOrgStyle>
+          )}
+
+          {imageSrc !== "" && (
+            <motion.div className="previeImg">
+              <Image
+                onClick={() => setSelectedId(String(idx))}
+                src={imageSrc}
+                alt="dummy image"
+                layout="fill"
+              ></Image>
+
+              <div onClick={() => handleRemoveImage()}>
+                <CornPostUploadRemoveIconMol />
+              </div>
+            </motion.div>
+          )}
+        </motion.div>
+      </CornPostUploadIconOrgStyle>
+    </>
   );
 }
 

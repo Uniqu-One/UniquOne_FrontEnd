@@ -1,4 +1,6 @@
+import { useRouter } from "next/router";
 import React from "react";
+import { toast } from "react-hot-toast";
 import CornMainBarMenuOrg from "./CornMainBarMenuOrg";
 import CornMainDashMol from "./CornMainDashMol";
 
@@ -9,7 +11,7 @@ export interface menuType {
 }
 
 function CornMainTmp() {
-
+  
   const CORN_MAIN_MENU = [
     {title:"리스팅",menus:[
       

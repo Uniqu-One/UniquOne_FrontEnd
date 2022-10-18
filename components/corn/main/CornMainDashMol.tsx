@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
 import { CornUtils } from "../../../lib/utils/CornUtils";
+
 import { GradiantBack } from "../../common/atm/GradiantBackAtm";
 import CornMainDashBoxAtm from "./CornMainDashBoxAtm";
 

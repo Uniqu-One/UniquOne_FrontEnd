@@ -17,7 +17,7 @@ export type ProfileDataType = {
 export const ProfileUtils = {
   getProfileData: (cornId:number) => {
     const fetchProfile = () => {
-      return axios.get(`${process.env.NEXT_PUBLIC_URL_SB}/posts/corns/${cornId}`);
+      return axios.get(`${process.env.NEXT_PUBLIC_URL_AWS}/posts/corns/${cornId}`);
     };
 
     const { isLoading, data } = useQuery("profileData", fetchProfile, {
@@ -37,7 +37,7 @@ export const ProfileUtils = {
   },
   getMyProfileData: () => {
     const fetchProfile = () => {
-      return axios.get(`${process.env.NEXT_PUBLIC_URL_SB}/posts/corns/1`);
+      return axios.get(`${process.env.NEXT_PUBLIC_URL_AWS}/posts/corns/1`);
     };
 
     const { isLoading, data } = useQuery("profileData", fetchProfile, {

@@ -1,9 +1,11 @@
 import {atom} from "recoil"
 import { postDataType } from "../../types/postDataType"
+import { v1 } from "uuid"
 
 const CornPostState = atom<postDataType>({
-  key:"CornPostState",
+  key:`CornPostState/${v1()}`,
   default:{
+    imgList:null,
     desc: "",
     tags: "",
     type: "",

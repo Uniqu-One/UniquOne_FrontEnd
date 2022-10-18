@@ -93,3 +93,4 @@ function ProfileBoxTmp(props: { type: string }) {
 }
 
 export default ProfileBoxTmp;
+  

@@ -23,7 +23,10 @@ const CornImgChangeMolStyle = styled.div`
 
 // TODO - any 치트키 변경하기
 
-function CornImgChangeMol(props:{cornImg:string,setCornProfile:Function}) {
+function CornImgChangeMol(props: {
+  cornImg: string;
+  setCornProfile: Function;
+}) {
   const photoInput = useRef<HTMLInputElement>(null);
 
   const handleClickInput = () => {
@@ -54,19 +57,20 @@ function CornImgChangeMol(props:{cornImg:string,setCornProfile:Function}) {
     const target = e.target as HTMLInputElement;
 
     if (target.files !== null) {
-      
-        encodeFileToBase64(target.files[0]);
-        //TODO - 타입 지정 변경해아함
-        //TODO - 여기서 img 파일이 파일리스트로 들어가니 주의
-        props.setCornProfile((prev:any) => ({...prev,img:target.files[0]}))
-      
-      
+      encodeFileToBase64(target.files[0]);
+      //TODO - 타입 지정 변경해아함
+      //TODO - 여기서 img 파일이 파일리스트로 들어가니 주의
+      props.setCornProfile((prev: any) => {
+        if (target.files !== null) {
+          ({ ...prev, img: target.files[0] });
+        }
+      });
     }
   };
 
   useEffect(() => {
-    setImgSrc(props.cornImg)
-  },[])
+    setImgSrc(props.cornImg);
+  }, []);
 
   return (
     <CornImgChangeMolStyle>

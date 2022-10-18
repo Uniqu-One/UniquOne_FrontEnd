@@ -5,7 +5,7 @@ import { cornEditData } from "../../components/corn/edit/CornEditTmp";
 export const CornUtils = {
   myinfo: () => {
     const fetchMyData = () => {
-      return axios.get(`${process.env.NEXT_PUBLIC_URL_SB}/posts/corns/8`);
+      return axios.get(`${process.env.NEXT_PUBLIC_URL_AWS}/posts/corns/8`);
     };
 
     const { isLoading, data, isError } = useQuery("myinfos", fetchMyData, {
@@ -49,7 +49,7 @@ export const CornUtils = {
 
     await axios({
       method: "PATCH",
-      url: `${process.env.NEXT_PUBLIC_URL_SB}/posts/corns/8`,
+      url: `${process.env.NEXT_PUBLIC_URL_AWS}/posts/corns/8`,
       headers: {
         "Content-Type": "multipart/form-data",
       },

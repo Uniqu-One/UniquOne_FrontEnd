@@ -2,7 +2,6 @@ import type { AppProps } from "next/app";
 import { ThemeProvider } from "@emotion/react";
 import { color } from "../styles/theme";
 import "../styles/reset.css";
-
 import "react-spring-bottom-sheet/dist/style.css";
 import { RecoilRoot } from "recoil";
 import Head from "next/head";

@@ -2,16 +2,13 @@ import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import useEvaIcon from "../../../lib/hooks/useEvaIcon";
+import { PostUtils } from "../../../lib/utils/PostUtils";
 import { CornPostState } from "../../../states/recoil/CornPostState";
-import ImgUploadIconAtm from "../../common/atm/ImgUploadIconAtm";
-import FooterTmp from "../../common/tmp/FooterTmp";
 import CornPostDescInputMolStyle from "./CornPostDescInputMol";
 import CornPostDetailsOrg from "./CornPostDetailsOrg";
-import CornPostTagsInputMol from "./CornPostTagsInputMol";
-import CornPostUploadIconAtm from "./CornPostUploadIconOrg";
-import CornPostUploadIconMol from "./CornPostUploadIconMol";
-import { PostUtils } from "../../../lib/utils/PostUtils";
 import CornPostRegMol from "./CornPostRegMol";
+import CornPostTagsInputMol from "./CornPostTagsInputMol";
+import CornPostUploadIconMol from "./CornPostUploadIconMol";
 
 const CornPostTmpStyle = styled.div`
   margin: 0 18px;
@@ -40,7 +37,6 @@ function CornPostTmp() {
 
   useEvaIcon();
 
-
   return (
     <>
       <CornPostTmpStyle>
@@ -48,8 +44,8 @@ function CornPostTmp() {
         <CornPostDescInputMolStyle />
         <CornPostTagsInputMol />
         <CornPostDetailsOrg />
-      </CornPostTmpStyle>      
-      <CornPostRegMol buttonStatus={buttonStatus}/>
+      </CornPostTmpStyle>
+      <CornPostRegMol buttonStatus={buttonStatus} />
     </>
   );
 }

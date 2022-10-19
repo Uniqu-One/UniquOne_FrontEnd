@@ -53,7 +53,6 @@ function ChatRoomTmp() {
         (err: any) => {
           if (reconnect++ <= 5) {
             setTimeout(() => {
-              console.log("reconnect");
               socket = new SockJS(
                 process.env.NEXT_PUBLIC_URL_AWS + "/chat/ws-stomp"
               );

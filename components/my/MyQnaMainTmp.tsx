@@ -25,8 +25,6 @@ function MyQnaMainTmp() {
     desc: "",
   });
 
-  console.log(qnaData)
-
   const [qnaEnrollModal, setQnaEnrollModal] = useState(false);
 
   return (

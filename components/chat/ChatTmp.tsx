@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
 import Slider from "react-slick";
 import { chatListDataType } from "../../types/chat/chatListDataType";
+import LoadingSpinnerAtm from "../common/atm/LoadingSpinnerAtm";
 import ChatBoxMol from "./ChatBoxMol";
 import ChatDeleteIconMol from "./ChatDeleteIconMol";
 
@@ -13,9 +14,7 @@ const ChatBoxMolStyle = styled.div`
 `;
 
 function ChatTmp() {
-  const [chatRoomDatas, setChatRoomDatas] = useState<chatListDataType[]>([
-    { message: "테스트 메세지", msgRegDate: "N분전" },
-  ]);
+  const [chatRoomDatas, setChatRoomDatas] = useState<chatListDataType[]>([]);
 
   const sliderRef = useRef(null);
   const [temp, setTemp] = useState(0);
@@ -33,9 +32,7 @@ function ChatTmp() {
   };
 
   useEffect(() => {
-    console.log(temp);
     if (temp > 0.15) {
-      console.log("큽니다.");
       setTimeout(() => {
         // @ts-ignore
         // TODO - 타입은 추론가능하나, 이후에 수정 필요
@@ -88,14 +85,19 @@ function ChatTmp() {
       </AnimatePresence>
 
       <ChatBoxMolStyle>
-        {chatRoomDatas.map((chatData, idx) => {
-          return (
-            <Slider ref={sliderRef} {...settings} key={idx}>
-              <ChatBoxMol key={chatData.chatRoomId} chatData={chatData} />
-              <ChatDeleteIconMol handleOpenModal={handleOpenModal} />
-            </Slider>
-          );
-        })}
+        <>
+          {chatRoomDatas[0] === undefined && <LoadingSpinnerAtm />}
+
+          {chatRoomDatas &&
+            chatRoomDatas.map((chatData, idx) => {
+              return (
+                <Slider ref={sliderRef} {...settings} key={idx}>
+                  <ChatBoxMol key={chatData.chatRoomId} chatData={chatData} />
+                  <ChatDeleteIconMol handleOpenModal={handleOpenModal} />
+                </Slider>
+              );
+            })}
+        </>
       </ChatBoxMolStyle>
     </>
   );

@@ -3,6 +3,9 @@ import { motion, Variants } from "framer-motion";
 import styled from "@emotion/styled";
 import useEvaIcon from "../../lib/hooks/useEvaIcon";
 import { color } from "../../styles/theme";
+import { useRouter } from "next/router";
+import { TradeUtils } from "../../lib/utils/TradeUtils";
+import { toast, Toaster } from "react-hot-toast";
 
 const MENU = ["판매 중", "거래 중", "거래 완료"];
 
@@ -88,16 +91,29 @@ const Box = (props: { text: string }) => {
 
 export default function ChatRoomButtonMol() {
   useEvaIcon();
+  const router = useRouter()
+  const {postId, receiverId} = router.query
+
+
   const [tempMenu, setTempMenu] = useState(MENU[0]);
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleSetTempMenu = (menu: string) => {
+  const handleSetTempMenu = async (menu: string) => {
     setTempMenu(menu);
     setIsOpen(false);
+
+    if(menu ==="거래 완료" && postId && receiverId){
+      //TODO - 리코일로 전역 Toast 만들어야함
+      if(await TradeUtils.tradeOver(+receiverId,+postId)){
+        toast.success('거래가 완료되었습니다.')
+      }
+    }
+
   };
 
   return (
     <>
+    <Toaster/>
       <motion.nav
         initial={false}
         animate={isOpen ? "open" : "closed"}

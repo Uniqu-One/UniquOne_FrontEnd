@@ -50,10 +50,10 @@ function ChatRoomFooterTmp(props: {
       ws.send(
         "/pub/chat/message",
         {
-          type: "TALK",
-          chatRoomId: roomId,
-          senderId: 1,
-          message: tempChat,
+          
+            Authorization:
+              "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzeTQyMzUxM0BnbWFpbC5jb20iLCJpZCI6MSwibmlja05hbWUiOiLrsLDrtoDrpbjri6jrrLTsp4DsmYAzMyIsImVtYWlsIjoic3k0MjM1MTNAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImlhdCI6MTY2NjE0Nzc5MSwiZXhwIjoxNjY3MDExNzkxfQ.oAb6zW8DR6taLuPSOa5RArtVNR5r9KhFT4cvQKZRD1M",
+          
         },
         JSON.stringify({
           type: "TALK",

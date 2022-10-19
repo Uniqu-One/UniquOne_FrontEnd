@@ -7,13 +7,10 @@ import UserImgAtm from "../common/atm/UserImgAtm";
 import PostTmp from "../common/tmp/PostTmp";
 
 const ChatBoxMolStyle = styled.div`
-  
-  
   padding: 12px 18px 0px;
   border-bottom: 1px solid ${color.p_gray_lt};
 
   > div {
-    
     :first-of-type {
       display: flex;
       justify-content: space-between;
@@ -61,28 +58,30 @@ const ChatBoxMolStyle = styled.div`
     }
   }
 
-  .chatBox{
+  .chatBox {
     width: 100%;
   }
 
-  .delte_room{
+  .delte_room {
     background-color: red;
     width: 70px;
   }
-
 `;
-
 
 //TODO - 내 물건 / 남의 물건 / just Chatting
 
 function ChatBoxMol(props: { chatData: chatListDataType }) {
   const router = useRouter();
+  const { chatRoomId, message, msgRegDate, postId, receiverId } =
+    props.chatData;
 
   const handleEnterRoom = () => {
-    router.push(`/chat/${props.chatData.chatRoomId}`);
+    router.push({
+      pathname:`/chat/${props.chatData.chatRoomId}`,
+      query:{postId,receiverId}
+    });
   };
 
-  const { chatRoomId, message, msgRegDate } = props.chatData;
   return (
     <>
       <ChatBoxMolStyle>

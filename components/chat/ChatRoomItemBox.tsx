@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import React from "react";
 import { color } from "../../styles/theme";
 import ChatRoomButtonMol from "./ChatRoomButtonMol";
@@ -52,8 +53,6 @@ const ChatRoomItemBoxStyle = styled.div`
 `;
 
 function ChatRoomItemBox() {
-
-  
 
   return (
     <>

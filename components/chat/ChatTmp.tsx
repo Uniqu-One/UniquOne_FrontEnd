@@ -3,6 +3,7 @@ import axios from "axios";
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
 import Slider from "react-slick";
+import { ChatUtils } from "../../lib/utils/ChatUtils";
 import { chatListDataType } from "../../types/chat/chatListDataType";
 import LoadingSpinnerAtm from "../common/atm/LoadingSpinnerAtm";
 
@@ -26,6 +27,7 @@ function ChatTmp() {
   useEffect(() => {
     //비동기적으로 변경해야함
     setTimeout(() => {
+
       axios
         .get(process.env.NEXT_PUBLIC_URL_SY + "/chat", {
           headers: {

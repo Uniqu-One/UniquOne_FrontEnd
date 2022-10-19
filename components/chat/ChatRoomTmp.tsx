@@ -14,7 +14,7 @@ export type chatDataType = {
 };
 
 function ChatRoomTmp() {
-  let socket = new SockJS(process.env.NEXT_PUBLIC_URL_SY + "/chat/ws-stomp");
+  let socket = new SockJS(process.env.NEXT_PUBLIC_URL_AWS + "/chat/ws-stomp");
   let reconnect = 0;
   const router = useRouter();
 
@@ -57,7 +57,7 @@ function ChatRoomTmp() {
           if (reconnect++ <= 5) {
             setTimeout(() => {
               socket = new SockJS(
-                process.env.NEXT_PUBLIC_URL_SY + "/chat/ws-stomp"
+                process.env.NEXT_PUBLIC_URL_AWS + "/chat/ws-stomp"
               );
               setWs(Stomp.over(socket));
               connect();
@@ -73,7 +73,7 @@ function ChatRoomTmp() {
       router.query.roomId &&
         axios
           .get(
-            `${process.env.NEXT_PUBLIC_URL_SY}/chat/room/all/${router.query.roomId}`,
+            `${process.env.NEXT_PUBLIC_URL_AWS}/chat/room/all/${router.query.roomId}`,
             {
               headers: {
                 Authorization:
@@ -113,7 +113,7 @@ function ChatRoomTmp() {
     return () => {
       if (roomId !== "" && chatData === undefined) {
         axios
-          .post(`${process.env.NEXT_PUBLIC_URL_SY}/chat/room/${roomId}`, {
+          .post(`${process.env.NEXT_PUBLIC_URL_AWS}/chat/room/${roomId}`, {
             headers: {
               Authorization:
                 "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzeTQyMzUxM0BnbWFpbC5jb20iLCJpZCI6MSwibmlja05hbWUiOiLrsLDrtoDrpbjri6jrrLTsp4DsmYAzMyIsImVtYWlsIjoic3k0MjM1MTNAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImlhdCI6MTY2NjE0Nzc5MSwiZXhwIjoxNjY3MDExNzkxfQ.oAb6zW8DR6taLuPSOa5RArtVNR5r9KhFT4cvQKZRD1M",

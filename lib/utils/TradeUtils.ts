@@ -5,7 +5,7 @@ export const TradeUtils = {
   tradeOver: async (buyerId: number, postId: number) => {
     return await axios
       .post(
-        `${process.env.NEXT_PUBLIC_URL_SY}/trade`,
+        `${process.env.NEXT_PUBLIC_URL_AWS}/trade`,
         {
           buyerId,
           postId,

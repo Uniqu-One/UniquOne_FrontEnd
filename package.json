@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@emotion/styled": "^11.10.4",
-    "@mui/material": "^5.10.7",
     "@mui/styled-engine-sc": "^5.10.6",
     "@stomp/stompjs": "^6.1.2",
     "@types/react-helmet": "^6.1.5",
@@ -50,6 +49,5 @@
     "eslint": "8.24.0",
     "eslint-config-next": "12.3.1",
     "typescript": "4.8.3"
-  },
-  "proxy": "http://3.38.92.156:8000"
+  }
 }

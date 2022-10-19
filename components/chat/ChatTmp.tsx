@@ -17,36 +17,11 @@ const ChatBoxMolStyle = styled.div`
 
 function ChatTmp() {
   const [chatRoomDatas, setChatRoomDatas] = useState<chatListDataType[]>([
-    { message: "hi", msgRegDate: "hi" },
-    { message: "hi", msgRegDate: "hi" },
-    { message: "hi", msgRegDate: "hi" },
+    // {
+    //   message: "hi",
+    //   msgRegDate: "hi",
+    // },
   ]);
-
-  const sliderRef = useRef(null);
-
-  const [temp, setTemp] = useState(0);
-
-  const settings = {
-    dots: false,
-    infinite: false,
-    speed: 100,
-    slidesToShow: 1,
-    slidesToScroll: 0.15,
-
-    afterChange: (current: number) => {
-      setTemp(current);
-    },
-  };
-
-  useEffect(() => {
-    if (temp > 0.15) {
-      setTimeout(() => {
-        // @ts-ignore
-        // TODO - 타입은 추론가능하나, 이후에 수정 필요
-        sliderRef?.current?.slickGoTo(0);
-      }, 10);
-    }
-  }, [temp, sliderRef.current]);
 
   useEffect(() => {
     //비동기적으로 변경해야함
@@ -55,7 +30,7 @@ function ChatTmp() {
         .get(process.env.NEXT_PUBLIC_URL_SY + "/chat", {
           headers: {
             Authorization:
-              "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzeTQyMzUxM0BnbWFpbC5jb20iLCJpZCI6MSwibmlja05hbWUiOiLrsLDrtoDrpbjri6jrrLTsp4DsmYAzMyIsImVtYWlsIjoic3k0MjM1MTNAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImlhdCI6MTY2NjEzODgyNywiZXhwIjoxNjY3MDAyODI3fQ.VM72zMo9FLLU1xdfWu4pmoGpr5D20IE9Ma1sV-W4P-s",
+              "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzeTQyMzUxM0BnbWFpbC5jb20iLCJpZCI6MSwibmlja05hbWUiOiLrsLDrtoDrpbjri6jrrLTsp4DsmYAzMyIsImVtYWlsIjoic3k0MjM1MTNAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImlhdCI6MTY2NjE0Nzc5MSwiZXhwIjoxNjY3MDExNzkxfQ.oAb6zW8DR6taLuPSOa5RArtVNR5r9KhFT4cvQKZRD1M",
           },
         })
         .then((res) => {

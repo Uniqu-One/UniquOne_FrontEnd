@@ -3,7 +3,7 @@ import ChatRoomFooterTmp from "./ChatRoomFooterTmp";
 import ChatRoomItemBox from "./ChatRoomItemBox";
 import ChatRoomOneDayTmp from "./ChatRoomOneDayTmp";
 import SockJS from "sockjs-client";
-import StompJs, { CompatClient, Stomp } from "@stomp/stompjs";
+import { CompatClient, Stomp } from "@stomp/stompjs";
 import axios from "axios";
 import { useRouter } from "next/router";
 

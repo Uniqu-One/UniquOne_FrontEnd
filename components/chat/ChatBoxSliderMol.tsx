@@ -18,7 +18,7 @@ function ChatBoxSliderMol(props: {
   const settings = {
     dots: false,
     infinite: false,
-    speed: 100,
+    speed: 30,
     slidesToShow: 1,
     slidesToScroll: 0.15,
 

@@ -52,6 +52,9 @@ const ChatRoomItemBoxStyle = styled.div`
 `;
 
 function ChatRoomItemBox() {
+
+  
+
   return (
     <>
       <ChatRoomItemBoxStyle>

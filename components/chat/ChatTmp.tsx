@@ -5,7 +5,9 @@ import React, { useEffect, useRef, useState } from "react";
 import Slider from "react-slick";
 import { chatListDataType } from "../../types/chat/chatListDataType";
 import LoadingSpinnerAtm from "../common/atm/LoadingSpinnerAtm";
+
 import ChatBoxMol from "./ChatBoxMol";
+import ChatBoxSliderMol from "./ChatBoxSliderMol";
 import ChatDeleteIconMol from "./ChatDeleteIconMol";
 
 const ChatBoxMolStyle = styled.div`
@@ -14,9 +16,14 @@ const ChatBoxMolStyle = styled.div`
 `;
 
 function ChatTmp() {
-  const [chatRoomDatas, setChatRoomDatas] = useState<chatListDataType[]>([]);
+  const [chatRoomDatas, setChatRoomDatas] = useState<chatListDataType[]>([
+    { message: "hi", msgRegDate: "hi" },
+    { message: "hi", msgRegDate: "hi" },
+    { message: "hi", msgRegDate: "hi" },
+  ]);
 
   const sliderRef = useRef(null);
+
   const [temp, setTemp] = useState(0);
 
   const settings = {
@@ -45,7 +52,12 @@ function ChatTmp() {
     //비동기적으로 변경해야함
     setTimeout(() => {
       axios
-        .get(process.env.NEXT_PUBLIC_URL_AWS + "/chat/1")
+        .get(process.env.NEXT_PUBLIC_URL_SY + "/chat", {
+          headers: {
+            Authorization:
+              "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzeTQyMzUxM0BnbWFpbC5jb20iLCJpZCI6MSwibmlja05hbWUiOiLrsLDrtoDrpbjri6jrrLTsp4DsmYAzMyIsImVtYWlsIjoic3k0MjM1MTNAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImlhdCI6MTY2NjEzODgyNywiZXhwIjoxNjY3MDAyODI3fQ.VM72zMo9FLLU1xdfWu4pmoGpr5D20IE9Ma1sV-W4P-s",
+          },
+        })
         .then((res) => {
           return setChatRoomDatas([...res.data.data]);
         })
@@ -54,6 +66,7 @@ function ChatTmp() {
         });
     }, 100);
   }, []);
+
   const [deleteCofirmModal, setDeleteCofirmModal] = useState(false);
 
   const handleOpenModal = () => {
@@ -91,10 +104,12 @@ function ChatTmp() {
           {chatRoomDatas &&
             chatRoomDatas.map((chatData, idx) => {
               return (
-                <Slider ref={sliderRef} {...settings} key={idx}>
-                  <ChatBoxMol key={chatData.chatRoomId} chatData={chatData} />
-                  <ChatDeleteIconMol handleOpenModal={handleOpenModal} />
-                </Slider>
+                <ChatBoxSliderMol
+                  key={idx}
+                  idx={idx}
+                  chatData={chatData}
+                  handleOpenModal={handleOpenModal}
+                />
               );
             })}
         </>

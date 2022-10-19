@@ -161,7 +161,7 @@ export const PostUtils = {
     };
 
     return await axios
-      .patch(`${process.env.NEXT_PUBLIC_URL_SB}/posts/posts/mod/1/1`, newPostData)
+      .patch(`${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/mod/1/1`, newPostData)
       .then((res) => {
         if (res.status === 200) {
           return true;

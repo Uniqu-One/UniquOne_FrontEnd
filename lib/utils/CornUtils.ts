@@ -60,7 +60,7 @@ export const CornUtils = {
   },
   getMyPostList: () => {
     const fetchDatas = () =>
-      axios.get(`${process.env.NEXT_PUBLIC_URL_SB}/posts/posts/listall/1`, {
+      axios.get(`${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/listall/1`, {
         headers: {
           Authorization:
             "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzeTQyMzUxM0BnbWFpbC5jb20iLCJpZCI6MSwibmlja05hbWUiOiLrsLDrtoDrpbjri6jrrLTsp4DsmYAzMyIsImVtYWlsIjoic3k0MjM1MTNAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImlhdCI6MTY2NjE0Nzc5MSwiZXhwIjoxNjY3MDExNzkxfQ.oAb6zW8DR6taLuPSOa5RArtVNR5r9KhFT4cvQKZRD1M",

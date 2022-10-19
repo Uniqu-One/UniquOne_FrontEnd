@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { CornPostState } from "../../../states/recoil/CornPostState";
@@ -42,6 +43,7 @@ const CornPostUploadIconMolStyle = styled.div`
 `;
 
 function CornPostUploadIconMol() {
+  const router = useRouter();
   const [postData, setPostData] = useRecoilState(CornPostState);
   const [images, setImages] = useState([null, null, null, null, null]);
   const [preViewImg, setPreViewImg] = useState<string[]>(["", "", "", "", ""]);
@@ -55,10 +57,11 @@ function CornPostUploadIconMol() {
 
   }, [images]);
 
+
   return (
     <>
       <CornPostUploadIconMolStyle>
-        {postData.imgList[0] === null ? (
+        {!router.query.postId ? (
           <div className="upload_img">
             {images.map((image, idx) => (
               <CornPostUploadIconOrg
@@ -104,7 +107,7 @@ function CornPostUploadIconMol() {
               >
                 <Image
                 // @ts-ignore
-                  src={postData.imgList[0] === null ? preViewImg[+selectedId] : postData.imgList[+selectedId]}
+                  src={!router.query.postId ? preViewImg[+selectedId] : postData.imgList[+selectedId]}
                   alt="testImg"
                   width={600}
                   height={600}
@@ -114,7 +117,9 @@ function CornPostUploadIconMol() {
           )}
         </AnimatePresence>
 
-        {postData.imgList === null ? (
+            
+
+        {!router.query.postId ? (
           <div className="upload_desc">
             <p>여러분의 스타일 사진을 업로드해주세요!</p>
           </div>

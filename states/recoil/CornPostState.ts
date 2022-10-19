@@ -5,7 +5,7 @@ import { v1 } from "uuid"
 const CornPostState = atom<postDataType>({
   key:`CornPostState/${v1()}`,
   default:{
-    imgList:null,
+    imgList:[null,null,null,null,null],
     desc: "",
     tags: "",
     type: "",

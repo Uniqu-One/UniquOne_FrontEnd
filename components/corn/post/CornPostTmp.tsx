@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import useEvaIcon from "../../../lib/hooks/useEvaIcon";
@@ -18,8 +19,20 @@ const CornPostTmpStyle = styled.div`
 //TODO - 리팩토링 시 context로 값 변경
 
 function CornPostTmp() {
+
+  const router = useRouter()
+
   const [postData, setPostData] = useRecoilState(CornPostState);
   const [buttonStatus, setButtonStatus] = useState(false);
+
+  const editPostData = PostUtils.getEditPostDatas()
+
+  useEffect(() => {
+
+    if(router.query.postId && editPostData){
+      setPostData({...editPostData})
+    }
+  },[router.query,editPostData])
 
   useEffect(() => {
     if (

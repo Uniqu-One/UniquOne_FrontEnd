@@ -1,3 +1,4 @@
+import { useQuery } from "react-query";
 import axios from "axios";
 import { postDataType } from "./../../types/postDataType";
 
@@ -47,7 +48,7 @@ export const PostUtils = {
     const clearImgList: File[] = [];
     if (imgList !== null) {
       imgList.forEach((i) => {
-        if (i !== null) {
+        if (i !== null && typeof i !== "string") {
           clearImgList.push(i);
         }
       });
@@ -55,7 +56,7 @@ export const PostUtils = {
 
     const formData = new FormData();
     clearImgList.forEach((image) => {
-      formData.append("imgfilelist", image)
+      formData.append("imgfilelist", image);
     });
 
     const postDatas = {
@@ -64,8 +65,8 @@ export const PostUtils = {
       postType: "SALE",
       postCategoryName: category,
       conditions: condition,
-      lookLine: look.join(','),
-      color: color.join(','),
+      lookLine: look.join(","),
+      color: color.join(","),
     };
 
     const blob = new Blob([JSON.stringify(postDatas)], {
@@ -86,7 +87,88 @@ export const PostUtils = {
         return true;
       })
       .catch((err) => {
-        console.error(err)
+        console.error(err);
+        return false;
+      });
+  },
+
+  getEditPostDatas: () => {
+    const fetchData = () =>
+      axios.get(`${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/mod/1`, {
+        headers: {
+          Authorization:
+            "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzeTQyMzUxM0BnbWFpbC5jb20iLCJpZCI6MSwibmlja05hbWUiOiLrsLDrtoDrpbjri6jrrLTsp4DsmYAzMyIsImVtYWlsIjoic3k0MjM1MTNAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImlhdCI6MTY2NjE0Nzc5MSwiZXhwIjoxNjY3MDExNzkxfQ.oAb6zW8DR6taLuPSOa5RArtVNR5r9KhFT4cvQKZRD1M",
+        },
+      });
+
+    const { isLoading, data, isError, error } = useQuery(
+      "getEidtPostDatas",
+      fetchData,
+      {
+        select: (data) => {
+          const editData = data.data.data;
+
+          const newEditData: postDataType = {
+            imgList: [null, null, null, null, null],
+            desc: "",
+            tags: "",
+            type: "",
+            category: "",
+            condition: "",
+
+            look: [],
+            color: [],
+          };
+
+          newEditData.category = editData.postCategoryName;
+          newEditData.color = editData.color;
+          newEditData.condition = editData.conditions;
+          newEditData.desc = editData.dsc;
+          newEditData.look = editData.lookList;
+          newEditData.tags = editData.postTagNameList.join("");
+          if (editData.postType === "SALE") {
+            newEditData.type = "판매중";
+          }
+          newEditData.imgList = editData.postImgList;
+
+          return newEditData;
+        },
+      }
+    );
+    if (isError) {
+      console.log(error);
+    }
+    return data;
+  },
+  editPostData: async (postData: postDataType) => {
+
+    console.log(postData)
+
+    let { desc, tags, type, category, condition, look, color } = postData;
+
+    if(type === "판매중"){
+      type = "SALE"
+    }
+
+    const newPostData = {
+      dsc:desc,
+      postTagLine:tags,
+      postType:type,
+      postCategoryName:category,
+      conditions:condition,
+      lookLine:look.join(','),
+      color:color.join(','),
+    };
+
+    return await axios
+      .patch(`${process.env.NEXT_PUBLIC_URL_SB}/posts/posts/mod/1/1`, newPostData)
+      .then((res) => {
+        if (res.status === 200) {
+          return true;
+        }
+      })
+      .catch((err) => {
+        console.error(err);
         return false;
       });
   },

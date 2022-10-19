@@ -8,7 +8,7 @@ import CornPostUploadPlusIconAtm from "./CornPostUploadPlusIconAtm";
 import CornPostUploadRemoveIconMol from "./CornPostUploadRemoveIconMol";
 import { AnimatePresence, motion } from "framer-motion";
 
-const CornPostUploadIconOrgStyle = styled.div`
+export const CornPostUploadIconOrgStyle = styled.div`
   padding: 12px 0;
   width: 60px;
   height: 60px;
@@ -118,6 +118,9 @@ function CornPostUploadIconOrg(props: {
           key={String(idx)}
           layoutId={String(idx)}
         >
+
+
+
           {imageSrc === "" && (
             <div className="icon" onClick={handleClickInput}>
               <CornPostUploadCameraIconAtm />

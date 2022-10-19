@@ -4,8 +4,9 @@ import styled from "@emotion/styled";
 import useEvaIcon from "../../lib/hooks/useEvaIcon";
 import { color } from "../../styles/theme";
 import { useRouter } from "next/router";
-import { TradeUtils } from "../../lib/utils/TradeUtils";
+
 import { toast, Toaster } from "react-hot-toast";
+import { TradeUtils } from "../../lib/utils/TradeUtils";
 
 const MENU = ["판매 중", "거래 중", "거래 완료"];
 

@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { CornPostState } from "../../../states/recoil/CornPostState";
 import { color } from "../../../styles/theme";
+import CornPostEditImgIconMol from "./CornPostEditImgIconMol";
 import CornPostUploadIconOrg from "./CornPostUploadIconOrg";
 
 const CornPostUploadIconMolStyle = styled.div`
@@ -47,26 +48,43 @@ function CornPostUploadIconMol() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
   useEffect(() => {
-    setPostData((prev) => ({ ...prev, imgList: [...images] }));
+    
+    if(postData.imgList[0] === null){
+      setPostData((prev) => ({ ...prev, imgList: [...images] }));
+    } 
+
   }, [images]);
 
   return (
     <>
-      {/* {selectedId && <div className="back_shadow">hi</div>} */}
-
       <CornPostUploadIconMolStyle>
-        <div className="upload_img">
-          {images.map((image, idx) => (
-            <CornPostUploadIconOrg
-              key={idx}
-              image={image}
-              idx={idx}
-              setImages={setImages}
-              setSelectedId={setSelectedId}
-              setPreViewImg={setPreViewImg}
-            />
-          ))}
-        </div>
+        {postData.imgList[0] === null ? (
+          <div className="upload_img">
+            {images.map((image, idx) => (
+              <CornPostUploadIconOrg
+                key={idx}
+                image={image}
+                idx={idx}
+                setImages={setImages}
+                setSelectedId={setSelectedId}
+                setPreViewImg={setPreViewImg}
+              />
+            ))}
+          </div>
+        ) : (
+          <div className="upload_img">
+            {postData.imgList.map((image, idx) => 
+              { 
+                return <CornPostEditImgIconMol
+                key={idx}
+                // @ts-ignore
+                image={image}
+                idx={idx}
+                setSelectedId={setSelectedId}
+              />}
+            )}
+          </div>
+        )}
 
         <AnimatePresence>
           {selectedId && (
@@ -85,7 +103,8 @@ function CornPostUploadIconMol() {
                 onClick={() => setSelectedId(null)}
               >
                 <Image
-                  src={preViewImg[+selectedId]}
+                // @ts-ignore
+                  src={postData.imgList[0] === null ? preViewImg[+selectedId] : postData.imgList[+selectedId]}
                   alt="testImg"
                   width={600}
                   height={600}
@@ -95,9 +114,15 @@ function CornPostUploadIconMol() {
           )}
         </AnimatePresence>
 
-        <div className="upload_desc">
-          <p>여러분의 스타일 사진을 업로드해주세요!</p>
-        </div>
+        {postData.imgList === null ? (
+          <div className="upload_desc">
+            <p>여러분의 스타일 사진을 업로드해주세요!</p>
+          </div>
+        ) : (
+          <div className="upload_desc">
+            <p>업로드된 사진은 수정 불가능합니다.</p>
+          </div>
+        )}
       </CornPostUploadIconMolStyle>
     </>
   );

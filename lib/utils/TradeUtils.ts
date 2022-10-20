@@ -1,7 +1,7 @@
+import { useQuery } from "react-query";
 import axios from "axios";
 
 export const TradeUtils = {
-
   tradeOver: async (buyerId: number, postId: number) => {
     return await axios
       .post(
@@ -27,4 +27,52 @@ export const TradeUtils = {
         return false;
       });
   },
+  getPurchaseList: () => {
+    
+    const fetchPruchaseListData = () => {
+      return axios.get(`${process.env.NEXT_PUBLIC_URL_SY}/trade/buy`, {
+        headers: {
+          Authorization:
+            "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzeTQyMzVAZ21haWwuY29tIiwiaWQiOjIsIm5pY2tOYW1lIjoi66mL7KeEIOycoOuLiOy9mOuTpCIsImVtYWlsIjoic3k0MjM1QGdtYWlsLmNvbSIsInJvbGUiOiJST0xFX1VTRVIiLCJpYXQiOjE2NjYyMjY2NzAsImV4cCI6MTY2NzA5MDY3MH0.BP4sX3hZL6hjeZPu94FfcxjBeCSatmF4gHKAz-s3xUg",
+        },
+      })
+    };
+
+    const { isLoading, data, isError, error } = useQuery(
+      "purchaselistData",
+      fetchPruchaseListData,{
+        select: (data) => {  
+          return data.data.data;
+        },
+      }
+    );
+
+      return data;
+    
+  },
+
+  getSellList: () => {
+    
+    const fetchSellListData = () => {
+      return axios.get(`${process.env.NEXT_PUBLIC_URL_SY}/trade/sell`, {
+        headers: {
+          Authorization:
+            "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzeTQyMzVAZ21haWwuY29tIiwiaWQiOjIsIm5pY2tOYW1lIjoi66mL7KeEIOycoOuLiOy9mOuTpCIsImVtYWlsIjoic3k0MjM1QGdtYWlsLmNvbSIsInJvbGUiOiJST0xFX1VTRVIiLCJpYXQiOjE2NjYyMjY2NzAsImV4cCI6MTY2NzA5MDY3MH0.BP4sX3hZL6hjeZPu94FfcxjBeCSatmF4gHKAz-s3xUg",
+        },
+      })
+    };
+
+    const { isLoading, data, isError, error } = useQuery(
+      "selListData",
+      fetchSellListData,{
+        select: (data) => {  
+          return data.data.data;
+        },
+      }
+    );
+
+      return data;
+    
+  },
+
 };

@@ -3,6 +3,7 @@ import Image from "next/image";
 import React from "react";
 import useEvaIcon from "../../lib/hooks/useEvaIcon";
 import { color } from "../../styles/theme";
+import { purchaseDataType } from "./MyTradeTmp";
 
 const MyTradeBoxMolStyle = styled.div`
   padding: 12px 18px;
@@ -29,7 +30,7 @@ const MyTradeBoxMolStyle = styled.div`
     font-weight: 500;
   }
 
-  .btn{
+  .btn {
     margin: auto 0;
     display: flex;
     background-color: ${color.p_pruple};
@@ -37,37 +38,43 @@ const MyTradeBoxMolStyle = styled.div`
     padding: 6px 12px;
     border-radius: 9px;
     color: white;
-    
-    svg{
+
+    svg {
       padding-top: 2px;
       padding-left: 2px;
       fill: white;
       width: 20px;
       height: 20px;
-      
     }
-    div{
+    div {
       margin: auto;
     }
   }
 `;
 
-function MyTradeBoxMol() {
-  useEvaIcon()
+function MyTradeBoxMol(props: { data: purchaseDataType }) {
+  useEvaIcon();
+
+  const { postImg,postTitle,price } = props.data;
 
   return (
     <>
       <MyTradeBoxMolStyle>
         <div className="left">
           <div className="trade_img">
-            <Image src="" alt="더미 이미지" width={42} height={42}></Image>
+            <Image
+              src={postImg}
+              alt="더미 이미지"
+              width={42}
+              height={42}
+            ></Image>
           </div>
           <div className="item_info">
             <div>
-              <h3>에스테특 골저러스 페브라스</h3>
+              <h3>{postTitle}</h3>
             </div>
             <div>
-              <h4>32,000원</h4>
+              <h4>{price.toLocaleString()}원</h4>
             </div>
           </div>
         </div>

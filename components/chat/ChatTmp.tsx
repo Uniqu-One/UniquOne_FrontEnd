@@ -9,6 +9,7 @@ import LoadingSpinnerAtm from "../common/atm/LoadingSpinnerAtm";
 
 import ChatBoxMol from "./ChatBoxMol";
 import ChatBoxSliderMol from "./ChatBoxSliderMol";
+import ChatDeleteCofirmMol from "./ChatDeleteCofirmMol";
 import ChatDeleteIconMol from "./ChatDeleteIconMol";
 
 const ChatBoxMolStyle = styled.div`
@@ -56,20 +57,21 @@ function ChatTmp() {
         {deleteCofirmModal && (
           <motion.div
             style={{
+              position:"absolute",
               width: "100vw",
               height: "100vh",
-              borderRadius: 15,
-              backgroundColor: "lightblue",
-
-              zIndex: 2000,
-              bottom: 0,
+              backgroundColor: "#0000007a",
+              zIndex: 10,
+              top: 0,
               left: 0,
+              
             }}
-            initial={{ opacity: 0, scale: 0.75 }}
+            initial={{ opacity: 0, scale: 1 }}
             animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0 }}
+            exit={{ opacity: 0, scale: 1 }}
+            transition={{ duration: 0.2 }}
           >
-            <div>modalalal</div>
+            <ChatDeleteCofirmMol setDeleteCofirmModal={setDeleteCofirmModal}/>
           </motion.div>
         )}
       </AnimatePresence>

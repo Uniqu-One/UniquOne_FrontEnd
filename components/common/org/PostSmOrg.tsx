@@ -13,13 +13,13 @@ const PostSmOrgStyle = styled.div<{ size?: number }>`
   }
 `;
 
-function PostSmOrg(props: { size?: number }) {
+function PostSmOrg(props: { size?: number, imgUrl?:string}) {
   return (
     <PostSmOrgStyle size={props.size ? props.size : undefined}>
       <Link href={"/"}>
         <a>
           <Image
-            src="/assets/images/postImage.jpg"
+            src={props.imgUrl ? props.imgUrl:"/assets/images/postImage.jpg"} 
             alt="포스트 더미 이미지"
             width={props.size}
             height={props.size}

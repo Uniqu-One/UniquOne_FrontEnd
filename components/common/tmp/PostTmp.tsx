@@ -3,13 +3,13 @@ import PostLgOrg from "../org/PostLgOrg";
 import PostMdOrg from "../org/PostMdOrg";
 import PostSmOrg from "../org/PostSmOrg";
 
-function PostTmp(props: { type: string; opt?: string; size?: number }) {
+function PostTmp(props: { type: string; opt?: string; size?: number, imgUrl?:string }) {
   switch (props.type) {
     case "lg":
       return <PostLgOrg opt={props.opt} />;
 
     case "sm":
-      return <PostSmOrg size={props.size ? props.size : undefined} />;
+      return <PostSmOrg size={props.size ? props.size : undefined} imgUrl={props.imgUrl}/>;
 
     case "md":
       return <PostMdOrg opt={props.opt} />;

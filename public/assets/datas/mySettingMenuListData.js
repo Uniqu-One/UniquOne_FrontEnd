@@ -1,8 +1,8 @@
 export const mySettingMenuListData = [
   {
     거래: [
-      { title: "내가 쓴 리뷰", link: "/my/review" },
-      { title: "내 거래 내역", link: "/my/trade" },
+      { title: "리뷰 내역", link: "/my/review" },
+      { title: "거래 내역", link: "/my/trade" },
       { title: "오퍼 내역", link: "/my/offer" },
     ],
   },
@@ -11,7 +11,7 @@ export const mySettingMenuListData = [
       // { title: "마이스타일 변경", link: "/#" },
       { title: "닉네임 변경", link: "/my/user/nickName" },
       { title: "비밀번호 변경", link: "/my/user/password" },
-      { title: "내 팔로우 보기", link: "/#" },
+      { title: "팔로우 보기", link: "/#" },
       { title: "회원 탈퇴", link: "/#" },
       { title: "로그아웃", link: "/#" },
     ],

@@ -1,16 +1,11 @@
 import styled from "@emotion/styled";
 import axios from "axios";
 import { AnimatePresence, motion } from "framer-motion";
-import React, { useEffect, useRef, useState } from "react";
-import Slider from "react-slick";
-import { ChatUtils } from "../../lib/utils/ChatUtils";
+import React, { useEffect, useState } from "react";
 import { chatListDataType } from "../../types/chat/chatListDataType";
 import LoadingSpinnerAtm from "../common/atm/LoadingSpinnerAtm";
-
-import ChatBoxMol from "./ChatBoxMol";
 import ChatBoxSliderMol from "./ChatBoxSliderMol";
 import ChatDeleteCofirmMol from "./ChatDeleteCofirmMol";
-import ChatDeleteIconMol from "./ChatDeleteIconMol";
 
 const ChatBoxMolStyle = styled.div`
   padding-top: 50px;
@@ -18,17 +13,11 @@ const ChatBoxMolStyle = styled.div`
 `;
 
 function ChatTmp() {
-  const [chatRoomDatas, setChatRoomDatas] = useState<chatListDataType[]>([
-    // {
-    //   message: "hi",
-    //   msgRegDate: "hi",
-    // },
-  ]);
+  const [chatRoomDatas, setChatRoomDatas] = useState<chatListDataType[]>([]);
 
   useEffect(() => {
-    //비동기적으로 변경해야함
+    //TODO - 비동기적으로 변경해야함
     setTimeout(() => {
-
       axios
         .get(process.env.NEXT_PUBLIC_URL_AWS + "/chat", {
           headers: {
@@ -57,21 +46,20 @@ function ChatTmp() {
         {deleteCofirmModal && (
           <motion.div
             style={{
-              position:"absolute",
+              position: "absolute",
               width: "100vw",
               height: "100vh",
               backgroundColor: "#0000007a",
               zIndex: 10,
               top: 0,
               left: 0,
-              
             }}
             initial={{ opacity: 0, scale: 1 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 1 }}
             transition={{ duration: 0.2 }}
           >
-            <ChatDeleteCofirmMol setDeleteCofirmModal={setDeleteCofirmModal}/>
+            <ChatDeleteCofirmMol setDeleteCofirmModal={setDeleteCofirmModal} />
           </motion.div>
         )}
       </AnimatePresence>

@@ -1,10 +1,15 @@
 import styled from "@emotion/styled";
 import React, { useState } from "react";
+import { useRecoilValue } from "recoil";
+import { QnaUtils } from "../../lib/utils/QnaUtils";
+import { TokenState } from "../../states/recoil/TokenState";
 import { color } from "../../styles/theme";
 import TopTmp from "../common/tmp/TopTmp";
 import { qnaDataType } from "./MyQnaMainTmp";
 
 const MyQnaEnrollModalStyle = styled.div`
+
+  z-index: 6;
   width: 100vw;
   position: fixed;
   top: 0;
@@ -12,10 +17,11 @@ const MyQnaEnrollModalStyle = styled.div`
 
   textarea {
     resize: none;
-    height: 40px;
+    height: 100px;
     width: calc(100% - 36px);
     border: 0px;
     margin: 0 18px;
+    border-bottom: 0.5px solid ${color.p_gray_md};
   }
 
   label {
@@ -45,7 +51,9 @@ function MyQnaEnrollModal(props: {
   qnaData: qnaDataType;
   setQnaData: Function;
 }) {
-  const QNA_MENU = ["포스트", "댓글", "거래", "서비스"];
+  const QNA_MENU = ["POST", "COMMENT", "TRADE", "SERVICE"];
+  
+  const token = useRecoilValue(TokenState)
 
   const [tempRadio, setTempRadio] = useState("");
   const [tempTextAreaCount, setTempAreaCount] = useState(300);
@@ -73,6 +81,14 @@ function MyQnaEnrollModal(props: {
     }
   };
 
+  const handlePostQna = async () => {
+    if(await QnaUtils.postMyQna(token,qnaData)){
+      props.setQnaEnrollModal(false)
+    } else {
+      props.setQnaEnrollModal(true)
+    }
+  }
+
   return (
     <>
       <MyQnaEnrollModalStyle>
@@ -80,9 +96,10 @@ function MyQnaEnrollModal(props: {
           type="qna"
           text="문의 작성하기"
           function={props.setQnaEnrollModal}
+          function_right={handlePostQna}
         />
 
-        <div>
+        <div style={{"paddingTop":"50px"}}>
           <h3>문의 유형을 선택해주세요</h3>
         </div>
 

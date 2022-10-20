@@ -1,6 +1,9 @@
 import styled from "@emotion/styled";
 import { type } from "os";
 import React, { useState } from "react";
+import { useRecoilValue } from "recoil";
+import { QnaUtils } from "../../lib/utils/QnaUtils";
+import { TokenState } from "../../states/recoil/TokenState";
 import { color } from "../../styles/theme";
 import BtnTmp from "../common/tmp/BtnTmp";
 import MyQnaEnrollModal from "./MyQnaEnrollModal";
@@ -13,6 +16,7 @@ export type qnaDataType = {
 }
 
 const MyQnaMainTmpStyle = styled.div`
+  padding-top: 50px;
   h3 {
     margin: 18px 18px 12px;
     color: ${color.p_gray_dk};
@@ -20,12 +24,16 @@ const MyQnaMainTmpStyle = styled.div`
 `;
 
 function MyQnaMainTmp() {
+
+  const token = useRecoilValue(TokenState)
+
   const [qnaData, setQnaData] = useState({
     type: "",
     desc: "",
   });
 
   const [qnaEnrollModal, setQnaEnrollModal] = useState(false);
+  const myQnaDatas = QnaUtils.getMyQna(token)
 
   return (
     <>

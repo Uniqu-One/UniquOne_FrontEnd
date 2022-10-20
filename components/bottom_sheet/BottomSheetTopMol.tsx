@@ -24,7 +24,6 @@ const BottomSheetTopMolStyle = styled.div`
       height: 100%;
       /* background-color: lightblue; */
     }
-
   }
   .checked {
     fill: ${color.p_pruple};
@@ -82,13 +81,12 @@ function BottomSheetTopMol(props: {
   };
 
   const handleUpdateConditionData = () => {
-
     const newData = { ...searchFilterData };
     newData["상태"] = [...props.tempSelect];
     setSearchFilterData(newData);
 
     props.setOpen(false);
-  }
+  };
 
   return (
     <>

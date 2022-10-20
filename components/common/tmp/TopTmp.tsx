@@ -10,6 +10,7 @@ function TopTmp(props: {
   right?: string;
   function?: Function;
   status?: boolean;
+  function_right?:Function;
 }) {
   switch (props.type) {
     case "main":
@@ -75,6 +76,7 @@ function TopTmp(props: {
           text={props.text}
           right={"checkmark-outline"}
           function={props.function}
+          function_right={props.function_right}
         />
       );
 

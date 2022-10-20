@@ -13,6 +13,7 @@ export const TopOptionalOrg = (props: {
   right?: string;
   function?: Function;
   status?: boolean;
+  function_right?:Function
 }) => {
   useEvaIcon();
   const router = useRouter();
@@ -82,7 +83,7 @@ export const TopOptionalOrg = (props: {
 
       {props.right === "checkmark-outline" && (
         <TopIconAtm>
-          <div
+          <div onClick={props.function_right}
             style={{
               fill: `${props.status ? color.p_pruple : color.p_gray_dk}`,
             }}

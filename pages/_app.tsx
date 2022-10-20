@@ -6,6 +6,7 @@ import "react-spring-bottom-sheet/dist/style.css";
 import { RecoilRoot } from "recoil";
 import Head from "next/head";
 import { QueryClient, QueryClientProvider } from "react-query";
+import LoginAuthStateTmp from "../components/login/LoginAuthStateTmp";
 
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -21,6 +22,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <QueryClientProvider client={queryClient}>
         <RecoilRoot>
+          <LoginAuthStateTmp/>
           <ThemeProvider theme={color}>
             <Component {...pageProps} />
           </ThemeProvider>

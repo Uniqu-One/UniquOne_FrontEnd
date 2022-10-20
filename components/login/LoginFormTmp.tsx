@@ -5,6 +5,9 @@ import InputFormMol from "../common/mol/InputFormMol";
 import BtnTmp from "../common/tmp/BtnTmp";
 import { LoginUtils } from "../../lib/utils/LoginUtils";
 import { useRouter } from "next/router";
+import { useRecoilState } from "recoil";
+import { LoginAuthState } from "../../states/recoil/LoginAuthState";
+import { TokenState } from "../../states/recoil/TokenState";
 
 const LoginFormTmpStyle = styled.div`
   padding-top: 60px;
@@ -20,7 +23,8 @@ const LoginFormTmpStyle = styled.div`
 
 function LoginFormTmp() {
   const router = useRouter();
-
+  const [loginAuthState, setLoginAuthState] = useRecoilState(LoginAuthState);
+  const [tokenState, setTokenState] = useRecoilState(TokenState);
   const [inputs, setInputs] = useState({
     email: "",
     userPwd: "",
@@ -50,9 +54,8 @@ function LoginFormTmp() {
       const userInfo = await LoginUtils.login(email, userPwd);
 
       if (userInfo) {
-        //로컬 스토리지에 쿠키 저장
-        //페이지로 아예 이동
-        //환영 토스트 보내기
+        setLoginAuthState(true);
+        setTokenState({ token: userInfo.token });
         router.replace({
           pathname: "/",
         });

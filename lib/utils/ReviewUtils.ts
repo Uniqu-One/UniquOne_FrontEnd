@@ -58,5 +58,26 @@ export const ReviewUtils = {
     );
 
     return data;
+  },
+  getOtherReviewList: (cornId?:string) => {
+    
+
+    const fetchOtherReviewListData = () => {
+      return axios.get(`${process.env.NEXT_PUBLIC_URL_SY}/reviews/corn/${cornId}`, {
+      });
+    };
+
+    const { isLoading, data, isError, error } = useQuery(
+      "otherReviewListData",
+      fetchOtherReviewListData,
+      {
+        select: (data) => {
+          return data.data.data;
+        },
+      }
+    );
+
+    
+    return data;
   }
 };

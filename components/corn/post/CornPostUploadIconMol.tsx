@@ -58,10 +58,11 @@ function CornPostUploadIconMol() {
   }, [images]);
 
 
+
   return (
     <>
       <CornPostUploadIconMolStyle>
-        {!router.query.postId ? (
+        {!router.query.postId && (
           <div className="upload_img">
             {images.map((image, idx) => (
               <CornPostUploadIconOrg
@@ -74,7 +75,9 @@ function CornPostUploadIconMol() {
               />
             ))}
           </div>
-        ) : (
+        ) }
+        
+        {router.query.postId && postData.imgList[0] &&  (
           <div className="upload_img">
             {postData.imgList.map((image, idx) => 
               { 

@@ -9,9 +9,10 @@ function ChatBoxSliderMol(props: {
   chatData: chatListDataType;
   idx: number;
   handleOpenModal: Function;
+  setSelectedRoomId:Function
 }) {
 
-  const {chatData,idx,handleOpenModal} = props
+  const {chatData,idx,handleOpenModal,setSelectedRoomId} = props
 
   const sliderRef = useRef(null);
   const [temp, setTemp] = useState(0);
@@ -41,7 +42,7 @@ function ChatBoxSliderMol(props: {
     <>
       <Slider ref={sliderRef} {...settings} key={idx}>
         <ChatBoxMol key={chatData.chatRoomId} chatData={chatData} />
-        <ChatDeleteIconMol handleOpenModal={handleOpenModal} />
+        <ChatDeleteIconMol handleOpenModal={handleOpenModal} setSelectedRoomId={setSelectedRoomId} roomId={chatData.chatRoomId}/>
       </Slider>
     </>
   );

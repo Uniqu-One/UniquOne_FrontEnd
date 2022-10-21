@@ -1,11 +1,14 @@
 import styled from "@emotion/styled";
 import React from "react";
+import { useRecoilValue } from "recoil";
+import { ChatUtils } from "../../lib/utils/ChatUtils";
+import { TokenState } from "../../states/recoil/TokenState";
 import { color } from "../../styles/theme";
 
 const ChatDeleteCofirmMolStyle = styled.div`
   border-radius: 18px;
   background-color: white;
-  margin: auto 42px;
+  margin: auto 30px;
   margin-top: 35vh;
   color: ${color.p_gray_dk};
   .modalBox {
@@ -14,12 +17,10 @@ const ChatDeleteCofirmMolStyle = styled.div`
 
   .inform {
     padding: 24px 0;
-    p{
-      :first-of-type{
-        
+    p {
+      :first-of-type {
         margin-bottom: 6px;
       }
-      
     }
   }
 
@@ -46,11 +47,21 @@ const ChatDeleteCofirmMolStyle = styled.div`
   }
 `;
 
-function ChatDeleteCofirmMol(props:{
-  setDeleteCofirmModal:Function
+function ChatDeleteCofirmMol(props: {
+  setDeleteCofirmModal: Function;
+  selectedRoomId?: string;
 }) {
+  const token = useRecoilValue(TokenState);
 
-  const {setDeleteCofirmModal} = props
+  const { setDeleteCofirmModal, selectedRoomId } = props;
+
+  const handleExitChatRoom = async() => {
+    if(await ChatUtils.exitChatRoom(token, selectedRoomId)){
+      console.log('채팅방 나가기 성공')
+    } else {
+      console.log('채팅방 나가기 실패')
+    }
+  };
 
   return (
     <ChatDeleteCofirmMolStyle>
@@ -63,8 +74,12 @@ function ChatDeleteCofirmMol(props:{
           <p>그래도 나가시겠어요?</p>
         </div>
         <div className="btn">
-          <div className="cancel" onClick={()=>setDeleteCofirmModal(false)}>머무르기</div>
-          <div className="out">나가기</div>
+          <div className="cancel" onClick={() => setDeleteCofirmModal(false)}>
+            머무르기
+          </div>
+          <div className="out" onClick={() => handleExitChatRoom()}>
+            나가기
+          </div>
         </div>
       </div>
     </ChatDeleteCofirmMolStyle>

@@ -6,6 +6,7 @@ import { chatListDataType } from "../../types/chat/chatListDataType";
 import LoadingSpinnerAtm from "../common/atm/LoadingSpinnerAtm";
 import ChatBoxSliderMol from "./ChatBoxSliderMol";
 import ChatDeleteCofirmMol from "./ChatDeleteCofirmMol";
+import ChatRoomNoneMol from "./ChatRoomNoneMol";
 
 const ChatBoxMolStyle = styled.div`
   padding-top: 50px;
@@ -14,6 +15,8 @@ const ChatBoxMolStyle = styled.div`
 
 function ChatTmp() {
   const [chatRoomDatas, setChatRoomDatas] = useState<chatListDataType[]>([]);
+  const [selectedRoomId, setSelectedRoomId] = useState()
+  const [isNone, setIsNone] = useState(false)
 
   useEffect(() => {
     //TODO - 비동기적으로 변경해야함
@@ -22,7 +25,7 @@ function ChatTmp() {
         .get(process.env.NEXT_PUBLIC_URL_AWS + "/chat", {
           headers: {
             Authorization:
-              "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzeTQyMzUxM0BnbWFpbC5jb20iLCJpZCI6MSwibmlja05hbWUiOiLrsLDrtoDrpbjri6jrrLTsp4DsmYAzMyIsImVtYWlsIjoic3k0MjM1MTNAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImlhdCI6MTY2NjE0Nzc5MSwiZXhwIjoxNjY3MDExNzkxfQ.oAb6zW8DR6taLuPSOa5RArtVNR5r9KhFT4cvQKZRD1M",
+              "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzeTQyMzUxM0BnbWFpbC5jb20iLCJpZCI6MSwibmlja05hbWUiOiLrsLDrtoDrpbjri6jrrLTsp4DsmYAzMyIsImVtYWlsIjoic3k0MjM1MTNAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImlhdCI6MTY2NjMyODAzOSwiZXhwIjoxNjY3MTkyMDM5fQ.I-eOma46WXgk2hzdyCLNAhyrX-PixTMpwYSz2bQR5pM",
           },
         })
         .then((res) => {
@@ -30,6 +33,7 @@ function ChatTmp() {
         })
         .catch((err) => {
           console.error(err);
+          setIsNone(true)
         });
     }, 100);
   }, []);
@@ -39,6 +43,12 @@ function ChatTmp() {
   const handleOpenModal = () => {
     setDeleteCofirmModal(true);
   };
+
+
+  if(isNone){
+    return <ChatRoomNoneMol/>
+  }
+
 
   return (
     <>
@@ -59,7 +69,7 @@ function ChatTmp() {
             exit={{ opacity: 0, scale: 1 }}
             transition={{ duration: 0.2 }}
           >
-            <ChatDeleteCofirmMol setDeleteCofirmModal={setDeleteCofirmModal} />
+            <ChatDeleteCofirmMol setDeleteCofirmModal={setDeleteCofirmModal} selectedRoomId={selectedRoomId}/>
           </motion.div>
         )}
       </AnimatePresence>
@@ -76,7 +86,9 @@ function ChatTmp() {
                   idx={idx}
                   chatData={chatData}
                   handleOpenModal={handleOpenModal}
+                  setSelectedRoomId={setSelectedRoomId}
                 />
+                
               );
             })}
         </>

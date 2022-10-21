@@ -58,7 +58,7 @@ export const CornUtils = {
       .then((res) => console.log(res))
       .catch((err) => console.error(err));
   },
-  getMyPostList: () => {
+  getMyPostList: (token:string) => {
     const fetchDatas = () =>
       axios.get(`${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/listall/1`, {
         headers: {

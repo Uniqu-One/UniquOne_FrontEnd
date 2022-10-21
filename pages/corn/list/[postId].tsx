@@ -1,5 +1,6 @@
 import React from 'react'
 import { useResetRecoilState } from 'recoil'
+import FooterTmp from '../../../components/common/tmp/FooterTmp'
 import TopTmp from '../../../components/common/tmp/TopTmp'
 import CornPostTmp from '../../../components/corn/post/CornPostTmp'
 import { CornPostState } from '../../../states/recoil/CornPostState'

@@ -15,13 +15,21 @@ const ChatDeleteIconMolStyle = styled.div`
 
 `;
 
-function ChatDeleteIconMol(props:{handleOpenModal:Function}) {
+function ChatDeleteIconMol(props:{handleOpenModal:Function, setSelectedRoomId:Function, roomId?:string}) {
 
   useEvaIcon();
+  const {handleOpenModal,setSelectedRoomId,roomId} =props
+
+
+  const handleOpenDeleteModal = () => {
+    handleOpenModal(true)
+    setSelectedRoomId(roomId)
+  }
+
   return (
     <>
         <ChatDeleteIconMolStyle >
-          <div onClick={() => props.handleOpenModal(true)}>
+          <div onClick={() => handleOpenDeleteModal()}>
             <i data-eva="trash-outline"></i>
           </div>
         </ChatDeleteIconMolStyle>

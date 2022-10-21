@@ -1,11 +1,14 @@
 import styled from "@emotion/styled";
 import Link from "next/link";
 import React from "react";
+import { useRecoilValue } from "recoil";
 import { CornUtils } from "../../../lib/utils/CornUtils";
+import { TokenState } from "../../../states/recoil/TokenState";
 import PostLgOrg from "../../common/org/PostLgOrg";
 
 const CornMyPostListMolStyle = styled.div`
   padding-top: 50px;
+  padding-bottom: 50px;
   div {
     display: flex;
     flex-wrap: wrap;
@@ -21,7 +24,8 @@ const CornMyPostListMolStyle = styled.div`
 `;
 
 function CornMyPostListMol() {
-  const myPostData = CornUtils.getMyPostList();
+  const token = useRecoilValue(TokenState)
+  const myPostData = CornUtils.getMyPostList(token);
   return (
     <CornMyPostListMolStyle>
       <div>

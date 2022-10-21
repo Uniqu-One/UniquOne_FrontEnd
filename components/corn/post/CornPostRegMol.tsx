@@ -11,6 +11,8 @@ function CornPostRegMol(props: { buttonStatus: boolean }) {
 
   const postData = useRecoilValue(CornPostState);
 
+  //TODO - 토큰으로 변경하는 작업 필요
+
   const handleRegisterPost = async () => {
     if (await PostUtils.registPost(postData)) {
       router.replace({
@@ -35,7 +37,7 @@ function CornPostRegMol(props: { buttonStatus: boolean }) {
     }
   };
 
-  if (postData.imgList[0] !== null) {
+  if (router.query.postId !== undefined) {
     return (
       <div onClick={() => handleEditPost()}>
         <Toaster />

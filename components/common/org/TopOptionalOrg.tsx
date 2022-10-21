@@ -24,11 +24,21 @@ export const TopOptionalOrg = (props: {
     tempFunc = props.function;
   }
 
+
+  const handleBackClick = () => {
+    if(props.function){
+      props.function()
+      router.back()
+    } else {
+      router.back()
+    }
+  }
+
   return (
     <TopBoxMol>
       {/* left */}
       {props.left === "back" && (
-        <TopIconAtm onClick={() => router.back()}>
+        <TopIconAtm onClick={() => handleBackClick()}>
           <i data-eva="arrow-ios-back"></i>
         </TopIconAtm>
       )}

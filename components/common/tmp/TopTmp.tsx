@@ -10,7 +10,7 @@ function TopTmp(props: {
   right?: string;
   function?: Function;
   status?: boolean;
-  function_right?:Function;
+  function_right?: Function;
 }) {
   switch (props.type) {
     case "main":
@@ -81,7 +81,13 @@ function TopTmp(props: {
       );
 
     default:
-      return <TopOptionalOrg left="back" text={props.text} />;
+      return (
+        <TopOptionalOrg
+          left="back"
+          text={props.text}
+          function={props.function}
+        />
+      );
   }
 }
 

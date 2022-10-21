@@ -45,9 +45,10 @@ function CornEditTmp() {
     }
   }, [userData]);
 
+
   return (
     <>
-      <TopTmp type="cornEdit" text="콘 수정"/>
+      <TopTmp type="cornEdit" text="콘 수정" />
 
       {userData === "Loading" && <div>Is Loading</div>}
 

@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useResetRecoilState } from "recoil";
 import useEvaIcon from "../../../lib/hooks/useEvaIcon";
 import { PostUtils } from "../../../lib/utils/PostUtils";
 import { CornPostState } from "../../../states/recoil/CornPostState";
@@ -22,10 +22,13 @@ function CornPostTmp() {
 
   const router = useRouter()
 
+  
   const [postData, setPostData] = useRecoilState(CornPostState);
   const [buttonStatus, setButtonStatus] = useState(false);
 
   const editPostData = PostUtils.getEditPostDatas()
+  
+
 
   useEffect(() => {
 
@@ -47,6 +50,7 @@ function CornPostTmp() {
       setButtonStatus(false);
     }
   }, [postData]);
+
 
   useEvaIcon();
 

@@ -71,7 +71,8 @@ export const CornUtils = {
       staleTime: 5000,
       refetchOnWindowFocus: false,
       select: (data) => {
-        return data.data.data;
+        console.log(data)
+        return data.data.data.content[0];
       },
     });
 

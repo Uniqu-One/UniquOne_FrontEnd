@@ -2,7 +2,6 @@ import styled from "@emotion/styled";
 import Link from "next/link";
 import React from "react";
 import { CornUtils } from "../../../lib/utils/CornUtils";
-import { PostUtils } from "../../../lib/utils/PostUtils";
 import PostLgOrg from "../../common/org/PostLgOrg";
 
 const CornMyPostListMolStyle = styled.div`
@@ -23,7 +22,6 @@ const CornMyPostListMolStyle = styled.div`
 
 function CornMyPostListMol() {
   const myPostData = CornUtils.getMyPostList();
-
   return (
     <CornMyPostListMolStyle>
       <div>

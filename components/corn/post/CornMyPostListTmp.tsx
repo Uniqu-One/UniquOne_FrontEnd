@@ -1,13 +1,12 @@
 
-import { useInView } from 'framer-motion';
-import React, { useEffect, useRef } from 'react'
+import React from 'react'
 import CornMyPostListMol from './CornMyPostListMol'
 
 function CornMyPostListTmp() {
 
   return (
-    <div>
-      <CornMyPostListMol/>
+    <div >
+      <CornMyPostListMol/>      
     </div>
   )
 }

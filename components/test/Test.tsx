@@ -4,27 +4,31 @@ import { Oval } from "react-loader-spinner";
 import { color } from "../../styles/theme";
 
 function Test() {
+  const container = useRef(null)
   const ref = useRef(null);
-  const isInView = useInView(ref, { margin: "-800px 0px 0px 0px", once: true });
+  const isInView = useInView(ref, { 
+    root:container,
+    margin: "0px 0px 0px 0px" });
 
   useEffect(() => {
-    console.log(ref);
+    console.log(ref.current.id);
     console.log(isInView);
   }, [isInView]);
 
   return (
     <>
       <div
-        style={{ overflow: "scroll", backgroundColor: "blue", height: "300vh" }}
+        ref={container}
+        style={{backgroundColor: "blue", height: "90vh" }}
       >
         <div
           id="1"
           ref={ref}
-          style={{ backgroundColor: "red", width: "100vw", height: "100vh" }}
+          style={{ backgroundColor: "red", width: "100vw", height: "80vh" }}
         />
         <div
           id="2"
-          ref={ref}
+          // ref={ref}
           style={{ backgroundColor: "pink", width: "100vw", height: "100vh" }}
         />
       </div>

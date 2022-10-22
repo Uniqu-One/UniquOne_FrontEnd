@@ -1,10 +1,11 @@
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import { useRecoilState, useResetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue, useResetRecoilState } from "recoil";
 import useEvaIcon from "../../../lib/hooks/useEvaIcon";
 import { PostUtils } from "../../../lib/utils/PostUtils";
 import { CornPostState } from "../../../states/recoil/CornPostState";
+import { TokenState } from "../../../states/recoil/TokenState";
 import CornPostDescInputMolStyle from "./CornPostDescInputMol";
 import CornPostDetailsOrg from "./CornPostDetailsOrg";
 import CornPostRegMol from "./CornPostRegMol";
@@ -16,17 +17,17 @@ const CornPostTmpStyle = styled.div`
   padding-top: 50px;
 `;
 
-//TODO - 리팩토링 시 context로 값 변경
 
-function CornPostTmp() {
+function CornPostTmp(props:{postId?:string}) {
 
   const router = useRouter()
+  const token = useRecoilValue(TokenState)
+  const {postId} = props
 
-  
   const [postData, setPostData] = useRecoilState(CornPostState);
   const [buttonStatus, setButtonStatus] = useState(false);
 
-  const editPostData = PostUtils.getEditPostDatas()
+  const editPostData = PostUtils.getEditPostDatas(token,postId)
   
 
 
@@ -62,7 +63,7 @@ function CornPostTmp() {
         <CornPostTagsInputMol />
         <CornPostDetailsOrg />
       </CornPostTmpStyle>
-      <CornPostRegMol buttonStatus={buttonStatus} />
+      <CornPostRegMol buttonStatus={buttonStatus} postId={postId}/>
     </>
   );
 }

@@ -17,7 +17,7 @@ function CornRegImageMol(props: {
       const formData = new FormData();
       formData.append("imgfile", imgfile);
       const cornData = {
-        userId: 8,
+        userId: 13,
         title: cornName,
         dsc: cornDesc,
       };

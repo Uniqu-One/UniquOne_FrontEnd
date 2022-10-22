@@ -16,7 +16,6 @@ const FooterBox = styled.div`
   z-index: 2;
 
   .footerBtn {
-    /* background-color: red; */
     height: 54px;
     div {
       margin-top: 6px;

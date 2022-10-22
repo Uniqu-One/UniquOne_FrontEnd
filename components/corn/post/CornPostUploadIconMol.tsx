@@ -48,7 +48,6 @@ function CornPostUploadIconMol() {
   const [images, setImages] = useState([null, null, null, null, null]);
   const [preViewImg, setPreViewImg] = useState<string[]>(["", "", "", "", ""]);
   const [selectedId, setSelectedId] = useState<string | null>(null);
-
   useEffect(() => {
     
     if(postData.imgList[0] === null){

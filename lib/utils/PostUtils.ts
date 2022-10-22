@@ -41,7 +41,7 @@ export const PostUtils = {
 
     return true;
   },
-  registPost: async (postUploadData: postDataType) => {
+  registerPost: async (token: string, postUploadData: postDataType) => {
     const { imgList, desc, tags, type, category, condition, look, color } =
       postUploadData;
 
@@ -75,31 +75,56 @@ export const PostUtils = {
 
     formData.append("postInputDto", blob);
 
-    return await axios({
-      method: "POST",
-      url: `${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/reg/8`,
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-      data: formData,
-    })
+    for (let i of formData) {
+      console.log(i);
+    }
+
+    // return await axios({
+    //   method: "POST",
+    //   url: `${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/reg`,
+    //   headers: {
+    //     Authorization:
+    //       "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzeTQyMzUxM0BnbWFpbC5jb20iLCJpZCI6MSwibmlja05hbWUiOiLrsLDrtoDrpbjri6jrrLTsp4DsmYAzMyIsImVtYWlsIjoic3k0MjM1MTNAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImlhdCI6MTY2NjE0Nzc5MSwiZXhwIjoxNjY3MDExNzkxfQ.oAb6zW8DR6taLuPSOa5RArtVNR5r9KhFT4cvQKZRD1M",
+    //     "Content-Type": "multipart/form-data",
+    //   },
+    //   data: formData,
+    // });
+
+    return await axios
+      .post(`${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/reg`, formData, {
+        headers: {
+          Authorization:
+            "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzeTQyMzUxM0BnbWFpbC5jb20iLCJpZCI6MSwibmlja05hbWUiOiLrsLDrtoDrpbjri6jrrLTsp4DsmYAzMyIsImVtYWlsIjoic3k0MjM1MTNAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImlhdCI6MTY2NjE0Nzc5MSwiZXhwIjoxNjY3MDExNzkxfQ.oAb6zW8DR6taLuPSOa5RArtVNR5r9KhFT4cvQKZRD1M",
+          "Content-Type": "multipart/form-data",
+        },
+      })
+
       .then((res) => {
+        console.log(res);
         return true;
       })
       .catch((err) => {
+        console.log(formData);
         console.error(err);
         return false;
       });
   },
 
-  getEditPostDatas: () => {
+  getEditPostDatas: (token: string, postId?: string) => {
+    if (postId === undefined) {
+      return undefined;
+    }
+
     const fetchData = () =>
-      axios.get(`${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/mod/1`, {
-        headers: {
-          Authorization:
-            "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzeTQyMzUxM0BnbWFpbC5jb20iLCJpZCI6MSwibmlja05hbWUiOiLrsLDrtoDrpbjri6jrrLTsp4DsmYAzMyIsImVtYWlsIjoic3k0MjM1MTNAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImlhdCI6MTY2NjE0Nzc5MSwiZXhwIjoxNjY3MDExNzkxfQ.oAb6zW8DR6taLuPSOa5RArtVNR5r9KhFT4cvQKZRD1M",
-        },
-      });
+      axios.get(
+        `${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/mod/${postId}`,
+        {
+          headers: {
+            Authorization:
+              "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzeTQyMzUxM0BnbWFpbC5jb20iLCJpZCI6MSwibmlja05hbWUiOiLrsLDrtoDrpbjri6jrrLTsp4DsmYAzMyIsImVtYWlsIjoic3k0MjM1MTNAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImlhdCI6MTY2NjE0Nzc5MSwiZXhwIjoxNjY3MDExNzkxfQ.oAb6zW8DR6taLuPSOa5RArtVNR5r9KhFT4cvQKZRD1M",
+          },
+        }
+      );
 
     const { isLoading, data, isError, error } = useQuery(
       "getEidtPostDatas",
@@ -140,30 +165,44 @@ export const PostUtils = {
     }
     return data;
   },
-  editPostData: async (postData: postDataType) => {
-
-    console.log(postData)
+  editPostData: async (
+    token: string,
+    postData: postDataType,
+    postId?: string
+  ) => {
+    console.log(postData);
 
     let { desc, tags, type, category, condition, look, color } = postData;
 
-    if(type === "판매중"){
-      type = "SALE"
+    if (type === "판매중") {
+      type = "SALE";
     }
 
     const newPostData = {
-      dsc:desc,
-      postTagLine:tags,
-      postType:type,
-      postCategoryName:category,
-      conditions:condition,
-      lookLine:look.join(','),
-      color:color.join(','),
+      dsc: desc,
+      postTagLine: tags,
+      postType: "SALE",
+      postCategoryName: category,
+      conditions: condition,
+      lookLine: look.join(","),
+      color: color.join(","),
     };
 
     return await axios
-      .put(`${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/mod/1/1`, newPostData)
+      .put(
+        `${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/mod/${postId}`,
+        newPostData,
+        {
+          headers: {
+            //token
+            Authorization:
+              "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzeTQyMzUxM0BnbWFpbC5jb20iLCJpZCI6MSwibmlja05hbWUiOiLrsLDrtoDrpbjri6jrrLTsp4DsmYAzMyIsImVtYWlsIjoic3k0MjM1MTNAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImlhdCI6MTY2NjE0Nzc5MSwiZXhwIjoxNjY3MDExNzkxfQ.oAb6zW8DR6taLuPSOa5RArtVNR5r9KhFT4cvQKZRD1M",
+          },
+        }
+      )
       .then((res) => {
         if (res.status === 200) {
+          console.log(res);
           return true;
         }
       })

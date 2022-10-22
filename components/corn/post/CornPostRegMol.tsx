@@ -1,24 +1,23 @@
 import { useRouter } from "next/router";
 import React from "react";
 import { toast, Toaster } from "react-hot-toast";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilValue } from "recoil";
 import { PostUtils } from "../../../lib/utils/PostUtils";
 import { CornPostState } from "../../../states/recoil/CornPostState";
+import { TokenState } from "../../../states/recoil/TokenState";
 import FooterTmp from "../../common/tmp/FooterTmp";
 
-function CornPostRegMol(props: { buttonStatus: boolean }) {
+function CornPostRegMol(props: { buttonStatus: boolean,postId?:string }) {
   const router = useRouter();
-
+  const token = useRecoilValue(TokenState)
   const postData = useRecoilValue(CornPostState);
-
-  //TODO - 토큰으로 변경하는 작업 필요
+  const {postId} = props
 
   const handleRegisterPost = async () => {
-    if (await PostUtils.registPost(postData)) {
+    if (await PostUtils.registerPost(token,postData)) {
       router.replace({
         pathname: "/corn",
         query: { status: "post" },
-        //TODO - 포스트 내용으로 이동
       });
     } else {
       toast.error("포스트 등록에 실패하였습니다.");
@@ -26,7 +25,7 @@ function CornPostRegMol(props: { buttonStatus: boolean }) {
   };
 
   const handleEditPost = async () => {
-    if (await PostUtils.editPostData(postData)) {
+    if (await PostUtils.editPostData(token,postData,postId)) {
       toast.error("포스트 수정이 완료되었습니다.");
 
       router.replace({

@@ -1,13 +1,12 @@
 import styled from "@emotion/styled";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { toast, Toaster } from "react-hot-toast";
-import BtnTmp from "../../common/tmp/BtnTmp";
 import SignupTitleSubAtm from "../../signup/SignupTitleSubAtm";
 import CornRegDescMol from "./CornRegDescMol";
 import CornRegImageMol from "./CornRegImageMol";
 import CornRegNameMol from "./CornRegNameMol";
 import { AnimatePresence, motion } from "framer-motion";
-import axios from "axios";
+
 
 const CornRegTmpStyle = styled.div`
   overflow: hidden;

@@ -6,6 +6,8 @@ import SockJS from "sockjs-client";
 import { CompatClient, Stomp } from "@stomp/stompjs";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { useRecoilValue } from "recoil";
+import { TokenState } from "../../states/recoil/TokenState";
 
 export type chatDataType = {
   senderId: number;
@@ -17,6 +19,7 @@ function ChatRoomTmp() {
   let socket = new SockJS(process.env.NEXT_PUBLIC_URL_AWS + "/chat/ws-stomp");
   let reconnect = 0;
   const router = useRouter();
+  const token = useRecoilValue(TokenState);
 
   const [chatData, setChatData] = useState<chatDataType[]>([]);
   const [roomId, setRoomId] = useState("");
@@ -33,7 +36,6 @@ function ChatRoomTmp() {
             `/sub/chat/room/${router.query.roomId}`,
             (recMessage: { body: string }) => {
               let recv = JSON.parse(recMessage.body);
-              // console.log(recv, "!!");
               const { message, senderId, regDate } = recv;
               setChatData((prev) => [...prev, { message, senderId, regDate }]);
             }
@@ -42,8 +44,7 @@ function ChatRoomTmp() {
           ws.send(
             "/pub/chat/message",
             {
-              Authorization:
-                "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzeTQyMzUxM0BnbWFpbC5jb20iLCJpZCI6MSwibmlja05hbWUiOiLrsLDrtoDrpbjri6jrrLTsp4DsmYAzMyIsImVtYWlsIjoic3k0MjM1MTNAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImlhdCI6MTY2NjE0Nzc5MSwiZXhwIjoxNjY3MDExNzkxfQ.oAb6zW8DR6taLuPSOa5RArtVNR5r9KhFT4cvQKZRD1M",
+              Authorization: token,
             },
             JSON.stringify({
               type: "ENTER",
@@ -77,7 +78,7 @@ function ChatRoomTmp() {
             {
               headers: {
                 Authorization:
-                  "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzeTQyMzUxM0BnbWFpbC5jb20iLCJpZCI6MSwibmlja05hbWUiOiLrsLDrtoDrpbjri6jrrLTsp4DsmYAzMyIsImVtYWlsIjoic3k0MjM1MTNAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImlhdCI6MTY2NjE0Nzc5MSwiZXhwIjoxNjY3MDExNzkxfQ.oAb6zW8DR6taLuPSOa5RArtVNR5r9KhFT4cvQKZRD1M",
+                  token,
               },
             }
           )
@@ -116,7 +117,7 @@ function ChatRoomTmp() {
           .post(`${process.env.NEXT_PUBLIC_URL_AWS}/chat/room/${roomId}`, {
             headers: {
               Authorization:
-                "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzeTQyMzUxM0BnbWFpbC5jb20iLCJpZCI6MSwibmlja05hbWUiOiLrsLDrtoDrpbjri6jrrLTsp4DsmYAzMyIsImVtYWlsIjoic3k0MjM1MTNAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImlhdCI6MTY2NjE0Nzc5MSwiZXhwIjoxNjY3MDExNzkxfQ.oAb6zW8DR6taLuPSOa5RArtVNR5r9KhFT4cvQKZRD1M",
+              token,
             },
           })
           .then((res) => console.log(res.status))

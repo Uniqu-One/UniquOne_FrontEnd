@@ -10,7 +10,7 @@ export const ChatUtils = {
         {
           headers: {
             Authorization:
-              "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzeTQyMzUxM0BnbWFpbC5jb20iLCJpZCI6MSwibmlja05hbWUiOiLrsLDrtoDrpbjri6jrrLTsp4DsmYAzMyIsImVtYWlsIjoic3k0MjM1MTNAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImlhdCI6MTY2NjMyODAzOSwiZXhwIjoxNjY3MTkyMDM5fQ.I-eOma46WXgk2hzdyCLNAhyrX-PixTMpwYSz2bQR5pM",
+              token,
           },
         }
       )

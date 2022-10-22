@@ -1,6 +1,8 @@
 import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
+import { useRecoilValue } from "recoil";
 import useEvaIcon from "../../lib/hooks/useEvaIcon";
+import { TokenState } from "../../states/recoil/TokenState";
 import { color } from "../../styles/theme";
 import { chatDataType } from "./ChatRoomTmp";
 
@@ -45,15 +47,14 @@ function ChatRoomFooterTmp(props: {
   const [sendStatus, setSendStatus] = useState(false);
   const { ws, roomId, setChatData } = props;
 
+  const token = useRecoilValue(TokenState);
+
   const handleSendMessage = () => {
     if (tempChat !== "" && ws !== undefined) {
       ws.send(
         "/pub/chat/message",
         {
-          
-            Authorization:
-              "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzeTQyMzUxM0BnbWFpbC5jb20iLCJpZCI6MSwibmlja05hbWUiOiLrsLDrtoDrpbjri6jrrLTsp4DsmYAzMyIsImVtYWlsIjoic3k0MjM1MTNAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImlhdCI6MTY2NjE0Nzc5MSwiZXhwIjoxNjY3MDExNzkxfQ.oAb6zW8DR6taLuPSOa5RArtVNR5r9KhFT4cvQKZRD1M",
-          
+          Authorization: token,
         },
         JSON.stringify({
           type: "TALK",

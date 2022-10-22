@@ -24,7 +24,7 @@ function ChatRoomNoneMol() {
     <>
       <ChatRoomNoneMolStyle>
         <QuestionMarkAtm />
-        <p>채팅이 시작된 후에 내용을 확인할 수 있어요!</p>
+        <p>현재 채팅중인 방이 없어요!</p>
       </ChatRoomNoneMolStyle>
     </>
   );

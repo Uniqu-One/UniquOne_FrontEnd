@@ -13,12 +13,14 @@ export const SignupUtils = {
     const checkStatus = await axios
       .post(`${process.env.NEXT_PUBLIC_URL_AWS}/auth/check`, { email, code })
       .then((res) => {
+        console.log(res)
         if (res.status === 200) {
           return true;
         }
+        
       })
       .catch((err) => {
-        // console.error(err);
+        console.error(err);
         {
           return false;
         }

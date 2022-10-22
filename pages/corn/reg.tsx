@@ -1,7 +1,6 @@
 import React from "react";
 import TopTmp from "../../components/common/tmp/TopTmp";
 import CornRegTmp from "../../components/corn/reg/CornRegTmp";
-import SignupTitleSubAtm from "../../components/signup/SignupTitleSubAtm";
 
 function reg() {
   return (

@@ -6,6 +6,7 @@ import BottomSheetLookMol from "./BottomSheetLookMol";
 import { useRecoilState } from "recoil";
 import { CornPostState } from "../../states/recoil/CornPostState";
 import BottomSheetColorMol from "./BottomSheetColorMol";
+import BottomSheetPriceMol from "./BottomSheetPriceMol";
 
 const BottomSheetRadioMolStyle = styled.div`
   > div {
@@ -187,6 +188,10 @@ function BottomSheetRadioMol(props: {
 
   if (props.tempMenu === "color") {
     return <BottomSheetColorMol setOpen={setOpen}/>;
+  }
+
+  if (props.tempMenu === "price") {
+    return <BottomSheetPriceMol setOpen={setOpen}/>;
   }
 
   const UniStarFilterMenu = ["전체", "1 Star", "2 Star", "3 Star"];

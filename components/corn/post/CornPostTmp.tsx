@@ -10,11 +10,13 @@ import CornPostDescInputMolStyle from "./CornPostDescInputMol";
 import CornPostDetailsOrg from "./CornPostDetailsOrg";
 import CornPostRegMol from "./CornPostRegMol";
 import CornPostTagsInputMol from "./CornPostTagsInputMol";
+import CornPostTitleInputMol from "./CornPostTitleInputMol";
 import CornPostUploadIconMol from "./CornPostUploadIconMol";
 
 const CornPostTmpStyle = styled.div`
   margin: 0 18px;
   padding-top: 50px;
+  padding-bottom: 60px;
 `;
 
 
@@ -29,6 +31,7 @@ function CornPostTmp(props:{postId?:string}) {
 
   const editPostData = PostUtils.getEditPostDatas(token,postId)
   
+  console.log(postData)
 
 
   useEffect(() => {
@@ -59,6 +62,7 @@ function CornPostTmp(props:{postId?:string}) {
     <>
       <CornPostTmpStyle>
         <CornPostUploadIconMol />
+        <CornPostTitleInputMol/>
         <CornPostDescInputMolStyle />
         <CornPostTagsInputMol />
         <CornPostDetailsOrg />

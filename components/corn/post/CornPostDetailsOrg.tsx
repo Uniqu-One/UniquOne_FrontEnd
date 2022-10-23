@@ -20,7 +20,7 @@ function CornPostDetailsOrg() {
   
   const [postData,setPostData] = useRecoilState(CornPostState);
 
-  const {type, category, condition,look,color} = postData
+  const {type, category, condition,look,color, price} = postData
 
   const DETAIL_MENU = [
     { title: "포스트 분류", select: type, name: "type" },
@@ -28,6 +28,7 @@ function CornPostDetailsOrg() {
     { title: "상태", select: condition, name: "condition" },
     { title: "룩", select: look, name: "look" },
     { title: "색상", select: color, name: "color" },
+    { title: "가격", select: price, name: "price" },
   ];
 
   
@@ -38,7 +39,7 @@ function CornPostDetailsOrg() {
     if(type === "" || type === "스타일" ){
       setSlice(1)
     } else{
-      setSlice(5)
+      setSlice(6)
     }
 
   },[type])

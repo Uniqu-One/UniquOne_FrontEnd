@@ -66,6 +66,14 @@ function BottomSheetTopMol(props: {
     }
   };
 
+  const handleUpdatePriceData = () => {
+    const newData = { ...postData };
+    newData.price = props.tempSelect[0];
+    setPostData(newData);
+
+    props.setOpen(false);
+  };
+
   const handleUpdateColorData = () => {
     const newData = { ...searchFilterData };
     newData["색상"] = [...props.tempSelect];
@@ -87,6 +95,8 @@ function BottomSheetTopMol(props: {
 
     props.setOpen(false);
   };
+
+
 
   return (
     <>
@@ -159,6 +169,19 @@ function BottomSheetTopMol(props: {
           </div>
           <div>상태</div>
           <div onClick={() => handleUpdateConditionData()}>
+            <i data-eva="checkmark-outline"></i>
+          </div>
+        </BottomSheetTopMolStyle>
+      )}
+
+      {props.type === "price" && (
+        <BottomSheetTopMolStyle>
+          <div>
+            <i data-eva="arrow-ios-back-outline" style={{ fill: "white" }}></i>
+          </div>
+          <div>가격</div>
+          <div onClick={() => handleUpdatePriceData()}
+          className={props.tempSelect[0] !== "" ? "checked" : "unchecked"}>
             <i data-eva="checkmark-outline"></i>
           </div>
         </BottomSheetTopMolStyle>

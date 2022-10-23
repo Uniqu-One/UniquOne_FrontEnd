@@ -6,11 +6,13 @@ const CornPostState = atom<postDataType>({
   key:`CornPostState/${v1()}`,
   default:{
     imgList:[null,null,null,null,null],
+    title:"",
     desc: "",
     tags: "",
     type: "",
     category: "",
     condition: "",
+    price:"",
 
     look: [],
     color: [],

@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import { useRecoilState } from "recoil";
 import { LoginAuthState } from "../../states/recoil/LoginAuthState";
 import { TokenState } from "../../states/recoil/TokenState";
+import { UserInfoState } from "../../states/recoil/UserInfoState";
 
 const LoginFormTmpStyle = styled.div`
   padding-top: 60px;
@@ -25,6 +26,7 @@ function LoginFormTmp() {
   const router = useRouter();
   const [loginAuthState, setLoginAuthState] = useRecoilState(LoginAuthState);
   const [tokenState, setTokenState] = useRecoilState(TokenState);
+  const [userInfo, setUserInfo] = useRecoilState(UserInfoState);
   const [inputs, setInputs] = useState({
     email: "",
     userPwd: "",
@@ -53,8 +55,14 @@ function LoginFormTmp() {
     if (next) {
       const userInfo = await LoginUtils.login(email, userPwd);
 
+      const userMiniInfo = await LoginUtils.getUserInfo(userInfo.token);
+
       if (userInfo) {
         setLoginAuthState(true);
+        setUserInfo({
+          userId: userMiniInfo.userId,
+          cornId: userMiniInfo.cornId,
+        });
         setTokenState({ token: userInfo.token });
         router.replace({
           pathname: "/",

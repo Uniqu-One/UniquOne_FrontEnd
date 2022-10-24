@@ -2,8 +2,10 @@ import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { CommentUtils } from "../../lib/utils/CommentUtils";
+import { LoginUtils } from "../../lib/utils/LoginUtils";
 
 import { TokenState } from "../../states/recoil/TokenState";
+import { UserInfoState } from "../../states/recoil/UserInfoState";
 import CommentBarOrg from "./CommentBarOrg";
 import CommentListMol from "./CommentListMol";
 
@@ -20,8 +22,8 @@ export type CommentType = {
   regDate: string;
   userId: number;
   writerNick: string;
-  cornImgUrl:string;
-  parentNickname?:string
+  cornImgUrl: string;
+  parentNickname?: string;
 };
 
 const CommentTmpStyle = styled.div`
@@ -31,10 +33,11 @@ const CommentTmpStyle = styled.div`
 
 function CommentTmp(props: { postId: string }) {
   const token = useRecoilValue(TokenState).token;
+  const userId = useRecoilValue(UserInfoState);
   const { postId } = props;
   const [commentList, setCommentList] = useState<CommentType[]>([]);
   const [tempParent, setTempParent] = useState<number>(0);
-  const [parentComment,setParentComment] = useState<boolean>(true);
+  const [parentComment, setParentComment] = useState<boolean>(true);
 
   const getCommentListData = async () => {
     const commentData: CommentType[] = await CommentUtils.getCommentList(
@@ -47,12 +50,17 @@ function CommentTmp(props: { postId: string }) {
   useEffect(() => {
     console.log(tempParent);
     getCommentListData();
-  }, [tempParent,parentComment]);
+  }, [tempParent, parentComment]);
 
+  // console.log(userId,'out')
 
   return (
     <CommentTmpStyle>
-      <CommentListMol commentList={commentList} setTempParent={setTempParent} />
+      <CommentListMol
+        commentList={commentList}
+        setTempParent={setTempParent}
+        userId={userId.userId}
+      />
 
       {/* <CommentOrg type="tail"/> */}
       {tempParent !== 0 && (

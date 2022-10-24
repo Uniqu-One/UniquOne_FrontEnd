@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import axios from "axios";
 import React, { ReactElement, useState } from "react";
 import { toast, Toaster } from "react-hot-toast";
+import { CornUtils } from "../../../lib/utils/CornUtils";
 import { makeNewWord } from "../../../lib/utils/makeNewWord";
 import InputFormMol from "../../common/mol/InputFormMol";
 import BtnTmp from "../../common/tmp/BtnTmp";
@@ -10,11 +11,11 @@ import { CornInputTypes } from "./CornRegTmp";
 function CornRegNameMol(props: CornInputTypes) {
   const { inputs, setInputs, onChangeValue, setCornPage,showErrorToast } = props;
 
-  const hanleMakeNewWord = () => {
+  const hanleMakeNewWord = async () => {
     const notify = () => toast.success("아이디가 자동생성완료되었습니다!");
     notify();
 
-    const newWords = makeNewWord();
+    const newWords = await CornUtils.getRandomCornName()
     setInputs((prev: { cornName: string; cornDesc: string }) => {
       let newInputs = { ...prev };
       newInputs.cornName = newWords;
@@ -58,7 +59,7 @@ function CornRegNameMol(props: CornInputTypes) {
           <BtnTmp size="lg" value="다음" status={true} />
         </div>
       ) : (
-        <div onClick={hanleMakeNewWord}>
+        <div onClick={() => hanleMakeNewWord()}>
           <BtnTmp size="lg" value="자동생성" status={true} />
         </div>
       )}

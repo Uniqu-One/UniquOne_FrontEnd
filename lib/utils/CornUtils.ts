@@ -70,5 +70,12 @@ export const CornUtils = {
       }
     );
   },
-
+  getRandomCornName: async () => {
+    return await axios
+      .get(`${process.env.NEXT_PUBLIC_URL_DK}/corns/randNick`)
+      .then((res) => {
+        return res.data.data.nickname
+      })
+      .catch((err) => console.error(err));
+  },
 };

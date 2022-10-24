@@ -6,7 +6,7 @@ import BtnTmp from "../../common/tmp/BtnTmp";
 
 const PostBottomCompleteMolStyle = styled.div`
   text-align: center;
-
+  padding-top: 56px;
   h3{
     font-size: 1.4rem;
     font-weight: 600;

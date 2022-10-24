@@ -35,11 +35,11 @@ const PostFuncBarMolStyle = styled.div`
   }
 `;
 
-function PostFuncBarMol() {
+function PostFuncBarMol(props:{postId:number|string}) {
   return (
     <PostFuncBarMolStyle>
       <div className="icons">
-        <PostHeartMol />
+        <PostHeartMol postId={props.postId}/>
         <PostCommentMol />
       </div>
 

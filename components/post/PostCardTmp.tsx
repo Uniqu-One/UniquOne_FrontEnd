@@ -12,7 +12,7 @@ const PostCarTmpStyle = styled.div`
   padding-top: 3px;
 `;
 
-function PostCardTmp(props: { postId: string }) {
+function PostCardTmp(props: { postId: string|number }) {
   
   return (
     <>
@@ -23,7 +23,7 @@ function PostCardTmp(props: { postId: string }) {
 
       <PostSliderMol postId={props.postId} />
 
-      <PostFuncBarMol />
+      <PostFuncBarMol postId={props.postId}/>
     </>
   );
 }

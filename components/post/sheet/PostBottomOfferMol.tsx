@@ -5,6 +5,8 @@ import { color } from "../../../styles/theme";
 import BtnTmp from "../../common/tmp/BtnTmp";
 
 const PostBottomOfferMolStyle = styled.div`
+
+padding-top: 56px;
   .top {
     display: flex;
     justify-content: space-between;

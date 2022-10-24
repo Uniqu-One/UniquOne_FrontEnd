@@ -5,13 +5,21 @@ import PostHeartFillAtm from "./PostHeartFillAtm";
 import { AnimatePresence, motion } from "framer-motion";
 import SignupFormAnimation from "../animation/SignupFormAnimation";
 import HeartToggleAnimation from "../animation/HeartToggleAnimation";
+import { LikeUtils } from "../../lib/utils/LikeUtils";
+import { useRecoilValue } from "recoil";
+import { TokenState } from "../../states/recoil/TokenState";
 
-const PostHeartMolStyle = styled.div``;
-
-function PostHeartMol() {
-  const [tempHeart, setTempHeart] = useState(false);
+function PostHeartMol(props: { postId: string | number }) {
+  const token = useRecoilValue(TokenState).token;
+  const [tempHeart, setTempHeart] = useState(true);
 
   const handleChangeTempHeart = () => {
+    if (tempHeart) {
+      LikeUtils.deleteLike(token, props.postId);
+    } else {
+      LikeUtils.postLike(token, props.postId);
+    }
+
     setTempHeart((prev) => {
       return !prev;
     });

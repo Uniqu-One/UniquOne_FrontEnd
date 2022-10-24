@@ -23,7 +23,7 @@ const CornPostTmpStyle = styled.div`
 function CornPostTmp(props:{postId?:string}) {
 
   const router = useRouter()
-  const token = useRecoilValue(TokenState)
+  const token = useRecoilValue(TokenState).token
   const {postId} = props
 
   const [postData, setPostData] = useRecoilState(CornPostState);

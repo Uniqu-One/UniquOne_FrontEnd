@@ -9,7 +9,7 @@ import FooterTmp from "../../common/tmp/FooterTmp";
 
 function CornPostRegMol(props: { buttonStatus: boolean,postId?:string }) {
   const router = useRouter();
-  const token = useRecoilValue(TokenState)
+  const token = useRecoilValue(TokenState).token
   const postData = useRecoilValue(CornPostState);
   const {postId} = props
 

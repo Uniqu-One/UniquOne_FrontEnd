@@ -47,7 +47,7 @@ function ChatRoomFooterTmp(props: {
   const [sendStatus, setSendStatus] = useState(false);
   const { ws, roomId, setChatData } = props;
 
-  const token = useRecoilValue(TokenState);
+  const token = useRecoilValue(TokenState).token;
 
   const handleSendMessage = () => {
     if (tempChat !== "" && ws !== undefined) {

@@ -26,7 +26,7 @@ const CornMyPostListMolStyle = styled.div`
 `;
 
 function CornMyPostListMol() {
-  const token = useRecoilValue(TokenState);
+  const token = useRecoilValue(TokenState).token;
 
   const [pageNum, setPageNum] = useState(0);
   const [myPostData, setMyPostData] = useState<

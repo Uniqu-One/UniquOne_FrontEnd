@@ -25,7 +25,7 @@ const MyQnaMainTmpStyle = styled.div`
 
 function MyQnaMainTmp() {
 
-  const token = useRecoilValue(TokenState)
+  const token = useRecoilValue(TokenState).token
 
   const [qnaData, setQnaData] = useState({
     type: "",

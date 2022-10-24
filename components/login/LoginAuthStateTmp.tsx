@@ -5,7 +5,7 @@ import { TokenState } from "../../states/recoil/TokenState";
 
 function LoginAuthStateTmp() {
   const [loginAuthState,setLoginAuthState] = useRecoilState(LoginAuthState);
-  const tokenState = useRecoilValue(TokenState);
+  const tokenState = useRecoilValue(TokenState).token;
   
   useEffect(() => {
 

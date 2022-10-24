@@ -1,10 +1,13 @@
 import styled from "@emotion/styled";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
+import { useRecoilValue } from "recoil";
+import { CommentUtils } from "../../lib/utils/CommentUtils";
+import { TokenState } from "../../states/recoil/TokenState";
 import { color } from "../../styles/theme";
 import CommentInputMol from "./CommentInputMol";
 
-const CommentBarOrgStyle = styled.div<{inputStatus:boolean}>`
+const CommentBarOrgStyle = styled.div<{ inputStatus: boolean }>`
   position: fixed;
   bottom: 0;
   left: 0;
@@ -46,23 +49,36 @@ const CommentBarOrgStyle = styled.div<{inputStatus:boolean}>`
         font-size: 0.875rem;
         right: 12px;
         color: ${color.p_pruple};
-        opacity: ${(props) => props.inputStatus ? "100%"  :  "30%"} 
+        opacity: ${(props) => (props.inputStatus ? "100%" : "30%")};
       }
     }
   }
 `;
 
-function CommentBarOrg() {
+function CommentBarOrg(props: { postId: string,tempParent?:number,setTempParent:Function,setParentComment:Function }) {
+  const token = useRecoilValue(TokenState).token;
+  const { postId,tempParent,setTempParent,setParentComment } = props;
+
   const [inputText, setInputText] = useState("");
   const [inputStatus, setInputStatus] = useState(false);
 
   useEffect(() => {
-    if(inputText!==""){
-      setInputStatus(true)
+    if (inputText !== "") {
+      setInputStatus(true);
     } else {
-      setInputStatus(false)
+      setInputStatus(false);
     }
   }, [inputText]);
+
+  const handlePostComment = async () => {
+    if(!tempParent){
+      await CommentUtils.postParentComment(token, postId,inputText);
+    } else {
+      await CommentUtils.postChildComment(token, postId,tempParent,inputText);
+    }
+
+    
+  };
 
   return (
     <CommentBarOrgStyle inputStatus={inputStatus}>
@@ -74,7 +90,7 @@ function CommentBarOrg() {
           height="42px"
         />
       </div>
-      <CommentInputMol inputText={inputText} setInputText={setInputText} />
+      <CommentInputMol inputText={inputText} setInputText={setInputText} handlePostComment={handlePostComment}  setTempParent={setTempParent} setParentComment={setParentComment}/>
     </CommentBarOrgStyle>
   );
 }

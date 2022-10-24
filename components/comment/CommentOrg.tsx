@@ -1,24 +1,26 @@
 import styled from "@emotion/styled";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import { color } from "../../styles/theme";
+import { CommentType } from "./CommentTmp";
 
-const CommentOrgStyle = styled.div<{type:string}>`
+const CommentOrgStyle = styled.div<{ type: string }>`
   display: flex;
   justify-content: space-between;
   padding: 12px 18px 9px;
-  margin-left: ${(props) => props.type === "head" ? "0px" : "48px"} ;
+  margin-left: ${(props) => (props.type === "head" ? "0px" : "48px")};
 
   img {
     border-radius: 100%;
   }
 
   > div {
-    :first-of-type{
+    :first-of-type {
       margin-right: 12px;
     }
     :last-of-type {
-      width: ${(props) => props.type === "head" ? "calc(100vw - 96px)" : "calc(100vw - 146px)"}
+      width: ${(props) =>
+        props.type === "head" ? "calc(100vw - 96px)" : "calc(100vw - 146px)"};
     }
   }
 `;
@@ -46,9 +48,18 @@ const CommentAncorStyle = styled.div`
   }
 `;
 
-function CommentOrg(props: { type: string }) {
+function CommentOrg(props: { comment: CommentType,setTempParent:Function }) {
+
+  const { parentId, content, writerNick,regDate,commentId,children } = props.comment;
+  const {setTempParent} = props
+
+  const handleChangeTempParent = () => {
+    setTempParent(commentId);
+  };
+  
+
   return (
-    <CommentOrgStyle type={props.type}>
+    <CommentOrgStyle type={parentId ? "tail" : "head"}>
       <div>
         <Image
           src="/assets/images/dummyUserImg.jpg"
@@ -60,13 +71,13 @@ function CommentOrg(props: { type: string }) {
       <div>
         <CommentUserStyle>
           <p>
-            <span>userId</span>댓글의 내용이 여기에 옵니다. 댓글의 내용이
-            길어진다면 조금 더 좋을텐데 그렇지 않나요?fdasfsdfsdfasfsda
+            <span>{writerNick}</span>
+            {content}
           </p>
         </CommentUserStyle>
         <CommentAncorStyle>
-          <p>N시간 전</p>
-          <p>답글달기</p>
+          <p>{regDate}시간 전</p>
+          <p onClick={() => handleChangeTempParent()}>답글달기</p>
         </CommentAncorStyle>
       </div>
     </CommentOrgStyle>

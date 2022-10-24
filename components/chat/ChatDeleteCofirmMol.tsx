@@ -51,7 +51,7 @@ function ChatDeleteCofirmMol(props: {
   setDeleteCofirmModal: Function;
   selectedRoomId?: string;
 }) {
-  const token = useRecoilValue(TokenState);
+  const token = useRecoilValue(TokenState).token;
 
   const { setDeleteCofirmModal, selectedRoomId } = props;
 

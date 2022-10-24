@@ -53,7 +53,7 @@ function MyQnaEnrollModal(props: {
 }) {
   const QNA_MENU = ["POST", "COMMENT", "TRADE", "SERVICE"];
   
-  const token = useRecoilValue(TokenState)
+  const token = useRecoilValue(TokenState).token
 
   const [tempRadio, setTempRadio] = useState("");
   const [tempTextAreaCount, setTempAreaCount] = useState(300);

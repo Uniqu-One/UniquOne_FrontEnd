@@ -19,7 +19,7 @@ function ChatRoomTmp() {
   let socket = new SockJS(process.env.NEXT_PUBLIC_URL_AWS + "/chat/ws-stomp");
   let reconnect = 0;
   const router = useRouter();
-  const token = useRecoilValue(TokenState);
+  const token = useRecoilValue(TokenState).token;
 
   const [chatData, setChatData] = useState<chatDataType[]>([]);
   const [roomId, setRoomId] = useState("");

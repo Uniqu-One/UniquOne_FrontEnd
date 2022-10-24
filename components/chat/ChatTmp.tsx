@@ -17,10 +17,10 @@ const ChatBoxMolStyle = styled.div`
 
 function ChatTmp() {
   const [chatRoomDatas, setChatRoomDatas] = useState<chatListDataType[]>([
-    { message: "hi", msgRegDate: "hi" },
+    // { message: "hi", msgRegDate: "hi" },
   ]);
   const [selectedRoomId, setSelectedRoomId] = useState();
-  const token = useRecoilValue(TokenState);
+  const token = useRecoilValue(TokenState).token;
 
   const [isNone, setIsNone] = useState(false);
 

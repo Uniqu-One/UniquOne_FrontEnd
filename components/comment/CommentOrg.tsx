@@ -9,8 +9,12 @@ const CommentOrgStyle = styled.div<{ type: string }>`
   justify-content: space-between;
   padding: 12px 18px 9px;
   margin-left: ${(props) => (props.type === "head" ? "0px" : "48px")};
-
   img {
+    border-radius: 100%;
+  }
+
+  .img_circle{
+    border: 0.5px solid ${color.p_gray_lt};
     border-radius: 100%;
   }
 
@@ -28,8 +32,12 @@ const CommentUserStyle = styled.div`
   line-height: 1.1rem;
   font-size: 0.875rem;
   margin-bottom: 6px;
-  span {
+  .head {
     font-weight: 700;
+    margin-right: 6px;
+  }
+  .tail{
+    color: ${color.p_pruple};
     margin-right: 6px;
   }
 `;
@@ -50,7 +58,7 @@ const CommentAncorStyle = styled.div`
 
 function CommentOrg(props: { comment: CommentType,setTempParent:Function }) {
 
-  const { parentId, content, writerNick,regDate,commentId,children } = props.comment;
+  const { parentId, content, writerNick,regDate,commentId,children,cornImgUrl,parentNickname } = props.comment;
   const {setTempParent} = props
 
   const handleChangeTempParent = () => {
@@ -60,9 +68,9 @@ function CommentOrg(props: { comment: CommentType,setTempParent:Function }) {
 
   return (
     <CommentOrgStyle type={parentId ? "tail" : "head"}>
-      <div>
+      <div className="img_circle">
         <Image
-          src="/assets/images/dummyUserImg.jpg"
+          src={cornImgUrl ? cornImgUrl: "/assets/images/dummyUserImg.jpg"}
           alt="user dummy"
           width="48px"
           height="48px"
@@ -71,7 +79,8 @@ function CommentOrg(props: { comment: CommentType,setTempParent:Function }) {
       <div>
         <CommentUserStyle>
           <p>
-            <span>{writerNick}</span>
+            <span className="head">{writerNick}</span>
+            <span className="tail">{parentNickname && "@"+parentNickname}</span>
             {content}
           </p>
         </CommentUserStyle>

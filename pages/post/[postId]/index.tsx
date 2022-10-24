@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import FooterTmp from "../../../components/common/tmp/FooterTmp";
@@ -29,9 +30,8 @@ const PostSingleDummyIntervalStyle = styled.div`
   background-color: ${color.p_gray_lt};
 `
 
-function PostId() {
-  const router = useRouter();
-  const postId = Number(router.query.postId);
+function PostId(props:{postId:string}) {
+  const postId = props.postId
 
   return (
     <>
@@ -52,3 +52,15 @@ function PostId() {
 }
 
 export default PostId;
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { query } = context;
+  const { postId } = query;
+
+  return {
+    props: {
+      postId,
+    },
+  };
+};
+

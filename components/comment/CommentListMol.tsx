@@ -6,6 +6,7 @@ function CommentListMol(props:{commentList:CommentType[], setTempParent:Function
 
   const {commentList, setTempParent} = props
 // commentList={commentList} setTempParent={setTempParent}
+
   return (
     <>
           {commentList &&

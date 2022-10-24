@@ -2,9 +2,11 @@ import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { CommentUtils } from "../../lib/utils/CommentUtils";
+
 import { TokenState } from "../../states/recoil/TokenState";
 import CommentBarOrg from "./CommentBarOrg";
 import CommentListMol from "./CommentListMol";
+
 import CommentOrg from "./CommentOrg";
 import CommentTempParentModalMol from "./CommentTempParentModalMol";
 
@@ -18,6 +20,8 @@ export type CommentType = {
   regDate: string;
   userId: number;
   writerNick: string;
+  cornImgUrl:string;
+  parentNickname?:string
 };
 
 const CommentTmpStyle = styled.div`

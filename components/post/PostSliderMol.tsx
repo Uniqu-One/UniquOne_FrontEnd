@@ -39,7 +39,7 @@ const PostSliderMolStyle = styled.div`
   }
 `;
 
-function PostSliderMol(props: { postId: number }) {
+function PostSliderMol(props: { postId: string }) {
   const router = useRouter();
   const postId = router.query.postId
 

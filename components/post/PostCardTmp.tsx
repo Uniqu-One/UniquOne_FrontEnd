@@ -12,7 +12,7 @@ const PostCarTmpStyle = styled.div`
   padding-top: 3px;
 `;
 
-function PostCardTmp(props: { postId: number }) {
+function PostCardTmp(props: { postId: string }) {
   
   return (
     <>

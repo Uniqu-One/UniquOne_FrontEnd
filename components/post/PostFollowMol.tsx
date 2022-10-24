@@ -5,15 +5,7 @@ import ThreeDotAtm from "../common/atm/ThreeDotAtm";
 import FollowBtnMol from "../common/mol/FollowBtnMol";
 import ThreeDotMol from "../common/mol/ThreeDotMol";
 
-const PostFollowMolStyle = styled.div`
-  height: 54px;
-  /* background-color: lightblue; */
-  display: flex;
-  div {
-    margin: auto 0;
-    margin-left: 12px;
-  }
-`;
+
 
 function PostFollowMol() {
   const [followStatus, setFollowStatus] = useState(false);
@@ -34,13 +26,10 @@ function PostFollowMol() {
   return (
     <>
       <Toaster />
-      <PostFollowMolStyle>
         <FollowBtnMol
           followStatus={followStatus}
           handleFollowStatus={handleFollowStatus}
         />
-        <ThreeDotMol />
-      </PostFollowMolStyle>
     </>
   );
 }

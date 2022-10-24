@@ -12,7 +12,10 @@ const ButtonLgCommonStyle = styled.div`
   margin: 0 18px;
 `;
 
-const ButtonLgStyle = styled(ButtonLgCommonStyle)<{ status?: string | boolean; color?: string;}>`
+const ButtonLgStyle = styled(ButtonLgCommonStyle)<{
+  status?: string | boolean;
+  color?: string;
+}>`
   background-color: ${(props) =>
     props.status ? `${color.p_pruple}` : `${color.p_gray_lt}`};
   color: ${(props) => (props.status ? "white" : `${color.p_gray_dk}`)};
@@ -41,9 +44,10 @@ function BtnTmp(props: {
   switch (props.size) {
     case "lg":
       return (
-        <ButtonLgStyle status={props.status}>
-          <p>{props.value}</p>
-        </ButtonLgStyle>
+          <ButtonLgStyle status={props.status}>
+            <p>{props.value}</p>
+          </ButtonLgStyle>
+        
       );
 
     case "kakao":

@@ -7,6 +7,7 @@ import { useRecoilState } from "recoil";
 import { CornPostState } from "../../states/recoil/CornPostState";
 import BottomSheetColorMol from "./BottomSheetColorMol";
 import BottomSheetPriceMol from "./BottomSheetPriceMol";
+import BtnTmp from "../common/tmp/BtnTmp";
 
 const BottomSheetRadioMolStyle = styled.div`
   > div {
@@ -23,7 +24,6 @@ const BottomSheetRadioMolStyle = styled.div`
       flex-direction: column;
     }
   }
-
 
   label {
     accent-color: ${color.p_pruple};
@@ -50,14 +50,22 @@ const BottomSheetRadioMolStyle = styled.div`
     /* background-color: lightslategray; */
     margin-bottom: 12px;
   }
+
+  .report_btn{
+    div{
+      margin-top: 12px;
+      margin-bottom: 9px;
+      background-color: ${color.p_red};
+      color: white;
+    }
+  }
 `;
-
-
 
 function BottomSheetRadioMol(props: {
   setOpen: Function;
   handleTempSelect?: Function;
   tempMenu?: string;
+  function?:Function;
 }) {
   const [postData, setPostData] = useRecoilState(CornPostState);
 
@@ -67,14 +75,54 @@ function BottomSheetRadioMol(props: {
   const handleChangeIdx = (selectedTab: string, idx: number) => {
     setTempIdx(idx);
 
-    if(props.handleTempSelect){
+    if (props.handleTempSelect) {
       props.handleTempSelect(selectedTab);
       setOpen(false);
     }
-    
   };
 
+  console.log(tempIdx)
 
+  const reportMenuList = [
+    ["선정적이거나 혐오감을 주는 포스트에요","BAD_POST"],
+    ["전문 판매업자의 게시물 같아요","BAD_USER"],
+    ["중복된 게시물이에요","REPEAT_POST"],
+    ["기타 사유로 신고를 해요","OTHER"]
+  ];
+
+  if (props.tempMenu === "report") {
+    return (
+      <BottomSheetRadioMolStyle>
+        <div>
+          <h3>신고하기</h3>
+        </div>
+        <div>
+          {reportMenuList.map((menu, idx) => {
+            return (
+              <label
+                key={idx}
+                htmlFor={menu[0]}
+                onClick={() => handleChangeIdx("", idx)}
+              >
+                <input
+                  type="radio"
+                  name={menu[0]}
+                  value={menu[0]}
+                  checked={tempIdx === idx ? true : false}
+                  readOnly
+                />
+                <p>{menu[0]}</p>
+              </label>
+            );
+          })}
+        </div>
+
+        <div className="report_btn">
+          <BtnTmp size="lg" value="신고하기"/>
+        </div>
+      </BottomSheetRadioMolStyle>
+    );
+  }
 
   if (props.tempMenu === "type") {
     {
@@ -180,18 +228,16 @@ function BottomSheetRadioMol(props: {
     }
   }
 
-
-
   if (props.tempMenu === "look") {
     return <BottomSheetLookMol setOpen={setOpen} />;
   }
 
   if (props.tempMenu === "color") {
-    return <BottomSheetColorMol setOpen={setOpen}/>;
+    return <BottomSheetColorMol setOpen={setOpen} />;
   }
 
   if (props.tempMenu === "price") {
-    return <BottomSheetPriceMol setOpen={setOpen}/>;
+    return <BottomSheetPriceMol setOpen={setOpen} />;
   }
 
   const UniStarFilterMenu = ["전체", "1 Star", "2 Star", "3 Star"];

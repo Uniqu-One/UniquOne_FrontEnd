@@ -31,25 +31,33 @@ const ThreeDotMolStyle = styled.div`
 `;
 
 function ThreeDotMol(props: { postId: string | number }) {
-
-  const token = useRecoilValue(TokenState).token
-  const {postId} = props
+  const token = useRecoilValue(TokenState).token;
+  const { postId } = props;
 
   const [openModal, setOpenModal] = useState(false);
   const [reportMenu, setReportMenu] = useState(false);
+  const [reportOk, setReportOk] = useState(false);
 
   useEffect(() => {
     setOpenModal(false);
   }, []);
 
-  const handlePostReport = (reportType:string) => {
-    PostUtils.postReportData(token, postId,reportType)
-    console.log('신고 진행')
+  const handleOpenModal = () => {
+    setReportMenu(false);
+    setReportOk(false);
+    setOpenModal(true);
+  };
 
+  const handlePostReport = async (reportType: string) => {
+    if (await PostUtils.postReportData(token, postId, reportType)) {
+      setReportMenu(false);
+      setReportOk(true);
+    }
+    console.log("신고 진행");
   };
   return (
     <>
-      <div onClick={() => setOpenModal(true)}>
+      <div onClick={() => handleOpenModal()}>
         <ThreeDotAtm />
       </div>
       <BottomSheet
@@ -60,7 +68,7 @@ function ThreeDotMol(props: { postId: string | number }) {
         }}
       >
         <ThreeDotMolStyle>
-          {reportMenu === false && (
+          {reportMenu === false && reportOk === false && (
             <>
               <div onClick={() => setReportMenu(true)}>
                 <BtnTmp size="lg" value="신고하기" />
@@ -84,7 +92,15 @@ function ThreeDotMol(props: { postId: string | number }) {
           />
         )}
 
-
+        {reportOk && (
+          <div>
+            신고 접수가 완료되었습니다. 신고 결과는 이후 알림으로 알려드릴게요 :
+            {`)`}
+            <div onClick={() => setOpenModal(false)}>
+              <BtnTmp value="닫기" size="lg" />
+            </div>
+          </div>
+        )}
       </BottomSheet>
     </>
   );

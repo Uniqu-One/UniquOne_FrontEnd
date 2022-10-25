@@ -4,7 +4,7 @@ export const LikeUtils = {
     //TODO - AWS 서버로 바꾸기
     axios
       .post(
-        `${process.env.NEXT_PUBLIC_URL_SB}/posts/cool`,
+        `${process.env.NEXT_PUBLIC_URL_AWS}/posts/cool`,
         { postId },
         {
           headers: {
@@ -18,7 +18,7 @@ export const LikeUtils = {
 
   deleteLike: (token: string, postId: string | number) => {
     axios
-      .delete(`${process.env.NEXT_PUBLIC_URL_SB}/posts/cool`, {
+      .delete(`${process.env.NEXT_PUBLIC_URL_AWS}/posts/cool`, {
         headers: {
           Authorization: token,
         },

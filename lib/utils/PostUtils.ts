@@ -212,12 +212,12 @@ export const PostUtils = {
         return false;
       });
   },
-  postReportData: (
+  postReportData: async (
     token: string,
     postId: string | number,
     reportType: string
   ) => {
-    axios
+    return await axios
       .post(
         `${process.env.NEXT_PUBLIC_URL_AWS}/posts/report`,
         { postId, reportType },
@@ -227,8 +227,14 @@ export const PostUtils = {
           },
         }
       )
-      .then((res) => console.log(res))
-      .catch((err) => console.error(err));
+      .then((res) => {
+        console.log(res)
+        return true
+      })
+      .catch((err) => {
+        console.error(err)
+        return false;
+      });
   },
   getMyPostList: async (token: string, pageNum: number) => {
     return await axios.get(

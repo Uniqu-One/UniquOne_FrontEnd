@@ -8,6 +8,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { useRecoilValue } from "recoil";
 import { TokenState } from "../../states/recoil/TokenState";
+import { UserInfoState } from "../../states/recoil/UserInfoState";
 
 export type chatDataType = {
   senderId: number;
@@ -20,11 +21,11 @@ function ChatRoomTmp() {
   let reconnect = 0;
   const router = useRouter();
   const token = useRecoilValue(TokenState).token;
+  const userId = useRecoilValue(UserInfoState).userId
 
   const [chatData, setChatData] = useState<chatDataType[]>([]);
   const [roomId, setRoomId] = useState("");
   const [ws, setWs] = useState<CompatClient>();
-
   const scrollRef = useRef<null | HTMLDivElement>(null);
 
   const connect = async () => {
@@ -48,9 +49,8 @@ function ChatRoomTmp() {
             },
             JSON.stringify({
               type: "ENTER",
-              //chat Room ID 변경하기
               chatRoomId: roomId,
-              senderId: 1,
+              senderId: userId,
             })
           );
         },
@@ -77,8 +77,7 @@ function ChatRoomTmp() {
             `${process.env.NEXT_PUBLIC_URL_AWS}/chat/room/all/${router.query.roomId}`,
             {
               headers: {
-                Authorization:
-                  token,
+                Authorization: token,
               },
             }
           )
@@ -110,14 +109,12 @@ function ChatRoomTmp() {
   useEffect(() => {
     scrollRef?.current?.scrollIntoView({ behavior: "smooth" });
 
-    //채팅 없을 시 채팅방 삭제
     return () => {
       if (roomId !== "" && chatData === undefined) {
         axios
           .post(`${process.env.NEXT_PUBLIC_URL_AWS}/chat/room/${roomId}`, {
             headers: {
-              Authorization:
-              token,
+              Authorization: token,
             },
           })
           .then((res) => console.log(res.status))

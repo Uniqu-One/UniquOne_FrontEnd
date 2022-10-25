@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import useEvaIcon from "../../lib/hooks/useEvaIcon";
 import { TokenState } from "../../states/recoil/TokenState";
+import { UserInfoState } from "../../states/recoil/UserInfoState";
 import { color } from "../../styles/theme";
 import { chatDataType } from "./ChatRoomTmp";
 
@@ -45,9 +46,10 @@ function ChatRoomFooterTmp(props: {
 
   const [tempChat, setTempChat] = useState("");
   const [sendStatus, setSendStatus] = useState(false);
-  const { ws, roomId, setChatData } = props;
+  const { ws, roomId} = props;
 
   const token = useRecoilValue(TokenState).token;
+  const userId = useRecoilValue(UserInfoState).userId;
 
   const handleSendMessage = () => {
     if (tempChat !== "" && ws !== undefined) {
@@ -59,15 +61,11 @@ function ChatRoomFooterTmp(props: {
         JSON.stringify({
           type: "TALK",
           chatRoomId: roomId,
-          senderId: 1,
+          senderId: userId,
           message: tempChat,
         })
       );
     }
-
-    // setChatData((prev: chatDataType[]) => {
-    //   return [...prev, { senderId: 1, message: tempChat, regDate: new Date() }];
-    // });
 
     setTempChat("");
   };

@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { LoginUtils } from "../../lib/utils/LoginUtils";
@@ -9,7 +10,8 @@ function LoginAuthStateTmp() {
   const [loginAuthState,setLoginAuthState] = useRecoilState(LoginAuthState);
   const [userInfo,setUserInfo] = useRecoilState(UserInfoState)
   const token = useRecoilValue(TokenState).token;
-  
+  const router =useRouter()
+
   const updateUserInfo = async () => {
     setUserInfo(await LoginUtils.getUserInfo(token))
   }
@@ -20,6 +22,9 @@ function LoginAuthStateTmp() {
       if(token){
         updateUserInfo()
         setLoginAuthState(true)
+      } else {
+        alert('로그인이 필요한 기능입니다.')
+        router.replace('/login')
       }
     }
 

@@ -65,7 +65,7 @@ function InputFormMol(props: {
           onChange={(e) => props.onChangeValue(e)}
           type={props.type}
           placeholder={props.text}
-          value={props.value}
+          value={props.value || ""}
         />
 
         <span >

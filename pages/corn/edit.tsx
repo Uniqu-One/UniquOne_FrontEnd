@@ -6,7 +6,6 @@ import CornEditTmp from "../../components/corn/edit/CornEditTmp";
 function Edit() {
   return (
     <>
-    {/* TOP을 Tmp로 진행 - CSR */}
     <CornEditTmp/>
       <FooterTmp />
     </>

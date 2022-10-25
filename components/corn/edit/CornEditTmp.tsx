@@ -7,7 +7,7 @@ import InputFormMol from "../../common/mol/InputFormMol";
 import TopTmp from "../../common/tmp/TopTmp";
 import CornImgChangeMol from "./CornImgChangeMol";
 
-export type cornEditData = {
+export type cornEditDataType = {
   img: File | null;
   cornName: string;
   link: string;
@@ -17,14 +17,13 @@ export type cornEditData = {
 
 function CornEditTmp() {
   const token = useRecoilValue(TokenState).token
-  const [cornProfile, setCornProfile] = useState<cornEditData>({
+  const [cornProfile, setCornProfile] = useState<cornEditDataType>({
     img: null,
     cornName: "",
     link: "",
     desc: "",
     imgUrl: "",
   });
-  const { img, cornName, link, desc } = cornProfile;
 
   const userData = CornUtils.getMyinfo(token);
 
@@ -49,9 +48,15 @@ function CornEditTmp() {
   }, [userData]);
 
 
+  
+
+  const handleEditCornInfo = () => {
+    CornUtils.editMyCornInfo(token,cornProfile)
+  }
+
   return (
     <>
-      <TopTmp type="cornEdit" text="콘 수정" />
+      <TopTmp type="cornEdit" text="콘 수정" function_right={handleEditCornInfo}/>
 
       {userData === "Loading" && <div>Is Loading</div>}
 
@@ -71,7 +76,7 @@ function CornEditTmp() {
             label="콘네임"
             type="text"
             text="콘 이름을 입력해주세요"
-            value={cornName}
+            value={cornProfile.cornName}
           />
 
           <InputFormMol
@@ -81,7 +86,7 @@ function CornEditTmp() {
             label="링크"
             type="text"
             text="링크를 입력해주세요"
-            value={link}
+            value={cornProfile.link}
           />
 
           <InputFormMol
@@ -91,7 +96,7 @@ function CornEditTmp() {
             label="설명"
             type="text"
             text="콘 설명을 입력해주세요"
-            value={desc}
+            value={cornProfile.desc}
           />
         </>
       )}

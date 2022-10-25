@@ -53,6 +53,7 @@ function TopTmp(props: {
           left="back"
           text={props.text}
           right={"checkmark-outline"}
+          function_right={props.function_right}
         />
       );
 

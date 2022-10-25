@@ -58,11 +58,10 @@ function CornImgChangeMol(props: {
 
     if (target.files !== null) {
       encodeFileToBase64(target.files[0]);
-      //TODO - 타입 지정 변경해아함
-      //TODO - 여기서 img 파일이 파일리스트로 들어가니 주의
       props.setCornProfile((prev: any) => {
         if (target.files !== null) {
-          ({ ...prev, img: target.files[0] });
+          
+          return { ...prev, img: target.files[0] };
         }
       });
     }

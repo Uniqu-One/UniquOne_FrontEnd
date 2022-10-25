@@ -26,11 +26,11 @@ function ChatTmp() {
       axios
         .get(process.env.NEXT_PUBLIC_URL_AWS + "/chat", {
           headers: {
-            Authorization:
-              "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzeTQyMzVAZ21haWwuY29tIiwiaWQiOjIsIm5pY2tOYW1lIjoi66mL7KeEIOycoOuLiOy9mOuTpCIsImVtYWlsIjoic3k0MjM1QGdtYWlsLmNvbSIsInJvbGUiOiJST0xFX1VTRVIiLCJpYXQiOjE2NjYyMjY2NzAsImV4cCI6MTY2NzA5MDY3MH0.BP4sX3hZL6hjeZPu94FfcxjBeCSatmF4gHKAz-s3xUg",
+            Authorization: token,
           },
         })
         .then((res) => {
+          console.log(res)
           return setChatRoomDatas([...res.data.data]);
         })
         .catch((err) => {

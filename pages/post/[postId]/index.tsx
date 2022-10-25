@@ -42,7 +42,9 @@ function PostId(props:{postId:string}) {
         <PostSingleBodyOrg userId={"userID"}/>
 
         <PostSingleDummyIntervalStyle/>
+
         <PostSingleCornOrg/>
+        
         <PostSingleDummyIntervalStyle/>
 
         <PostSingleFooterTmp/>

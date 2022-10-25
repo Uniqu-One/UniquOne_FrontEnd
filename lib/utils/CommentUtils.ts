@@ -8,12 +8,10 @@ export const CommentUtils = {
         },
       })
       .then((res) => {
-        console.log(res.data)
-        return res.data
+        // console.log(res.data)
+        return res.data;
       })
       .catch((err) => console.error(err));
-
-
   },
   postParentComment: async (
     token: string,
@@ -35,13 +33,12 @@ export const CommentUtils = {
       )
       .then((res) => console.log(res))
       .catch((err) => console.error(err));
-
   },
   postChildComment: async (
     token: string,
     postId: string,
-    parentId:number,
-    inputText:string
+    parentId: number,
+    inputText: string
   ) => {
     await axios
       .post(
@@ -59,6 +56,21 @@ export const CommentUtils = {
       )
       .then((res) => console.log(res))
       .catch((err) => console.error(err));
-
+  },
+  deleteMyComment: async (token: string, commentId: number) => {
+    return await axios
+      .delete(`${process.env.NEXT_PUBLIC_URL_DK}/comment/${commentId}`, {
+        headers: {
+          Authorization: token,
+        },
+      })
+      .then((res) => {
+        // console.log(res)
+        return true
+      })
+      .catch((err) => {
+        // console.error(err)
+        return false;
+      });
   },
 };

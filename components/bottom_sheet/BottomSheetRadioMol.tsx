@@ -51,8 +51,8 @@ const BottomSheetRadioMolStyle = styled.div`
     margin-bottom: 12px;
   }
 
-  .report_btn{
-    div{
+  .report_btn {
+    div {
       margin-top: 12px;
       margin-bottom: 9px;
       background-color: ${color.p_red};
@@ -65,11 +65,11 @@ function BottomSheetRadioMol(props: {
   setOpen: Function;
   handleTempSelect?: Function;
   tempMenu?: string;
-  function?:Function;
+  functionPlus?: Function;
 }) {
   const [postData, setPostData] = useRecoilState(CornPostState);
+  const { setOpen, functionPlus } = props;
 
-  const { setOpen } = props;
   const [tempIdx, setTempIdx] = useState(0);
 
   const handleChangeIdx = (selectedTab: string, idx: number) => {
@@ -81,13 +81,12 @@ function BottomSheetRadioMol(props: {
     }
   };
 
-  console.log(tempIdx)
 
   const reportMenuList = [
-    ["선정적이거나 혐오감을 주는 포스트에요","BAD_POST"],
-    ["전문 판매업자의 게시물 같아요","BAD_USER"],
-    ["중복된 게시물이에요","REPEAT_POST"],
-    ["기타 사유로 신고를 해요","OTHER"]
+    ["선정적이거나 혐오감을 주는 포스트에요", "BAD_POST"],
+    ["전문 판매업자의 게시물 같아요", "BAD_USER"],
+    ["중복된 게시물이에요", "REPEAT_POST"],
+    ["기타 사유로 신고를 해요", "OTHER"],
   ];
 
   if (props.tempMenu === "report") {
@@ -117,8 +116,11 @@ function BottomSheetRadioMol(props: {
           })}
         </div>
 
-        <div className="report_btn">
-          <BtnTmp size="lg" value="신고하기"/>
+        <div
+          className="report_btn"
+          onClick={() => functionPlus && functionPlus(reportMenuList[tempIdx][1])}
+        >
+          <BtnTmp size="lg" value="신고하기" />
         </div>
       </BottomSheetRadioMolStyle>
     );

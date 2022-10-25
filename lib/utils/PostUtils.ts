@@ -135,11 +135,13 @@ export const PostUtils = {
 
           const newEditData: postDataType = {
             imgList: [null, null, null, null, null],
+            title: "",
             desc: "",
             tags: "",
             type: "",
             category: "",
             condition: "",
+            price: "",
 
             look: [],
             color: [],
@@ -194,7 +196,6 @@ export const PostUtils = {
         newPostData,
         {
           headers: {
-            //token
             Authorization:
               "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzeTQyMzUxM0BnbWFpbC5jb20iLCJpZCI6MSwibmlja05hbWUiOiLrsLDrtoDrpbjri6jrrLTsp4DsmYAzMyIsImVtYWlsIjoic3k0MjM1MTNAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImlhdCI6MTY2NjE0Nzc5MSwiZXhwIjoxNjY3MDExNzkxfQ.oAb6zW8DR6taLuPSOa5RArtVNR5r9KhFT4cvQKZRD1M",
           },
@@ -210,5 +211,23 @@ export const PostUtils = {
         console.error(err);
         return false;
       });
+  },
+  postReportData: (
+    token: string,
+    postId: string | number,
+    reportType: string
+  ) => {
+    axios
+      .post(
+        `${process.env.NEXT_PUBLIC_URL_AWS}/posts/report`,
+        { postId, reportType },
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      )
+      .then((res) => console.log(res))
+      .catch((err) => console.error(err));
   },
 };

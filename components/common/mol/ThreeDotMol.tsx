@@ -1,6 +1,9 @@
 import styled from "@emotion/styled";
 import React, { useEffect, useRef, useState } from "react";
 import { BottomSheet, BottomSheetRef } from "react-spring-bottom-sheet";
+import { useRecoilValue } from "recoil";
+import { PostUtils } from "../../../lib/utils/PostUtils";
+import { TokenState } from "../../../states/recoil/TokenState";
 import { color } from "../../../styles/theme";
 import BottomSheetRadioMol from "../../bottom_sheet/BottomSheetRadioMol";
 import ThreeDotAtm from "../atm/ThreeDotAtm";
@@ -28,6 +31,10 @@ const ThreeDotMolStyle = styled.div`
 `;
 
 function ThreeDotMol(props: { postId: string | number }) {
+
+  const token = useRecoilValue(TokenState).token
+  const {postId} = props
+
   const [openModal, setOpenModal] = useState(false);
   const [reportMenu, setReportMenu] = useState(false);
 
@@ -35,9 +42,9 @@ function ThreeDotMol(props: { postId: string | number }) {
     setOpenModal(false);
   }, []);
 
-  const handlePostReport = () => {
-
-    console.log('신고하기 완료!')
+  const handlePostReport = (reportType:string) => {
+    PostUtils.postReportData(token, postId,reportType)
+    console.log('신고 진행')
 
   };
   return (
@@ -68,13 +75,16 @@ function ThreeDotMol(props: { postId: string | number }) {
             </>
           )}
         </ThreeDotMolStyle>
+
         {reportMenu && (
           <BottomSheetRadioMol
             tempMenu="report"
             setOpen={setOpenModal}
-            function={handlePostReport}
+            functionPlus={handlePostReport}
           />
         )}
+
+
       </BottomSheet>
     </>
   );

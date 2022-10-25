@@ -38,7 +38,7 @@ function CommentTmp(props: { postId: string }) {
   const [commentList, setCommentList] = useState<CommentType[]>([]);
   const [tempParent, setTempParent] = useState<number>(0);
   const [parentComment, setParentComment] = useState<boolean>(true);
-
+  
   const getCommentListData = async () => {
     const commentData: CommentType[] = await CommentUtils.getCommentList(
       token,
@@ -48,11 +48,8 @@ function CommentTmp(props: { postId: string }) {
   };
 
   useEffect(() => {
-    console.log(tempParent);
     getCommentListData();
   }, [tempParent, parentComment]);
-
-  // console.log(userId,'out')
 
   return (
     <CommentTmpStyle>
@@ -62,13 +59,13 @@ function CommentTmp(props: { postId: string }) {
         userId={userId.userId}
       />
 
-      {/* <CommentOrg type="tail"/> */}
-      {tempParent !== 0 && (
+      {tempParent && (
         <CommentTempParentModalMol
           tempParent={tempParent}
           setTempParent={setTempParent}
         />
       )}
+
       <CommentBarOrg
         postId={postId}
         tempParent={tempParent}

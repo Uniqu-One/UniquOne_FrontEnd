@@ -240,7 +240,7 @@ export const PostUtils = {
         },
       }
     ).then(res => {
-      console.log(res.data.data.content[0])
+      // console.log(res.data.data.content[0])
       return res.data.data.content[0]
     })
     .catch(err => console.error(err))
@@ -256,7 +256,7 @@ export const PostUtils = {
         },
       }
     ).then(res => {
-      console.log(res.data.data.content[0])
+      // console.log(res.data.data.content[0])
       return res.data.data.content[0]
     })
     .catch(err => console.error(err))
@@ -273,7 +273,7 @@ export const PostUtils = {
         },
       }
     ).then(res => {
-      console.log(res.data.data.content[0])
+      // console.log(res.data.data.content[0])
       return res.data.data.content[0]
     })
     .catch(err => console.error(err))

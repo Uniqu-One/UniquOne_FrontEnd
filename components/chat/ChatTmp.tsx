@@ -16,21 +16,18 @@ const ChatBoxMolStyle = styled.div`
 `;
 
 function ChatTmp() {
-  const [chatRoomDatas, setChatRoomDatas] = useState<chatListDataType[]>([
-    // { message: "hi", msgRegDate: "hi" },
-  ]);
+  const [chatRoomDatas, setChatRoomDatas] = useState<chatListDataType[]>([]);
   const [selectedRoomId, setSelectedRoomId] = useState();
   const token = useRecoilValue(TokenState).token;
-
   const [isNone, setIsNone] = useState(false);
 
   useEffect(() => {
-    //TODO - 비동기적으로 변경해야함
     setTimeout(() => {
       axios
         .get(process.env.NEXT_PUBLIC_URL_AWS + "/chat", {
           headers: {
-            Authorization: token,
+            Authorization:
+              "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzeTQyMzVAZ21haWwuY29tIiwiaWQiOjIsIm5pY2tOYW1lIjoi66mL7KeEIOycoOuLiOy9mOuTpCIsImVtYWlsIjoic3k0MjM1QGdtYWlsLmNvbSIsInJvbGUiOiJST0xFX1VTRVIiLCJpYXQiOjE2NjYyMjY2NzAsImV4cCI6MTY2NzA5MDY3MH0.BP4sX3hZL6hjeZPu94FfcxjBeCSatmF4gHKAz-s3xUg",
           },
         })
         .then((res) => {
@@ -49,8 +46,8 @@ function ChatTmp() {
     setDeleteCofirmModal(true);
   };
 
-  if(isNone){
-    return <ChatRoomNoneMol/>
+  if (isNone) {
+    return <ChatRoomNoneMol />;
   }
 
   return (

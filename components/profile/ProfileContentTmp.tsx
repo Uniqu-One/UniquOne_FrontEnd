@@ -78,11 +78,11 @@ function ProfileContentTmp() {
   };
 
   const getMySellData = async () => {
-    await PostUtils.getMySellPostList(token, 1);
+    setTempPostList(await PostUtils.getMySellPostList(token, 1));
   };
 
   const getMyStyleData = async () => {
-    await PostUtils.getMyStylePostList(token, 1);
+    setTempPostList(await PostUtils.getMyStylePostList(token, 1));
   };
 
   useEffect(() => {
@@ -106,21 +106,11 @@ function ProfileContentTmp() {
           ))}
         </div>
         <ProfileContentsStyle>
-          {tempTab === 0 &&
-            tempPostList.map(
-              (post: { postId: number; postImg: string; postType: string }) => {
-                return <PostMdOrg key={post.postId} post={post} />;
-              }
-            )}
-
-          {tempTab === 1 && (
-            <>
-              <PostMdOrg />
-              <PostMdOrg />
-            </>
+          {tempPostList.map(
+            (post: { postId: number; postImg: string; postType: string }) => {
+              return <PostMdOrg key={post.postId} post={post} />;
+            }
           )}
-
-          {tempTab === 2 && <PostMdOrg />}
         </ProfileContentsStyle>
       </ProfileContentTmpStyle>
     </>

@@ -17,13 +17,12 @@ export type ProfileDataType = {
 export const ProfileUtils = {
   getProfileData: (token:string,userId?:string) => {
 
-
     const fetchProfile = () => {
 
 
       if(userId){
 
-        return axios.get(`${process.env.NEXT_PUBLIC_URL_AWS}/posts/corns/${userId}`,{
+        return axios.get(`${process.env.NEXT_PUBLIC_URL_SB}/posts/corns/${userId}`,{
           headers:{
             Authorization:token
           }
@@ -31,7 +30,7 @@ export const ProfileUtils = {
 
       } else {
 
-        return axios.get(`${process.env.NEXT_PUBLIC_URL_AWS}/posts/corns`,{
+        return axios.get(`${process.env.NEXT_PUBLIC_URL_SB}/posts/corns`,{
           headers:{
             Authorization:token
           }

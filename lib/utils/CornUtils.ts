@@ -44,7 +44,7 @@ export const CornUtils = {
       title: cornProfile.cornName,
       url: cornProfile.link,
       dsc: cornProfile.desc,
-      imgurl:cornProfile.imgUrl
+      imgUrl:cornProfile.imgUrl
     };
 
     const bolb = new Blob([JSON.stringify(cornEditDataType)], {
@@ -53,9 +53,13 @@ export const CornUtils = {
 
     formData.append("cornModifyDto", bolb);
 
+    console.log(cornEditDataType)
+    
+    
+
     await axios({
       method: "PATCH",
-      url: `${process.env.NEXT_PUBLIC_URL_AWS}/posts/corns`,
+      url: `${process.env.NEXT_PUBLIC_URL_SB}/posts/corns`,
       headers: {
         Authorization:token,
         "Content-Type": "multipart/form-data",

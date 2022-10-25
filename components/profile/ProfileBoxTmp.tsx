@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { toast, Toaster } from "react-hot-toast";
 import { useRecoilValue } from "recoil";
@@ -87,7 +86,7 @@ function ProfileBoxTmp(props: { type: string,userId ?: string }) {
           <div onClick={() => handleFollowBtn()}>
             <BtnTmp
               size="lg"
-              value={followStatus ? "팔로우" : "팔로잉6"}
+              value={followStatus ? "팔로우" : "팔로잉"}
               status={followStatus}
             />
           </div>

@@ -47,7 +47,7 @@ const PostSingleFooterTmpStyle = styled.div`
   }
 `;
 
-function PostSingleFooterTmp() {
+function PostSingleFooterTmp(props:{postId:number|string}) {
   return (
     <>
       <PostSingleFooterTmpStyle>
@@ -55,7 +55,7 @@ function PostSingleFooterTmp() {
 
         <div className="btns">
           <PostSingleFooterOfferMol />
-          <PostSingleFooterChatMol />
+          <PostSingleFooterChatMol postId={props.postId}/>
         </div>
       </PostSingleFooterTmpStyle>
     </>

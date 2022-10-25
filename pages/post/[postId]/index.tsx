@@ -47,7 +47,7 @@ function PostId(props:{postId:string}) {
         
         <PostSingleDummyIntervalStyle/>
 
-        <PostSingleFooterTmp/>
+        <PostSingleFooterTmp postId={postId}/>
       </PostIntervalStyle>
     </>
   );

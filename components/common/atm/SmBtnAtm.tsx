@@ -5,7 +5,7 @@ import { color, styleColor } from "../../../styles/theme";
 /* ${styleColor.pink} */
 const SmBtnAtmStyle = styled.div<{ color: string }>`
   display: inline-block;
-  background-color: ${(props) => styleColor[props.color]};
+  background-color: ${(props) => props.color};
 
   color: ${(props) => (props.color === "blue" ? "white" : color.p_gray_dk)};
 
@@ -17,10 +17,8 @@ const SmBtnAtmStyle = styled.div<{ color: string }>`
   
 `;
 
-function SmBtnAtm(props: { color: string }) {
-    
-
-  return <SmBtnAtmStyle color={props.color}>Color</SmBtnAtmStyle>;
+function SmBtnAtm(props: { color: string, text?:string }) {
+  return <SmBtnAtmStyle color={props.color}>{props.text}</SmBtnAtmStyle>;
 }
 
 export default SmBtnAtm;

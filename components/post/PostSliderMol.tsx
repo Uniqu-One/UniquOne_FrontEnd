@@ -39,21 +39,15 @@ const PostSliderMolStyle = styled.div`
   }
 `;
 
-function PostSliderMol(props: { postId: number|string }) {
+function PostSliderMol(props: { postId: number | string }) {
   const router = useRouter();
-  const postId = router.query.postId
+  const { postId } = props;
 
-  // TODO - 뒤로 슬라이드해도 이동되는 버그 수정하기
 
   const [settings, setSettings] = useState({
     beforeChange: (e: number) => {
-      if (e === 0) {
-        router.push(`/post/${props.postId}`);
-      }
-    },
-    afterChange:(e:number) => {
-      if(e===0){
-        router.push(`/post`);
+      if (e === 0 && postId !== undefined) {
+        router.push(`/post/${postId}`);
       }
     },
 
@@ -62,7 +56,7 @@ function PostSliderMol(props: { postId: number|string }) {
     speed: 100,
     slidesToShow: 1,
     slidesToScroll: 1,
-    initialSlide: postId ? 1 : 0 ,
+    // initialSlide: postId ? 1 : 0,
     appendDots: (dots: any) => {
       return (
         <div
@@ -82,9 +76,11 @@ function PostSliderMol(props: { postId: number|string }) {
     dotsClass: "dots_custom",
   });
 
+  console.log(postId)
+
   return (
     <PostSliderMolStyle>
-      {postId ? <ToastTmp/>: <></>}
+      {router.query.postId ? <ToastTmp /> : <></>}
       <Slider {...settings}>
         <div>
           <Image

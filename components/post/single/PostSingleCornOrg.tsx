@@ -7,12 +7,10 @@ const PostSingleCornOrgStyle = styled.div`
   padding: 12px 18px;
   /* background-color: gray; */
   > div {
-    :nth-of-type(1){
-      /* background-color: red; */
+    :nth-of-type(1) {
       margin-bottom: 12px;
     }
-    :nth-of-type(2){
-      /* background-color: blue; */
+    :nth-of-type(2) {
       margin-bottom: 12px;
     }
 
@@ -22,7 +20,7 @@ const PostSingleCornOrgStyle = styled.div`
     }
   }
 `;
-//TODO - porps userName, CornImg, CornTitle, CornSub, ReviewCnt, PostCnt
+
 function PostSingleCornOrg() {
   return (
     <PostSingleCornOrgStyle>
@@ -30,7 +28,7 @@ function PostSingleCornOrg() {
         <h3>누구누구님의 Corn</h3>
       </div>
       <PostSingleProfileMol />
-      <PostSingleCornDetailMol/>
+      <PostSingleCornDetailMol />
     </PostSingleCornOrgStyle>
   );
 }

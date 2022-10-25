@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: false,
   swcMinify: true,
   images: {
-    domains: ['uniquoneimg.s3.ap-northeast-2.amazonaws.com'],
+    domains: ['uniquoneimg.s3.ap-northeast-2.amazonaws.com',"images.unsplash.com"],
     formats: ['image/avif', 'image/webp'],
   },
 }

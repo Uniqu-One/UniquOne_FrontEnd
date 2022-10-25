@@ -13,7 +13,8 @@ const MainCarouselCardStyle = styled.div`
     position: absolute;
     z-index: 1;
     margin-left: 24px;
-    bottom: 32px;
+    bottom: 24px;
+    left: px;
     color: white;
 
     h2 {
@@ -21,14 +22,16 @@ const MainCarouselCardStyle = styled.div`
       font-weight: 750;
     }
     h3 {
+      /* background-color: red; */
+      padding-top: 6px;
       font-size: 0.875rem;
       margin-top: 3px;
     }
   }
 `;
 
-function MainCarouselMol(props: { title: string; subTitle: string; width:number }) {
-  const { title, subTitle, width } = props;
+function MainCarouselMol(props: { title: string; subTitle: string; width:number,imgSrc:string }) {
+  const { title, subTitle, width,imgSrc } = props;
   return (
     <>
       <MainCarouselCardStyle>
@@ -37,10 +40,11 @@ function MainCarouselMol(props: { title: string; subTitle: string; width:number 
           <h3>{subTitle}</h3>
         </div>
         <Image
-          src="/assets/images/carouselImage.jpg"
+          src={imgSrc}
           alt="메인 슬라이더"
-          width={100*width+'%'}
+          width={"500%"}
           height={400}
+          layout="fixed"
         />
       </MainCarouselCardStyle>
     </>

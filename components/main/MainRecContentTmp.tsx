@@ -10,29 +10,29 @@ const MainRecContentStyle = styled.div`
   background-color: ${color.p_gray_lt};
   padding: 18px 18px 18px 18px;
 
-  h2{
+  h2 {
     margin-bottom: 12px;
   }
-  
-  >div{
-    /* background-color: red; */
+
+  .item_container {
+    
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    div{
+    width: 100%;
+    div {
+      width: 48%;
       margin-bottom: 6px;
-      margin-right: 6px;
     }
   }
+`;
 
-  `;
-
-function MainRecContentTmp(props:{title:string}) {
+function MainRecContentTmp(props: { title: string }) {
   return (
     <>
       <MainRecContentStyle>
         <MainContentTitleAtm title={props.title} />
-        <div>
+        <div className="item_container">
           <PostLgOrg />
           <PostLgOrg />
           <PostLgOrg />

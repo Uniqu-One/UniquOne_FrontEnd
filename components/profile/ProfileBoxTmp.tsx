@@ -35,7 +35,7 @@ const ProfileBoxTmpStyle = styled.div`
   }
 `;
 
-function ProfileBoxTmp(props: { type: string,userId : string }) {
+function ProfileBoxTmp(props: { type: string,userId ?: string }) {
   const token = useRecoilValue(TokenState).token
   const {type,userId} = props
   const [followStatus, setFollowStatus] = useState(false);

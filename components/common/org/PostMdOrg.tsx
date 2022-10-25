@@ -5,11 +5,10 @@ import React from "react";
 import UniStarMol from "../mol/UniStarMol";
 
 const PostMdOrgStyle = styled.div`
-
   position: relative;
 
-  width: calc((100vw - 6px)/3);
-  height: calc((100vw - 6px)/3);
+  width: calc((100vw - 6px) / 3);
+  height: calc((100vw - 6px) / 3);
 
   img {
     border-radius: 9px;
@@ -22,13 +21,16 @@ const PostMdOrgStyle = styled.div`
   }
 `;
 
-function PostMdOrg(props: { opt?: string }) {
+function PostMdOrg(props: {
+  opt?: string;
+  post?: { postId: number; postImg: string; postType: string };
+}) {
   return (
     <PostMdOrgStyle>
-      <Link href={"/my/#"}>
+      <Link href={props.post ? `/post/${props.post.postId}` : "/"}>
         <a>
           <Image
-            src="/assets/images/postImage.jpg"
+            src={props.post ? props.post.postImg : "/"}
             alt="포스트 더미 이미지"
             width={300}
             height={300}

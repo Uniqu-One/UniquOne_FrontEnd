@@ -1,10 +1,16 @@
 import styled from "@emotion/styled";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useRecoilValue } from "recoil";
+import { PostUtils } from "../../lib/utils/PostUtils";
+import { TokenState } from "../../states/recoil/TokenState";
 import { color } from "../../styles/theme";
+import { postDataType } from "../../types/postDataType";
 import PostMdOrg from "../common/org/PostMdOrg";
 
 const ProfileContentTmpStyle = styled.div`
   overflow: hidden;
+
+  padding-bottom: 60px;
 
   .ProfileTabs {
     margin-top: 12px;
@@ -62,10 +68,32 @@ export const ProfileContentsStyle = styled.div`
 `;
 
 function ProfileContentTmp() {
+  const token = useRecoilValue(TokenState);
   const tabs = ["전체", "상품", "스타일"];
   const [tempTab, setTempTab] = useState(0);
+  const [tempPostList, setTempPostList] = useState([]);
 
-  
+  const getMyAllPostData = async () => {
+    setTempPostList(await PostUtils.getMyPostList(token, 1));
+  };
+
+  const getMySellData = async () => {
+    await PostUtils.getMySellPostList(token, 1);
+  };
+
+  const getMyStyleData = async () => {
+    await PostUtils.getMyStylePostList(token, 1);
+  };
+
+  useEffect(() => {
+    if (tempTab === 0) {
+      getMyAllPostData();
+    } else if (tempTab === 1) {
+      getMySellData();
+    } else if (tempTab === 2) {
+      getMyStyleData();
+    }
+  }, [tempTab]);
 
   return (
     <>
@@ -78,7 +106,12 @@ function ProfileContentTmp() {
           ))}
         </div>
         <ProfileContentsStyle>
-          {tempTab === 0 && <PostMdOrg />}
+          {tempTab === 0 &&
+            tempPostList.map(
+              (post: { postId: number; postImg: string; postType: string }) => {
+                return <PostMdOrg key={post.postId} post={post} />;
+              }
+            )}
 
           {tempTab === 1 && (
             <>

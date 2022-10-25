@@ -230,4 +230,53 @@ export const PostUtils = {
       .then((res) => console.log(res))
       .catch((err) => console.error(err));
   },
+  getMyPostList: async (token: string, pageNum: number) => {
+    return await axios.get(
+      `${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/listall/1?page=${pageNum}`,
+      {
+        headers: {
+          Authorization:
+            "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzeTQyMzUxM0BnbWFpbC5jb20iLCJpZCI6MSwibmlja05hbWUiOiLrsLDrtoDrpbjri6jrrLTsp4DsmYAzMyIsImVtYWlsIjoic3k0MjM1MTNAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImlhdCI6MTY2NjE0Nzc5MSwiZXhwIjoxNjY3MDExNzkxfQ.oAb6zW8DR6taLuPSOa5RArtVNR5r9KhFT4cvQKZRD1M",
+        },
+      }
+    ).then(res => {
+      console.log(res.data.data.content[0])
+      return res.data.data.content[0]
+    })
+    .catch(err => console.error(err))
+  },
+  getMySellPostList: async (token: string, pageNum: number) => {
+
+    return await axios.get(
+      `${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/listproduct/1?page=${pageNum}`,
+      {
+        headers: {
+          Authorization:
+            "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzeTQyMzUxM0BnbWFpbC5jb20iLCJpZCI6MSwibmlja05hbWUiOiLrsLDrtoDrpbjri6jrrLTsp4DsmYAzMyIsImVtYWlsIjoic3k0MjM1MTNAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImlhdCI6MTY2NjE0Nzc5MSwiZXhwIjoxNjY3MDExNzkxfQ.oAb6zW8DR6taLuPSOa5RArtVNR5r9KhFT4cvQKZRD1M",
+        },
+      }
+    ).then(res => {
+      console.log(res.data.data.content[0])
+      return res.data.data.content[0]
+    })
+    .catch(err => console.error(err))
+
+  },
+  getMyStylePostList: async (token: string, pageNum: number) => {
+    
+    return await axios.get(
+      `${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/liststyle/1?page=${pageNum}`,
+      {
+        headers: {
+          Authorization:
+            "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzeTQyMzUxM0BnbWFpbC5jb20iLCJpZCI6MSwibmlja05hbWUiOiLrsLDrtoDrpbjri6jrrLTsp4DsmYAzMyIsImVtYWlsIjoic3k0MjM1MTNAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImlhdCI6MTY2NjE0Nzc5MSwiZXhwIjoxNjY3MDExNzkxfQ.oAb6zW8DR6taLuPSOa5RArtVNR5r9KhFT4cvQKZRD1M",
+        },
+      }
+    ).then(res => {
+      console.log(res.data.data.content[0])
+      return res.data.data.content[0]
+    })
+    .catch(err => console.error(err))
+
+  }
 };

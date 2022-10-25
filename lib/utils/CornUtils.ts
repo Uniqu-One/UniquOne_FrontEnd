@@ -64,17 +64,6 @@ export const CornUtils = {
       .catch((err) => console.error(err));
   },
   //TODO - 포스트로 위치 옮기기
-  getMyPostList: async (token: string, pageNum: number) => {
-    return await axios.get(
-      `${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/listall/1?page=${pageNum}`,
-      {
-        headers: {
-          Authorization:
-            "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzeTQyMzUxM0BnbWFpbC5jb20iLCJpZCI6MSwibmlja05hbWUiOiLrsLDrtoDrpbjri6jrrLTsp4DsmYAzMyIsImVtYWlsIjoic3k0MjM1MTNAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImlhdCI6MTY2NjE0Nzc5MSwiZXhwIjoxNjY3MDExNzkxfQ.oAb6zW8DR6taLuPSOa5RArtVNR5r9KhFT4cvQKZRD1M",
-        },
-      }
-    );
-  },
   getRandomCornName: async () => {
     return await axios
       .get(`${process.env.NEXT_PUBLIC_URL_DK}/corns/randNick`)

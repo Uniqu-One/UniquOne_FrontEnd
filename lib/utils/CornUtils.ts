@@ -3,9 +3,14 @@ import { useInfiniteQuery, useQuery } from "react-query";
 import { cornEditData } from "../../components/corn/edit/CornEditTmp";
 
 export const CornUtils = {
-  myinfo: () => {
+  getMyinfo: (token:string) => {
+
     const fetchMyData = () => {
-      return axios.get(`${process.env.NEXT_PUBLIC_URL_AWS}/posts/corns/8`);
+      return axios.get(`${process.env.NEXT_PUBLIC_URL_AWS}/posts/corns`,{
+        headers:{
+          Authorization:token
+        }
+      });
     };
 
     const { isLoading, data, isError } = useQuery("myinfos", fetchMyData, {
@@ -49,7 +54,7 @@ export const CornUtils = {
 
     await axios({
       method: "PATCH",
-      url: `${process.env.NEXT_PUBLIC_URL_AWS}/posts/corns/8`,
+      url: `${process.env.NEXT_PUBLIC_URL_AWS}/posts/corns`,
       headers: {
         "Content-Type": "multipart/form-data",
       },

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { useRecoilValue } from "recoil";
 import { CornUtils } from "../../../lib/utils/CornUtils";
+import { TokenState } from "../../../states/recoil/TokenState";
 
 import InputFormMol from "../../common/mol/InputFormMol";
 import TopTmp from "../../common/tmp/TopTmp";
@@ -14,6 +16,7 @@ export type cornEditData = {
 };
 
 function CornEditTmp() {
+  const token = useRecoilValue(TokenState).token
   const [cornProfile, setCornProfile] = useState<cornEditData>({
     img: null,
     cornName: "",
@@ -23,7 +26,7 @@ function CornEditTmp() {
   });
   const { img, cornName, link, desc } = cornProfile;
 
-  const userData = CornUtils.myinfo();
+  const userData = CornUtils.getMyinfo(token);
 
   const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCornProfile({

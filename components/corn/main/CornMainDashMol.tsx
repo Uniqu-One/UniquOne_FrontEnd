@@ -42,7 +42,6 @@ const CornMainDashMolStyle = styled(GradiantBack)`
 function CornMainDashMol() {
 
   const DASH_MENU = ["팔로우","좋아요","유니스타","오퍼"]
-  const userData = CornUtils.myinfo()
 
 
   return (

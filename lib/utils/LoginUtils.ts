@@ -16,7 +16,7 @@ export const LoginUtils = {
   },
   getUserInfo: async (token: string) => {
     return await axios
-      .get(`${process.env.NEXT_PUBLIC_URL_DK}/commons/info`,{
+      .get(`${process.env.NEXT_PUBLIC_URL_AWS}/commons/info`,{
         headers:{
           Authorization:token
         }

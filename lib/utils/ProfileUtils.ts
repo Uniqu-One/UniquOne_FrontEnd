@@ -15,9 +15,29 @@ export type ProfileDataType = {
 }
 
 export const ProfileUtils = {
-  getProfileData: (cornId:number) => {
+  getProfileData: (token:string,userId?:string) => {
+
+
     const fetchProfile = () => {
-      return axios.get(`${process.env.NEXT_PUBLIC_URL_AWS}/posts/corns/${cornId}`);
+
+
+      if(userId){
+
+        return axios.get(`${process.env.NEXT_PUBLIC_URL_AWS}/posts/corns/${userId}`,{
+          headers:{
+            Authorization:token
+          }
+        });
+
+      } else {
+
+        return axios.get(`${process.env.NEXT_PUBLIC_URL_AWS}/posts/corns`,{
+          headers:{
+            Authorization:token
+          }
+        });
+      }
+
     };
 
     const { isLoading, data } = useQuery("profileData", fetchProfile, {

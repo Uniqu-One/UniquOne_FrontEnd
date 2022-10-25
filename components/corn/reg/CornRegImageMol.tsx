@@ -22,8 +22,6 @@ function CornRegImageMol(props: {
         dsc: cornDesc,
       };
 
-      console.log(cornData);
-
       const blob = new Blob([JSON.stringify(cornData)], {
         type: "application/json",
       });

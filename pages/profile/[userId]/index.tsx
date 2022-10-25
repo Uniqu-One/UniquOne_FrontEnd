@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { GetServerSideProps } from 'next'
 import React from 'react'
 import FooterTmp from '../../../components/common/tmp/FooterTmp'
 import TopTmp from '../../../components/common/tmp/TopTmp'
@@ -12,12 +13,12 @@ const ProfileInterVal = styled.div`
   background-color: ${color.p_gray_lt};
 `
 
-function Index() {
+function Index(props:{userId:string}) {
   return (
     <>
       <TopTmp text='userId'/>
 
-      <ProfileBoxTmp type="other"/>
+      <ProfileBoxTmp type="other" userId={props.userId}/>
     
     <ProfileInterVal/>
 
@@ -29,3 +30,14 @@ function Index() {
 }
 
 export default Index
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { query } = context;
+  const { userId } = query;
+
+  return {
+    props: {
+      userId,
+    },
+  };
+};

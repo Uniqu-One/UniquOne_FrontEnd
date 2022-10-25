@@ -54,15 +54,15 @@ function LoginFormTmp() {
   const handleLogin = async () => {
     if (next) {
       const userInfo = await LoginUtils.login(email, userPwd);
-
       const userMiniInfo = await LoginUtils.getUserInfo(userInfo.token);
 
-      if (userInfo) {
+      if (userInfo && userMiniInfo) {
         setLoginAuthState(true);
-        setUserInfo({
+        console.log(userMiniInfo)
+        setUserInfo({...{
           userId: userMiniInfo.userId,
           cornId: userMiniInfo.cornId,
-        });
+        }});
         setTokenState({ token: userInfo.token });
         router.replace({
           pathname: "/",

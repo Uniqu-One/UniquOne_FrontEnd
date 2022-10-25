@@ -1,8 +1,11 @@
 import styled from "@emotion/styled";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { toast, Toaster } from "react-hot-toast";
+import { useRecoilValue } from "recoil";
 import { ProfileUtils } from "../../lib/utils/ProfileUtils";
+import { TokenState } from "../../states/recoil/TokenState";
 import { color, styleColor } from "../../styles/theme";
 import BtnTmp from "../common/tmp/BtnTmp";
 import ProfileBoxTopMol from "./ProfileBoxTopMol";
@@ -32,12 +35,12 @@ const ProfileBoxTmpStyle = styled.div`
   }
 `;
 
-function ProfileBoxTmp(props: { type: string }) {
+function ProfileBoxTmp(props: { type: string,userId : string }) {
+  const token = useRecoilValue(TokenState).token
+  const {type,userId} = props
   const [followStatus, setFollowStatus] = useState(false);
   const toastSuccess = () => toast.success("팔로우를 하였습니다!");
   const toastError = () => toast.error("팔로우를 취소했습니다.");
-
-
 
   const handleFollowBtn = () => {
     if (followStatus === false) {
@@ -50,15 +53,17 @@ function ProfileBoxTmp(props: { type: string }) {
   };
 
   //TODO - 라우팅으로 밝혀내야함
-  const profileBoxData = ProfileUtils.getProfileData(8);
+  const profileBoxData = ProfileUtils.getProfileData(token,userId);
 
-
-
-
+  console.log(profileBoxData)
 
   if (profileBoxData === "Loading") {
     return <div>로딩중</div>;
-  } else {
+  } else if(profileBoxData === undefined){
+    return <div>유저 정보가 없습니다.</div>
+  } 
+  
+  else {
     return (
       <>
         <Toaster />

@@ -89,13 +89,13 @@ function CornPostUploadIconOrg(props: {
   };
 
   const handleClickInput = () => {
+    
     if (imageInput.current !== null) {
       imageInput.current.click();
     }
   };
 
   const handleRemoveImage = () => {
-    //TODO - 정말 삭제하시겠습니까?
 
     setImgSrc("");
     setImages((prev: File[] | null[]) => {
@@ -118,8 +118,6 @@ function CornPostUploadIconOrg(props: {
           key={String(idx)}
           layoutId={String(idx)}
         >
-
-
 
           {imageSrc === "" && (
             <div className="icon" onClick={handleClickInput}>

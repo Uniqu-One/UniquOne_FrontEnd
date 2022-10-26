@@ -29,7 +29,7 @@ function CommentMyFuncMol(props: {
     if(await CommentUtils.deleteMyComment(token,commentId)){
       setTempParent(0)
     } else {
-      console.log('댓글 지우기 실패')
+      // console.log('댓글 지우기 실패')
     }
   };
 

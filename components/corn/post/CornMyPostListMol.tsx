@@ -4,8 +4,8 @@ import { useInView } from "framer-motion";
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 import { useRecoilValue } from "recoil";
-import { CornUtils } from "../../../lib/utils/CornUtils";
 import { TokenState } from "../../../states/recoil/TokenState";
+import { UserInfoState } from "../../../states/recoil/UserInfoState";
 import LoadingSpinnerAtm from "../../common/atm/LoadingSpinnerAtm";
 import PostLgOrg from "../../common/org/PostLgOrg";
 
@@ -27,8 +27,9 @@ const CornMyPostListMolStyle = styled.div`
 
 function CornMyPostListMol() {
   const token = useRecoilValue(TokenState).token;
+  const cornId = useRecoilValue(UserInfoState).cornId
 
-  const [pageNum, setPageNum] = useState(0);
+  const [pageNum, setPageNum] = useState(-1);
   const [myPostData, setMyPostData] = useState<
     { postId: number; postImg: string }[] | undefined
   >();
@@ -39,34 +40,38 @@ function CornMyPostListMol() {
   });
 
   useEffect(() => {
+
     if (isView === false) {
       setPageNum(pageNum + 1);
     }
+
   }, [isView]);
 
   const setMyData = async () => {
-    console.log(pageNum);
-    const data = await axios.get(
-      `${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/listall/1?page=${pageNum}`,
+
+    const myPostListdata = await axios.get(
+      `${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/listall/${cornId}?page=${pageNum}`,
       {
         headers: {
-          Authorization:
-            "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzeTQyMzUxM0BnbWFpbC5jb20iLCJpZCI6MSwibmlja05hbWUiOiLrsLDrtoDrpbjri6jrrLTsp4DsmYAzMyIsImVtYWlsIjoic3k0MjM1MTNAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImlhdCI6MTY2NjE0Nzc5MSwiZXhwIjoxNjY3MDExNzkxfQ.oAb6zW8DR6taLuPSOa5RArtVNR5r9KhFT4cvQKZRD1M",
+          Authorization: token,
         },
       }
-    );
+    ).then(res => {
+      return res.data.data.content[0]
+    });
 
     if (myPostData === undefined) {
-      setMyPostData(data.data.data.content[0]);
+      setMyPostData(myPostListdata);
     } else if (myPostData !== undefined) {
-      console.log(myPostData);
-      setMyPostData([...myPostData, ...data.data.data.content[0]]);
+      setMyPostData([...myPostData, ...myPostListdata]);
     }
   };
 
   useEffect(() => {
-    setMyData();
-  }, [pageNum]);
+    if(cornId){
+      setMyData();
+    }
+  }, [pageNum,cornId]);
 
   return (
     <CornMyPostListMolStyle>

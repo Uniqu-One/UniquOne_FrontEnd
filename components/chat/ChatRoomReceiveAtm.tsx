@@ -32,14 +32,14 @@ const ChatRoomReceiveAtmStyle = styled.div`
       position: absolute;
       font-size: 0.875rem;
       color: ${color.p_gray_md};
-      right: -56px;
+      right: -68px;
       bottom: 3px;
     }
   }
 
 `;
 
-function ChatRoomReceiveAtm(props:{text:string}) {
+function ChatRoomReceiveAtm(props:{text:string, regTime:string}) {
   return (
     <>
       <ChatRoomReceiveAtmStyle>
@@ -53,7 +53,7 @@ function ChatRoomReceiveAtm(props:{text:string}) {
         </div>
         <div className="chat">
           <div className="bubble"><p>{props.text}</p></div>
-          <div className="time"><p>오후 9:56</p></div>
+          <div className="time"><p>{props.regTime}</p></div>
         </div>
       </ChatRoomReceiveAtmStyle>
     </>

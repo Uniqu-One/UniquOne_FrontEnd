@@ -5,9 +5,7 @@ import CornMyPostListMol from './CornMyPostListMol'
 function CornMyPostListTmp() {
 
   return (
-    <div >
       <CornMyPostListMol/>      
-    </div>
   )
 }
 

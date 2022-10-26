@@ -81,6 +81,36 @@ function BottomSheetRadioMol(props: {
     }
   };
 
+  
+  const sizeList = ["S","M","L","XL","FR"]
+
+  if(props.tempMenu === "productSize"){
+    return         <BottomSheetRadioMolStyle>
+    <div>
+      <h3>정렬</h3>
+    </div>
+    <div>
+      {sizeList.map((menu, idx) => {
+        return (
+          <label
+            key={idx}
+            htmlFor={menu}
+            onClick={() => handleChangeIdx(menu, idx)}
+          >
+            <input
+              type="radio"
+              name={menu}
+              value={menu}
+              checked={postData.category === menu ? true : false}
+              readOnly
+            />
+            <p>{menu}</p>
+          </label>
+        );
+      })}
+    </div>
+  </BottomSheetRadioMolStyle>
+  }
 
   const reportMenuList = [
     ["선정적이거나 혐오감을 주는 포스트에요", "BAD_POST"],

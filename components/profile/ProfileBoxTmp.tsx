@@ -51,7 +51,7 @@ function ProfileBoxTmp(props: { type: string,userId ?: string }) {
     }
   };
 
-  //TODO - 라우팅으로 밝혀내야함
+  //TODO - cornID로 변경해야함
   const profileBoxData = ProfileUtils.getProfileData(token,userId);
 
   console.log(profileBoxData)

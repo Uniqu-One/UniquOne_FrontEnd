@@ -4,8 +4,30 @@ import { postDataType } from "./../../types/postDataType";
 
 export const PostUtils = {
   canPostUpload: (postUploadData: postDataType) => {
-    const { imgList, desc, tags, type, category, condition, look, color } =
-      postUploadData;
+    const {
+      title,
+      imgList,
+      desc,
+      tags,
+      type,
+      category,
+      condition,
+      look,
+      color,
+      productSize,
+      price,
+    } = postUploadData;
+
+    if (title === "") {
+      return false;
+    }
+
+    if (productSize === "") {
+      return false;
+    }
+    if (productSize === "") {
+      return false;
+    }
 
     if (imgList === null) {
       return false;
@@ -42,8 +64,19 @@ export const PostUtils = {
     return true;
   },
   registerPost: async (token: string, postUploadData: postDataType) => {
-    const { imgList, desc, tags, type, category, condition, look, color } =
-      postUploadData;
+    const {
+      imgList,
+      title,
+      desc,
+      tags,
+      postType,
+      category,
+      condition,
+      look,
+      color,
+      productSize,
+      price,
+    } = postUploadData;
 
     const clearImgList: File[] = [];
     if (imgList !== null) {
@@ -59,7 +92,11 @@ export const PostUtils = {
       formData.append("imgfilelist", image);
     });
 
+    //TODO - any 수정 indexing 처리 해야함
+    let engType: any = { 판매중: "SALE", 나눔: "SHARE", 스타일: "STYLE" };
+
     const postDatas = {
+      title: title,
       dsc: desc,
       postTagLine: tags,
       postType: "SALE",
@@ -67,6 +104,8 @@ export const PostUtils = {
       conditions: condition,
       lookLine: look.join(","),
       color: color.join(","),
+      productSize: productSize,
+      price: price,
     };
 
     const blob = new Blob([JSON.stringify(postDatas)], {
@@ -75,26 +114,16 @@ export const PostUtils = {
 
     formData.append("postInputDto", blob);
 
+    console.log(postDatas);
+
     for (let i of formData) {
       console.log(i);
     }
 
-    // return await axios({
-    //   method: "POST",
-    //   url: `${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/reg`,
-    //   headers: {
-    //     Authorization:
-    //       "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzeTQyMzUxM0BnbWFpbC5jb20iLCJpZCI6MSwibmlja05hbWUiOiLrsLDrtoDrpbjri6jrrLTsp4DsmYAzMyIsImVtYWlsIjoic3k0MjM1MTNAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImlhdCI6MTY2NjE0Nzc5MSwiZXhwIjoxNjY3MDExNzkxfQ.oAb6zW8DR6taLuPSOa5RArtVNR5r9KhFT4cvQKZRD1M",
-    //     "Content-Type": "multipart/form-data",
-    //   },
-    //   data: formData,
-    // });
-
     return await axios
       .post(`${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/reg`, formData, {
         headers: {
-          Authorization:
-            "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzeTQyMzUxM0BnbWFpbC5jb20iLCJpZCI6MSwibmlja05hbWUiOiLrsLDrtoDrpbjri6jrrLTsp4DsmYAzMyIsImVtYWlsIjoic3k0MjM1MTNAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImlhdCI6MTY2NjE0Nzc5MSwiZXhwIjoxNjY3MDExNzkxfQ.oAb6zW8DR6taLuPSOa5RArtVNR5r9KhFT4cvQKZRD1M",
+          Authorization: token,
           "Content-Type": "multipart/form-data",
         },
       })
@@ -115,13 +144,14 @@ export const PostUtils = {
       return undefined;
     }
 
+    //token
+
     const fetchData = () =>
       axios.get(
         `${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/mod/${postId}`,
         {
           headers: {
-            Authorization:
-              "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzeTQyMzUxM0BnbWFpbC5jb20iLCJpZCI6MSwibmlja05hbWUiOiLrsLDrtoDrpbjri6jrrLTsp4DsmYAzMyIsImVtYWlsIjoic3k0MjM1MTNAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImlhdCI6MTY2NjE0Nzc5MSwiZXhwIjoxNjY3MDExNzkxfQ.oAb6zW8DR6taLuPSOa5RArtVNR5r9KhFT4cvQKZRD1M",
+            Authorization: token,
           },
         }
       );
@@ -133,8 +163,10 @@ export const PostUtils = {
         select: (data) => {
           const editData = data.data.data;
 
+          console.log(editData)
           const newEditData: postDataType = {
             imgList: [null, null, null, null, null],
+            postType: "",
             title: "",
             desc: "",
             tags: "",
@@ -142,6 +174,7 @@ export const PostUtils = {
             category: "",
             condition: "",
             price: "",
+            productSize: "",
 
             look: [],
             color: [],
@@ -153,9 +186,18 @@ export const PostUtils = {
           newEditData.desc = editData.dsc;
           newEditData.look = editData.lookList;
           newEditData.tags = editData.postTagNameList.join("");
+          newEditData.title = editData.title;
+          newEditData.price = editData.price;
+          newEditData.productSize = editData.productSize;
+
           if (editData.postType === "SALE") {
             newEditData.type = "판매중";
+          } else if (editData.postType === "SHARE") {
+            newEditData.type = "나눔";
+          } else if (editData.postType === "STYLE") {
+            newEditData.type = "스타일";
           }
+
           newEditData.imgList = editData.postImgList;
 
           return newEditData;
@@ -228,61 +270,63 @@ export const PostUtils = {
         }
       )
       .then((res) => {
-        console.log(res)
-        return true
+        console.log(res);
+        return true;
       })
       .catch((err) => {
-        console.error(err)
+        console.error(err);
         return false;
       });
   },
   getMyPostList: async (token: string, pageNum: number) => {
-    return await axios.get(
-      `${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/listall/1?page=${pageNum}`,
-      {
-        headers: {
-          Authorization:
-            "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzeTQyMzUxM0BnbWFpbC5jb20iLCJpZCI6MSwibmlja05hbWUiOiLrsLDrtoDrpbjri6jrrLTsp4DsmYAzMyIsImVtYWlsIjoic3k0MjM1MTNAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImlhdCI6MTY2NjE0Nzc5MSwiZXhwIjoxNjY3MDExNzkxfQ.oAb6zW8DR6taLuPSOa5RArtVNR5r9KhFT4cvQKZRD1M",
-        },
-      }
-    ).then(res => {
-      // console.log(res.data.data.content[0])
-      return res.data.data.content[0]
-    })
-    .catch(err => console.error(err))
+    return await axios
+      .get(
+        `${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/listall/1?page=${pageNum}`,
+        {
+          headers: {
+            Authorization:
+              "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzeTQyMzUxM0BnbWFpbC5jb20iLCJpZCI6MSwibmlja05hbWUiOiLrsLDrtoDrpbjri6jrrLTsp4DsmYAzMyIsImVtYWlsIjoic3k0MjM1MTNAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImlhdCI6MTY2NjE0Nzc5MSwiZXhwIjoxNjY3MDExNzkxfQ.oAb6zW8DR6taLuPSOa5RArtVNR5r9KhFT4cvQKZRD1M",
+          },
+        }
+      )
+      .then((res) => {
+        // console.log(res.data.data.content[0])
+        return res.data.data.content[0];
+      })
+      .catch((err) => console.error(err));
   },
   getMySellPostList: async (token: string, pageNum: number) => {
-
-    return await axios.get(
-      `${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/listproduct/1?page=${pageNum}`,
-      {
-        headers: {
-          Authorization:
-            "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzeTQyMzUxM0BnbWFpbC5jb20iLCJpZCI6MSwibmlja05hbWUiOiLrsLDrtoDrpbjri6jrrLTsp4DsmYAzMyIsImVtYWlsIjoic3k0MjM1MTNAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImlhdCI6MTY2NjE0Nzc5MSwiZXhwIjoxNjY3MDExNzkxfQ.oAb6zW8DR6taLuPSOa5RArtVNR5r9KhFT4cvQKZRD1M",
-        },
-      }
-    ).then(res => {
-      // console.log(res.data.data.content[0])
-      return res.data.data.content[0]
-    })
-    .catch(err => console.error(err))
-
+    return await axios
+      .get(
+        `${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/listproduct/1?page=${pageNum}`,
+        {
+          headers: {
+            Authorization:
+              "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzeTQyMzUxM0BnbWFpbC5jb20iLCJpZCI6MSwibmlja05hbWUiOiLrsLDrtoDrpbjri6jrrLTsp4DsmYAzMyIsImVtYWlsIjoic3k0MjM1MTNAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImlhdCI6MTY2NjE0Nzc5MSwiZXhwIjoxNjY3MDExNzkxfQ.oAb6zW8DR6taLuPSOa5RArtVNR5r9KhFT4cvQKZRD1M",
+          },
+        }
+      )
+      .then((res) => {
+        // console.log(res.data.data.content[0])
+        return res.data.data.content[0];
+      })
+      .catch((err) => console.error(err));
   },
   getMyStylePostList: async (token: string, pageNum: number) => {
-    
-    return await axios.get(
-      `${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/liststyle/1?page=${pageNum}`,
-      {
-        headers: {
-          Authorization:
-            "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzeTQyMzUxM0BnbWFpbC5jb20iLCJpZCI6MSwibmlja05hbWUiOiLrsLDrtoDrpbjri6jrrLTsp4DsmYAzMyIsImVtYWlsIjoic3k0MjM1MTNAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImlhdCI6MTY2NjE0Nzc5MSwiZXhwIjoxNjY3MDExNzkxfQ.oAb6zW8DR6taLuPSOa5RArtVNR5r9KhFT4cvQKZRD1M",
-        },
-      }
-    ).then(res => {
-      // console.log(res.data.data.content[0])
-      return res.data.data.content[0]
-    })
-    .catch(err => console.error(err))
-
-  }
+    return await axios
+      .get(
+        `${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/liststyle/1?page=${pageNum}`,
+        {
+          headers: {
+            Authorization:
+              "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzeTQyMzUxM0BnbWFpbC5jb20iLCJpZCI6MSwibmlja05hbWUiOiLrsLDrtoDrpbjri6jrrLTsp4DsmYAzMyIsImVtYWlsIjoic3k0MjM1MTNAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImlhdCI6MTY2NjE0Nzc5MSwiZXhwIjoxNjY3MDExNzkxfQ.oAb6zW8DR6taLuPSOa5RArtVNR5r9KhFT4cvQKZRD1M",
+          },
+        }
+      )
+      .then((res) => {
+        // console.log(res.data.data.content[0])
+        return res.data.data.content[0];
+      })
+      .catch((err) => console.error(err));
+  },
 };

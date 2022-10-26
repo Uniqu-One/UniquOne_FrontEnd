@@ -59,7 +59,7 @@ function CommentTmp(props: { postId: string }) {
         userId={userId.userId}
       />
 
-      {tempParent && (
+      {(tempParent !== 0) && (
         <CommentTempParentModalMol
           tempParent={tempParent}
           setTempParent={setTempParent}

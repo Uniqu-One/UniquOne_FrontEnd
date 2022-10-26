@@ -1,12 +1,17 @@
 import axios from "axios";
 import { useRouter } from "next/router";
 import React from "react";
+import { useRecoilValue } from "recoil";
+import { CornUtils } from "../../../lib/utils/CornUtils";
+import { TokenState } from "../../../states/recoil/TokenState";
+import { UserInfoState } from "../../../states/recoil/UserInfoState";
 import BtnTmp from "../../common/tmp/BtnTmp";
 
 function CornRegImageMol(props: {
   inputs: { cornName: string; cornDesc: string };
   imgFile?: File;
 }) {
+  const token = useRecoilValue(TokenState).token
   const { cornName, cornDesc } = props.inputs;
   const imgfile = props.imgFile;
 
@@ -17,7 +22,6 @@ function CornRegImageMol(props: {
       const formData = new FormData();
       formData.append("imgfile", imgfile);
       const cornData = {
-        userId: 13,
         title: cornName,
         dsc: cornDesc,
       };
@@ -28,24 +32,15 @@ function CornRegImageMol(props: {
 
       formData.append("cornCreateDto", blob);
 
-      await axios({
-        method: "POST",
-        url: `${process.env.NEXT_PUBLIC_URL_AWS}/posts/corns`,
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-        data: formData,
-      })
-        .then((res) => {
-          if (res.status === 200) {
-            handleRegCorn();
-          }
-        })
-        .catch((err) => console.log(err));
+      if(await CornUtils.postCornAccount(token,formData)){
+        changeRegRedirectPage();
+      } else {
+        console.log('콘 등록 실패')
+      }
     }
   };
 
-  const handleRegCorn = () => {
+  const changeRegRedirectPage = () => {
     router.replace("/redirect/corn");
   };
 

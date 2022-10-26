@@ -19,18 +19,17 @@ export const ProfileUtils = {
 
     const fetchProfile = () => {
 
-
       if(userId){
-
-        return axios.get(`${process.env.NEXT_PUBLIC_URL_SB}/posts/corns/${userId}`,{
+        //타인 프로필 데이터
+        return axios.get(`${process.env.NEXT_PUBLIC_URL_AWS}/posts/corns/${userId}`,{
           headers:{
             Authorization:token
           }
         });
 
       } else {
-
-        return axios.get(`${process.env.NEXT_PUBLIC_URL_SB}/posts/corns`,{
+      //나의 프로필 데이터
+        return axios.get(`${process.env.NEXT_PUBLIC_URL_AWS}/posts/corns`,{
           headers:{
             Authorization:token
           }
@@ -54,24 +53,5 @@ export const ProfileUtils = {
 
     return data;
   },
-  getMyProfileData: () => {
-    const fetchProfile = () => {
-      return axios.get(`${process.env.NEXT_PUBLIC_URL_AWS}/posts/corns/1`);
-    };
 
-    const { isLoading, data } = useQuery("profileData", fetchProfile, {
-      staleTime: 5000,
-      refetchOnWindowFocus: false,
-      select: (data) => {
-        const userData = data.data.data;
-        return userData;
-      },
-    });
-
-    if (isLoading) {
-      return "Loading";
-    }
-
-    return data;
-  },
 };

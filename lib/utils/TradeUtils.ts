@@ -30,7 +30,7 @@ export const TradeUtils = {
   getPurchaseList: () => {
     
     const fetchPruchaseListData = () => {
-      return axios.get(`${process.env.NEXT_PUBLIC_URL_SY}/trade/buy`, {
+      return axios.get(`${process.env.NEXT_PUBLIC_URL_AWS}/trade/buy`, {
         headers: {
           Authorization:
             "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzeTQyMzVAZ21haWwuY29tIiwiaWQiOjIsIm5pY2tOYW1lIjoi66mL7KeEIOycoOuLiOy9mOuTpCIsImVtYWlsIjoic3k0MjM1QGdtYWlsLmNvbSIsInJvbGUiOiJST0xFX1VTRVIiLCJpYXQiOjE2NjYyMjY2NzAsImV4cCI6MTY2NzA5MDY3MH0.BP4sX3hZL6hjeZPu94FfcxjBeCSatmF4gHKAz-s3xUg",
@@ -54,7 +54,7 @@ export const TradeUtils = {
   getSellList: () => {
     
     const fetchSellListData = () => {
-      return axios.get(`${process.env.NEXT_PUBLIC_URL_SY}/trade/sell`, {
+      return axios.get(`${process.env.NEXT_PUBLIC_URL_AWS}/trade/sell`, {
         headers: {
           Authorization:
             "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzeTQyMzVAZ21haWwuY29tIiwiaWQiOjIsIm5pY2tOYW1lIjoi66mL7KeEIOycoOuLiOy9mOuTpCIsImVtYWlsIjoic3k0MjM1QGdtYWlsLmNvbSIsInJvbGUiOiJST0xFX1VTRVIiLCJpYXQiOjE2NjYyMjY2NzAsImV4cCI6MTY2NzA5MDY3MH0.BP4sX3hZL6hjeZPu94FfcxjBeCSatmF4gHKAz-s3xUg",

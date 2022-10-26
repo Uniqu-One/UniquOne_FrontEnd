@@ -19,27 +19,21 @@ const CornPostTmpStyle = styled.div`
   padding-bottom: 60px;
 `;
 
-
-function CornPostTmp(props:{postId?:string}) {
-
-  const router = useRouter()
-  const token = useRecoilValue(TokenState).token
-  const {postId} = props
+function CornPostTmp(props: { postId?: string }) {
+  const router = useRouter();
+  const token = useRecoilValue(TokenState).token;
+  const { postId } = props;
 
   const [postData, setPostData] = useRecoilState(CornPostState);
   const [buttonStatus, setButtonStatus] = useState(false);
 
-  const editPostData = PostUtils.getEditPostDatas(token,postId)
-  
-  console.log(postData)
-
+  const editPostData = PostUtils.getEditPostDatas(token, postId);
 
   useEffect(() => {
-
-    if(router.query.postId && editPostData){
-      setPostData({...editPostData})
+    if (router.query.postId && editPostData) {
+      setPostData({ ...editPostData });
     }
-  },[router.query,editPostData])
+  }, [router.query, editPostData]);
 
   useEffect(() => {
     if (
@@ -55,19 +49,19 @@ function CornPostTmp(props:{postId?:string}) {
     }
   }, [postData]);
 
-
   useEvaIcon();
 
   return (
     <>
       <CornPostTmpStyle>
         <CornPostUploadIconMol />
-        <CornPostTitleInputMol/>
+        <CornPostTitleInputMol />
         <CornPostDescInputMolStyle />
         <CornPostTagsInputMol />
         <CornPostDetailsOrg />
       </CornPostTmpStyle>
-      <CornPostRegMol buttonStatus={buttonStatus} postId={postId}/>
+
+      <CornPostRegMol buttonStatus={buttonStatus} postId={postId} />
     </>
   );
 }

@@ -23,7 +23,6 @@ export const ChatUtils = {
       });
   },
   presentChat: async (token: string, postId: string | number) => {
-    //userId 받아야함,
 
     return await axios
       .post(

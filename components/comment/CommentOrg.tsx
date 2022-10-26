@@ -104,12 +104,12 @@ function CommentOrg(props: {
   };
 
   useEffect(() => {
-
+    console.log(temp)
     if(temp > 0){
       setTempParent(-1)
     }
 
-    if (temp > 0.25) {
+    if (temp > 0.25 || temp === 0) {
       setTimeout(() => {
         // @ts-ignore
         sliderRef?.current?.slickGoTo(0);

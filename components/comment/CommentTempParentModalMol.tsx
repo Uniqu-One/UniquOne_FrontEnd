@@ -4,7 +4,6 @@ import useEvaIcon from "../../lib/hooks/useEvaIcon";
 import { color } from "../../styles/theme";
 
 const CommentTempParentModalMolStyle = styled.div`
-
   position: fixed;
   height: 42px;
   margin-top: 42px;
@@ -34,7 +33,11 @@ function CommentTempParentModalMol(props: {
   return (
     <CommentTempParentModalMolStyle>
       <div>
-        <p>{tempParent}님에게 답글 남기는 중</p>
+        {tempParent === -1 ? (
+          <p>{tempParent}내 댓글 수정중</p>
+        ) : (
+          <p>{tempParent}님에게 답글 남기는 중</p>
+        )}
       </div>
       <div onClick={() => setTempParent(0)}>
         <i data-eva="close-outline"></i>

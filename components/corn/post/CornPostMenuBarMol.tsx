@@ -8,7 +8,7 @@ import { color } from "../../../styles/theme";
 import { postDataType } from "../../../types/postDataType";
 import BottomSheetRadioMol from "../../bottom_sheet/BottomSheetRadioMol";
 
-const CornPostMenuBarAtmStyle = styled.div`
+const CornPostMenuBarMolStyle = styled.div`
   color: ${color.p_gray_dk};
   line-height: 36px;
   height: 36px;
@@ -25,7 +25,7 @@ const CornPostMenuBarAtmStyle = styled.div`
   }
 `;
 
-function CornPostMenuBarAtm(props: {
+function CornPostMenuBarMol(props: {
   menu: { title: string; select: string | string[]; name: string };
 }) {
   useEvaIcon();
@@ -35,7 +35,6 @@ function CornPostMenuBarAtm(props: {
   const { title, select, name } = props.menu;
 
   const [tempMenu, setTempMenu] = useState("");
-
   const handleOpenSelect = (name: string) => {
     setOpen((prev) => !prev);
     setTempMenu(name);
@@ -59,7 +58,7 @@ function CornPostMenuBarAtm(props: {
 
   return (
     <>
-      <CornPostMenuBarAtmStyle onClick={() => handleOpenSelect(name)}>
+      <CornPostMenuBarMolStyle onClick={() => handleOpenSelect(name)}>
         <div>
           <h4>{title}</h4>
         </div>
@@ -77,7 +76,7 @@ function CornPostMenuBarAtm(props: {
           </p>
           <i data-eva="arrow-ios-forward-outline"></i>
         </div>
-      </CornPostMenuBarAtmStyle>
+      </CornPostMenuBarMolStyle>
 
       <BottomSheet open={open} onDismiss={() => setOpen(false)}>
         <BottomSheetRadioMol
@@ -90,4 +89,4 @@ function CornPostMenuBarAtm(props: {
   );
 }
 
-export default CornPostMenuBarAtm;
+export default CornPostMenuBarMol;

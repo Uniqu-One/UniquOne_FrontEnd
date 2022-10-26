@@ -13,11 +13,10 @@ export const SignupUtils = {
     const checkStatus = await axios
       .post(`${process.env.NEXT_PUBLIC_URL_AWS}/auth/check`, { email, code })
       .then((res) => {
-        console.log(res)
+        console.log(res);
         if (res.status === 200) {
           return true;
         }
-        
       })
       .catch((err) => {
         console.error(err);
@@ -29,7 +28,7 @@ export const SignupUtils = {
     return checkStatus;
   },
 
-  makeRandomWord: async () => {
+  makeRandomNickName: async () => {
     return await axios
       .get(`${process.env.NEXT_PUBLIC_URL_AWS}/signup/randNick`)
       .then((res) => {
@@ -38,7 +37,7 @@ export const SignupUtils = {
       .catch((err) => console.error(err));
   },
 
-  checkNickName: async (nickName: string) => {
+  checkOverlapNickName: async (nickName: string) => {
     return await axios
       .get(`${process.env.NEXT_PUBLIC_URL_AWS}/auth/${nickName}/exist`)
       .then((res) => {
@@ -50,7 +49,7 @@ export const SignupUtils = {
       });
   },
 
-  signup: async (signupInput: {
+  signupAccount: async (signupInput: {
     email: string;
     userPwd: string;
     nickName: string;
@@ -66,6 +65,19 @@ export const SignupUtils = {
         nickname,
       })
       .then((res) => {
+        return true;
+      })
+      .catch((err) => {
+        console.error(err);
+        return false;
+      });
+  },
+
+  checkOverlapEmail: async (email: string) => {
+    return await axios
+      .get(`${process.env.NEXT_PUBLIC_URL_AWS}/signup/${email}/exist`)
+      .then((res) => {
+        console.log(res);
         return true;
       })
       .catch((err) => {

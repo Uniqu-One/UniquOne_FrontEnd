@@ -2,7 +2,7 @@ import axios from "axios";
 export const CommentUtils = {
   getCommentList: async (token: string, postId: string) => {
     return await axios
-      .get(`${process.env.NEXT_PUBLIC_URL_DK}/comment/${postId}`, {
+      .get(`${process.env.NEXT_PUBLIC_URL_AWS}/comment/${postId}`, {
         headers: {
           Authorization: token,
         },
@@ -20,7 +20,7 @@ export const CommentUtils = {
   ) => {
     await axios
       .post(
-        `${process.env.NEXT_PUBLIC_URL_DK}/comment`,
+        `${process.env.NEXT_PUBLIC_URL_AWS}/comment`,
         {
           postId,
           content: inputText,
@@ -42,7 +42,7 @@ export const CommentUtils = {
   ) => {
     await axios
       .post(
-        `${process.env.NEXT_PUBLIC_URL_DK}/comment`,
+        `${process.env.NEXT_PUBLIC_URL_AWS}/comment`,
         {
           postId,
           parentId,
@@ -59,7 +59,7 @@ export const CommentUtils = {
   },
   deleteMyComment: async (token: string, commentId: number) => {
     return await axios
-      .delete(`${process.env.NEXT_PUBLIC_URL_DK}/comment/${commentId}`, {
+      .delete(`${process.env.NEXT_PUBLIC_URL_AWS}/comment/${commentId}`, {
         headers: {
           Authorization: token,
         },

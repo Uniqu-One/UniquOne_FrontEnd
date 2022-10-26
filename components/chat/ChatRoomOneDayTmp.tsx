@@ -32,10 +32,10 @@ function ChatRoomOneDayTmp(props: {
         {chatData !== undefined &&
           chatData.map((chat, idx) => {
             if (chat.senderId === userId) {
-              return <ChatRoomSendAtm key={idx} text={chat.message} />;
+              return <ChatRoomSendAtm key={idx} text={chat.message} regTime={chat.regTime}/>;
             } else {
               {
-                return <ChatRoomReceiveAtm key={idx} text={chat.message} />;
+                return <ChatRoomReceiveAtm key={idx} text={chat.message} regTime={chat.regTime}/>;
               }
             }
           })}

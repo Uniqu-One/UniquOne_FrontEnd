@@ -13,7 +13,7 @@ const ChatRoomSendAtmStyle = styled.div`
   }
 
   .bubble {
-    margin-left: 12px;
+    margin-left: 20px;
     max-width: calc(100vw - 130px);
     padding: 12px;
     background-color: ${color.p_pruple};
@@ -24,7 +24,6 @@ const ChatRoomSendAtmStyle = styled.div`
   .time{
     p{
       position: absolute;
-      
       font-size: 0.875rem;
       color: ${color.p_gray_md};
       margin-left: -48px;
@@ -35,12 +34,12 @@ const ChatRoomSendAtmStyle = styled.div`
 
 `;
 
-function ChatRoomSendAtm(props:{text:string}) {
+function ChatRoomSendAtm(props:{text:string, regTime:string}) {
   return (
     <>
       <ChatRoomSendAtmStyle>
         <div className="chat">
-        <div className="time"><p>오후 9:56</p></div>
+        <div className="time"><p>{props.regTime}</p></div>
           <div className="bubble"><p>{props.text}</p></div>
         </div>
       </ChatRoomSendAtmStyle>

@@ -53,7 +53,7 @@ function ThreeDotMol(props: { postId: string | number }) {
       setReportMenu(false);
       setReportOk(true);
     }
-    console.log("신고 진행");
+    // console.log("신고 진행");
   };
   return (
     <>

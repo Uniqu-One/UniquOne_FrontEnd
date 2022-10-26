@@ -11,9 +11,10 @@ import { TokenState } from "../../states/recoil/TokenState";
 import { UserInfoState } from "../../states/recoil/UserInfoState";
 
 export type chatDataType = {
-  senderId: number;
+  senderId: number | string;
   message: string;
-  regDate: string;
+  regTime: string;
+  date:string;
 };
 
 function ChatRoomTmp() {
@@ -21,12 +22,14 @@ function ChatRoomTmp() {
   let reconnect = 0;
   const router = useRouter();
   const token = useRecoilValue(TokenState).token;
-  const userId = useRecoilValue(UserInfoState).userId
+  const userId = useRecoilValue(UserInfoState).userId;
 
   const [chatData, setChatData] = useState<chatDataType[]>([]);
   const [roomId, setRoomId] = useState("");
   const [ws, setWs] = useState<CompatClient>();
   const scrollRef = useRef<null | HTMLDivElement>(null);
+
+  console.log(chatData);
 
   const connect = async () => {
     if (ws !== undefined) {
@@ -36,9 +39,15 @@ function ChatRoomTmp() {
           ws.subscribe(
             `/sub/chat/room/${router.query.roomId}`,
             (recMessage: { body: string }) => {
+              console.log(roomId, "룸 아이디");
               let recv = JSON.parse(recMessage.body);
-              const { message, senderId, regDate } = recv;
-              setChatData((prev) => [...prev, { message, senderId, regDate }]);
+              console.log(recv, "here");
+              const { senderId, message, date, regTime } = recv;
+
+              setChatData((prev) => [
+                ...prev,
+                { senderId, message, date, regTime },
+              ]);
             }
           );
 

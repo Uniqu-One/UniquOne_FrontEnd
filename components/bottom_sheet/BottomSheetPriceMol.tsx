@@ -67,8 +67,6 @@ function BottomSheetPriceMol(props: { setOpen: Function; type?: string }) {
     }
   }, []);
 
-  console.log(tempSelect)
-
   return (
     <>
       <BottomSheetPriceMolStyle>

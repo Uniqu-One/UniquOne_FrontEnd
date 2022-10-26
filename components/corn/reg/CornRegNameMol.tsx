@@ -12,7 +12,7 @@ function CornRegNameMol(props: CornInputTypes) {
   const { inputs, setInputs, onChangeValue, setCornPage,showErrorToast } = props;
 
   const hanleMakeNewWord = async () => {
-    const notify = () => toast.success("아이디가 자동생성완료되었습니다!");
+    const notify = () => toast.success("콘네임이 자동생성완료되었습니다!");
     notify();
 
     const newWords = await CornUtils.getRandomCornName()

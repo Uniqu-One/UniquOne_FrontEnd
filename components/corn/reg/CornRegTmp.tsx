@@ -51,9 +51,6 @@ function CornRegTmp() {
     toast.error(text);
   };
 
-  const showSuccessToast = (text: string) => {
-    toast.error(text);
-  };
 
   return (
     <>

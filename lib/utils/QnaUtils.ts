@@ -6,7 +6,7 @@ export const QnaUtils = {
 
   getMyQna: (token: string) => {
     const fetchQnaData = () => {
-      return axios.get(`${process.env.NEXT_PUBLIC_URL_SY}/qna`, {
+      return axios.get(`${process.env.NEXT_PUBLIC_URL_AWS}/qna`, {
         headers: {
           Authorization: token,
         },
@@ -29,7 +29,7 @@ export const QnaUtils = {
     newPostQnaData.questionType = type;
 
     return await axios
-      .post(`${process.env.NEXT_PUBLIC_URL_SY}/qna`, newPostQnaData, {
+      .post(`${process.env.NEXT_PUBLIC_URL_AWS}/qna`, newPostQnaData, {
         headers: {
           Authorization:
             token

@@ -66,7 +66,6 @@ function ReviewCardMol(props: { review: reviewListType }) {
     userNickName,
   } = props.review;
 
-  console.log(cornImg);
 
   return (
     <>

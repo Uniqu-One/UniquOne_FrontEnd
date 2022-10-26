@@ -52,14 +52,15 @@ const MyTradeBoxMolStyle = styled.div`
   }
 `;
 
-function MyTradeBoxMol(props: { data: purchaseDataType }) {
+function MyTradeBoxMol(props: {
+  data: purchaseDataType;
+  setReviewModal: Function;
+  setTempTradeId: Function;
+  setPostId:Function
+}) {
   useEvaIcon();
-
-  console.log(props.data)
-
-  const { postImg,postTitle,price } = props.data;
-
-  // console.log(price.toLocaleString())
+  const { postImg, postTitle, price,tradeId, postId } = props.data;
+  const { setReviewModal, setTempTradeId,setPostId } = props;
 
   return (
     <>
@@ -83,7 +84,14 @@ function MyTradeBoxMol(props: { data: purchaseDataType }) {
           </div>
         </div>
 
-        <div className="btn">
+        <div
+          className="btn"
+          onClick={() => {
+            setReviewModal(true);
+            setTempTradeId(tradeId);
+            setPostId(postId)
+          }}
+        >
           <div>리뷰쓰기</div>
           <div>
             <i data-eva="arrow-ios-forward-outline"></i>

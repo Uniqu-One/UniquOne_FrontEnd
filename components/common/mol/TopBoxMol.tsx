@@ -8,5 +8,5 @@ export const TopBoxMol = styled.div`
   display: flex;
   justify-content: space-between;
   background-color: white;
-  z-index: 6;
+  z-index: 3;
 `;

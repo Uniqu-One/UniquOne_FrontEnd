@@ -9,7 +9,7 @@ import { qnaDataType } from "./MyQnaMainTmp";
 
 const MyQnaEnrollModalStyle = styled.div`
 
-  z-index: 6;
+  z-index: 4;
   width: 100vw;
   position: fixed;
   top: 0;

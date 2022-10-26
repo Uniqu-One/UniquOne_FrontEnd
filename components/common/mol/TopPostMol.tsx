@@ -9,5 +9,5 @@ export const TopPostMol = styled.div`
   background-color: white;
   position: fixed;
   top: 0;
-  z-index: 6;
+  z-index: 3;
 `;

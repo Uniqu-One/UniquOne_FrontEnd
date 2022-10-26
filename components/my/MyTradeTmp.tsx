@@ -1,8 +1,10 @@
 import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
+import { BottomSheet } from "react-spring-bottom-sheet";
 import { useRecoilValue } from "recoil";
 import { TradeUtils } from "../../lib/utils/TradeUtils";
 import { TokenState } from "../../states/recoil/TokenState";
+import ReviewWriteModalMol from "../review/ReviewWriteModalMol";
 import MyTradeBoxMol from "./MyTradeBoxMol";
 import MyTradeSliderMol from "./MyTradeSliderMol";
 
@@ -28,6 +30,11 @@ function MyTradeTmp() {
   const purchaseDatas = TradeUtils.getPurchaseList(token);
   const sellDatas = TradeUtils.getSellList(token);
 
+  const [reviewModal, setReviewModal] = useState(false);
+
+
+  const [tempTradeId, setTempTradeId] = useState("");
+  const [postId, setPostId] = useState("");
 
   return (
     <MyTradeTmpStyle>
@@ -36,14 +43,39 @@ function MyTradeTmp() {
       {tempTab === 0 &&
         purchaseDatas &&
         purchaseDatas.map((data: purchaseDataType) => {
-          return <MyTradeBoxMol key={data.tradeId} data={data} />;
+          return (
+            <MyTradeBoxMol
+              key={data.tradeId}
+              data={data}
+              setReviewModal={setReviewModal}
+              setTempTradeId={setTempTradeId}
+              setPostId={setPostId}
+            />
+          );
         })}
 
       {tempTab === 1 &&
         sellDatas &&
         sellDatas.map((data: purchaseDataType) => {
-          return <MyTradeBoxMol key={data.tradeId} data={data} />;
+          return (
+            <MyTradeBoxMol
+              key={data.tradeId}
+              data={data}
+              setReviewModal={setReviewModal}
+              setTempTradeId={setTempTradeId}
+              setPostId={setPostId}
+            />
+          );
         })}
+
+      <BottomSheet open={reviewModal} onDismiss={() => setReviewModal(false)}>
+        <ReviewWriteModalMol
+          tempTradeId={tempTradeId}
+          postId={postId}
+          setReviewModal={setReviewModal}
+
+        />
+      </BottomSheet>
     </MyTradeTmpStyle>
   );
 }

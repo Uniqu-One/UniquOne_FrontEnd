@@ -14,12 +14,11 @@ export type reviewListType = {
 };
 
 export const ReviewUtils = {
-  getCornReview: () => {
+  getMyCornReview: (token: string) => {
     const fetchCornReviewListData = () => {
       return axios.get(`${process.env.NEXT_PUBLIC_URL_AWS}/reviews`, {
         headers: {
-          Authorization:
-            "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzeTQyMzVAZ21haWwuY29tIiwiaWQiOjIsIm5pY2tOYW1lIjoi66mL7KeEIOycoOuLiOy9mOuTpCIsImVtYWlsIjoic3k0MjM1QGdtYWlsLmNvbSIsInJvbGUiOiJST0xFX1VTRVIiLCJpYXQiOjE2NjYyMjY2NzAsImV4cCI6MTY2NzA5MDY3MH0.BP4sX3hZL6hjeZPu94FfcxjBeCSatmF4gHKAz-s3xUg",
+          Authorization: token,
         },
       });
     };
@@ -29,6 +28,7 @@ export const ReviewUtils = {
       fetchCornReviewListData,
       {
         select: (data) => {
+          //TODO - 작성 데이터 없을때 분기처리
           return data.data.data;
         },
       }
@@ -37,12 +37,11 @@ export const ReviewUtils = {
     return data;
   },
 
-  getWrittenReview:() => {
+  getMyWrittenReview: (token: string) => {
     const fetchWrittenReviewListData = () => {
       return axios.get(`${process.env.NEXT_PUBLIC_URL_AWS}/reviews/my`, {
         headers: {
-          Authorization:
-            "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzeTQyMzVAZ21haWwuY29tIiwiaWQiOjIsIm5pY2tOYW1lIjoi66mL7KeEIOycoOuLiOy9mOuTpCIsImVtYWlsIjoic3k0MjM1QGdtYWlsLmNvbSIsInJvbGUiOiJST0xFX1VTRVIiLCJpYXQiOjE2NjYyMjY2NzAsImV4cCI6MTY2NzA5MDY3MH0.BP4sX3hZL6hjeZPu94FfcxjBeCSatmF4gHKAz-s3xUg",
+          Authorization: token,
         },
       });
     };
@@ -52,6 +51,7 @@ export const ReviewUtils = {
       fetchWrittenReviewListData,
       {
         select: (data) => {
+          // console.log(data);
           return data.data.data;
         },
       }
@@ -59,12 +59,16 @@ export const ReviewUtils = {
 
     return data;
   },
-  getOtherReviewList: (cornId?:string) => {
-    
+  getOtherReviewList: (token: string, cornId?: string) => {
+    if(!cornId){
+      return []
+    }
 
     const fetchOtherReviewListData = () => {
-      return axios.get(`${process.env.NEXT_PUBLIC_URL_AWS}/reviews/corn/${cornId}`, {
-      });
+      return axios.get(
+        `${process.env.NEXT_PUBLIC_URL_AWS}/reviews/corn/${cornId}`,
+        {}
+      );
     };
 
     const { isLoading, data, isError, error } = useQuery(
@@ -77,7 +81,39 @@ export const ReviewUtils = {
       }
     );
 
-    
     return data;
-  }
+  },
+  postReview: async (
+    token: string,
+    tradeId: string,
+    postId: string,
+    rating: number,
+    text: string
+  ) => {
+    console.log(token);
+
+    return await axios
+      .post(
+        `${process.env.NEXT_PUBLIC_URL_AWS}/reviews`,
+        {
+          tradeId,
+          postId,
+          star: rating,
+          dsc: text,
+        },
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res);
+        return true;
+      })
+      .catch((err) => {
+        console.error(err);
+        return false;
+      });
+  },
 };

@@ -64,6 +64,7 @@ function TopTmp(props: {
           text={props.text}
           right={"checkmark-outline"}
           status={props.status}
+          function_right={props.function}
         />
       );
 

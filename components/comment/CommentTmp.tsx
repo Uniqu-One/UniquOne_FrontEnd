@@ -8,9 +8,9 @@ import { TokenState } from "../../states/recoil/TokenState";
 import { UserInfoState } from "../../states/recoil/UserInfoState";
 import CommentBarOrg from "./CommentBarOrg";
 import CommentListMol from "./CommentListMol";
-
-import CommentOrg from "./CommentOrg";
 import CommentTempParentModalMol from "./CommentTempParentModalMol";
+
+
 
 export type CommentType = {
   children: [];

@@ -7,8 +7,11 @@ import { useRouter } from "next/router";
 
 import { toast, Toaster } from "react-hot-toast";
 import { TradeUtils } from "../../lib/utils/TradeUtils";
+import { useRecoilValue } from "recoil";
+import { TokenState } from "../../states/recoil/TokenState";
+import { UserInfoState } from "../../states/recoil/UserInfoState";
 
-const MENU = ["판매 중", "거래 중", "거래 완료"];
+const MENU = ["판매중", "거래중", "거래완료"];
 
 //TODO - 리팩토링 필요
 
@@ -21,28 +24,29 @@ const ButtonStyle = styled.div<{ tempMenu: string }>`
     display: flex;
     justify-content: space-between;
     background-color: ${(props) =>
-      props.tempMenu === "판매 중"
+      props.tempMenu === "판매중"
         ? color.p_pruple
-        : props.tempMenu === "거래 중"
+        : props.tempMenu === "거래중"
         ? "white"
         : color.p_gray_md};
 
     border: none;
     font-size: 0.875rem;
     color: ${(props) =>
-      props.tempMenu === "판매 중"
+      props.tempMenu === "판매중"
         ? "white"
-        : props.tempMenu === "거래 중"
+        : props.tempMenu === "거래중"
         ? color.p_pruple
         : "white"};
     border-radius: 9px;
     fill: ${(props) =>
-      props.tempMenu === "판매 중"
+      props.tempMenu === "판매중"
         ? "white"
-        : props.tempMenu === "거래 중"
+        : props.tempMenu === "거래중"
         ? color.p_pruple
         : "white"};
-    border: ${(props)=> props.tempMenu === "거래 중" && `0.5px solid ${color.p_pruple}`};
+    border: ${(props) =>
+      props.tempMenu === "거래중" && `0.5px solid ${color.p_pruple}`};
     div {
       margin: auto 0;
       :first-of-type {
@@ -73,7 +77,6 @@ const itemVariants: Variants = {
 };
 
 const BoxStyle = styled.div`
-
   width: 96px;
   height: 32px;
   line-height: 32px;
@@ -92,9 +95,10 @@ const Box = (props: { text: string }) => {
 
 export default function ChatRoomButtonMol() {
   useEvaIcon();
-  const router = useRouter()
-  const {postId, receiverId} = router.query
-
+  const token = useRecoilValue(TokenState).token
+  const userId = useRecoilValue(UserInfoState).userId
+  const router = useRouter();
+  const { postId, receiverId } = router.query;
 
   const [tempMenu, setTempMenu] = useState(MENU[0]);
   const [isOpen, setIsOpen] = useState(false);
@@ -103,18 +107,19 @@ export default function ChatRoomButtonMol() {
     setTempMenu(menu);
     setIsOpen(false);
 
-    if(menu ==="거래 완료" && postId && receiverId){
+    if (menu === "거래완료" && postId && receiverId) {
       //TODO - 리코일로 전역 Toast 만들어야함
-      if(await TradeUtils.tradeOver(+receiverId,+postId)){
-        toast.success('거래가 완료되었습니다.')
+      if (await TradeUtils.tradeOver(token,userId,+postId)) {
+        console.log("거래가 완료되었습니다.");
+      } else {
+        console.log("거래 가능한 상태가 아닙니다.");
       }
     }
-
   };
 
   return (
     <>
-    <Toaster/>
+      <Toaster />
       <motion.nav
         initial={false}
         animate={isOpen ? "open" : "closed"}
@@ -153,7 +158,7 @@ export default function ChatRoomButtonMol() {
             },
             closed: {},
           }}
-          style={{ pointerEvents: isOpen ? "auto" : "none"}}
+          style={{ pointerEvents: isOpen ? "auto" : "none" }}
         >
           {MENU.map((menu) => {
             return (

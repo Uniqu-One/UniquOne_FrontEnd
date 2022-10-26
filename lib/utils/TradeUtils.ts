@@ -2,24 +2,30 @@ import { useQuery } from "react-query";
 import axios from "axios";
 
 export const TradeUtils = {
-  tradeOver: async (buyerId: number, postId: number) => {
+  tradeOver: async (
+    token: string,
+    userId?: number | string,
+    postId?: number | string
+  ) => {
     return await axios
       .post(
         `${process.env.NEXT_PUBLIC_URL_AWS}/trade`,
         {
-          buyerId,
+          buyerId: userId,
           postId,
         },
         {
           headers: {
-            Authorization:
-              "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzeTQyMzUxM0BnbWFpbC5jb20iLCJpZCI6MSwibmlja05hbWUiOiLrsLDrtoDrpbjri6jrrLTsp4DsmYAzMyIsImVtYWlsIjoic3k0MjM1MTNAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImlhdCI6MTY2NjEzODgyNywiZXhwIjoxNjY3MDAyODI3fQ.VM72zMo9FLLU1xdfWu4pmoGpr5D20IE9Ma1sV-W4P-s",
+            Authorization: token,
           },
         }
       )
       .then((res) => {
-        if (res.status === 200) {
+        console.log(res);
+        if (res.status === 201) {
           return true;
+        } else {
+          return false;
         }
       })
       .catch((err) => {
@@ -27,52 +33,48 @@ export const TradeUtils = {
         return false;
       });
   },
-  getPurchaseList: () => {
-    
+
+  getPurchaseList: (token: string) => {
     const fetchPruchaseListData = () => {
       return axios.get(`${process.env.NEXT_PUBLIC_URL_AWS}/trade/buy`, {
         headers: {
-          Authorization:
-            "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzeTQyMzVAZ21haWwuY29tIiwiaWQiOjIsIm5pY2tOYW1lIjoi66mL7KeEIOycoOuLiOy9mOuTpCIsImVtYWlsIjoic3k0MjM1QGdtYWlsLmNvbSIsInJvbGUiOiJST0xFX1VTRVIiLCJpYXQiOjE2NjYyMjY2NzAsImV4cCI6MTY2NzA5MDY3MH0.BP4sX3hZL6hjeZPu94FfcxjBeCSatmF4gHKAz-s3xUg",
+          Authorization: token,
         },
-      })
+      });
     };
 
     const { isLoading, data, isError, error } = useQuery(
       "purchaselistData",
-      fetchPruchaseListData,{
-        select: (data) => {  
+      fetchPruchaseListData,
+      {
+        select: (data) => {
           return data.data.data;
         },
       }
     );
 
-      return data;
-    
+    return data;
   },
 
-  getSellList: () => {
-    
+  getSellList: (token: string) => {
     const fetchSellListData = () => {
       return axios.get(`${process.env.NEXT_PUBLIC_URL_AWS}/trade/sell`, {
         headers: {
-          Authorization:
-            "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzeTQyMzVAZ21haWwuY29tIiwiaWQiOjIsIm5pY2tOYW1lIjoi66mL7KeEIOycoOuLiOy9mOuTpCIsImVtYWlsIjoic3k0MjM1QGdtYWlsLmNvbSIsInJvbGUiOiJST0xFX1VTRVIiLCJpYXQiOjE2NjYyMjY2NzAsImV4cCI6MTY2NzA5MDY3MH0.BP4sX3hZL6hjeZPu94FfcxjBeCSatmF4gHKAz-s3xUg",
+          Authorization: token,
         },
-      })
+      });
     };
 
     const { isLoading, data, isError, error } = useQuery(
-      "selListData",
-      fetchSellListData,{
-        select: (data) => {  
+      "sellListData",
+      fetchSellListData,
+      {
+        select: (data) => {
           return data.data.data;
         },
       }
     );
 
-      return data;
-    
+    return data;
   },
-
 };

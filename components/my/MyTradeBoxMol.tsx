@@ -55,7 +55,11 @@ const MyTradeBoxMolStyle = styled.div`
 function MyTradeBoxMol(props: { data: purchaseDataType }) {
   useEvaIcon();
 
+  console.log(props.data)
+
   const { postImg,postTitle,price } = props.data;
+
+  // console.log(price.toLocaleString())
 
   return (
     <>

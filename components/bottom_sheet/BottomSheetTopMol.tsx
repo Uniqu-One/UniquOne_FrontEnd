@@ -1,9 +1,8 @@
 import styled from "@emotion/styled";
 import React from "react";
-
-import { toast, Toaster } from "react-hot-toast";
 import { useRecoilState } from "recoil";
 import useEvaIcon from "../../lib/hooks/useEvaIcon";
+import { ToastUtils } from "../../lib/utils/ToastUtils";
 import { CornPostState } from "../../states/recoil/CornPostState";
 import { SearchFilterState } from "../../states/recoil/SearchFilterState";
 import { color } from "../../styles/theme";
@@ -14,7 +13,6 @@ const BottomSheetTopMolStyle = styled.div`
   display: flex;
   justify-content: space-between;
   line-height: 48px;
-  /* background-color: red; */
   padding: 0px 18px;
   border-bottom: 0.5px solid ${color.p_gray_md};
 
@@ -22,7 +20,6 @@ const BottomSheetTopMolStyle = styled.div`
     svg {
       margin: auto 0;
       height: 100%;
-      /* background-color: lightblue; */
     }
   }
   .checked {
@@ -37,7 +34,7 @@ function BottomSheetTopMol(props: {
   setTempSelect: Function;
 }) {
   useEvaIcon();
-  const notify = () => toast.error("선택한 옵션의 개수를 확인해주세요");
+  const notify = () => ToastUtils.error("선택한 옵션의 개수를 확인해주세요");
   const [postData, setPostData] = useRecoilState(CornPostState);
   const [searchFilterData, setSearchFilterData] =
     useRecoilState(SearchFilterState);
@@ -96,12 +93,8 @@ function BottomSheetTopMol(props: {
     props.setOpen(false);
   };
 
-
-
   return (
     <>
-      <Toaster />
-
       {props.type === "look" && (
         <BottomSheetTopMolStyle>
           <div onClick={() => props.setOpen(false)}>
@@ -180,8 +173,10 @@ function BottomSheetTopMol(props: {
             <i data-eva="arrow-ios-back-outline" style={{ fill: "white" }}></i>
           </div>
           <div>가격</div>
-          <div onClick={() => handleUpdatePriceData()}
-          className={props.tempSelect[0] !== "" ? "checked" : "unchecked"}>
+          <div
+            onClick={() => handleUpdatePriceData()}
+            className={props.tempSelect[0] !== "" ? "checked" : "unchecked"}
+          >
             <i data-eva="checkmark-outline"></i>
           </div>
         </BottomSheetTopMolStyle>

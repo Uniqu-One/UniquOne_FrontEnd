@@ -4,8 +4,6 @@ import styled from "@emotion/styled";
 import useEvaIcon from "../../lib/hooks/useEvaIcon";
 import { color } from "../../styles/theme";
 import { useRouter } from "next/router";
-
-import { toast, Toaster } from "react-hot-toast";
 import { TradeUtils } from "../../lib/utils/TradeUtils";
 import { useRecoilValue } from "recoil";
 import { TokenState } from "../../states/recoil/TokenState";
@@ -119,7 +117,6 @@ export default function ChatRoomButtonMol() {
 
   return (
     <>
-      <Toaster />
       <motion.nav
         initial={false}
         animate={isOpen ? "open" : "closed"}

@@ -1,35 +1,25 @@
-import styled from "@emotion/styled";
 import React, { useState } from "react";
-import { toast, Toaster } from "react-hot-toast";
-import ThreeDotAtm from "../common/atm/ThreeDotAtm";
+import { ToastUtils } from "../../lib/utils/ToastUtils";
 import FollowBtnMol from "../common/mol/FollowBtnMol";
-import ThreeDotMol from "../common/mol/ThreeDotMol";
-
-
 
 function PostFollowMol() {
   const [followStatus, setFollowStatus] = useState(false);
 
-  const successNotify = () => toast.success("팔로우 성공");
-  const failNotify = () => toast.error("팔로우 끊기");
-
   const handleFollowStatus = () => {
     if (followStatus) {
-      
-      failNotify();
-    } else {  
-      successNotify();
+      ToastUtils.success("팔로잉에 성공하였습니다.");
+    } else {
+      ToastUtils.error("팔로잉을 취소하였습니다.");
     }
 
     setFollowStatus(!followStatus);
   };
   return (
     <>
-      <Toaster />
-        <FollowBtnMol
-          followStatus={followStatus}
-          handleFollowStatus={handleFollowStatus}
-        />
+      <FollowBtnMol
+        followStatus={followStatus}
+        handleFollowStatus={handleFollowStatus}
+      />
     </>
   );
 }

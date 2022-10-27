@@ -1,9 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
-import { toast, Toaster } from "react-hot-toast";
-import CornPostTmp from "../../corn/post/CornPostTmp";
+import React from "react";
 import { TopIconAtm } from "../atm/TopIconAtm";
 import { TopLogoAtm } from "../atm/TopLogoAtm";
 import { TopBoxMol } from "../mol/TopBoxMol";

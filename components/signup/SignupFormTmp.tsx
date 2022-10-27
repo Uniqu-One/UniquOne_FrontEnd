@@ -1,10 +1,10 @@
 import styled from "@emotion/styled";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";
-import React, { useRef, useState } from "react";
-import { toast, Toaster } from "react-hot-toast";
+import React, { useState } from "react";
 import { SignupFormRegexUtil } from "../../lib/utils/SignupFormRegexUtil";
 import { SignupUtils } from "../../lib/utils/SignupUtils";
+import { ToastUtils } from "../../lib/utils/ToastUtils";
 import SignupFormAnimation from "../animation/SignupFormAnimation";
 import InputFormMol from "../common/mol/InputFormMol";
 import BtnTmp from "../common/tmp/BtnTmp";
@@ -60,7 +60,7 @@ function SignupFormTmp() {
   const handleButtonClick = async (tempLevel: string) => {
     if (tempLevel === "email" && email !== "") {
       if (!SignupFormRegexUtil.emailRegex(email)) {
-        toast.error("이메일을 정확히 입력해주세요 :(");
+        ToastUtils.error("이메일을 정확히 입력해주세요 :(");
         return null;
       } else {
         const emailExistBool = await SignupUtils.checkOverlapEmail(email);
@@ -70,7 +70,7 @@ function SignupFormTmp() {
           SetSignUpStage((prev) => ({ ...prev, mailSend: true }));
           setTempLevel("authNum");
         } else {
-          toast.error("중복되는 이메일입니다. 가입여부를 확인해주세요!");
+          ToastUtils.error("중복되는 이메일입니다. 가입여부를 확인해주세요!");
         }
       }
     }
@@ -78,11 +78,11 @@ function SignupFormTmp() {
     if (tempLevel === "authNum" && authNum !== "") {
       console.log(1);
       if (await SignupUtils.checkAuthCode(email, +authNum)) {
-        toast.success("인증번호가 확인되었습니다!");
+        ToastUtils.success("인증번호가 확인되었습니다!");
         SetSignUpStage((prev) => ({ ...prev, mailAuth: true }));
         setTempLevel("userPwd");
       } else {
-        toast.error("인증번호를 확인해주세요!");
+        ToastUtils.error("인증번호를 확인해주세요!");
       }
     }
 
@@ -94,17 +94,17 @@ function SignupFormTmp() {
     if (tempLevel === "nickName" && nickName === "") {
       const randomNick = await SignupUtils.makeRandomNickName();
       setSignupInput((prev) => ({ ...prev, nickName: randomNick }));
-      toast.success("닉네임이 자동생성 되었습니다 :>");
+      ToastUtils.success("닉네임이 자동생성 되었습니다 :>");
     }
 
     if (tempLevel === "nickName" && nickName !== "") {
       if (await SignupUtils.checkOverlapNickName(nickName)) {
-        toast.error("중복되는 닉네임입니다 :(");
+        ToastUtils.error("중복되는 닉네임입니다 :(");
       } else {
         if (await SignupUtils.signupAccount(signupInput)) {
           router.replace("/redirect/signup");
         } else {
-          toast.error(
+          ToastUtils.error(
             "회원가입에 실패하였습니다. 입력 정보를 다시한번 확인해주세요"
           );
         }
@@ -114,7 +114,6 @@ function SignupFormTmp() {
 
   return (
     <>
-      <Toaster />
       <SignupFormTmpStyle>
         <div className="signupForm">
           <AnimatePresence>

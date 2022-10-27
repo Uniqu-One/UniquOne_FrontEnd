@@ -1,19 +1,18 @@
 import styled from "@emotion/styled";
 import axios from "axios";
 import React, { ReactElement, useState } from "react";
-import { toast, Toaster } from "react-hot-toast";
+import { toast } from "react-hot-toast";
 import { CornUtils } from "../../../lib/utils/CornUtils";
-import { makeNewWord } from "../../../lib/utils/makeNewWord";
+import { ToastUtils } from "../../../lib/utils/ToastUtils";
 import InputFormMol from "../../common/mol/InputFormMol";
 import BtnTmp from "../../common/tmp/BtnTmp";
 import { CornInputTypes } from "./CornRegTmp";
 
 function CornRegNameMol(props: CornInputTypes) {
-  const { inputs, setInputs, onChangeValue, setCornPage,showErrorToast } = props;
+  const { inputs, setInputs, onChangeValue, setCornPage } = props;
 
   const hanleMakeNewWord = async () => {
-    const notify = () => toast.success("콘네임이 자동생성완료되었습니다!");
-    notify();
+    ToastUtils.success("콘네임이 자동생성완료되었습니다!")
 
     const newWords = await CornUtils.getRandomCornName()
     setInputs((prev: { cornName: string; cornDesc: string }) => {
@@ -34,7 +33,7 @@ function CornRegNameMol(props: CornInputTypes) {
           setCornPage("reg-2");
           return true;
         } else {
-          {showErrorToast && showErrorToast('중복된 콘 네임입니다 ㅠ')}
+          ToastUtils.error('중복된 콘 네임입니다.')
           return false;
         }
       })

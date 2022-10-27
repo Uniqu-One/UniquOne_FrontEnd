@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
 import Link from "next/link";
 import React, { useState } from "react";
-import { toast, Toaster } from "react-hot-toast";
 import { useRecoilValue } from "recoil";
 import { ProfileUtils } from "../../lib/utils/ProfileUtils";
+import { ToastUtils } from "../../lib/utils/ToastUtils";
 import { TokenState } from "../../states/recoil/TokenState";
 import { UserInfoState } from "../../states/recoil/UserInfoState";
 import { color, styleColor } from "../../styles/theme";
@@ -39,18 +39,15 @@ const ProfileBoxTmpStyle = styled.div`
 function ProfileBoxTmp(props: { type: string; userId?: string }) {
   const token = useRecoilValue(TokenState).token;
   const { userId, cornId } = useRecoilValue(UserInfoState);
-  console.log(userId)
   const { type } = props;
   const [followStatus, setFollowStatus] = useState(false);
-  const toastSuccess = () => toast.success("팔로우를 하였습니다!");
-  const toastError = () => toast.error("팔로우를 취소했습니다.");
 
   const handleFollowBtn = () => {
     if (followStatus === false) {
-      toastSuccess();
+      ToastUtils.success("팔로우를 하였습니다.");
       setFollowStatus(true);
     } else {
-      toastError();
+      ToastUtils.error("팔로우를 하였습니다.");
       setFollowStatus(false);
     }
   };
@@ -65,7 +62,6 @@ function ProfileBoxTmp(props: { type: string; userId?: string }) {
   } else {
     return (
       <>
-        <Toaster />
         <ProfileBoxTmpStyle>
           <ProfileBoxTopMol type={props.type} profileBoxData={profileBoxData} />
           <ProfileBoxUnderMol

@@ -7,7 +7,7 @@ import { RecoilRoot } from "recoil";
 import Head from "next/head";
 import { QueryClient, QueryClientProvider } from "react-query";
 import LoginAuthStateTmp from "../components/login/LoginAuthStateTmp";
-
+import ToastTmp from "../components/common/tmp/ToastTmp";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const queryClient = new QueryClient();
@@ -22,8 +22,9 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <QueryClientProvider client={queryClient}>
         <RecoilRoot>
-          <LoginAuthStateTmp/>
+          <LoginAuthStateTmp />
           <ThemeProvider theme={color}>
+            <ToastTmp />
             <Component {...pageProps} />
           </ThemeProvider>
         </RecoilRoot>

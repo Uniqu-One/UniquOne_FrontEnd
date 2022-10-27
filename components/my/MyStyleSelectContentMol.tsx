@@ -1,8 +1,7 @@
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import { toast, Toaster } from "react-hot-toast";
-import Paging from "../animation/paging";
+import { ToastUtils } from "../../lib/utils/ToastUtils";
 import FooterTmp from "../common/tmp/FooterTmp";
 import PostTmp from "../common/tmp/PostTmp";
 
@@ -11,7 +10,7 @@ const MyStyleSelectContentMolStyle = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
   margin: 0 18px;
-  margin-bottom: 54px; // Footer
+  margin-bottom: 54px;
   div {
     div {
       margin: 3px 0px;
@@ -23,8 +22,6 @@ const MyStyleSelectContentMolStyle = styled.div`
 `;
 
 function MyStyleSelectContentMol() {
-  const notify = () => toast.error("최소한 하나의 스타일을 선택해주세요!");
-
   const router = useRouter();
 
   const STYLE_DUMMY = [1, 2, 3, 4, 5, 6];
@@ -45,7 +42,7 @@ function MyStyleSelectContentMol() {
     if (btnStatus) {
       router.replace("/redirect/style");
     } else {
-      notify();
+      ToastUtils.error("최소한 하나의 스타일을 선택해주세요!");
     }
   };
 
@@ -59,7 +56,6 @@ function MyStyleSelectContentMol() {
 
   return (
     <>
-      <Toaster />
       <MyStyleSelectContentMolStyle>
         {STYLE_DUMMY.map((item) => {
           const status = selected.includes(item);
@@ -70,7 +66,7 @@ function MyStyleSelectContentMol() {
               onClick={() => handleChangeList(item)}
               className={status ? "selected" : "unSelected"}
             >
-                <PostTmp type="lg" />
+              <PostTmp type="lg" />
             </div>
           );
         })}

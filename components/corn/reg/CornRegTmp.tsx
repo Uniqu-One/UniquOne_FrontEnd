@@ -1,12 +1,10 @@
 import styled from "@emotion/styled";
 import React, { useState } from "react";
-import { toast, Toaster } from "react-hot-toast";
 import SignupTitleSubAtm from "../../signup/SignupTitleSubAtm";
 import CornRegDescMol from "./CornRegDescMol";
 import CornRegImageMol from "./CornRegImageMol";
 import CornRegNameMol from "./CornRegNameMol";
 import { AnimatePresence, motion } from "framer-motion";
-
 
 const CornRegTmpStyle = styled.div`
   overflow: hidden;
@@ -31,8 +29,7 @@ export type CornInputTypes = {
   onChangeValue: Function;
   setCornPage: Function;
   cornPage: string;
-  showSuccessToast?:Function
-  showErrorToast?:Function
+  showSuccessToast?: Function;
 };
 
 function CornRegTmp() {
@@ -47,14 +44,8 @@ function CornRegTmp() {
     });
   };
 
-  const showErrorToast = (text: string) => {
-    toast.error(text);
-  };
-
-
   return (
     <>
-      <Toaster />
       <AnimatePresence>
         <CornRegTmpStyle>
           {cornPage === "reg-1" && (
@@ -72,7 +63,6 @@ function CornRegTmp() {
                 onChangeValue={onChangeValue}
                 setCornPage={setCornPage}
                 cornPage={cornPage}
-                showErrorToast={showErrorToast}
               />
             </motion.div>
           )}

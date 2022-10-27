@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect } from "react";
 import Confetti from "react-confetti";
-import { toast, Toaster } from "react-hot-toast";
+import { ToastUtils } from "../../lib/utils/ToastUtils";
 
 import { color } from "../../styles/theme";
 import BtnTmp from "../common/tmp/BtnTmp";
@@ -13,7 +13,6 @@ const RedirectTmpStyle = styled.div`
   text-align: center;
   > div {
     :first-of-type {
-      /* background-color: red; */
       font-size: 0.875rem;
       color: ${color.p_gray_dk};
       line-height: 1.1rem;
@@ -21,7 +20,6 @@ const RedirectTmpStyle = styled.div`
   }
   > p {
     :last-of-type {
-      /* background-color: red; */
       margin-top: 9px;
       color: ${color.p_gray_md};
       text-decoration: underline;
@@ -34,22 +32,19 @@ function RedirectTmp(props: { type: string }) {
   const type = props.type;
 
   useEffect(() => {
-    if(type === "corn"){
-      toast.success("콘 개설이 완료되었습니다!");
+    if (type === "corn") {
+      ToastUtils.success("콘 개설이 완료되었습니다!");
     } else {
-      toast.success("회원가입이 완료되었습니다!");
+      ToastUtils.success("회원가입이 완료되었습니다!");
     }
-
   }, []);
 
   return (
     <>
-      <Toaster />
       <Confetti
         width={390}
         height={600}
         opacity={0.5}
-        // recycle={false}
         gravity={0.1}
         numberOfPieces={100}
       />

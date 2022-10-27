@@ -1,8 +1,9 @@
 import styled from "@emotion/styled";
-import React from "react";
+import React, { InputHTMLAttributes, useRef, useState } from "react";
 import useEvaIcon from "../../lib/hooks/useEvaIcon";
 import { color } from "../../styles/theme";
 import ImgUploadIconAtm from "../common/atm/ImgUploadIconAtm";
+import UploadedImgAtm from "../common/atm/UploadedImgAtm";
 
 const SignupTitleSubBox = styled.div`
   margin-left: 18px;
@@ -29,17 +30,43 @@ const SignupSubeStyle = styled.p`
   }
 `;
 
-function SignupTitleSubAtm(props: { type?: string, setImgFile?:Function }) {
+function SignupTitleSubAtm(props: { type?: string; setImgFile?: Function }) {
   useEvaIcon();
+  const [imgFile, setImgFile] = useState<string | null>(null);
 
-  const onLoadFile = (e:React.ChangeEvent<HTMLInputElement>) => {
+  const encodeFileToBase64 = (fileBlob: Blob) => {
+    const reader: any = new FileReader();
+
+    reader.readAsDataURL(fileBlob);
+
+    return new Promise((resolve: any) => {
+      reader.onload = () => {
+        if (reader.result !== null) {
+          setImgFile(reader.result);
+
+          resolve();
+        }
+      };
+    });
+  };
+
+  const onLoadFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files;
-    if(props.setImgFile){
-      if(file){
-        props.setImgFile(file[0])
+
+    if (props.setImgFile) {
+      if (file) {
+        encodeFileToBase64(file[0]);
+        props.setImgFile(file[0]);
       }
     }
-  }
+  };
+
+  const inputRef = useRef<HTMLInputElement>(null);
+  const handleClickImgUploadIcon = () => {
+    inputRef?.current?.click();
+  };
+
+  console.log(imgFile);
 
   switch (props.type) {
     case "reg-1":
@@ -85,10 +112,34 @@ function SignupTitleSubAtm(props: { type?: string, setImgFile?:Function }) {
             <SignupTitleStyle>
               마지막으로 Corn을 잘 나타낼 수 있는 사진을 선택해주세요!
             </SignupTitleStyle>
-            
-            
-              <ImgUploadIconAtm />
-            <input type="file" id="image" accept="img/*" onChange={onLoadFile}></input>
+
+            {inputRef?.current?.value && imgFile ? (
+              <div
+                onClick={() => {
+                  handleClickImgUploadIcon();
+                }}
+              >
+                <UploadedImgAtm imgSrc={imgFile} />
+              </div>
+            ) : (
+              <div
+                onClick={() => {
+                  handleClickImgUploadIcon();
+                }}
+              >
+                <ImgUploadIconAtm />
+              </div>
+            )}
+
+            <div style={{ display: "none" }}>
+              <input
+                ref={inputRef}
+                type="file"
+                id="image"
+                accept="img/*"
+                onChange={onLoadFile}
+              ></input>
+            </div>
 
             <SignupSubeStyle>사진을 통해 다른 유저가</SignupSubeStyle>
             <SignupSubeStyle>

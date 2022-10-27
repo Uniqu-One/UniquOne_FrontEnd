@@ -17,16 +17,13 @@ const IndexIntervalStyle = styled.div`
   overflow: hidden;
 
   > div {
-    :nth-last-child(2) {
+    :nth-last-of-type(2) {
       margin-bottom: 54px;
     }
   }
 `;
 
 const Home: NextPage = () => {
-  useEffect(() => {
-    ToastUtils.error("성공?");
-  }, []);
 
   return (
     <>

@@ -1,13 +1,12 @@
 import styled from "@emotion/styled";
 import { GetServerSideProps } from "next";
-import { useRouter } from "next/router";
-import React, { useState } from "react";
-import FooterTmp from "../../../components/common/tmp/FooterTmp";
+import React, { useEffect } from "react";
 import TopTmp from "../../../components/common/tmp/TopTmp";
 import PostCardTmp from "../../../components/post/PostCardTmp";
 import PostSingleBodyOrg from "../../../components/post/single/PostSingleBodyOrg";
 import PostSingleCornOrg from "../../../components/post/single/PostSingleCornOrg";
 import PostSingleFooterTmp from "../../../components/post/single/PostSingleFooterTmp";
+import { ToastUtils } from "../../../lib/utils/ToastUtils";
 import { color } from "../../../styles/theme";
 
 const PostIntervalStyle = styled.div`
@@ -33,11 +32,16 @@ const PostSingleDummyIntervalStyle = styled.div`
 function PostId(props:{postId:string}) {
   const postId = props.postId
 
+  useEffect(() => {
+
+    ToastUtils.success('N명의 유저가 이 게시물을 좋아해요!')
+
+  },[])
+
   return (
     <>
       <PostIntervalStyle>
         <TopTmp type="post"/>
-
         <PostCardTmp postId={postId}/>
         <PostSingleBodyOrg userId={"userID"}/>
 
@@ -46,7 +50,6 @@ function PostId(props:{postId:string}) {
         <PostSingleCornOrg/>
         
         <PostSingleDummyIntervalStyle/>
-
         <PostSingleFooterTmp postId={postId}/>
       </PostIntervalStyle>
     </>

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { PostUtils } from "../../lib/utils/PostUtils";
 import { TokenState } from "../../states/recoil/TokenState";
+import { UserInfoState } from "../../states/recoil/UserInfoState";
 import { color } from "../../styles/theme";
 import { postDataType } from "../../types/postDataType";
 import PostMdOrg from "../common/org/PostMdOrg";
@@ -70,6 +71,7 @@ export const ProfileContentsStyle = styled.div`
 function ProfileContentTmp() {
   const token = useRecoilValue(TokenState);
   const tabs = ["전체", "상품", "스타일"];
+  const {cornId} = useRecoilValue(UserInfoState);
   const [tempTab, setTempTab] = useState(0);
   const [tempPostList, setTempPostList] = useState([]);
 
@@ -97,22 +99,24 @@ function ProfileContentTmp() {
 
   return (
     <>
-      <ProfileContentTmpStyle>
-        <div className="ProfileTabs">
-          {tabs.map((tab, idx) => (
-            <div key={idx} onClick={() => setTempTab(idx)}>
-              {tempTab === idx ? <h3>{tab}</h3> : <h4>{tab}</h4>}
-            </div>
-          ))}
-        </div>
-        <ProfileContentsStyle>
-          {tempPostList.map(
-            (post: { postId: number; postImg: string; postType: string }) => {
-              return <PostMdOrg key={post.postId} post={post} />;
-            }
-          )}
-        </ProfileContentsStyle>
-      </ProfileContentTmpStyle>
+      {cornId &&  (
+        <ProfileContentTmpStyle>
+          <div className="ProfileTabs">
+            {tabs.map((tab, idx) => (
+              <div key={idx} onClick={() => setTempTab(idx)}>
+                {tempTab === idx ? <h3>{tab}</h3> : <h4>{tab}</h4>}
+              </div>
+            ))}
+          </div>
+          <ProfileContentsStyle>
+            {tempPostList.map(
+              (post: { postId: number; postImg: string; postType: string }) => {
+                return <PostMdOrg key={post.postId} post={post} />;
+              }
+            )}
+          </ProfileContentsStyle>
+        </ProfileContentTmpStyle>
+      )}
     </>
   );
 }

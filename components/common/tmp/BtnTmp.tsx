@@ -12,13 +12,9 @@ const ButtonLgCommonStyle = styled.div`
   margin: 0 18px;
 `;
 
-const ButtonLgStyle = styled(ButtonLgCommonStyle)<{
-  status?: string | boolean;
-  color?: string;
-}>`
-  background-color: ${(props) =>
-    props.status ? `${color.p_pruple}` : `${color.p_gray_lt}`};
-  color: ${(props) => (props.status ? "white" : `${color.p_gray_dk}`)};
+const ButtonLgStyle = styled(ButtonLgCommonStyle)<{status?: string | boolean;color?: string;}>`
+  background-color: ${(props) =>props.status ? `${color.p_pruple}` : `${color.p_gray_lt}`};
+  color: ${(props) => (props.status ? "white" : "white")};
 `;
 
 const KaKaoButtonLgStyle = styled(ButtonLgCommonStyle)`
@@ -41,6 +37,7 @@ function BtnTmp(props: {
   value?: string;
   status?: string | boolean;
 }) {
+
   switch (props.size) {
     case "lg":
       return (

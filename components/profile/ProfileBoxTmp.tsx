@@ -5,10 +5,12 @@ import { toast, Toaster } from "react-hot-toast";
 import { useRecoilValue } from "recoil";
 import { ProfileUtils } from "../../lib/utils/ProfileUtils";
 import { TokenState } from "../../states/recoil/TokenState";
+import { UserInfoState } from "../../states/recoil/UserInfoState";
 import { color, styleColor } from "../../styles/theme";
 import BtnTmp from "../common/tmp/BtnTmp";
 import ProfileBoxTopMol from "./ProfileBoxTopMol";
 import ProfileBoxUnderMol from "./ProfileBoxUnderMol";
+import ProfileNothingMol from "./ProfileNothingMol";
 
 const ProfileBoxTmpStyle = styled.div`
   padding-top: 50px;
@@ -34,9 +36,11 @@ const ProfileBoxTmpStyle = styled.div`
   }
 `;
 
-function ProfileBoxTmp(props: { type: string,userId ?: string }) {
-  const token = useRecoilValue(TokenState).token
-  const {type,userId} = props
+function ProfileBoxTmp(props: { type: string; userId?: string }) {
+  const token = useRecoilValue(TokenState).token;
+  const { userId, cornId } = useRecoilValue(UserInfoState);
+  console.log(userId)
+  const { type } = props;
   const [followStatus, setFollowStatus] = useState(false);
   const toastSuccess = () => toast.success("팔로우를 하였습니다!");
   const toastError = () => toast.error("팔로우를 취소했습니다.");
@@ -52,33 +56,29 @@ function ProfileBoxTmp(props: { type: string,userId ?: string }) {
   };
 
   //TODO - cornID로 변경해야함
-  const profileBoxData = ProfileUtils.getProfileData(token,userId);
+  const profileBoxData = ProfileUtils.getProfileData(token, userId);
 
-  console.log(profileBoxData)
-
-  if (profileBoxData === "Loading") {
+  if (!cornId) {
+    return <ProfileNothingMol />;
+  } else if (profileBoxData === "Loading") {
     return <div>로딩중</div>;
-  } else if(profileBoxData === undefined){
-    return <div>유저 정보가 없습니다.</div>
-  } 
-  
-  else {
+  } else {
     return (
       <>
         <Toaster />
-        <ProfileBoxTmpStyle >
-          <ProfileBoxTopMol type={props.type} profileBoxData={profileBoxData}/>
+        <ProfileBoxTmpStyle>
+          <ProfileBoxTopMol type={props.type} profileBoxData={profileBoxData} />
           <ProfileBoxUnderMol
-            desc={profileBoxData.dsc}
-            link={profileBoxData.url}
+            desc={profileBoxData?.dsc || ""}
+            link={profileBoxData?.url || ""}
           />
         </ProfileBoxTmpStyle>
         {props.type === "my" && (
           <div>
             <Link href="/corn/edit">
               <a>
-            <BtnTmp size="default" value="콘 수정" />
-            </a>
+                <BtnTmp size="default" value="콘 수정" />
+              </a>
             </Link>
           </div>
         )}
@@ -97,4 +97,3 @@ function ProfileBoxTmp(props: { type: string,userId ?: string }) {
 }
 
 export default ProfileBoxTmp;
-  

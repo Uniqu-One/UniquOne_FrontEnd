@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import React from "react";
 import { color } from "../../../styles/theme";
 import UserImgAtm from "../../common/atm/UserImgAtm";
+import MyOfferCheckingMol from "../../my/MyOfferCheckingMol";
 import CornOfferNoMol from "./CornOfferSingleNoMol";
 import CornOfferOkMol from "./CornOfferSingleOkMol";
 import CornOfferSingleSelectMol from "./CornOfferSingleSelectMol";
@@ -67,6 +68,7 @@ function CornOfferSingleBoxOrg(props: { type: string }) {
         {props.type === "select" && <CornOfferSingleSelectMol />}
         {props.type === "ok" && <CornOfferOkMol/>}
         {props.type === "no" && <CornOfferNoMol />}
+        {props.type === "check" && <MyOfferCheckingMol/>}
         </div>
       </CornOfferSingleBoxOrgStyle>
     </>

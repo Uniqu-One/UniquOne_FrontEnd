@@ -71,11 +71,7 @@ function BtnTmp(props: {
     case "email":
       return (
         <ButtonLgStyle status={true}>
-          <Link href={"/signup"}>
-            <a>
               <p>{props.value}</p>
-            </a>
-          </Link>
         </ButtonLgStyle>
       );
 

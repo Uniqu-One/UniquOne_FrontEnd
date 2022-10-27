@@ -17,11 +17,11 @@ margin-top: 9px;
 
 function LoginFindLink(props:{text:string, link:string}) {
   return (
-    <Link href={props.link}>
+    
     <LoginFindLinkStyle>
       <a>{props.text}</a>
     </LoginFindLinkStyle>
-  </Link>
+  
   )
 }
 

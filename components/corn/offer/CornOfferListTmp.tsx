@@ -1,15 +1,24 @@
 import styled from "@emotion/styled";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
+import { useRecoilValue } from "recoil";
+import { OfferUtils } from "../../../lib/utils/OfferUtils";
+import { TokenState } from "../../../states/recoil/TokenState";
 import CornOfferListBoxMol from "./CornOfferListBoxMol";
 
 const CornOfferListStyle = styled.div`
-  div {
-    margin-top: 12px;
-  }
+padding-top: 50px;  
 `;
 
 function CornOfferList() {
+  const token = useRecoilValue(TokenState).token
+
+  const [offerList,setOfferList] = useState([]);
+
+  const getMyCornOfferList = () => {
+    OfferUtils.getMyCornOfferList(token)
+  }
+
   const OFFER_LIST = ["userId1", "userId2", "userId3"];
 
   return (

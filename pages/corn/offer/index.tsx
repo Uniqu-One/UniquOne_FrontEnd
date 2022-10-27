@@ -4,8 +4,7 @@ import FooterTmp from "../../../components/common/tmp/FooterTmp";
 import TopTmp from "../../../components/common/tmp/TopTmp";
 import CornOfferList from "../../../components/corn/offer/CornOfferListTmp";
 
-const OfferListStyle = styled.div`
-  margin-top: 12px;
+const OfferListStyle = styled.div`  
   margin-bottom: 54px;
 `;
 

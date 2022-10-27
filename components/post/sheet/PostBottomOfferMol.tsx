@@ -1,12 +1,15 @@
 import styled from "@emotion/styled";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import React, { useState } from "react";
+import { useRecoilValue } from "recoil";
+import { OfferUtils } from "../../../lib/utils/OfferUtils";
+import { TokenState } from "../../../states/recoil/TokenState";
 import { color } from "../../../styles/theme";
 import BtnTmp from "../../common/tmp/BtnTmp";
 
 const PostBottomOfferMolStyle = styled.div`
-
-padding-top: 56px;
+  padding-top: 56px;
   .top {
     display: flex;
     justify-content: space-between;
@@ -64,13 +67,28 @@ padding-top: 56px;
 `;
 
 function PostBottomOfferMol(props: { setComplete: Function }) {
+  const router = useRouter();
+  const token = useRecoilValue(TokenState).token;
   const [offerPrice, setOfferPrice] = useState("");
-
   const { setComplete } = props;
 
   const onChangePrice = (e: React.ChangeEvent<HTMLInputElement>) => {
     setOfferPrice(e.target.value);
   };
+
+  const postId = router.query.postId;
+
+  const handlePostOffer = async () => {
+    if (typeof postId === "string") {
+      setComplete(true);
+      if (await OfferUtils.postOffer(token, postId, offerPrice)) {
+        console.log('제안 성공!')
+      } else {
+        console.log('제안 실패')
+      }
+    }
+  };
+
   return (
     <>
       <PostBottomOfferMolStyle>
@@ -110,7 +128,7 @@ function PostBottomOfferMol(props: { setComplete: Function }) {
           </div>
         </div>
 
-        <div className="bottom" onClick={() => offerPrice && setComplete(true)}>
+        <div className="bottom" onClick={() => offerPrice && handlePostOffer()}>
           <BtnTmp
             size="lg"
             value="제안 보내기"

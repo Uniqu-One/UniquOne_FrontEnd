@@ -54,7 +54,7 @@ function PostSingleFooterTmp(props:{postId:number|string}) {
         <div className="price">142,000원</div>
 
         <div className="btns">
-          <PostSingleFooterOfferMol />
+          <PostSingleFooterOfferMol postId={props.postId}/>
           <PostSingleFooterChatMol postId={props.postId}/>
         </div>
       </PostSingleFooterTmpStyle>

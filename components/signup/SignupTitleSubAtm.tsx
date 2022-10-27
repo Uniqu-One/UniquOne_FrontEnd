@@ -66,8 +66,6 @@ function SignupTitleSubAtm(props: { type?: string; setImgFile?: Function }) {
     inputRef?.current?.click();
   };
 
-  console.log(imgFile);
-
   switch (props.type) {
     case "reg-1":
       return (

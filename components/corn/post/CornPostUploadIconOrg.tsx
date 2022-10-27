@@ -7,6 +7,8 @@ import CornPostUploadCameraIconAtm from "./CornPostUploadCameraIconAtm";
 import CornPostUploadPlusIconAtm from "./CornPostUploadPlusIconAtm";
 import CornPostUploadRemoveIconMol from "./CornPostUploadRemoveIconMol";
 import { AnimatePresence, motion } from "framer-motion";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { CornPostState } from "../../../states/recoil/CornPostState";
 
 export const CornPostUploadIconOrgStyle = styled.div`
   padding: 12px 0;
@@ -51,6 +53,8 @@ function CornPostUploadIconOrg(props: {
   setPreViewImg: Function;
 }) {
   useEvaIcon();
+
+  const [datas,setDatas] = useRecoilState(CornPostState)
 
   const { idx, setImages, setSelectedId, setPreViewImg } = props;
   const [imageSrc, setImgSrc] = useState<string>("");
@@ -108,6 +112,7 @@ function CornPostUploadIconOrg(props: {
       newPreViewImgList[idx] = "";
       return [...newPreViewImgList];
     });
+
   };
 
   return (

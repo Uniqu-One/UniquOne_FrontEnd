@@ -78,7 +78,7 @@ export const SignupUtils = {
       .get(`${process.env.NEXT_PUBLIC_URL_AWS}/signup/${email}/exist`)
       .then((res) => {
         console.log(res);
-        return true;
+        return res.data.existEmail;
       })
       .catch((err) => {
         console.error(err);

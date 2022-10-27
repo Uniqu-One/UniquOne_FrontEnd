@@ -1,3 +1,4 @@
+import { useQuery } from "react-query";
 import axios from "axios";
 export const OfferUtils = {
   postOffer: async (
@@ -24,8 +25,25 @@ export const OfferUtils = {
         return false;
       });
   },
+
+  getMySuggestOfferList: async (token: string) => {
+    return await axios
+      .get(`${process.env.NEXT_PUBLIC_URL_AWS}/offer`, {
+        headers: {
+          Authorization: token,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        return res.data;
+      })
+      .catch((err) => {
+        console.log(err);
+        return [];
+      });
+  },
   getMyCornOfferList: async (token: string) => {
-    await axios
+    return await axios
       .get(`${process.env.NEXT_PUBLIC_URL_AWS}/offer/corn`, {
         headers: {
           Authorization: token,
@@ -33,9 +51,28 @@ export const OfferUtils = {
       })
       .then((res) => {
         console.log(res);
+        return res.data;
       })
       .catch((err) => {
-        console.error(err);
+        console.log(err);
+        return [];
       });
   },
+  getMyDetailOffer: async (token:string,postId:string|number) => {
+
+    await axios
+      .get(`${process.env.NEXT_PUBLIC_URL_AWS}/offer/${postId}`, {
+        headers: {
+          Authorization: token,
+        },
+      }).then(res => {
+        console.log(res)
+        return true;
+      })
+        .catch(err => {
+          console.error(err)
+          return false;
+        })
+
+  }
 };

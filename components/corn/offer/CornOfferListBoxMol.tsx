@@ -66,7 +66,6 @@ const CornOfferListBoxMolStyled = styled.div`
 
 function CornOfferListBoxMol() {
   const router = useRouter();
-
   useEvaIcon();
 
   return (

@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 import { color } from "../../styles/theme";
@@ -13,7 +14,6 @@ const IntroMainTmpStyle = styled(GradiantBack)`
   padding-top: 78px;
 
   .btns {
-    
     div {
       margin-top: 12px;
     }
@@ -24,14 +24,14 @@ const IntroMainTmpStyle = styled(GradiantBack)`
 
     font-size: 0.875rem;
     color: ${color.p_gray_dk};
-    p{
+    p {
       margin-top: 9px;
       text-decoration: underline;
     }
   }
 
-  .title{
-    h1{
+  .title {
+    h1 {
       line-height: 42px;
     }
     margin-bottom: 24px;
@@ -49,7 +49,6 @@ const IntroTitleStyle = styled.h1`
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-
 `;
 
 function IntroMainTmp() {
@@ -94,7 +93,11 @@ function IntroMainTmp() {
 
       <div className="bottom_text">
         <h4>이미 계정을 소유하고 계신가요?</h4>
-        <p>로그인하기</p>
+        <Link href="/login">
+          <a>
+            <p>로그인 하기</p>
+          </a>
+        </Link>
       </div>
     </IntroMainTmpStyle>
   );

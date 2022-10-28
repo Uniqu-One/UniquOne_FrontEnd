@@ -31,7 +31,7 @@ function BottomSheetTopMol(props: {
   type: string;
   setOpen: Function;
   tempSelect: string[];
-  setTempSelect: Function;
+  setTempSelect?: Function;
 }) {
   useEvaIcon();
   const notify = () => ToastUtils.error("선택한 옵션의 개수를 확인해주세요");

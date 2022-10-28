@@ -93,6 +93,7 @@ export const TopOptionalOrg = (props: {
 
       {props.right === "checkmark-outline" && (
         <TopIconAtm>
+          {/* @ts-ignore */}
           <div onClick={props.function_right && props.function_right}
             style={{
               fill: `${props.status ? color.p_pruple : color.p_gray_dk}`,

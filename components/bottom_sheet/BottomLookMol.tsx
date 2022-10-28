@@ -5,6 +5,7 @@ import { postMenuListData } from '../../public/assets/datas/postMenuListData'
 import BottomSheetRoundBoxAtm from './BottomSheetRoundBoxAtm'
 import BottomSheetTopMol from './BottomSheetTopMol'
 
+
 const LookStyle = styled.div`
   margin: 18px 18px 30px;
   
@@ -24,11 +25,11 @@ const LookStyle = styled.div`
 function BottomLookMol(props:{setOpen:Function}) {
   return (
     <>
-    <BottomSheetTopMol type="look" setOpen={props.setOpen}/>
+    <BottomSheetTopMol type={"look"} setOpen={props.setOpen} tempSelect={[]}/>
     <LookStyle>
       <h4>2개까지 선택 가능합니다.</h4>
     {postMenuListData.look.map((menu) => {
-      return <BottomSheetRoundBoxAtm key={menu} menu={menu}/>
+      return <BottomSheetRoundBoxAtm key={menu} menu={menu} tempSelect={[]} setTempSelect={()=>{}}/>
     })}
     </LookStyle>
     

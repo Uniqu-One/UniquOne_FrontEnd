@@ -9,12 +9,6 @@ function Test() {
   const isInView = useInView(ref, { 
     root:container,
     margin: "0px 0px 0px 0px" });
-
-  useEffect(() => {
-    console.log(ref.current.id);
-    console.log(isInView);
-  }, [isInView]);
-
   return (
     <>
       <div

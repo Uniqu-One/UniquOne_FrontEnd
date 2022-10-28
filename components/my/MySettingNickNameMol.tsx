@@ -17,6 +17,7 @@ function MySettingNickNameMol() {
   return (
     <>
       <MySettingNickNameMolStyle>
+        {/* @ts-ignore */}
         <InputFormMol label="닉네임" name="nickName" text="기존 닉네임"/>
       </MySettingNickNameMolStyle>
     </>

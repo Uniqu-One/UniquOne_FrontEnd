@@ -13,6 +13,7 @@ const MyOfferListMolStyle = styled.div`
 
 export type offerDataType = {
   postId: string | number;
+  offerId: string | number;
   offerCheckDate: string;
   offerPrice: string | number;
   offerRegDate: string;
@@ -20,8 +21,8 @@ export type offerDataType = {
   postImg: string;
   postPrice: string | number;
   postTitle: string;
-  cornImg:string;
-  userNickName:string;
+  cornImg: string;
+  userNickName: string;
 };
 
 function MyOfferListMol() {
@@ -41,9 +42,7 @@ function MyOfferListMol() {
       {myOfferDataList[0] ? (
         <MyOfferListMolStyle>
           {myOfferDataList.map((offer: offerDataType) => {
-            return (
-                  <CornOfferSingleBoxOrg key={offer.postId} offer={offer} />
-            );
+            return <CornOfferSingleBoxOrg key={offer.postId} offer={offer} />;
           })}
         </MyOfferListMolStyle>
       ) : (

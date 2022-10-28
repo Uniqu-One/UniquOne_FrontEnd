@@ -12,6 +12,7 @@ export type CornOfferType = {
   price: number;
   refuseCount: number;
   waitingCnt: number;
+  offerId:string;
 };
 
 const CornOfferListStyle = styled.div`
@@ -32,7 +33,9 @@ function CornOfferList() {
     test();
   }, []);
 
-  if (tempList[0] === undefined) {
+  console.log(tempList)
+
+  if (!tempList) {
     return <div>나에게 온 오퍼가 없습니다.</div>;
   }
 
@@ -40,7 +43,8 @@ function CornOfferList() {
     <>
       <CornOfferListStyle>
         {tempList.map((offer, idx) => {
-          return <CornOfferListBoxMol key={offer.postId} offer={offer} />;
+          console.log(offer)
+          return <CornOfferListBoxMol key={offer.offerId} offer={offer} />;
         })}
       </CornOfferListStyle>
     </>

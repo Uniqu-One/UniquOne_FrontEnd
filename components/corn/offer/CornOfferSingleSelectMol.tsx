@@ -1,5 +1,9 @@
 import styled from "@emotion/styled";
 import React from "react";
+import { useRecoilValue } from "recoil";
+import { OfferUtils } from "../../../lib/utils/OfferUtils";
+import { ToastUtils } from "../../../lib/utils/ToastUtils";
+import { TokenState } from "../../../states/recoil/TokenState";
 import { color } from "../../../styles/theme";
 
 const CornOfferSingleSelectMolStyle = styled.div`
@@ -27,14 +31,30 @@ const CornOfferSingleSelectMolStyle = styled.div`
   }
 `;
 
-function CornOfferSingleSelectMol() {
+function CornOfferSingleSelectMol(props: { offerId: string | number }) {
+  const token = useRecoilValue(TokenState).token;
+  const { offerId } = props;
+
+  const handleCheckAcceptCornOffer = async () => {
+    if(await OfferUtils.checkCornOffer(token, offerId, "ACCEPT")){
+      ToastUtils.success('오퍼 수락이 완료되었습니다.')
+    }
+  };
+
+  const handleCheckRefuseCornOffer = async() => {
+    if(await OfferUtils.checkCornOffer(token, offerId, "REFUSE")){
+      ToastUtils.success('오퍼 거절이 완료되었습니다.')
+    }
+  };
+
   return (
     <>
       <CornOfferSingleSelectMolStyle>
-        <div className="ok">
+        <div className="ok" onClick={() => handleCheckAcceptCornOffer()}>
           <p>수락하기</p>
         </div>
-        <div className="no">
+
+        <div className="no" onClick={() => handleCheckRefuseCornOffer()}>
           <p>거절하기</p>
         </div>
       </CornOfferSingleSelectMolStyle>

@@ -59,13 +59,14 @@ const CornOfferSingleBoxOrgStyle = styled.div`
   }
 `;
 
-function CornOfferSingleBoxOrg(props: { offer: offerDataType }) {
+function CornOfferSingleBoxOrg(props: { offer: offerDataType; type?: string }) {
   const router = useRouter();
-
-  console.log(props.offer);
+  const { type } = props;
+  // console.log(props.offer);
 
   const {
     postId,
+    offerId,
     offerCheckDate,
     offerPrice,
     offerRegDate,
@@ -79,12 +80,13 @@ function CornOfferSingleBoxOrg(props: { offer: offerDataType }) {
 
   return (
     <>
-      <CornOfferSingleBoxOrgStyle
-        onClick={() => {
-          router.push(`/post/${postId}`);
-        }}
-      >
-        <div className="left">
+      <CornOfferSingleBoxOrgStyle>
+        <div
+          className="left"
+          onClick={() => {
+            router.push(`/post/${postId}`);
+          }}
+        >
           {cornImg && (
             <div className="cornImg">
               <Image src={cornImg} alt="cornTitle" width={60} height={60} />
@@ -120,10 +122,14 @@ function CornOfferSingleBoxOrg(props: { offer: offerDataType }) {
         </div>
 
         <div className="right">
-          {offerType === "select" && <CornOfferSingleSelectMol />}
+          {type === "corn"
+            ? offerType === "WAITING" && (
+                <CornOfferSingleSelectMol offerId={offerId} />
+              )
+            : offerType === "WAITING" && <MyOfferCheckingMol />}
+
           {offerType === "ACCEPT" && <CornOfferOkMol />}
           {offerType === "REFUSE" && <CornOfferNoMol />}
-          {offerType === "WAITING" && <MyOfferCheckingMol />}
         </div>
       </CornOfferSingleBoxOrgStyle>
     </>

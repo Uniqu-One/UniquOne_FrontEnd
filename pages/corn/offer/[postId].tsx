@@ -16,7 +16,7 @@ import { TokenState } from "../../../states/recoil/TokenState";
 import { color } from "../../../styles/theme";
 
 const OfferIdStyle = styled.div`
-  padding-top: 50px;
+  padding-top: 30px;
   h3 {
     font-size: 1.1rem;
     font-weight: 600;
@@ -48,7 +48,7 @@ function OfferId(props: { postId: string | number }) {
         <h3>모든오퍼</h3>
         {offerList &&
           offerList.map((offer: offerDataType) => {
-            return <CornOfferSingleBoxOrg offer={offer} />;
+            return <CornOfferSingleBoxOrg offer={offer} type="corn"/>;
           })}
       </OfferIdStyle>
       <FooterTmp />

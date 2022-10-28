@@ -59,21 +59,55 @@ export const OfferUtils = {
       });
   },
   getMyDetailOffer: (token: string, postId: string | number) => {
-    console.log(postId, 'inin')
-
     const fetchMyDetailOffer = () => {
-      return axios.get(`${process.env.NEXT_PUBLIC_URL_AWS}/offer/corn/${postId}`, {
-        headers: {
-          Authorization: token,
-        },
-      })
+      return axios.get(
+        `${process.env.NEXT_PUBLIC_URL_AWS}/offer/corn/${postId}`,
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
     };
 
-    const {data, isLoading} = useQuery('myDetailOfferQuery',fetchMyDetailOffer)
+    const { data, isLoading } = useQuery(
+      "myDetailOfferQuery",
+      fetchMyDetailOffer
+    );
 
-    if(isLoading){return "Loading"}
+    if (isLoading) {
+      return "Loading";
+    }
 
-    return data?.data.data
+    return data?.data.data;
+  },
+  checkCornOffer: async (
+    token: string,
+    offerId: string | number,
+    offerType: string
+  ) => {
 
+    console.log(token,offerId,offerType)
+    return await axios
+      .patch(
+        `${process.env.NEXT_PUBLIC_URL_AWS}/offer`,
+        {
+          offerId,
+          offerType,
+        },
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res)
+        return true;
+      })
+      .catch((err) => {
+        console.error(err)
+        return false;
+      });
   },
 };

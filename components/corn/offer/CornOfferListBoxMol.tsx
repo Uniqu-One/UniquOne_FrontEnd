@@ -71,7 +71,6 @@ function CornOfferListBoxMol(props: { offer: CornOfferType }) {
   const { acceptCount, postId, postImg, price, refuseCount, waitingCnt } =
     props.offer;
 
-  console.log(props.offer)
 
   return (
     <>

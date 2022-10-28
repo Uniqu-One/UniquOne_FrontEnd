@@ -35,7 +35,7 @@ export const OfferUtils = {
       })
       .then((res) => {
         console.log(res);
-        return res.data;
+        return res.data.data;
       })
       .catch((err) => {
         console.log(err);
@@ -50,29 +50,30 @@ export const OfferUtils = {
         },
       })
       .then((res) => {
-        console.log(res);
-        return res.data;
+        console.log(res.data.data);
+        return res.data.data;
       })
       .catch((err) => {
         console.log(err);
         return [];
       });
   },
-  getMyDetailOffer: async (token:string,postId:string|number) => {
+  getMyDetailOffer: (token: string, postId: string | number) => {
+    console.log(postId, 'inin')
 
-    await axios
-      .get(`${process.env.NEXT_PUBLIC_URL_AWS}/offer/${postId}`, {
+    const fetchMyDetailOffer = () => {
+      return axios.get(`${process.env.NEXT_PUBLIC_URL_AWS}/offer/corn/${postId}`, {
         headers: {
           Authorization: token,
         },
-      }).then(res => {
-        console.log(res)
-        return true;
       })
-        .catch(err => {
-          console.error(err)
-          return false;
-        })
+    };
 
-  }
+    const {data, isLoading} = useQuery('myDetailOfferQuery',fetchMyDetailOffer)
+
+    if(isLoading){return "Loading"}
+
+    return data?.data.data
+
+  },
 };

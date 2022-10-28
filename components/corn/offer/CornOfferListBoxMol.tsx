@@ -1,10 +1,10 @@
 import styled from "@emotion/styled";
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 import useEvaIcon from "../../../lib/hooks/useEvaIcon";
 import { color } from "../../../styles/theme";
+import { CornOfferType } from "./CornOfferListTmp";
 
 const CornOfferListBoxMolStyled = styled.div`
   height: 84px;
@@ -64,33 +64,39 @@ const CornOfferListBoxMolStyled = styled.div`
   }
 `;
 
-function CornOfferListBoxMol() {
+function CornOfferListBoxMol(props: { offer: CornOfferType }) {
   const router = useRouter();
   useEvaIcon();
 
+  const { acceptCount, postId, postImg, price, refuseCount, waitingCnt } =
+    props.offer;
+
+  console.log(props.offer)
+
   return (
     <>
-      <CornOfferListBoxMolStyled>
+      <CornOfferListBoxMolStyled onClick={() => router.push(`/corn/offer/${postId}`)}>
         <div className="left">
-          <div>
-            <Image
-              src="/assets/images/postImage.jpg"
-              alt="dummy img"
-              width={60}
-              height={60}
-            />
+          <div className="item_box">
+            <Image src={postImg} alt="dummy img" width={60} height={60} />
           </div>
           <div className="infos">
             <div className="title">
               <p>제목</p>
             </div>
             <div className="price">
-              <p>₩ 27,000</p>
+              <p>₩ {price.toLocaleString()}</p>
             </div>
             <div className="offers">
-              <span className="offer">5개 제안</span>
-              <span className="ok">2개 수락</span>
-              <span className="no">5개 거절</span>
+              <span className="offer">
+                {acceptCount + refuseCount + waitingCnt}개 제안
+              </span>
+              {acceptCount !== 0 && (
+                <span className="ok">{acceptCount}개 수락</span>
+              )}
+              {refuseCount !== 0 && (
+                <span className="no">{refuseCount}개 거절</span>
+              )}
             </div>
           </div>
         </div>

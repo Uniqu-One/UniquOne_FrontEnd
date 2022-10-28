@@ -38,8 +38,7 @@ const ProfileBoxTmpStyle = styled.div`
 
 function ProfileBoxTmp(props: { type: string; userId?: string }) {
   const token = useRecoilValue(TokenState).token;
-  const { userId, cornId } = useRecoilValue(UserInfoState);
-  const { type } = props;
+  const { cornId } = useRecoilValue(UserInfoState);
   const [followStatus, setFollowStatus] = useState(false);
 
   const handleFollowBtn = () => {
@@ -53,7 +52,7 @@ function ProfileBoxTmp(props: { type: string; userId?: string }) {
   };
 
   //TODO - cornID로 변경해야함
-  const profileBoxData = ProfileUtils.getProfileData(token, userId);
+  const profileBoxData = ProfileUtils.getProfileData(token, cornId);
 
   if (!cornId) {
     return <ProfileNothingMol />;

@@ -1,4 +1,6 @@
 import styled from "@emotion/styled";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { OfferUtils } from "../../lib/utils/OfferUtils";
@@ -8,6 +10,19 @@ import CornOfferSingleBoxOrg from "../corn/offer/CornOfferSingleBoxOrg";
 const MyOfferListMolStyle = styled.div`
   padding-top: 50px;
 `;
+
+export type offerDataType = {
+  postId: string | number;
+  offerCheckDate: string;
+  offerPrice: string | number;
+  offerRegDate: string;
+  offerType: string;
+  postImg: string;
+  postPrice: string | number;
+  postTitle: string;
+  cornImg:string;
+  userNickName:string;
+};
 
 function MyOfferListMol() {
   const token = useRecoilValue(TokenState).token;
@@ -23,11 +38,13 @@ function MyOfferListMol() {
 
   return (
     <>
-      {myOfferDataList ? (
+      {myOfferDataList[0] ? (
         <MyOfferListMolStyle>
-          <CornOfferSingleBoxOrg type="check" />
-          <CornOfferSingleBoxOrg type="ok" />
-          <CornOfferSingleBoxOrg type="no" />
+          {myOfferDataList.map((offer: offerDataType) => {
+            return (
+                  <CornOfferSingleBoxOrg key={offer.postId} offer={offer} />
+            );
+          })}
         </MyOfferListMolStyle>
       ) : (
         <>

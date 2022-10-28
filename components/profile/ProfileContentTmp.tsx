@@ -71,7 +71,7 @@ export const ProfileContentsStyle = styled.div`
 function ProfileContentTmp() {
   const token = useRecoilValue(TokenState);
   const tabs = ["전체", "상품", "스타일"];
-  const {cornId} = useRecoilValue(UserInfoState);
+  const { cornId } = useRecoilValue(UserInfoState);
   const [tempTab, setTempTab] = useState(0);
   const [tempPostList, setTempPostList] = useState([]);
 
@@ -97,9 +97,13 @@ function ProfileContentTmp() {
     }
   }, [tempTab]);
 
+  if (tempPostList[0] === undefined) {
+    return <div>업로드된 게시물이 없습니다.</div>;
+  }
+
   return (
     <>
-      {cornId &&  (
+      {cornId && (
         <ProfileContentTmpStyle>
           <div className="ProfileTabs">
             {tabs.map((tab, idx) => (

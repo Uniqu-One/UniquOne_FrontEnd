@@ -29,7 +29,7 @@ function index() {
         <TopTmp type="post" />
 
         <PostTypeTmp type="rec" />
-
+        {/* 포스트 개별 정보 받아오기 */}
         {postListDummy.map((post) => {
           return <PostCardTmp key={post.id} postId={post.id}/>;
         })}

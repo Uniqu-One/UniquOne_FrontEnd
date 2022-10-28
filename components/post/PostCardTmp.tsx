@@ -28,7 +28,7 @@ function PostCardTmp(props: { postId: string | number }) {
           <PostUserMol userName={"strongMinsu"} />
         </div>
         <div className="right">
-          <PostFollowMol />
+          <PostFollowMol postId={props.postId}/>
           <ThreeDotMol postId={props.postId}/>
         </div>
       </PostCarTmpStyle>

@@ -1,18 +1,29 @@
 import React, { useState } from "react";
+import { useRecoilValue } from "recoil";
+import { FollowUtils } from "../../lib/utils/FollowUtils";
 import { ToastUtils } from "../../lib/utils/ToastUtils";
+import { TokenState } from "../../states/recoil/TokenState";
 import FollowBtnMol from "../common/mol/FollowBtnMol";
 
-function PostFollowMol() {
-  const [followStatus, setFollowStatus] = useState(false);
+function PostFollowMol(props:{postId:string|number}) {
+  const token = useRecoilValue(TokenState).token
+  const postId = props.postId
+  const [followStatus, setFollowStatus] = useState(true);
 
-  const handleFollowStatus = () => {
+  const handleFollowStatus = async () => {
     if (followStatus) {
-      ToastUtils.success("팔로잉에 성공하였습니다.");
+      if(await FollowUtils.registerFollow(token,1)){
+        ToastUtils.success("팔로잉에 성공하였습니다.");
+        setFollowStatus(!followStatus);
+      }
     } else {
+      if(await FollowUtils.cancelFollow(token,1)){
       ToastUtils.error("팔로잉을 취소하였습니다.");
+      setFollowStatus(!followStatus);
+      }
     }
 
-    setFollowStatus(!followStatus);
+    
   };
   return (
     <>

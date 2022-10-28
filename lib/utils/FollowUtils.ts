@@ -25,13 +25,13 @@ export const FollowUtils = {
   },
   cancelFollow: async (token: string, cornId: string | number) => {
     return await axios
-      .delete(`${process.env.NEXT_PUBLIC_URL_AWS}/posts/following`, {
+      .delete(`${process.env.NEXT_PUBLIC_URL_AWS}/posts/follow`, {
         headers: {
           Authorization: token,
         },
-        data: {
-          cornId,
-        },
+        data:{
+          cornId
+        }
       })
       .then((res) => {
         console.log(res);

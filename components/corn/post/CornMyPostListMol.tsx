@@ -2,11 +2,16 @@ import styled from "@emotion/styled";
 import axios from "axios";
 import { useInView } from "framer-motion";
 import Link from "next/link";
+<<<<<<< Updated upstream
 import React, { useEffect, useRef, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { TokenState } from "../../../states/recoil/TokenState";
 import { UserInfoState } from "../../../states/recoil/UserInfoState";
 import LoadingSpinnerAtm from "../../common/atm/LoadingSpinnerAtm";
+=======
+import React from "react";
+import { CornUtils } from "../../../lib/utils/CornUtils";
+>>>>>>> Stashed changes
 import PostLgOrg from "../../common/org/PostLgOrg";
 
 const CornMyPostListMolStyle = styled.div`
@@ -26,6 +31,7 @@ const CornMyPostListMolStyle = styled.div`
 `;
 
 function CornMyPostListMol() {
+<<<<<<< Updated upstream
   const token = useRecoilValue(TokenState).token;
   const cornId = useRecoilValue(UserInfoState).cornId
 
@@ -73,6 +79,9 @@ function CornMyPostListMol() {
     }
   }, [pageNum,cornId]);
 
+=======
+  const myPostData = CornUtils.getMyPostList();
+>>>>>>> Stashed changes
   return (
     <CornMyPostListMolStyle>
       <div className="box" ref={refBox}>

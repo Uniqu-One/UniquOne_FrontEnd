@@ -22,7 +22,7 @@ export const LoginUtils = {
         }
       })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         return res.data.data;
       })
       .catch((err) => console.error(err));

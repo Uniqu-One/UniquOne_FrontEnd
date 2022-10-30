@@ -22,9 +22,11 @@ export const LoginUtils = {
         }
       })
       .then((res) => {
-        // console.log(res);
         return res.data.data;
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error(err)
+        return 'expired'
+      });
   },
 };

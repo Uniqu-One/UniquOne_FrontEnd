@@ -13,7 +13,16 @@ function LoginAuthStateTmp() {
   const router =useRouter()
 
   const updateUserInfo = async () => {
-    setUserInfo(await LoginUtils.getUserInfo(token))
+    
+    const userInfo = await LoginUtils.getUserInfo(token)
+
+    if(userInfo === 'expired'){
+      alert('토큰이 만료되었습니다.')
+      router.push('/login')
+    }
+
+    setUserInfo(userInfo)
+
   }
 
   useEffect(() => {

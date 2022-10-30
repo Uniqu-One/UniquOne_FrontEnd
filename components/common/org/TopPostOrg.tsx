@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 import useEvaIcon from "../../../lib/hooks/useEvaIcon";
 import SearchModalTmp from "../../search/SearchModalTmp";
@@ -20,6 +21,7 @@ const TopPostStyle = styled.div`
 `;
 
 function TopPostOrg() {
+  const router = useRouter()
   useEvaIcon();
 
   return (
@@ -29,7 +31,7 @@ function TopPostOrg() {
           <span>
             <i data-eva="star-outline"></i>
           </span>
-          <span>
+          <span onClick={() => {router.push('/search')}}>
             <i data-eva="search-outline"></i>
           </span>
         </TopPostStyle>

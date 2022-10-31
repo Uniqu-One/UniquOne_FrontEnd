@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { LoginUtils } from "../../lib/utils/LoginUtils";
+import { ToastUtils } from "../../lib/utils/ToastUtils";
 import { LoginAuthState } from "../../states/recoil/LoginAuthState";
 import { TokenState } from "../../states/recoil/TokenState";
 import { UserInfoState } from "../../states/recoil/UserInfoState";
@@ -40,7 +41,7 @@ function LoginAuthStateTmp() {
         ) {
           return;
         } else {
-          alert("로그인이 필요한 기능입니다.");
+          ToastUtils.error("로그인이 필요한 기능입니다.")
           router.replace("/intro");
         }
       }

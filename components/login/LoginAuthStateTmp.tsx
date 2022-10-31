@@ -7,33 +7,45 @@ import { TokenState } from "../../states/recoil/TokenState";
 import { UserInfoState } from "../../states/recoil/UserInfoState";
 
 function LoginAuthStateTmp() {
-  const [loginAuthState,setLoginAuthState] = useRecoilState(LoginAuthState);
-  const [userInfo,setUserInfo] = useRecoilState(UserInfoState)
+  const [loginAuthState, setLoginAuthState] = useRecoilState(LoginAuthState);
+  const [userInfo, setUserInfo] = useRecoilState(UserInfoState);
   const token = useRecoilValue(TokenState).token;
-  const router =useRouter()
+  const router = useRouter();
+  const pathName = router.pathname.split("/")[1];
 
   const updateUserInfo = async () => {
-    const userInfo = await LoginUtils.getUserInfo(token)
-    if(userInfo === 'expired'){
-      alert('토큰이 만료되었습니다.')
-      router.push('/login')
+    const userInfo = await LoginUtils.getUserInfo(token);
+    if (userInfo === "expired") {
+      alert("토큰이 만료되었습니다.");
+      router.push("/login");
     }
-    setUserInfo(userInfo)
-  }
+    setUserInfo(userInfo);
+  };
 
   useEffect(() => {
-
-    if(loginAuthState === false){
-      if(token){
-        updateUserInfo()
-        setLoginAuthState(true)
+    //login, / /post / profile
+    if (loginAuthState === false) {
+      if (token) {
+        updateUserInfo();
+        setLoginAuthState(true);
       } else {
-        alert('로그인이 필요한 기능입니다.')
-        router.replace('/intro')
+        if (
+          pathName === "" ||
+          pathName === "login" ||
+          pathName === "post" ||
+          pathName === "profile" ||
+          pathName === "intro" ||
+          pathName === "signup"||
+          pathName === "login" 
+        ) {
+          return;
+        } else {
+          alert("로그인이 필요한 기능입니다.");
+          router.replace("/intro");
+        }
       }
     }
-
-  },[])
+  }, [pathName]);
 
   return <></>;
 }

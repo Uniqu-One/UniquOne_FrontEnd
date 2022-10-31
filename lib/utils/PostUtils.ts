@@ -329,4 +329,16 @@ export const PostUtils = {
       })
       .catch((err) => console.error(err));
   },
+  getPostDetailData: async (token:string,postId:string|number) => {
+    return await axios.get(`${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/detail/${postId}`,{
+      headers:{
+        Authorization:token
+      }
+    })
+    .then(res => {
+  
+      return res.data.data
+    })
+    .catch(err => console.error(err))
+  }
 };

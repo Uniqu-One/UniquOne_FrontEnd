@@ -20,8 +20,17 @@ const PostCarTmpStyle = styled.div`
   }
 `;
 
-function PostCardMol() {
-  const postId = 1
+export type PostDataType = {
+  
+}
+
+function PostCardMol(props:{postId:number|string, postDetailData:{}}) {
+  
+  const {postId, postDetailData} = props;
+  const {colorList, condition, dsc, lookId, postCategoryId, postTagList, postType, productSize, title} = postDetailData
+
+  console.log(postDetailData)
+
   return (
     <>
     <PostCarTmpStyle>

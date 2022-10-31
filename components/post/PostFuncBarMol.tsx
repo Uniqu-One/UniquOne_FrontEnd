@@ -23,7 +23,6 @@ const PostFuncBarMolStyle = styled.div`
     }
     :last-of-type {
       margin: auto 9px auto 0;
-      /* background-color: red; */
     }
   }
 

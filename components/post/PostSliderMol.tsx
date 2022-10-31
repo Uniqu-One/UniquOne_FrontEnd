@@ -39,10 +39,9 @@ const PostSliderMolStyle = styled.div`
   }
 `;
 
-function PostSliderMol(props: { postId: number | string }) {
+function PostSliderMol(props: { postId: number | string,postImgUrlList:[] }) {
   const router = useRouter();
-  const { postId } = props;
-
+  const { postId, postImgUrlList } = props;
 
   const [settings, setSettings] = useState({
     beforeChange: (e: number) => {
@@ -76,36 +75,25 @@ function PostSliderMol(props: { postId: number | string }) {
     dotsClass: "dots_custom",
   });
 
-  console.log(postId)
-
   return (
     <PostSliderMolStyle>
       {router.query.postId ? <ToastTmp /> : <></>}
       <Slider {...settings}>
-        <div>
+        {postImgUrlList.map((img,idx) => {
+          
+          return <div key={idx}>
           <Image
-            src="/assets/images/postImage.jpg"
+            src={img}
             alt="postdummy"
             width={1000}
             height={1000}
           />
         </div>
+        })}
         <div>
-          <Image
-            src="/assets/images/postImage.jpg"
-            alt="postdummy"
-            width={1000}
-            height={1000}
-          />
+
         </div>
-        <div>
-          <Image
-            src="/assets/images/postImage.jpg"
-            alt="postdummy"
-            width={1000}
-            height={1000}
-          />
-        </div>
+
       </Slider>
     </PostSliderMolStyle>
   );

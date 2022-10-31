@@ -22,21 +22,44 @@ const PostCarTmpStyle = styled.div`
 
 export type PostDataType = {};
 
-function PostCardMol(props: { postId: number | string; postDetailData: any }) {
-  const { postId, postDetailData } = props;
-  const {
-    colorList,
-    condition,
-    dsc,
-    lookId,
-    postCategoryId,
-    postTagList,
-    postType,
-    productSize,
-    title,
-  } = props.postDetailData;
+function PostCardMol(props: {
+  postId: number | string;
+  postDetailData?: any;
+  postListData?: any;
+}) {
+  const { postId, postDetailData, postListData } = props;
 
-  console.log(postDetailData);
+  if (postListData) {
+    const {
+      cornId,
+      cornTitle,
+      isCool,
+      isFollow,
+      postId,
+      postImgUrlList,
+      regDate,
+      userId,
+    } = postListData;
+
+    return (
+      <>
+        <PostCarTmpStyle>
+          <div>
+            <PostUserMol userName={cornTitle} />
+          </div>
+          <div className="right">
+            <PostFollowMol postId={postId} />
+            <ThreeDotMol postId={postId} />
+          </div>
+        </PostCarTmpStyle>
+
+        <PostSliderMol postId={postId} postImgUrlList={postImgUrlList} />
+
+        {/* 하트랑 유니스타랑 댓글 */}
+        <PostFuncBarMol postId={postId} isCool={isCool} />
+      </>
+    );
+  }
 
   return (
     <>
@@ -48,7 +71,6 @@ function PostCardMol(props: { postId: number | string; postDetailData: any }) {
           <PostFollowMol postId={postId} />
           <ThreeDotMol postId={postId} />
         </div>
-        
       </PostCarTmpStyle>
 
       <PostSliderMol postId={postId} />

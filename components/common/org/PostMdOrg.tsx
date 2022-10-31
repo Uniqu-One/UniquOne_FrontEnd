@@ -30,11 +30,6 @@ function PostMdOrg(props: {
     uniStarLevel?: number;
   };
 }) {
-  // cosnt {}
-
-  //postId, uniStarId, postImgUrl
-
-  console.log(props.post, "here");
 
   return (
     <PostMdOrgStyle>

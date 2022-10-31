@@ -340,5 +340,34 @@ export const PostUtils = {
       return res.data.data
     })
     .catch(err => console.error(err))
-  }
+  },
+
+  getRecPostData: async (token:string) => {
+
+    return await axios.get(`${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/my/recommend`,{
+      headers:{
+        Authorization:token
+      }
+    }).then(res => {
+      console.log(res)
+      return res.data.data
+    })
+      .catch(err =>console.error(err))
+
+  },
+
+  getFollowingPostData: async (token:string) => {
+
+    return await axios.get(`${process.env.NEXT_PUBLIC_URL_AWS}/posts/main/search/contents/follow`,{
+      headers:{
+        Authorization:token
+      }
+    }).then(res => {
+      console.log(res.data.data)
+      return res.data.data
+    })
+      .catch(err =>console.error(err))
+
+  },
+
 };

@@ -9,9 +9,11 @@ import { LikeUtils } from "../../lib/utils/LikeUtils";
 import { useRecoilValue } from "recoil";
 import { TokenState } from "../../states/recoil/TokenState";
 
-function PostHeartMol(props: { postId: string | number }) {
+function PostHeartMol(props: { postId: string | number, isCool:boolean }) {
+  const {postId, isCool} = props
   const token = useRecoilValue(TokenState).token;
-  const [tempHeart, setTempHeart] = useState(true);
+  const [tempHeart, setTempHeart] = useState(isCool);
+
 
   const handleChangeTempHeart = () => {
     if (tempHeart) {

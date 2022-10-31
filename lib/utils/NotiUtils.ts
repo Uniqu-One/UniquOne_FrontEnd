@@ -10,10 +10,22 @@ export const NotiUtils = {
         Authorization:token
       }
     }).then(res => {
+      console.log(res)
       return res.data.data
     })
       .catch(err => console.error(err))
 
+  },
+
+  getNotiCount: async (token:string) => {
+    return await axios.get(`${process.env.NEXT_PUBLIC_URL_AWS}/noti/nonCnt`,{
+      headers:{
+        Authorization:token
+      }
+    }).then(res => {
+      return res.data.data
+    })
+      .catch(err => console.error(err))
   }
 
 }

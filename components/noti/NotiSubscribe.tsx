@@ -12,7 +12,7 @@ function NotiSubscribe() {
 
   const handleSub = () => {
     setEventSource(
-      new EventSource(`http://10.10.10.143:8000/noti/subscribe/` + 1)
+      new EventSource(`${process.env.NEXT_PUBLIC_URL_AWS}/noti/subscribe/` + 1)
     );
   };
 

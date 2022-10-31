@@ -7,6 +7,7 @@ import NotiBoxMol from "./NotiBoxMol";
 
 const NotiTmpStyle = styled.div`
   padding-top: 50px;
+  padding-bottom: 60px;
 `;
 
 function NotiTmp() {
@@ -23,7 +24,7 @@ function NotiTmp() {
 
   return (
     <NotiTmpStyle>
-      {notiData[0] !== undefined ? (
+      {notiData !== undefined ? (
         notiData.map((noti, idx) => {
           return <NotiBoxMol key={idx} noti={noti} />;
         })

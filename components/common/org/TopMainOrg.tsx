@@ -25,13 +25,20 @@ export const TopMainOrg = () => {
             </TopLogoAtm>
           </a>
         </Link>
-        
+
+        <div
+          style={{"margin":"auto 0"}}
+
+          className="noti_icon"
+          onClick={() => {
+            console.log(1);
+            router.push("/noti");
+          }}
+        >
           <TopIconAtm>
-            <i 
-            onClick={() => router.push('/noti')}
-            data-eva="bell-outline"></i>
+            <i data-eva="bell-outline"></i>
           </TopIconAtm>
-        
+        </div>
       </TopBoxMol>
     </>
   );

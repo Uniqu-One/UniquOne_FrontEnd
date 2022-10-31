@@ -57,7 +57,7 @@ setPostDetailData(await PostUtils.getPostDetailData(token,postId))
       <PostIntervalStyle>
         <TopTmp type="post"/>
         <PostCardTmp postId={postId} postDetailData={postDetailData}/>
-        <PostSingleBodyOrg userId={"userID"}/>
+        <PostSingleBodyOrg userId={"userID"} postDetailData={postDetailData}/>
 
         <PostSingleDummyIntervalStyle/>
 

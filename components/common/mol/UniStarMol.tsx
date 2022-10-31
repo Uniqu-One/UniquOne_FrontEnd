@@ -2,31 +2,23 @@ import React, { useEffect, useState } from "react";
 import UniStarAtm from "../atm/UniStarAtm";
 import { AnimatePresence, motion } from "framer-motion";
 
-function UniStarMol() {
-  const [count, setCount] = useState(0);
+function UniStarMol(props:{tempStar:number,setTempStar:Function}) {
+  const {tempStar,setTempStar} = props
 
-  const handleSetCount = () => {
-    if (count === 3) {
-      setCount(count - 3);
-    } else {
-      setCount(count + 1);
-    }
-  };
 
-  useEffect(() => {}, [count]);
   return (
     <>
       <AnimatePresence>
-        <span onClick={handleSetCount}>
+        <span>
           <motion.div
-            key={count}
+            key={tempStar}
             animate={{ rotate: -120, opacity: 1 }}
             style={{ width: "24px" }}
             initial={{ opacity: 0.8 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4 }}
           >
-            <UniStarAtm count={count} />
+            <UniStarAtm count={tempStar} />
           </motion.div>
         </span>
       </AnimatePresence>

@@ -6,7 +6,7 @@ function PostSingleTagMol(props: { tag: string }) {
     <>
       <Link href="/">
         <a>
-        <p>#{props.tag}</p>
+        <p>{props.tag}</p>
         </a>
       </Link>
     </>

@@ -33,20 +33,35 @@ const desc =
 
 const tags = ["길게길게", "적으면은", "으띃게", "태그들이완성이", "될런지요"];
 
-function PostSingleBodyOrg(props: { userId: string }) {
+function PostSingleBodyOrg(props: { userId: string, postDetailData:any }) {
+
+  const {
+    colorList,
+    condition,
+    dsc,
+    lookId,
+    postCategoryId,
+    postTagList,
+    postType,
+    productSize,
+    title,
+  } = props.postDetailData;
+
+
   return (
     <>
       <PostSingleBodyOrgStyle>
         <h2>{props.userId}</h2>
-        <p>{desc}</p>
-{/* TODO - 여기 Org로 묶고 props내려서 처리해서 깔끔하게 바꾸기 */}
+        <h3>{title}</h3>
+        <p>{dsc}</p>
+
         <div>
-          {tags.map((tag, idx) => {
+          {postTagList.map((tag, idx) => {
             return <PostSingleTagMol key={idx} tag={tag} />;
           })}
         </div>
 
-        <PostSingleDetailOrg />
+        <PostSingleDetailOrg postDetailData={props.postDetailData}/>
       </PostSingleBodyOrgStyle>
     </>
   );

@@ -23,8 +23,19 @@ const PostMdOrgStyle = styled.div`
 
 function PostMdOrg(props: {
   opt?: string;
-  post?: { postId: number; postImg: string; postType: string };
+  post?: {
+    postId: number;
+    postImg: string;
+    postType?: string;
+    uniStarLevel?: number;
+  };
 }) {
+  // cosnt {}
+
+  //postId, uniStarId, postImgUrl
+
+  console.log(props.post, "here");
+
   return (
     <PostMdOrgStyle>
       <Link href={props.post ? `/post/${props.post.postId}` : "/"}>

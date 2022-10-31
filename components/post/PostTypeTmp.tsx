@@ -7,6 +7,7 @@ import { color } from '../../styles/theme'
 // TODO - 컬러 문제 해결해야함
 
 const PostTypeTmpStyle = styled.div<{type:string}>`
+padding-top: 50px;
 height: 54px;
 background-color: ${color.p_gray_lt};
 display: flex;

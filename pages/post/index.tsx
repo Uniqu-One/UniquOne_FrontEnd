@@ -6,36 +6,20 @@ import PostCardTmp from "../../components/post/PostCardTmp";
 import PostTypeTmp from "../../components/post/PostTypeTmp";
 import { postListDummy } from "../../public/assets/datas/postListDummy";
 
-const PostIntervalStyle = styled.div`
+const PostStyle = styled.div`
   width: 100vw;
   overflow: hidden;
-
-  > div {
-    :nth-of-type(2) {
-      margin-top: 48px;
-    }
-
-    :nth-last-of-type(2)  {
-      margin-bottom: 54px;
-    }
-  }
 `;
 
 function index() {
-
   return (
     <>
-      <PostIntervalStyle>
+      <PostStyle>
         <TopTmp type="post" />
-
         <PostTypeTmp type="rec" />
-        {/* 포스트 개별 정보 받아오기 */}
-        {postListDummy.map((post) => {
-          return <PostCardTmp key={post.id} postId={post.id}/>;
-        })}
-
+        <PostCardTmp />
         <FooterTmp />
-      </PostIntervalStyle>
+      </PostStyle>
     </>
   );
 }

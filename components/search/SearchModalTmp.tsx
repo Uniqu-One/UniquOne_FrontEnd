@@ -1,28 +1,29 @@
+import styled from "@emotion/styled";
 import React from "react";
-import { useRecoilValue } from "recoil";
-import { SearchUtils } from "../../lib/utils/SearchUtils";
-import { TokenState } from "../../states/recoil/TokenState";
+import { useRecoilState } from "recoil";
+import { SearchModalState } from "../../states/recoil/SearchModalState";
 import SearchBarMol from "./SearchBarMol";
 import SearchRecentMol from "./SearchRecentMol";
 
+const SearchModalTmpStyle = styled.div`
+  height: 100vh;
+  width: 100vw;
+  background-color: white;
+  z-index: 20;
+  position: fixed;
+`;
+
 function SearchModalTmp() {
+  const [modalState, setModalState] = useRecoilState(SearchModalState);
 
-  const token = useRecoilValue(TokenState).token
 
-  // SearchUtils.getSearchAllList(
-  //   token,
-  //   "유니콘",
-  //   "1",
-  //   "1"
-  // )
-
-  SearchUtils.getSearchCornNameList(token,'유니콘')
+  if(modalState === false){return <></>}
 
   return (
-    <>
-      <SearchBarMol />
-      <SearchRecentMol/>
-    </>
+    <SearchModalTmpStyle>
+      <SearchBarMol/>
+      <SearchRecentMol />
+    </SearchModalTmpStyle>
   );
 }
 

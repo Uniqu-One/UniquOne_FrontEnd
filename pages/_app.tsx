@@ -8,6 +8,7 @@ import Head from "next/head";
 import { QueryClient, QueryClientProvider } from "react-query";
 import LoginAuthStateTmp from "../components/login/LoginAuthStateTmp";
 import ToastTmp from "../components/common/tmp/ToastTmp";
+import SearchModalTmp from "../components/search/SearchModalTmp";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const queryClient = new QueryClient();
@@ -24,6 +25,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <RecoilRoot>
           <LoginAuthStateTmp />
           <ThemeProvider theme={color}>
+          <SearchModalTmp/>
             <ToastTmp />
             <Component {...pageProps} />
           </ThemeProvider>

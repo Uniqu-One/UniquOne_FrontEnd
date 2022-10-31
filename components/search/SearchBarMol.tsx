@@ -1,6 +1,10 @@
 import styled from "@emotion/styled";
-import React from "react";
+import { useRouter } from "next/router";
+import React, { useState } from "react";
+import { useRecoilState } from "recoil";
 import useEvaIcon from "../../lib/hooks/useEvaIcon";
+import { ToastUtils } from "../../lib/utils/ToastUtils";
+import { SearchModalState } from "../../states/recoil/SearchModalState";
 import { color } from "../../styles/theme";
 
 const SearchBarMolStyle = styled.div`
@@ -34,23 +38,44 @@ const SearchBarMolStyle = styled.div`
   }
 `;
 
-function SearchBarMol() {
+function SearchBarMol(props:{keyword?:string}) {
+  const router = useRouter()
   useEvaIcon();
+  const [modalState, setModalState] = useRecoilState(SearchModalState);
+
+  const [searchWord, setSearchWord] = useState("");
+
+  const handleChangeSearchPage = () => {
+    if(searchWord !== ""){
+      router.push(`/search/${searchWord}`)
+      setModalState(false)
+    } else {
+      ToastUtils.error('검색어를 입력해주세요')
+    }
+  }
+
   return (
     <>
       <SearchBarMolStyle>
-        <div>
+        <div onClick={() => setModalState(false)}>
           <i data-eva="close-outline"></i>
         </div>
 
         <div className="search_input">
-          <input type="text" placeholder="검색어를 입력해주세요" />
-          <i
-            className="search_icon"
-            data-eva="search-outline"
-            data-eva-height="18px"
-            data-eva-width="18px"
-          ></i>
+          <input
+            type="text"
+            placeholder="검색어를 입력해주세요"
+            value={searchWord}
+            onChange={(e) => setSearchWord(e.target.value)}
+          />
+          <span onClick={() => handleChangeSearchPage()}>
+            <i
+              className="search_icon"
+              data-eva="search-outline"
+              data-eva-height="18px"
+              data-eva-width="18px"
+            ></i>
+          </span>
         </div>
       </SearchBarMolStyle>
     </>

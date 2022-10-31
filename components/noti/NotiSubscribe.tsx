@@ -1,0 +1,75 @@
+import React, { useEffect, useState } from "react";
+import { useRecoilValue } from "recoil";
+import { ToastUtils } from "../../lib/utils/ToastUtils";
+import { UserInfoState } from "../../states/recoil/UserInfoState";
+
+function NotiSubscribe() {
+  const userId = useRecoilValue(UserInfoState).userId;
+
+  const [data, setData] = useState<any>("");
+
+  const [eventSource, setEventSource] = useState<any>();
+
+  const handleSub = () => {
+    setEventSource(
+      new EventSource(`http://10.10.10.143:8000/noti/subscribe/` + 1)
+    );
+  };
+
+  const notiSend = () => {
+    eventSource.addEventListener("sse", function (event: any) {
+      if (event.data.split(" ")[0] === "EventStream") {
+        console.log(event.data, "out area");
+        return null;
+      } else {
+        setData(JSON.parse(event.data));
+        ToastUtils.success('새로운 알림')
+      }
+    });
+  };
+
+  const showNoti = async () => {
+    const showNotification = () => {
+      const notification = new Notification("유니크원 알림", {
+        icon: "https://uniquoneimg.s3.ap-northeast-2.amazonaws.com/img/KakaoTalk_20221017_114329237.png",
+        body: data.nickName + data.dsc,
+      });
+
+      setTimeout(() => {
+        notification.close();
+      }, 10 * 1000);
+      notification.addEventListener("click", () => {
+        window.open(data.url, "_blank");
+      });
+    };
+
+    let granted = false;
+
+    if (Notification.permission === "granted") {
+      granted = true;
+    } else if (Notification.permission !== "denied") {
+      let permission = await Notification.requestPermission();
+      granted = permission === "granted";
+    }
+
+    // 알림 보여주기
+    if (granted) {
+      showNotification();
+    }
+  };
+
+  useEffect(() => {
+    handleSub();
+    showNoti();
+  }, []);
+
+  useEffect(() => {
+    if (eventSource) {
+      notiSend();
+    }
+  }, [eventSource]);
+
+  return <></>;
+}
+
+export default NotiSubscribe;

@@ -1,11 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React from "react";
 import { TopIconAtm } from "../atm/TopIconAtm";
 import { TopLogoAtm } from "../atm/TopLogoAtm";
 import { TopBoxMol } from "../mol/TopBoxMol";
 
 export const TopMainOrg = () => {
+  const router = useRouter();
 
   return (
     <>
@@ -23,9 +25,13 @@ export const TopMainOrg = () => {
             </TopLogoAtm>
           </a>
         </Link>
-        <TopIconAtm>
-          <i data-eva="bell-outline"></i>
-        </TopIconAtm>
+        
+          <TopIconAtm>
+            <i 
+            onClick={() => router.push('/noti')}
+            data-eva="bell-outline"></i>
+          </TopIconAtm>
+        
       </TopBoxMol>
     </>
   );

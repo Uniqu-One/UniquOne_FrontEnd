@@ -9,6 +9,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import LoginAuthStateTmp from "../components/login/LoginAuthStateTmp";
 import ToastTmp from "../components/common/tmp/ToastTmp";
 import SearchModalTmp from "../components/search/SearchModalTmp";
+import NotiSubscribe from "../components/noti/NotiSubscribe";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const queryClient = new QueryClient();
@@ -27,6 +28,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           <ThemeProvider theme={color}>
           <SearchModalTmp/>
             <ToastTmp />
+            <NotiSubscribe/>
             <Component {...pageProps} />
           </ThemeProvider>
         </RecoilRoot>

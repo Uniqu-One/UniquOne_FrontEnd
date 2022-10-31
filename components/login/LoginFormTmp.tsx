@@ -54,6 +54,7 @@ function LoginFormTmp() {
   const handleLogin = async () => {
     if (next) {
       const userInfo = await LoginUtils.login(email, userPwd);
+      console.log(userInfo)
       const userMiniInfo = await LoginUtils.getUserInfo(userInfo.token);
 
       if (userInfo && userMiniInfo) {

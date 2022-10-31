@@ -8,6 +8,7 @@ export const LoginUtils = {
         password,
       })
       .then((res) => {
+        console.log(res)
         if (res.status === 200) {
           return res.data;
         }

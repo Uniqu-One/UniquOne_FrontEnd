@@ -72,7 +72,7 @@ const ChatBoxMolStyle = styled.div`
 
 function ChatBoxMol(props: { chatData: chatListDataType }) {
   const router = useRouter();
-  const { chatRoomId, message, msgRegDate, postId, receiverId } =
+  const { chatRoomId, message, msgRegDate, postId, receiverId,receiverName } =
     props.chatData;
 
   const handleEnterRoom = () => {
@@ -81,6 +81,8 @@ function ChatBoxMol(props: { chatData: chatListDataType }) {
       query:{postId,receiverId}
     });
   };
+
+  console.log(props.chatData)
 
   return (
     <>
@@ -91,7 +93,7 @@ function ChatBoxMol(props: { chatData: chatListDataType }) {
 
             <div>
               <h4>
-                userID<span>{msgRegDate}</span>
+                {receiverName}<span>{msgRegDate}</span>
               </h4>
               <p>{message}</p>
             </div>

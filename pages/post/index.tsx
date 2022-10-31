@@ -17,7 +17,7 @@ function index() {
       <PostStyle>
         <TopTmp type="post" />
         <PostTypeTmp type="rec" />
-        <PostCardTmp />
+        <PostCardTmp/>
         <FooterTmp />
       </PostStyle>
     </>

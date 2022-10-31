@@ -11,16 +11,38 @@ const PostSingleDetailBoxStyle = styled.div`
   }
 `;
 
-function PostSingleDetailOrg() {
+function PostSingleDetailOrg(props:{postDetailData:any}) {
+
+  const {
+    colorList,
+    condition,
+    dsc,
+    lookId,
+    postCategoryId,
+    postTagList,
+    postType,
+    productSize,
+    title,
+  } = props.postDetailData;
+
+
+  console.log(colorList)
+
   return (
     <>
       <PostSingleDetailBoxStyle>
-        <SmBtnAtm color={"blue"} text="파랑" />
-        <SmBtnAtm color={"white"} text="걸리시" />
-        <SmBtnAtm color={"white"} text="아메카지" />
+        
 
-        <SmBtnAtm color={color.p_gray_lt} text="Size L" />
-        <SmBtnAtm color={color.p_gray_lt} text="중고-신품" />
+        <SmBtnAtm color={"blue"} text="파랑" />
+
+        {lookId.map(look => {
+          console.log(look)
+          return <SmBtnAtm color={"white"} text={look} key={look}/>
+        })}
+        
+
+        <SmBtnAtm color={color.p_gray_lt} text={`Size ${productSize}`} />
+        <SmBtnAtm color={color.p_gray_lt} text={condition} />
       </PostSingleDetailBoxStyle>
     </>
   );

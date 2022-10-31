@@ -1,12 +1,15 @@
 import styled from "@emotion/styled";
 import { GetServerSideProps } from "next";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useRecoilValue } from "recoil";
 import TopTmp from "../../../components/common/tmp/TopTmp";
 import PostCardTmp from "../../../components/post/PostCardTmp";
 import PostSingleBodyOrg from "../../../components/post/single/PostSingleBodyOrg";
 import PostSingleCornOrg from "../../../components/post/single/PostSingleCornOrg";
 import PostSingleFooterTmp from "../../../components/post/single/PostSingleFooterTmp";
+import { PostUtils } from "../../../lib/utils/PostUtils";
 import { ToastUtils } from "../../../lib/utils/ToastUtils";
+import { TokenState } from "../../../states/recoil/TokenState";
 import { color } from "../../../styles/theme";
 
 const PostIntervalStyle = styled.div`
@@ -30,20 +33,31 @@ const PostSingleDummyIntervalStyle = styled.div`
 `
 
 function PostId(props:{postId:string}) {
+  const token = useRecoilValue(TokenState)
   const postId = props.postId
+  const [postDetailData, setPostDetailData] = useState()
+
+  const updateDetailPostData = async () => {
+setPostDetailData(await PostUtils.getPostDetailData(token,postId))
+  }
 
   useEffect(() => {
-
     ToastUtils.success('N명의 유저가 이 게시물을 좋아해요!')
-
+    updateDetailPostData()
   },[])
+
+  if(postDetailData === undefined){
+    return <div>로딩중</div>
+  }
+
+  console.log(postDetailData)
 
   return (
     <>
       <PostIntervalStyle>
         <TopTmp type="post"/>
-        <PostCardTmp postId={postId}/>
-        <PostSingleBodyOrg userId={"userID"}/>
+        <PostCardTmp postId={postId} postDetailData={postDetailData}/>
+        <PostSingleBodyOrg userId={"userID"} postDetailData={postDetailData}/>
 
         <PostSingleDummyIntervalStyle/>
 
@@ -59,6 +73,7 @@ function PostId(props:{postId:string}) {
 export default PostId;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
+
   const { query } = context;
   const { postId } = query;
 
@@ -68,4 +83,5 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     },
   };
 };
+
 

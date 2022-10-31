@@ -1,5 +1,8 @@
 import styled from "@emotion/styled";
-import React from "react";
+import React, { useState } from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { UniStarUtils } from "../../lib/utils/UniStarUtils";
+import { TokenState } from "../../states/recoil/TokenState";
 import UniStarMol from "../common/mol/UniStarMol";
 import PostCommentAtm from "./PostCommentAtm";
 import PostCommentMol from "./PostCommentMol";
@@ -23,7 +26,6 @@ const PostFuncBarMolStyle = styled.div`
     }
     :last-of-type {
       margin: auto 9px auto 0;
-      /* background-color: red; */
     }
   }
 
@@ -36,6 +38,34 @@ const PostFuncBarMolStyle = styled.div`
 `;
 
 function PostFuncBarMol(props:{postId:number|string}) {
+  const token = useRecoilValue(TokenState).token;
+  const postId = props.postId
+  const [tempStar,setTempStar] = useState(0)
+
+  const updateUniStar = async() => {
+
+    if(tempStar === 0){
+      UniStarUtils.enrollUniStar(token,postId)
+      setTempStar(1)
+    }
+
+    if(tempStar === 1){
+      UniStarUtils.pathchUniStar(token,postId,2)
+      setTempStar(2)
+    }
+
+    if(tempStar === 2){
+      UniStarUtils.pathchUniStar(token,postId,3)
+      setTempStar(3)
+    }
+
+    if(tempStar ===3){
+      UniStarUtils.deleteUniStar(token,postId)
+      setTempStar(0)
+    }
+
+  }
+
   return (
     <PostFuncBarMolStyle>
       <div className="icons">
@@ -43,8 +73,8 @@ function PostFuncBarMol(props:{postId:number|string}) {
         <PostCommentMol />
       </div>
 
-      <div className="uni_star">
-        <UniStarMol />
+      <div className="uni_star" onClick={() => updateUniStar()}>
+        <UniStarMol tempStar={tempStar} setTempStar={setTempStar}/>
       </div>
     </PostFuncBarMolStyle>
   );

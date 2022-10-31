@@ -1,13 +1,13 @@
 import React from "react";
 import PostCardMol from "./PostCardMol";
 
+function PostCardTmp(props: { postId: string | number; postDetailData: {} }) {
 
-
-function PostCardTmp(props:{postId?:string|number}) {
+  const {postId, postDetailData} = props;
 
   return (
     <>
-      <PostCardMol />
+      <PostCardMol postId={postId} postDetailData={postDetailData}/>
     </>
   );
 }

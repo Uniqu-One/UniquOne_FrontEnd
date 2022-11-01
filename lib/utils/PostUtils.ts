@@ -310,6 +310,7 @@ export const PostUtils = {
         }
       )
       .then((res) => {
+        
         return res.data.data.content[0];
       })
       .catch((err) => console.error(err));
@@ -326,56 +327,44 @@ export const PostUtils = {
         }
       )
       .then((res) => {
+        console.log(res)
+        return res.data.data.content[0];
+      })
+      .catch((err) => console.error(err));
+  },
+
+
+  getOtherPostList: async (cornId:string, pageNum: number) => {
+
+    return await axios
+      .get(
+        `${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/listall/${cornId}?page=${pageNum}`,
         
+      )
+      .then((res) => {
+        console.log(res)
         return res.data.data.content[0];
       })
       .catch((err) => console.error(err));
   },
-
-
-  getOtherPostList: async (token: string, pageNum: number) => {
-
+  getOtherSellPostList: async (cornId:string, pageNum: number) => {
     return await axios
       .get(
-        `${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/mylistall?page=${pageNum}`,
-        {
-          headers: {
-            Authorization:
-              token,
-          },
-        }
+        `${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/listproduct/${cornId}?page=${pageNum}`,
+        
       )
       .then((res) => {
         return res.data.data.content[0];
       })
-      .catch((err) => console.error(err));
+      .catch((err) => console.error(err)); 
   },
-  getOtherSellPostList: async (token: string, pageNum: number) => {
+
+
+  getOtherStylePostList: async (cornId:string, pageNum: number) => {
     return await axios
       .get(
-        `${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/mylistproduct?page=${pageNum}`,
-        {
-          headers: {
-            Authorization:
-              token,
-          },
-        }
-      )
-      .then((res) => {
-        return res.data.data.content[0];
-      })
-      .catch((err) => console.error(err));
-  },
-  getOtherStylePostList: async (token: string, pageNum: number) => {
-    return await axios
-      .get(
-        `${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/myliststyle?page=${pageNum}`,
-        {
-          headers: {
-            Authorization:
-              token,
-          },
-        }
+        `${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/liststyle/${cornId}?page=${pageNum}`,
+        
       )
       .then((res) => {
         

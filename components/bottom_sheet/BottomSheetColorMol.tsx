@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import BottomSheetColorAtm from "./BottomSheetColorAtm";
-import { postMenuListData } from "../../public/assets/datas/postMenuListData";
+import { POST_MENU_LIST } from "../../public/assets/datas/postMenuList";
 import styled from "@emotion/styled";
 import BottomSheetTopMol from "./BottomSheetTopMol";
 import { color } from "../../styles/theme";
@@ -51,7 +51,7 @@ function BottomSheetColorMol(props: { setOpen: Function, type?:string}) {
         
         <h4>2개까지 선택 가능합니다.</h4>
         <div className="colorAtmStyle">
-          {postMenuListData.color.map((menu) => {
+          {POST_MENU_LIST.color.map((menu) => {
             return <BottomSheetColorAtm key={menu.name} menu={menu} 
             setTempSelect={setTempSelect}
             tempSelect={tempSelect}

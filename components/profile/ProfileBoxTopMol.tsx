@@ -44,9 +44,9 @@ const ProfileBoxTopMolStyle = styled.div`
   }
 `;
 
-function ProfileBoxTopMol(props: { type: string, profileBoxData:ProfileDataType }) {
+function ProfileBoxTopMol(props: { type: string, profileBoxData:ProfileDataType,cornId?:string }) {
   const router = useRouter();
-  const userId = router.query.userId;
+  const {cornId} = props
 
   const {postEA, followerEA,followingEA,imgUrl,reviewEA,title} = props.profileBoxData 
 
@@ -77,7 +77,7 @@ function ProfileBoxTopMol(props: { type: string, profileBoxData:ProfileDataType 
                 href={
                   props.type === "my"
                     ? "/my/review"
-                    : `/profile/${userId}/review`
+                    : `/profile/${cornId}/review`
                 }
               >
                 <a>

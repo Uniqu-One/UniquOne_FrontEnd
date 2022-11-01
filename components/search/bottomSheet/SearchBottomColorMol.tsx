@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
-import { postMenuListData } from "../../../public/assets/datas/postMenuListData";
+import { POST_MENU_LIST } from "../../../public/assets/datas/postMenuList";
 import { SearchFilterState } from "../../../states/recoil/SearchFilterState";
 import { color } from "../../../styles/theme";
 import BottomSheetColorAtm from "../../bottom_sheet/BottomSheetColorAtm";
@@ -53,7 +53,7 @@ function SearchColorBottomMol(props: { setOpen: Function}) {
         
         
         <div className="colorAtmStyle">
-          {postMenuListData.color.map((menu) => {
+          {POST_MENU_LIST.color.map((menu) => {
             return <BottomSheetColorAtm key={menu.name} menu={menu} 
             setTempSelect={setTempSelect}
             tempSelect={tempSelect}

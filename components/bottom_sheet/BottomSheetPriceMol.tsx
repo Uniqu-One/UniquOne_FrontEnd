@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import BottomSheetColorAtm from "./BottomSheetColorAtm";
-import { postMenuListData } from "../../public/assets/datas/postMenuListData";
+import { POST_MENU_LIST } from "../../public/assets/datas/postMenuList";
 import styled from "@emotion/styled";
 import BottomSheetTopMol from "./BottomSheetTopMol";
 import { color } from "../../styles/theme";

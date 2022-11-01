@@ -18,7 +18,6 @@ function MyReviewTmp(props:{
 
   const cornReviewList = ReviewUtils.getMyCornReview(token);
   const writtenReviewList = ReviewUtils.getMyWrittenReview(token);
-  const otherReviewList = ReviewUtils.getOtherReviewList(token,userId);
 
   return (
     <>
@@ -42,11 +41,6 @@ function MyReviewTmp(props:{
           return <ReviewCardMol key={review.reviewId} review={review} />;
         })}
 
-      {userId &&
-        otherReviewList &&
-        writtenReviewList.map((review: reviewListType) => {
-          return <ReviewCardMol key={review.reviewId} review={review} />;
-        })}
     </>
   );
 }

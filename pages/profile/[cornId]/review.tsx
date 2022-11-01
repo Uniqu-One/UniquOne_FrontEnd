@@ -3,12 +3,13 @@ import React from "react";
 import FooterTmp from "../../../components/common/tmp/FooterTmp";
 import TopTmp from "../../../components/common/tmp/TopTmp";
 import MyReviewTmp from "../../../components/review/MyReviewTmp";
+import OtherReviewTmp from "../../../components/review/OtherReviewTmp";
 
-function reveiw(props: { userId: string }) {
+function reveiw(props: { cornId: string }) {
   return (
     <>
       <TopTmp text="리뷰" />
-      <MyReviewTmp userId={props.userId} />
+        <OtherReviewTmp cornId={props.cornId} />
       <FooterTmp />
     </>
   );
@@ -18,11 +19,11 @@ export default reveiw;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { query } = context;
-  const { userId } = query;
+  const { cornId } = query;
 
   return {
     props: {
-      userId,
+      cornId,
     },
   };
 };

@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import React, { ReactElement, useEffect, useState } from "react";
 
 import { useRecoilState } from "recoil";
-import { postMenuListData } from "../../../public/assets/datas/postMenuListData";
+import { POST_MENU_LIST } from "../../../public/assets/datas/postMenuList";
 
 import { SearchFilterState } from "../../../states/recoil/SearchFilterState";
 import { color } from "../../../styles/theme";
@@ -72,7 +72,7 @@ function SearchBottomConditionMol(props: { setOpen: Function }) {
       />
       <BottomSheetRadioMolStyle>
         <div>
-          {postMenuListData["condition"].map((menu, idx) => {
+          {POST_MENU_LIST["condition"].map((menu, idx) => {
             return (
               <label
                 key={idx}

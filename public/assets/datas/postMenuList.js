@@ -1,4 +1,4 @@
-export const postMenuListData = {
+export const POST_MENU_LIST = {
 
   postType: [
     { title: "판매중", desc: "현재 스타일을 유저에게 판매 하고 싶어요!" },

@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
 import { color } from "../../styles/theme";
 import BottomSheetTopMol from "./BottomSheetTopMol";
-import { postMenuListData } from "../../public/assets/datas/postMenuListData";
+import { POST_MENU_LIST } from "../../public/assets/datas/postMenuList";
 import BottomSheetRoundBoxAtm from "./BottomSheetRoundBoxAtm";
 import { useRecoilState } from "recoil";
 import { CornPostState } from "../../states/recoil/CornPostState";
@@ -42,7 +42,7 @@ function BottomSheetLookMol(props: { setOpen: Function }) {
       />
       <LookStyle>
         <h4>2개까지 선택 가능합니다.</h4>
-        {postMenuListData.look.map((menu) => {
+        {POST_MENU_LIST.look.map((menu) => {
           return (
             <BottomSheetRoundBoxAtm
               key={menu}

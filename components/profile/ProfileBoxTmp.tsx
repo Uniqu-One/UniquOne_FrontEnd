@@ -56,6 +56,8 @@ function ProfileBoxTmp(props: { type: string; cornId?: string }) {
 
   const profileBoxData = ProfileUtils.getProfileData(token, props.cornId);
 
+  const {cornId} = props
+
   useEffect(() => {
 
     setFollowStatus(!profileBoxData.isFollow)
@@ -71,7 +73,7 @@ function ProfileBoxTmp(props: { type: string; cornId?: string }) {
     return (
       <>
         <ProfileBoxTmpStyle>
-          <ProfileBoxTopMol type={props.type} profileBoxData={profileBoxData} />
+          <ProfileBoxTopMol type={props.type} profileBoxData={profileBoxData} cornId={cornId}/>
           <ProfileBoxUnderMol
             desc={profileBoxData?.dsc || ""}
             link={profileBoxData?.url || ""}

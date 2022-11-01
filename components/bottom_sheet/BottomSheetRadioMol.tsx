@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import React, { useState } from "react";
 import { color } from "../../styles/theme";
-import { postMenuListData } from "../../public/assets/datas/postMenuListData";
+import { POST_MENU_LIST } from "../../public/assets/datas/postMenuList";
 import BottomSheetLookMol from "./BottomSheetLookMol";
 import { useRecoilState } from "recoil";
 import { CornPostState } from "../../states/recoil/CornPostState";
@@ -163,7 +163,7 @@ function BottomSheetRadioMol(props: {
             <h3>포스트 분류</h3>
           </div>
           <div>
-            {postMenuListData[props.tempMenu].map((menu, idx) => {
+            {POST_MENU_LIST[props.tempMenu].map((menu, idx) => {
               return (
                 <label
                   key={idx}
@@ -198,7 +198,7 @@ function BottomSheetRadioMol(props: {
             <h3>상태</h3>
           </div>
           <div>
-            {postMenuListData[props.tempMenu].map((menu, idx) => {
+            {POST_MENU_LIST[props.tempMenu].map((menu, idx) => {
               return (
                 <label
                   key={idx}
@@ -234,7 +234,7 @@ function BottomSheetRadioMol(props: {
             <h3>정렬</h3>
           </div>
           <div>
-            {postMenuListData[props.tempMenu].map((menu, idx) => {
+            {POST_MENU_LIST[props.tempMenu].map((menu, idx) => {
               return (
                 <label
                   key={idx}

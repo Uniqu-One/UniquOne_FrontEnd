@@ -1,6 +1,9 @@
+import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { CornUtils } from "../../../lib/utils/CornUtils";
+import { PostUtils } from "../../../lib/utils/PostUtils";
+import { ToastUtils } from "../../../lib/utils/ToastUtils";
 import { TokenState } from "../../../states/recoil/TokenState";
 
 import InputFormMol from "../../common/mol/InputFormMol";
@@ -17,6 +20,7 @@ export type cornEditDataType = {
 
 function CornEditTmp() {
   const token = useRecoilValue(TokenState).token
+  const router = useRouter()
   const [cornProfile, setCornProfile] = useState<cornEditDataType>({
     img: null,
     cornName: "",
@@ -50,8 +54,11 @@ function CornEditTmp() {
 
   
 
-  const handleEditCornInfo = () => {
-    CornUtils.editMyCornInfo(token,cornProfile)
+  const handleEditCornInfo = async () => {
+    if(await CornUtils.editMyCornInfo(token,cornProfile)){
+      ToastUtils.success('콘 수정이 완료되었습니다.')
+      router.replace('/corn')
+    }
   }
 
   return (

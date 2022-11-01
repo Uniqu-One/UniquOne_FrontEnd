@@ -5,11 +5,10 @@ import { PostUtils } from "../../lib/utils/PostUtils";
 import { TokenState } from "../../states/recoil/TokenState";
 import { UserInfoState } from "../../states/recoil/UserInfoState";
 import { color } from "../../styles/theme";
-import { postDataType } from "../../types/postDataType";
 import QuestionMarkAtm from "../common/atm/QuestionMarkAtm";
 import PostMdOrg from "../common/org/PostMdOrg";
 
-const ProfileContentTmpStyle = styled.div`
+const ProfileOtherContentTmpStyle = styled.div`
   overflow: hidden;
 
   padding-bottom: 60px;
@@ -38,7 +37,7 @@ const ProfileContentTmpStyle = styled.div`
     }
   }
 
-  .ProfileContents {
+  .ProfileOtherContents {
     :last-of-type {
       display: flex;
       flex-wrap: wrap;
@@ -62,7 +61,7 @@ const ProfileContentTmpStyle = styled.div`
       width: 60px;
       height: 60px;
     }
-    p {
+    p{
       font-size: 0.875rem;
       margin-top: 9px;
       color: ${color.p_gray_md};
@@ -70,7 +69,7 @@ const ProfileContentTmpStyle = styled.div`
   }
 `;
 
-export const ProfileContentsStyle = styled.div`
+export const ProfileOtherContentsStyle = styled.div`
   display: flex;
   flex-wrap: wrap;
   div {
@@ -84,23 +83,23 @@ export const ProfileContentsStyle = styled.div`
   }
 `;
 
-function ProfileContentTmp() {
-  const token = useRecoilValue(TokenState).token;
+function ProfileOtherContentTmp() {
+  const token = useRecoilValue(TokenState);
   const tabs = ["전체", "상품", "스타일"];
   const { cornId } = useRecoilValue(UserInfoState);
   const [tempTab, setTempTab] = useState(0);
   const [tempPostList, setTempPostList] = useState([]);
 
   const getMyAllPostData = async () => {
-    setTempPostList(await PostUtils.getMyPostList(token, 0));
+    setTempPostList(await PostUtils.getMyPostList(token, 1));
   };
 
   const getMySellData = async () => {
-    setTempPostList(await PostUtils.getMySellPostList(token, 0));
+    setTempPostList(await PostUtils.getMySellPostList(token, 1));
   };
 
   const getMyStyleData = async () => {
-    setTempPostList(await PostUtils.getMyStylePostList(token, 0));
+    setTempPostList(await PostUtils.getMyStylePostList(token, 1));
   };
 
   useEffect(() => {
@@ -115,37 +114,38 @@ function ProfileContentTmp() {
 
   if (tempPostList === undefined) {
     return (
-      <ProfileContentTmpStyle>
+      <ProfileOtherContentTmpStyle>
         <div className="question_mark">
           <QuestionMarkAtm />
           <p>업로드된 포스트가 없어요!</p>
         </div>
-      </ProfileContentTmpStyle>
+        
+      </ProfileOtherContentTmpStyle>
     );
   }
 
-
   return (
-    <div>
-      <ProfileContentTmpStyle>
-        <div className="ProfileTabs">
-          {tabs.map((tab, idx) => (
-            <div key={idx} onClick={() => setTempTab(idx)}>
-              {tempTab === idx ? <h3>{tab}</h3> : <h4>{tab}</h4>}
-            </div>
-          ))}
-        </div>
-
-        <ProfileContentsStyle>
-          {tempPostList.map(
-            (post: { postId: number; postImg: string; postType: string }) => {
-              return <PostMdOrg key={post.postId} post={post} />;
-            }
-          )}
-        </ProfileContentsStyle>
-      </ProfileContentTmpStyle>
-    </div>
+    <>
+      {cornId && (
+        <ProfileOtherContentTmpStyle>
+          <div className="ProfileTabs">
+            {tabs.map((tab, idx) => (
+              <div key={idx} onClick={() => setTempTab(idx)}>
+                {tempTab === idx ? <h3>{tab}</h3> : <h4>{tab}</h4>}
+              </div>
+            ))}
+          </div>
+          <ProfileOtherContentsStyle>
+            {tempPostList.map(
+              (post: { postId: number; postImg: string; postType: string }) => {
+                return <PostMdOrg key={post.postId} post={post} />;
+              }
+            )}
+          </ProfileOtherContentsStyle>
+        </ProfileOtherContentTmpStyle>
+      )}
+    </>
   );
 }
 
-export default ProfileContentTmp;
+export default ProfileOtherContentTmp;

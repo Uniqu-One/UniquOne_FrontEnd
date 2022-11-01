@@ -38,7 +38,6 @@ function CornRegNameMol(props: CornInputTypes) {
         }
       })
       .catch((err) => {
-        console.log(err);
         return false;
       });
   };

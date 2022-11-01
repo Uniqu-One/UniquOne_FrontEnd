@@ -1,11 +1,7 @@
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-<<<<<<< Updated upstream
 import { useRecoilState, useRecoilValue, useResetRecoilState } from "recoil";
-=======
-import { useRecoilState, useResetRecoilState } from "recoil";
->>>>>>> Stashed changes
 import useEvaIcon from "../../../lib/hooks/useEvaIcon";
 import { PostUtils } from "../../../lib/utils/PostUtils";
 import { CornPostState } from "../../../states/recoil/CornPostState";
@@ -24,31 +20,23 @@ const CornPostTmpStyle = styled.div`
 `;
 
 function CornPostTmp(props: { postId?: string }) {
-  const router = useRouter();
   const token = useRecoilValue(TokenState).token;
   const { postId } = props;
 
-  
   const [postData, setPostData] = useRecoilState(CornPostState);
   const [buttonStatus, setButtonStatus] = useState(false);
 
-<<<<<<< Updated upstream
-  const editPostData = PostUtils.getEditPostDatas(token, postId);
-=======
-  const editPostData = PostUtils.getEditPostDatas()
-  
-
->>>>>>> Stashed changes
+  const editPostData = PostUtils.getEditPostDatas(token,postId)
 
   useEffect(() => {
-    if (router.query.postId && editPostData) {
+    if (postId && editPostData) {
       setPostData({ ...editPostData });
     }
-  }, [router.query, editPostData]);
+  }, [editPostData]);
 
   useEffect(() => {
     if (
-      postData.type === "스타일" &&
+      postData.postType === "STYLE" &&
       postData.desc !== "" &&
       postData.tags !== ""
     ) {

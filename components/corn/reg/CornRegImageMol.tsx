@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import { useRecoilValue } from "recoil";
 import { CornUtils } from "../../../lib/utils/CornUtils";
+import { ToastUtils } from "../../../lib/utils/ToastUtils";
 import { TokenState } from "../../../states/recoil/TokenState";
 import { UserInfoState } from "../../../states/recoil/UserInfoState";
 import BtnTmp from "../../common/tmp/BtnTmp";
@@ -35,7 +36,7 @@ function CornRegImageMol(props: {
       if(await CornUtils.postCornAccount(token,formData)){
         changeRegRedirectPage();
       } else {
-        console.log('콘 등록 실패')
+        ToastUtils.error('콘 등록에 실패하였습니다.')
       }
     }
   };

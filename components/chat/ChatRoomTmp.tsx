@@ -29,8 +29,6 @@ function ChatRoomTmp() {
   const [ws, setWs] = useState<CompatClient>();
   const scrollRef = useRef<null | HTMLDivElement>(null);
 
-  console.log(chatData);
-
   const connect = async () => {
     if (ws !== undefined) {
       ws.connect(
@@ -39,9 +37,7 @@ function ChatRoomTmp() {
           ws.subscribe(
             `/sub/chat/room/${router.query.roomId}`,
             (recMessage: { body: string }) => {
-              console.log(roomId, "룸 아이디");
               let recv = JSON.parse(recMessage.body);
-              console.log(recv, "here");
               const { senderId, message, date, regTime } = recv;
 
               setChatData((prev) => [

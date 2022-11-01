@@ -8,6 +8,7 @@ import { TradeUtils } from "../../lib/utils/TradeUtils";
 import { useRecoilValue } from "recoil";
 import { TokenState } from "../../states/recoil/TokenState";
 import { UserInfoState } from "../../states/recoil/UserInfoState";
+import { ToastUtils } from "../../lib/utils/ToastUtils";
 
 const MENU = ["판매중", "거래중", "거래완료"];
 
@@ -108,9 +109,9 @@ export default function ChatRoomButtonMol() {
     if (menu === "거래완료" && postId && receiverId) {
       //TODO - 리코일로 전역 Toast 만들어야함
       if (await TradeUtils.tradeOver(token,userId,+postId)) {
-        console.log("거래가 완료되었습니다.");
+        ToastUtils.success('거래가 완료되었습니다.')
       } else {
-        console.log("거래 가능한 상태가 아닙니다.");
+        ToastUtils.error('거래가 가능한 상태가 아닙니다.')
       }
     }
   };

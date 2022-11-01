@@ -64,6 +64,7 @@ function BottomSheetPriceMol(props: { setOpen: Function; type?: string }) {
   useEffect(() => {
     if (postData.price.length > 0) {
       setTempSelect([postData.price]);
+      setPostData((prev) => ({...prev,price:tempSelect[0]}))
     }
   }, []);
 

@@ -78,6 +78,8 @@ export const PostUtils = {
       price,
     } = postUploadData;
 
+    console.log(postUploadData)
+
     const clearImgList: File[] = [];
     if (imgList !== null) {
       imgList.forEach((i) => {
@@ -95,11 +97,12 @@ export const PostUtils = {
     //TODO - any 수정 indexing 처리 해야함
     let engType: any = { 판매중: "SALE", 나눔: "SHARE", 스타일: "STYLE" };
 
+
     const postDatas = {
       title: title,
       dsc: desc,
       postTagLine: tags,
-      postType: "SALE",
+      postType: engType[postType],
       postCategoryName: category,
       conditions: condition,
       lookLine: look.join(","),
@@ -163,14 +166,12 @@ export const PostUtils = {
         select: (data) => {
           const editData = data.data.data;
 
-          console.log(editData)
           const newEditData: postDataType = {
             imgList: [null, null, null, null, null],
             postType: "",
             title: "",
             desc: "",
             tags: "",
-            type: "",
             category: "",
             condition: "",
             price: "",
@@ -191,11 +192,11 @@ export const PostUtils = {
           newEditData.productSize = editData.productSize;
 
           if (editData.postType === "SALE") {
-            newEditData.type = "판매중";
+            newEditData.postType = "판매중";
           } else if (editData.postType === "SHARE") {
-            newEditData.type = "나눔";
+            newEditData.postType = "나눔";
           } else if (editData.postType === "STYLE") {
-            newEditData.type = "스타일";
+            newEditData.postType = "스타일";
           }
 
           newEditData.imgList = editData.postImgList;
@@ -214,18 +215,16 @@ export const PostUtils = {
     postData: postDataType,
     postId?: string
   ) => {
-    console.log(postData);
 
-    let { desc, tags, type, category, condition, look, color } = postData;
+    
+    let { desc, tags, postType, category, condition, look, color } = postData;
 
-    if (type === "판매중") {
-      type = "SALE";
-    }
+    let engType: any = { 판매중: "SALE", 나눔: "SHARE", 스타일: "STYLE" };
 
     const newPostData = {
       dsc: desc,
       postTagLine: tags,
-      postType: "SALE",
+      postType: engType[postType],
       postCategoryName: category,
       conditions: condition,
       lookLine: look.join(","),
@@ -233,13 +232,13 @@ export const PostUtils = {
     };
 
     return await axios
-      .put(
+      .patch(
         `${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/mod/${postId}`,
         newPostData,
         {
           headers: {
             Authorization:
-              "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzeTQyMzUxM0BnbWFpbC5jb20iLCJpZCI6MSwibmlja05hbWUiOiLrsLDrtoDrpbjri6jrrLTsp4DsmYAzMyIsImVtYWlsIjoic3k0MjM1MTNAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImlhdCI6MTY2NjE0Nzc5MSwiZXhwIjoxNjY3MDExNzkxfQ.oAb6zW8DR6taLuPSOa5RArtVNR5r9KhFT4cvQKZRD1M",
+              token,
           },
         }
       )
@@ -279,18 +278,18 @@ export const PostUtils = {
       });
   },
   getMyPostList: async (token: string, pageNum: number) => {
+
     return await axios
       .get(
-        `${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/listall/1?page=${pageNum}`,
+        `${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/mylistall?page=${pageNum}`,
         {
           headers: {
             Authorization:
-              "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzeTQyMzUxM0BnbWFpbC5jb20iLCJpZCI6MSwibmlja05hbWUiOiLrsLDrtoDrpbjri6jrrLTsp4DsmYAzMyIsImVtYWlsIjoic3k0MjM1MTNAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImlhdCI6MTY2NjE0Nzc5MSwiZXhwIjoxNjY3MDExNzkxfQ.oAb6zW8DR6taLuPSOa5RArtVNR5r9KhFT4cvQKZRD1M",
+              token,
           },
         }
       )
       .then((res) => {
-        // console.log(res.data.data.content[0])
         return res.data.data.content[0];
       })
       .catch((err) => console.error(err));
@@ -298,16 +297,15 @@ export const PostUtils = {
   getMySellPostList: async (token: string, pageNum: number) => {
     return await axios
       .get(
-        `${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/listproduct/1?page=${pageNum}`,
+        `${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/mylistproduct?page=${pageNum}`,
         {
           headers: {
             Authorization:
-              "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzeTQyMzUxM0BnbWFpbC5jb20iLCJpZCI6MSwibmlja05hbWUiOiLrsLDrtoDrpbjri6jrrLTsp4DsmYAzMyIsImVtYWlsIjoic3k0MjM1MTNAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImlhdCI6MTY2NjE0Nzc5MSwiZXhwIjoxNjY3MDExNzkxfQ.oAb6zW8DR6taLuPSOa5RArtVNR5r9KhFT4cvQKZRD1M",
+              token,
           },
         }
       )
       .then((res) => {
-        // console.log(res.data.data.content[0])
         return res.data.data.content[0];
       })
       .catch((err) => console.error(err));
@@ -315,16 +313,16 @@ export const PostUtils = {
   getMyStylePostList: async (token: string, pageNum: number) => {
     return await axios
       .get(
-        `${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/liststyle/1?page=${pageNum}`,
+        `${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/myliststyle?page=${pageNum}`,
         {
           headers: {
             Authorization:
-              "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzeTQyMzUxM0BnbWFpbC5jb20iLCJpZCI6MSwibmlja05hbWUiOiLrsLDrtoDrpbjri6jrrLTsp4DsmYAzMyIsImVtYWlsIjoic3k0MjM1MTNAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImlhdCI6MTY2NjE0Nzc5MSwiZXhwIjoxNjY3MDExNzkxfQ.oAb6zW8DR6taLuPSOa5RArtVNR5r9KhFT4cvQKZRD1M",
+              token,
           },
         }
       )
       .then((res) => {
-        // console.log(res.data.data.content[0])
+        
         return res.data.data.content[0];
       })
       .catch((err) => console.error(err));
@@ -363,11 +361,22 @@ export const PostUtils = {
         Authorization:token
       }
     }).then(res => {
-      console.log(res.data.data)
       return res.data.data
     })
       .catch(err =>console.error(err))
 
   },
+  getRecommendPostData: async (token:string) => {
 
+    return await axios.get(`${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/cool`,{
+      headers:{
+        Authorization:token
+      }
+    }).then(res => {
+      console.log(res.data.data.result)
+      return res.data.data.result
+    })
+      .catch(err =>console.error(err))
+
+  }
 };

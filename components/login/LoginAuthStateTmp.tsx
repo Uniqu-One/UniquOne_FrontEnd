@@ -20,6 +20,7 @@ function LoginAuthStateTmp() {
       ToastUtils.error('다시 로그인이 필요합니다')
       router.push("/login");
     }
+
     setUserInfo(userInfo);
   };
 
@@ -37,7 +38,9 @@ function LoginAuthStateTmp() {
           pathName === "profile" ||
           pathName === "intro" ||
           pathName === "signup"||
-          pathName === "login" 
+          pathName === "login" ||
+          pathName === "redirect" 
+          
         ) {
           return;
         } else {

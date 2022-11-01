@@ -5,7 +5,6 @@ import { useRecoilState } from "recoil";
 import useEvaIcon from "../../../lib/hooks/useEvaIcon";
 import { CornPostState } from "../../../states/recoil/CornPostState";
 import { color } from "../../../styles/theme";
-import { postDataType } from "../../../types/postDataType";
 import BottomSheetRadioMol from "../../bottom_sheet/BottomSheetRadioMol";
 
 const CornPostMenuBarMolStyle = styled.div`
@@ -41,13 +40,14 @@ function CornPostMenuBarMol(props: {
   };
 
   const handleTempSelect = (selectedTab: string) => {
+
     setPostData(() => {
       let newData = { ...postData };
-      newData[name] = selectedTab;
-      setOpen(false);
 
+      newData[name] = selectedTab;
       return { ...newData };
     });
+    setOpen(false);
   };
 
   const [open, setOpen] = useState(false);

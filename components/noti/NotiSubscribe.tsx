@@ -12,14 +12,13 @@ function NotiSubscribe() {
 
   const handleSub = () => {
     setEventSource(
-      new EventSource(`${process.env.NEXT_PUBLIC_URL_AWS}/noti/subscribe/` + 1)
+      new EventSource(`${process.env.NEXT_PUBLIC_URL_AWS}/noti/subscribe/` + userId)
     );
   };
 
   const notiSend = () => {
     eventSource.addEventListener("sse", function (event: any) {
       if (event.data.split(" ")[0] === "EventStream") {
-        console.log(event.data, "out area");
         return null;
       } else {
         setData(JSON.parse(event.data));
@@ -59,9 +58,11 @@ function NotiSubscribe() {
   };
 
   useEffect(() => {
-    handleSub();
-    showNoti();
-  }, []);
+    if(userId){
+      handleSub();
+      showNoti();
+    }
+  }, [userId]);
 
   useEffect(() => {
     if (eventSource) {

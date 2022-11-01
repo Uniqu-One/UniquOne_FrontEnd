@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const FollowUtils = {
-  registerFollow: async (token: string, cornId: string | number) => {
+  registerFollow: async (token: string, cornId?: string | number) => {
     return await axios
       .post(
         `${process.env.NEXT_PUBLIC_URL_AWS}/posts/following`,
@@ -23,7 +23,7 @@ export const FollowUtils = {
         return false;
       });
   },
-  cancelFollow: async (token: string, cornId: string | number) => {
+  cancelFollow: async (token: string, cornId?: string | number) => {
     return await axios
       .delete(`${process.env.NEXT_PUBLIC_URL_AWS}/posts/follow`, {
         headers: {

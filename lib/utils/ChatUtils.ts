@@ -1,4 +1,3 @@
-import { useQuery } from "react-query";
 import axios from "axios";
 
 export const ChatUtils = {
@@ -14,11 +13,9 @@ export const ChatUtils = {
         }
       )
       .then((res) => {
-        console.log(res);
         return true;
       })
       .catch((err) => {
-        console.error(err);
         return false;
       });
   },

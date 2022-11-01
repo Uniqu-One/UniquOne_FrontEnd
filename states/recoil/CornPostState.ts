@@ -11,7 +11,6 @@ const CornPostState = atom<postDataType>({
     title:"",
     desc: "",
     tags: "",
-    type: "",
     category: "",
     condition: "",
     price:"",

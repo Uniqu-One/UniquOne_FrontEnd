@@ -5,6 +5,7 @@ import FooterTmp from '../../../components/common/tmp/FooterTmp'
 import TopTmp from '../../../components/common/tmp/TopTmp'
 import ProfileBoxTmp from '../../../components/profile/ProfileBoxTmp'
 import ProfileContentTmp from '../../../components/profile/ProfileContentTmp'
+import ProfileOtherContentTmp from '../../../components/profile/ProfileOtherContentTmp'
 import { color } from '../../../styles/theme'
 
 const ProfileInterVal = styled.div`
@@ -13,16 +14,16 @@ const ProfileInterVal = styled.div`
   background-color: ${color.p_gray_lt};
 `
 
-function Index(props:{userId:string}) {
+function Index(props:{cornId:string}) {
   return (
     <>
       <TopTmp text='userId'/>
 
-      <ProfileBoxTmp type="other" userId={props.userId}/>
+      <ProfileBoxTmp type="other" cornId={props.cornId}/>
     
     <ProfileInterVal/>
 
-    <ProfileContentTmp/>
+    <ProfileOtherContentTmp/>
 
       <FooterTmp/>
     </>
@@ -33,11 +34,11 @@ export default Index
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { query } = context;
-  const { userId } = query;
+  const { cornId } = query;
 
   return {
     props: {
-      userId,
+      cornId,
     },
   };
 };

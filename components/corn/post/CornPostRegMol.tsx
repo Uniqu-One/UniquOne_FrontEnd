@@ -17,8 +17,8 @@ function CornPostRegMol(props: { buttonStatus: boolean; postId?: string }) {
     if (await PostUtils.registerPost(token, postData)) {
       router.replace({
         pathname: "/corn",
-        query: { status: "post" },
       });
+      ToastUtils.success("포스트 등록이 완료되었습니다.")
     } else {
       ToastUtils.error("포스트 등록에 실패하였습니다.");
     }
@@ -26,7 +26,7 @@ function CornPostRegMol(props: { buttonStatus: boolean; postId?: string }) {
 
   const handleEditPost = async () => {
     if (await PostUtils.editPostData(token, postData, postId)) {
-      ToastUtils.error("포스트 수정이 완료되었습니다.");
+      ToastUtils.success("포스트 수정이 완료되었습니다.");
 
       router.replace({
         pathname: "/corn",

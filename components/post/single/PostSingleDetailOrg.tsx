@@ -35,8 +35,8 @@ function PostSingleDetailOrg(props:{postDetailData:any}) {
 
         <SmBtnAtm color={"blue"} text="파랑" />
 
-        {lookId.map(look => {
-          console.log(look)
+        
+        {lookId.map((look:any) => {
           return <SmBtnAtm color={"white"} text={look} key={look}/>
         })}
         

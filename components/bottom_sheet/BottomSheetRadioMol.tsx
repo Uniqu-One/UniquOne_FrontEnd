@@ -156,7 +156,7 @@ function BottomSheetRadioMol(props: {
     );
   }
 
-  if (props.tempMenu === "type") {
+  if (props.tempMenu === "postType") {
     {
       return (
         <BottomSheetRadioMolStyle>
@@ -175,7 +175,7 @@ function BottomSheetRadioMol(props: {
                     type="radio"
                     name={menu.title}
                     value={menu.title}
-                    checked={postData.type === menu.title ? true : false}
+                    checked={postData.postType === menu.title ? true : false}
                     readOnly
                   />
                   <p>

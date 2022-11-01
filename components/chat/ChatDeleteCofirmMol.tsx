@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import React from "react";
 import { useRecoilValue } from "recoil";
 import { ChatUtils } from "../../lib/utils/ChatUtils";
+import { ToastUtils } from "../../lib/utils/ToastUtils";
 import { TokenState } from "../../states/recoil/TokenState";
 import { color } from "../../styles/theme";
 
@@ -57,9 +58,9 @@ function ChatDeleteCofirmMol(props: {
 
   const handleExitChatRoom = async() => {
     if(await ChatUtils.exitChatRoom(token, selectedRoomId)){
-      console.log('채팅방 나가기 성공')
+      ToastUtils.success('채팅방이 삭제되었습니다.')
     } else {
-      console.log('채팅방 나가기 실패')
+      ToastUtils.error('채팅방 나가기가 실패되었습니다.')
     }
   };
 

@@ -2,16 +2,12 @@ import styled from "@emotion/styled";
 import axios from "axios";
 import { useInView } from "framer-motion";
 import Link from "next/link";
-<<<<<<< Updated upstream
-import React, { useEffect, useRef, useState } from "react";
+
+import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
-import { TokenState } from "../../../states/recoil/TokenState";
-import { UserInfoState } from "../../../states/recoil/UserInfoState";
-import LoadingSpinnerAtm from "../../common/atm/LoadingSpinnerAtm";
-=======
-import React from "react";
 import { CornUtils } from "../../../lib/utils/CornUtils";
->>>>>>> Stashed changes
+import { TokenState } from "../../../states/recoil/TokenState";
+import LoadingSpinnerAtm from "../../common/atm/LoadingSpinnerAtm";
 import PostLgOrg from "../../common/org/PostLgOrg";
 
 const CornMyPostListMolStyle = styled.div`
@@ -31,68 +27,31 @@ const CornMyPostListMolStyle = styled.div`
 `;
 
 function CornMyPostListMol() {
-<<<<<<< Updated upstream
   const token = useRecoilValue(TokenState).token;
-  const cornId = useRecoilValue(UserInfoState).cornId
 
-  const [pageNum, setPageNum] = useState(-1);
-  const [myPostData, setMyPostData] = useState<
-    { postId: number; postImg: string }[] | undefined
-  >();
 
-  const refBox = useRef(null);
-  const isView = useInView(refBox, {
-    margin: "-100% 0px 0px 0px",
-  });
+  //TODO - paiging
+  const [tempMyPostList, setTempMyPostList] = useState([]);
 
-  useEffect(() => {
-
-    if (isView === false) {
-      setPageNum(pageNum + 1);
-    }
-
-  }, [isView]);
-
-  const setMyData = async () => {
-
-    const myPostListdata = await axios.get(
-      `${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/listall/${cornId}?page=${pageNum}`,
-      {
-        headers: {
-          Authorization: token,
-        },
-      }
-    ).then(res => {
-      return res.data.data.content[0]
-    });
-
-    if (myPostData === undefined) {
-      setMyPostData(myPostListdata);
-    } else if (myPostData !== undefined) {
-      setMyPostData([...myPostData, ...myPostListdata]);
-    }
+  const updateMyPostData = async () => {
+    setTempMyPostList(await CornUtils.getMyPostList(token));
   };
 
   useEffect(() => {
-    if(cornId){
-      setMyData();
-    }
-  }, [pageNum,cornId]);
+    updateMyPostData();
+  }, []);
 
-=======
-  const myPostData = CornUtils.getMyPostList();
->>>>>>> Stashed changes
   return (
     <CornMyPostListMolStyle>
-      <div className="box" ref={refBox}>
-        {myPostData === undefined && (
+      <div className="box">
+        {tempMyPostList === undefined && (
           <div style={{ paddingTop: "50px" }}>
             <LoadingSpinnerAtm />;
           </div>
         )}
 
-        {myPostData !== undefined &&
-          myPostData.map((post: { postId: number; postImg: string }) => {
+        {tempMyPostList !== undefined &&
+          tempMyPostList.map((post: { postId: number; postImg: string }) => {
             return (
               <Link href={`/corn/list/${post.postId}`} key={post.postId}>
                 <a>

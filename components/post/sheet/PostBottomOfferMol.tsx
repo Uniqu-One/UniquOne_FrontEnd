@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useRecoilValue } from "recoil";
 import { OfferUtils } from "../../../lib/utils/OfferUtils";
+import { ToastUtils } from "../../../lib/utils/ToastUtils";
 import { TokenState } from "../../../states/recoil/TokenState";
 import { color } from "../../../styles/theme";
 import BtnTmp from "../../common/tmp/BtnTmp";
@@ -82,9 +83,9 @@ function PostBottomOfferMol(props: { setComplete: Function }) {
     if (typeof postId === "string") {
       setComplete(true);
       if (await OfferUtils.postOffer(token, postId, offerPrice)) {
-        console.log('제안 성공!')
+        ToastUtils.success('오퍼 제안을 완료하였습니다.')
       } else {
-        console.log('제안 실패')
+        ToastUtils.error('오퍼 제안에 실패하였습니다.')
       }
     }
   };

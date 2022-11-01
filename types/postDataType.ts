@@ -5,7 +5,6 @@ export interface postDataType {
   title:string;
   desc: string;
   tags: string;
-  type: string;
   category: string;
   condition: string;
   price:string;

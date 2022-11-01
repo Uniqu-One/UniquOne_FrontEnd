@@ -8,7 +8,6 @@ export const CommentUtils = {
         },
       })
       .then((res) => {
-        // console.log(res.data)
         return res.data;
       })
       .catch((err) => console.error(err));
@@ -65,11 +64,9 @@ export const CommentUtils = {
         },
       })
       .then((res) => {
-        // console.log(res)
         return true
       })
       .catch((err) => {
-        // console.error(err)
         return false;
       });
   },

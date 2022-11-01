@@ -24,7 +24,6 @@ const MySettingBoxMolStyle = styled.div`
 
 function MySettingBoxMol() {
   const SETTING_MENU_LIST = mySettingMenuListData;
-  // console.log(Object.keys(SETTING_MENU_LIST[0]))
 
   return (
     <>

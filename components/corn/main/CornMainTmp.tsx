@@ -17,8 +17,6 @@ function CornMainTmp() {
   const cornId = useRecoilValue(UserInfoState).cornId;
   const router = useRouter();
 
-  console.log(cornId)
-
   useEffect(() => {
     if (cornId === null) {
       router.replace("/corn/reg");

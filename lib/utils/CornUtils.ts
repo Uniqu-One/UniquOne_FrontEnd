@@ -52,7 +52,7 @@ export const CornUtils = {
 
     formData.append("cornModifyDto", bolb);
 
-    await axios({
+    return await axios({
       method: "PATCH",
       url: `${process.env.NEXT_PUBLIC_URL_AWS}/posts/corns`,
       headers: {
@@ -63,10 +63,47 @@ export const CornUtils = {
     })
       .then((res) => {
         console.log(res);
+        return true;
       })
       .catch((err) => console.error(err));
   },
-<<<<<<< Updated upstream
+
+  getMyPostList: async (token: string) => {
+
+    return await axios
+      .get(`${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/mylistall?page=0`, {
+        headers: {
+          Authorization: token,
+        },
+      })
+      .then((res) => {
+        
+        return res.data.data.content[0];
+      })
+      .catch((err) => console.error(err));
+      
+  },
+
+  postCornAccount: async (token: string, formData: any) => {
+    return await axios({
+      method: "POST",
+      url: `${process.env.NEXT_PUBLIC_URL_AWS}/posts/corns`,
+      headers: {
+        Authorization: token,
+        "Content-Type": "multipart/form-data",
+      },
+      data: formData,
+    })
+      .then((res) => {
+        console.log(res);
+        return true;
+      })
+      .catch((err) => {
+        console.log(err);
+        return false;
+      });
+  },
+  
   getRandomCornName: async () => {
     return await axios
       .get(`${process.env.NEXT_PUBLIC_URL_AWS}/corns/randNick`)
@@ -74,44 +111,5 @@ export const CornUtils = {
         return res.data.data.nickname;
       })
       .catch((err) => console.error(err));
-  },
-  postCornAccount: async (token: string, formData: {}) => {
-    return await axios({
-      method: "POST",
-      url: `${process.env.NEXT_PUBLIC_URL_AWS}/posts/corns`,
-      headers: {
-        Authorization:token,
-        "Content-Type": "multipart/form-data",
-=======
-  getMyPostList: () => {
-    const fetchDatas = () =>
-      axios.get(`${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/listall/1`, {
-        headers: {
-          Authorization:
-            "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzeTQyMzUxM0BnbWFpbC5jb20iLCJpZCI6MSwibmlja05hbWUiOiLrsLDrtoDrpbjri6jrrLTsp4DsmYAzMyIsImVtYWlsIjoic3k0MjM1MTNAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImlhdCI6MTY2NjE0Nzc5MSwiZXhwIjoxNjY3MDExNzkxfQ.oAb6zW8DR6taLuPSOa5RArtVNR5r9KhFT4cvQKZRD1M",
-        },
-      });
-
-    const { isLoading, data } = useQuery("myPostList", fetchDatas, {
-      staleTime: 5000,
-      refetchOnWindowFocus: false,
-      select: (data) => {
-        console.log(data)
-        return data.data.data.content[0];
->>>>>>> Stashed changes
-      },
-      data: formData,
-    })
-      .then((res) => {
-        if(res.data.data === "이미 생성된 유저"){
-          return false;
-        } else {
-          return true;
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-        return false;
-      });
   },
 };

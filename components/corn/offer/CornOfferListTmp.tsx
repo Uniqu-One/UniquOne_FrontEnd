@@ -33,8 +33,6 @@ function CornOfferList() {
     test();
   }, []);
 
-  console.log(tempList)
-
   if (!tempList) {
     return <div>나에게 온 오퍼가 없습니다.</div>;
   }
@@ -43,7 +41,6 @@ function CornOfferList() {
     <>
       <CornOfferListStyle>
         {tempList.map((offer, idx) => {
-          console.log(offer)
           return <CornOfferListBoxMol key={offer.offerId} offer={offer} />;
         })}
       </CornOfferListStyle>

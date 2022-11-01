@@ -76,7 +76,6 @@ function SignupFormTmp() {
     }
 
     if (tempLevel === "authNum" && authNum !== "") {
-      console.log(1);
       if (await SignupUtils.checkAuthCode(email, +authNum)) {
         ToastUtils.success("인증번호가 확인되었습니다!");
         SetSignUpStage((prev) => ({ ...prev, mailAuth: true }));

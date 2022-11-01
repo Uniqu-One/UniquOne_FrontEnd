@@ -48,7 +48,9 @@ function ProfileBoxTopMol(props: { type: string, profileBoxData:ProfileDataType 
   const router = useRouter();
   const userId = router.query.userId;
 
-  const {title, postEA, followerEA,followingEA,imgUrl,reviewEA} = props.profileBoxData
+  const {postEA, followerEA,followingEA,imgUrl,reviewEA,title} = props.profileBoxData 
+
+
 
   return (
     <>

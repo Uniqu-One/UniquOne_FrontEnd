@@ -65,6 +65,7 @@ export const SignupUtils = {
         nickname,
       })
       .then((res) => {
+        console.log(res)
         return true;
       })
       .catch((err) => {

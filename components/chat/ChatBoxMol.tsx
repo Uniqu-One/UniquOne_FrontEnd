@@ -82,8 +82,6 @@ function ChatBoxMol(props: { chatData: chatListDataType }) {
     });
   };
 
-  console.log(props.chatData)
-
   return (
     <>
       <ChatBoxMolStyle>

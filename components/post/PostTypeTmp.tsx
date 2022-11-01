@@ -8,11 +8,13 @@ import { color } from '../../styles/theme'
 
 const PostTypeTmpStyle = styled.div<{type:string}>`
 padding-top: 50px;
-height: 54px;
 background-color: ${color.p_gray_lt};
 display: flex;
 line-height: 54px;
 padding-left: 21px;
+position: fixed;
+width: 100vw;
+
 div{
   margin-right: 12px;
   

@@ -41,7 +41,6 @@ const NotiBoxMolStyle = styled.div`
 
 function NotiBoxMol(props: { noti: {} }) {
   const noti = props.noti;
-  console.log(noti);
 
   return (
     <NotiBoxMolStyle>

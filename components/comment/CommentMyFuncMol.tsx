@@ -3,6 +3,7 @@ import React from "react";
 import { useRecoilValue } from "recoil";
 import useEvaIcon from "../../lib/hooks/useEvaIcon";
 import { CommentUtils } from "../../lib/utils/CommentUtils";
+import { ToastUtils } from "../../lib/utils/ToastUtils";
 import { TokenState } from "../../states/recoil/TokenState";
 import { color } from "../../styles/theme";
 
@@ -28,7 +29,7 @@ function CommentMyFuncMol(props: {
     if (await CommentUtils.deleteMyComment(token, commentId)) {
       setTempParent(0);
     } else {
-      // console.log('댓글 지우기 실패')
+      ToastUtils.error('댓글이 이미 삭제되었습니다.')
     }
   };
 

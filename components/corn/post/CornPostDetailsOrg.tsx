@@ -16,28 +16,28 @@ const CornPostDetailsOrgStyle = styled.div`
 function CornPostDetailsOrg() {
   const [postData, setPostData] = useRecoilState(CornPostState);
 
-  const { type, category, condition, look, color, price, productSize } =
+  const { postType, category, condition, look, color, price, productSize } =
     postData;
 
   const DETAIL_MENU = [
-    { title: "포스트 분류", select: type, name: "type" },
+    { title: "포스트 분류", select: postType, name: "postType" },
     { title: "카테고리", select: category, name: "category" },
-    { title: "상태", select: condition, name: "condition" },
     { title: "룩", select: look, name: "look" },
     { title: "색상", select: color, name: "color" },
     { title: "사이즈", select: productSize, name: "productSize" },
+    { title: "상태", select: condition, name: "condition" },
     { title: "가격", select: price, name: "price" },
   ];
 
   const [slice, setSlice] = useState(1);
 
   useEffect(() => {
-    if (type === "" || type === "스타일") {
-      setSlice(1);
+    if (postType === "" || postType === "스타일") {
+      setSlice(4);
     } else {
       setSlice(7);
     }
-  }, [type]);
+  }, [postType]);
 
   return (
     <CornPostDetailsOrgStyle>

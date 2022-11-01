@@ -1,6 +1,6 @@
 export const postMenuListData = {
 
-  type: [
+  postType: [
     { title: "판매중", desc: "현재 스타일을 유저에게 판매 하고 싶어요!" },
     { title: "나눔", desc: "현재 스타일을 다른 유저에게 나눠주고 싶어요!" },
     { title: "스타일", desc: "거래 없이 내 스타일을 그냥 뽐내고 싶어요!" },

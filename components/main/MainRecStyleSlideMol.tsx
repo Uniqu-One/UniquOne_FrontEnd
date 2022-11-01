@@ -3,7 +3,7 @@ import React from 'react'
 import PostLgOrg from '../common/org/PostLgOrg'
 import PostMdOrg from '../common/org/PostMdOrg'
 
-const MainRecStyleSlideMolStyle = styled.div`
+const MainRecStyleSlideMolStyle = styled.div<{length:number}>`
   overflow-x: scroll;
   overflow-y: hidden;
   height: 148px;
@@ -13,7 +13,7 @@ const MainRecStyleSlideMolStyle = styled.div`
   > div{
     display: flex;
     justify-content: left;
-    width: 180%;
+    width: calc(80*2%);
     > div{
       margin-right: 12px;
     }
@@ -21,14 +21,16 @@ const MainRecStyleSlideMolStyle = styled.div`
 `
 
 function MainRecStyleSlideMol() {
+
+  const dummy = [1,2,3,4]
+
   return (
     <>
-    <MainRecStyleSlideMolStyle>
+    <MainRecStyleSlideMolStyle length={dummy.length}>
       <div>
-          <PostMdOrg />
-          <PostMdOrg />
-          <PostMdOrg />
-          <PostMdOrg />
+      {dummy.map((box,idx) => {
+      return <PostMdOrg key={idx}/>
+      })}
       </div>
     </MainRecStyleSlideMolStyle>
     </>

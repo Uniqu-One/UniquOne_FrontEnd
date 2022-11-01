@@ -53,10 +53,7 @@ export const UniStarUtils = {
         },
       })
       .then((res) => {
-        // console.log(res.data.data.result)
-
         return res.data.data.result
-
       })
       .catch((err) => console.error(err));
   },

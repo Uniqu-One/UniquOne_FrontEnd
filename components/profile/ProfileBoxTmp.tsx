@@ -1,7 +1,8 @@
 import styled from "@emotion/styled";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
+import { FollowUtils } from "../../lib/utils/FollowUtils";
 import { ProfileUtils } from "../../lib/utils/ProfileUtils";
 import { ToastUtils } from "../../lib/utils/ToastUtils";
 import { TokenState } from "../../states/recoil/TokenState";
@@ -36,25 +37,27 @@ const ProfileBoxTmpStyle = styled.div`
   }
 `;
 
-function ProfileBoxTmp(props: { type: string; userId?: string }) {
+function ProfileBoxTmp(props: { type: string; cornId?: string }) {
   const token = useRecoilValue(TokenState).token;
-  const { cornId } = useRecoilValue(UserInfoState);
+  
   const [followStatus, setFollowStatus] = useState(false);
 
   const handleFollowBtn = () => {
     if (followStatus === false) {
+      FollowUtils.registerFollow(token,props.cornId)
       ToastUtils.success("팔로우를 하였습니다.");
       setFollowStatus(true);
     } else {
-      ToastUtils.error("팔로우를 하였습니다.");
+      FollowUtils.cancelFollow(token,props.cornId)
+      ToastUtils.error("팔로우를 취소하였습니다.");
       setFollowStatus(false);
     }
   };
 
-  //TODO - cornID로 변경해야함
-  const profileBoxData = ProfileUtils.getProfileData(token, cornId);
+  const profileBoxData = ProfileUtils.getProfileData(token, props.cornId);
 
-  if (!cornId) {
+
+  if (!profileBoxData) {
     return <ProfileNothingMol />;
   } else if (profileBoxData === "Loading") {
     return <div>로딩중</div>;

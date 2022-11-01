@@ -8,10 +8,10 @@ function ToastTmp() {
       
       toastOptions={{
         success:{
-          duration:1500  
+          duration:2000  
         },
         error:{
-        duration:1500
+        duration:2000
       }}}/>
     </>
   );

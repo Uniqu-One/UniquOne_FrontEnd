@@ -1,3 +1,4 @@
+/* @ts-ignore */
 export const COLOR_CODE_LIST = {
   "블랙":"#000000",
   "그레이":"#DCDCDC",

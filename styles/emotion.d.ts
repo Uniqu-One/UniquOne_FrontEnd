@@ -17,21 +17,20 @@ declare module "@emotion/react" {
 
 export interface StyleColor {
   [index: string]: string;
-  black: string;
-  gray: string;
-  white: string;
-  brown: string;
-  apricot: string;
-  cream: string;
-  yellow: string;
-  red: string;
-  wine: string;
-  orange: string;
-  pink: string;
-  purple: string;
-  blue: string;
-  navy: string;
-  green: string;
-  khaki: string;
-  multi: string;
+  "블랙":"#000000",
+  "그레이":"#DCDCDC",
+  "화이트":"#FFFFFF",
+  "브라운":"#594034",
+  "살구":"#E8BD87",
+  "크림":"#EFE6B8",
+  "노랑":"#FFF18F",
+  "레드":"#FF3F2D",
+  "와인":"#CB0A00",
+  "오렌지":"E86D2C",
+  "핑크":"#E46DB0",
+  "보라":"#BE55FF",
+  "파랑":"#3F95FF",
+  "네이비":"#003DA8",
+  "초록":"#72AD34",
+  "카키":"#8A7F32",
 }

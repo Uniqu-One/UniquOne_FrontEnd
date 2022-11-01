@@ -41,7 +41,7 @@ padding-top: 50px;
 
 function MyReviewTapMol(props: {
   tabs: string[];
-  tempTab: number;
+  tempTab?: number;
   setTempTab: Function;
   count?: number[];
 }) {

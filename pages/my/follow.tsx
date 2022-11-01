@@ -8,7 +8,7 @@ function follow() {
 
   return (
     <>
-    <TopTmp text='userName'/>
+    <TopTmp text='팔로우'/>
 
     <ProfileFollowTmp/>
 

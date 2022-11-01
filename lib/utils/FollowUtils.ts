@@ -79,7 +79,7 @@ export const FollowUtils = {
         return false;
       });
   },
-  getMyFollow: async (token: string) => {
+  getMyFollowList: async (token: string) => {
     return await axios
       .get(`${process.env.NEXT_PUBLIC_URL_AWS}/posts/myfollower`, {
         headers: {
@@ -88,14 +88,14 @@ export const FollowUtils = {
       })
       .then((res) => {
         console.log(res);
-        return true;
+        return res.data.data;
       })
       .catch((err) => {
         console.error(err);
         return false;
       });
   },
-  getMyFollowing: async (token: string) => {
+  getMyFollowingList: async (token: string) => {
     return await axios
       .get(
         `${process.env.NEXT_PUBLIC_URL_AWS}/posts/myfollowing`,
@@ -107,7 +107,7 @@ export const FollowUtils = {
       )
       .then((res) => {
         console.log(res);
-        return true;
+        return res.data.data;
       })
       .catch((err) => {
         console.error(err);

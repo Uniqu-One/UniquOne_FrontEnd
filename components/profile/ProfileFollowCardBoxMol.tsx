@@ -2,12 +2,12 @@ import styled from "@emotion/styled";
 import Link from "next/link";
 import React from "react";
 import { color } from "../../styles/theme";
+import { followListType } from "../../types/follow/followListType";
 import UserImgAtm from "../common/atm/UserImgAtm";
-import BtnTmp from "../common/tmp/BtnTmp";
 
 const ProfileFollowCardBoxMolStyle = styled.div`
   margin-top: 6px;
-  
+
   display: flex;
   justify-content: space-between;
   padding: 6px 24px;
@@ -24,9 +24,11 @@ const ProfileFollowCardBoxMolStyle = styled.div`
         padding-left: 12px;
       }
     }
+    p{
+      font-size: 0.875rem;
+      color: ${color.p_gray_dk};
+    }
   }
-
-  
 
   .follow_btn {
     border: 0.5px solid ${color.p_gray_md};
@@ -35,34 +37,40 @@ const ProfileFollowCardBoxMolStyle = styled.div`
     font-weight: 500;
   }
 
-  .check{
+  .check {
     border: none;
     background-color: ${color.p_pruple};
     color: white;
   }
 `;
 
-function ProfileFollowCardBoxMol() {
-  //props 콘 이름, 유저네임, 팔로우 상태
-  const status = true
+function ProfileFollowCardBoxMol(props: { tempUserData: followListType[] }) {
+  const { tempUserData } = props;
+  const status = true;
+
+  if (tempUserData[0] === undefined) {
+    return <div>정보 없음</div>;
+  }
+
   return (
     <>
-      <Link href="/#">
-        <a>
-          <ProfileFollowCardBoxMolStyle>
-            <div className="corn_img_name">
-              <UserImgAtm width={48} height={48} />
-              <div>
-                <p>콘 이름 과 유저네임</p>
+      {tempUserData.map((user,idx) => {
+        return <ProfileFollowCardBoxMolStyle key={idx}>
+          <Link href="/#">
+            <a>
+              <div className="corn_img_name">
+                <UserImgAtm width={48} height={48} url={user.cornImgUrl}/>
+                <div>
+                  <p>{user.cornTitle} {user.userName}</p>
+                </div>
               </div>
-            </div>
-
-            <div className={`follow_btn ${status ? "check" : null}`}>
-              <p>{status ? "팔로우" : "팔로잉"}</p>
-            </div>
-          </ProfileFollowCardBoxMolStyle>
-        </a>
-      </Link>
+            </a>
+          </Link>
+          <div className={`follow_btn ${status ? "check" : null}`}>
+            <p>{status ? "팔로우" : "팔로잉"}</p>
+          </div>
+        </ProfileFollowCardBoxMolStyle>;
+      })}
     </>
   );
 }

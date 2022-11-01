@@ -4,7 +4,15 @@ import { Toaster } from "react-hot-toast";
 function ToastTmp() {
   return (
     <>
-      <Toaster/>
+      <Toaster 
+      
+      toastOptions={{
+        success:{
+          duration:1500  
+        },
+        error:{
+        duration:1500
+      }}}/>
     </>
   );
 }

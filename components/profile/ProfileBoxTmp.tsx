@@ -40,7 +40,7 @@ const ProfileBoxTmpStyle = styled.div`
 function ProfileBoxTmp(props: { type: string; cornId?: string }) {
   const token = useRecoilValue(TokenState).token;
   
-  const [followStatus, setFollowStatus] = useState(false);
+  const [followStatus, setFollowStatus] = useState<undefined|boolean>();
 
   const handleFollowBtn = () => {
     if (followStatus === false) {
@@ -55,6 +55,12 @@ function ProfileBoxTmp(props: { type: string; cornId?: string }) {
   };
 
   const profileBoxData = ProfileUtils.getProfileData(token, props.cornId);
+
+  useEffect(() => {
+
+    setFollowStatus(!profileBoxData.isFollow)
+
+  },[profileBoxData])
 
 
   if (!profileBoxData) {

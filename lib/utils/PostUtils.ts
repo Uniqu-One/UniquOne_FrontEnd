@@ -277,6 +277,10 @@ export const PostUtils = {
         return false;
       });
   },
+
+
+
+
   getMyPostList: async (token: string, pageNum: number) => {
 
     return await axios
@@ -327,6 +331,63 @@ export const PostUtils = {
       })
       .catch((err) => console.error(err));
   },
+
+
+  getOtherPostList: async (token: string, pageNum: number) => {
+
+    return await axios
+      .get(
+        `${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/mylistall?page=${pageNum}`,
+        {
+          headers: {
+            Authorization:
+              token,
+          },
+        }
+      )
+      .then((res) => {
+        return res.data.data.content[0];
+      })
+      .catch((err) => console.error(err));
+  },
+  getOtherSellPostList: async (token: string, pageNum: number) => {
+    return await axios
+      .get(
+        `${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/mylistproduct?page=${pageNum}`,
+        {
+          headers: {
+            Authorization:
+              token,
+          },
+        }
+      )
+      .then((res) => {
+        return res.data.data.content[0];
+      })
+      .catch((err) => console.error(err));
+  },
+  getOtherStylePostList: async (token: string, pageNum: number) => {
+    return await axios
+      .get(
+        `${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/myliststyle?page=${pageNum}`,
+        {
+          headers: {
+            Authorization:
+              token,
+          },
+        }
+      )
+      .then((res) => {
+        
+        return res.data.data.content[0];
+      })
+      .catch((err) => console.error(err));
+  },
+
+
+
+
+
   getPostDetailData: async (token:string,postId:string|number) => {
     return await axios.get(`${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/detail/${postId}`,{
       headers:{
@@ -339,6 +400,12 @@ export const PostUtils = {
     })
     .catch(err => console.error(err))
   },
+
+
+
+
+
+
 
   getRecPostData: async (token:string) => {
 
@@ -353,6 +420,9 @@ export const PostUtils = {
       .catch(err =>console.error(err))
 
   },
+
+
+
 
   getFollowingPostData: async (token:string) => {
 

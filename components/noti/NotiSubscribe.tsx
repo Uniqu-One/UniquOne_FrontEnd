@@ -21,6 +21,7 @@ function NotiSubscribe() {
       if (event.data.split(" ")[0] === "EventStream") {
         return null;
       } else {
+        console.log(JSON.parse(event.data))
         setData(JSON.parse(event.data));
         ToastUtils.success('새로운 알림')
       }

@@ -3,6 +3,7 @@ import Link from "next/link";
 import React from "react";
 import { color } from "../../styles/theme";
 import { followListType } from "../../types/follow/followListType";
+import QuestionMarkAtm from "../common/atm/QuestionMarkAtm";
 import UserImgAtm from "../common/atm/UserImgAtm";
 
 const ProfileFollowCardBoxMolStyle = styled.div`
@@ -24,7 +25,7 @@ const ProfileFollowCardBoxMolStyle = styled.div`
         padding-left: 12px;
       }
     }
-    p{
+    p {
       font-size: 0.875rem;
       color: ${color.p_gray_dk};
     }
@@ -42,6 +43,21 @@ const ProfileFollowCardBoxMolStyle = styled.div`
     background-color: ${color.p_pruple};
     color: white;
   }
+
+  .no-data {
+    width: 100%;
+    text-align: center;
+    margin-top: 20vh;
+    svg {
+      fill: ${color.p_gray_md};
+      width: 60px;
+      height: 60px;
+    }
+    p{
+      margin-top: 9px;
+      font-size: 0.875rem;
+    }
+  }
 `;
 
 function ProfileFollowCardBoxMol(props: { tempUserData: followListType[] }) {
@@ -49,27 +65,38 @@ function ProfileFollowCardBoxMol(props: { tempUserData: followListType[] }) {
   const status = true;
 
   if (tempUserData[0] === undefined) {
-    return <div>정보 없음</div>;
+    return (
+      <ProfileFollowCardBoxMolStyle>
+        <div className="no-data">
+          <QuestionMarkAtm />
+          <p>팔로워가 없습니다</p>
+        </div>
+      </ProfileFollowCardBoxMolStyle>
+    );
   }
 
   return (
     <>
-      {tempUserData.map((user,idx) => {
-        return <ProfileFollowCardBoxMolStyle key={idx}>
-          <Link href="/#">
-            <a>
-              <div className="corn_img_name">
-                <UserImgAtm width={48} height={48} url={user.cornImgUrl}/>
-                <div>
-                  <p>{user.cornTitle} {user.userName}</p>
+      {tempUserData.map((user, idx) => {
+        return (
+          <ProfileFollowCardBoxMolStyle key={idx}>
+            <Link href="/#">
+              <a>
+                <div className="corn_img_name">
+                  <UserImgAtm width={48} height={48} url={user.cornImgUrl} />
+                  <div>
+                    <p>
+                      {user.cornTitle} {user.userName}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </a>
-          </Link>
-          <div className={`follow_btn ${status ? "check" : null}`}>
-            <p>{status ? "팔로우" : "팔로잉"}</p>
-          </div>
-        </ProfileFollowCardBoxMolStyle>;
+              </a>
+            </Link>
+            <div className={`follow_btn ${status ? "check" : null}`}>
+              <p>{status ? "팔로우" : "팔로잉"}</p>
+            </div>
+          </ProfileFollowCardBoxMolStyle>
+        );
       })}
     </>
   );

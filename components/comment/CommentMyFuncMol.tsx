@@ -28,6 +28,7 @@ function CommentMyFuncMol(props: {
   const handleDeleteComment = async () => {
     if (await CommentUtils.deleteMyComment(token, commentId)) {
       setTempParent(0);
+      ToastUtils.success('댓글이 삭제되었습니다.')
     } else {
       ToastUtils.error('댓글이 이미 삭제되었습니다.')
     }

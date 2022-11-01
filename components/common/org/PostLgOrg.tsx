@@ -35,7 +35,7 @@ function PostLgOrg(props: { opt?: string; imgSrc?: string }) {
         height={400}
         // layout="fill"
       />
-
+      {/* @ts-ignore */}
       {opt ? <UniStarMol /> : <span></span>}
     </PostLgOrgStyle>
   );

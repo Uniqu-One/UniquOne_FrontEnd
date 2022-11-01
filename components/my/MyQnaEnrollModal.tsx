@@ -2,13 +2,15 @@ import styled from "@emotion/styled";
 import React, { useState } from "react";
 import { useRecoilValue } from "recoil";
 import { QnaUtils } from "../../lib/utils/QnaUtils";
+import { ToastUtils } from "../../lib/utils/ToastUtils";
 import { TokenState } from "../../states/recoil/TokenState";
 import { color } from "../../styles/theme";
 import TopTmp from "../common/tmp/TopTmp";
 import { qnaDataType } from "./MyQnaMainTmp";
 
-const MyQnaEnrollModalStyle = styled.div`
+import {QNA_MENU_LIST} from '../../public/assets/datas/qnaMenuList'
 
+const MyQnaEnrollModalStyle = styled.div`
   z-index: 4;
   width: 100vw;
   position: fixed;
@@ -44,6 +46,14 @@ const MyQnaEnrollModalStyle = styled.div`
       font-weight: 400;
     }
   }
+  .text_count{
+    display: flex;
+    justify-content: right;
+    margin-top: 3px;
+    margin-right: 18px;
+    font-size: 0.875rem;
+    color: ${color.p_gray_md};
+  }
 `;
 
 function MyQnaEnrollModal(props: {
@@ -51,9 +61,8 @@ function MyQnaEnrollModal(props: {
   qnaData: qnaDataType;
   setQnaData: Function;
 }) {
-  const QNA_MENU = ["POST", "COMMENT", "TRADE", "SERVICE"];
-  
-  const token = useRecoilValue(TokenState).token
+
+  const token = useRecoilValue(TokenState).token;
 
   const [tempRadio, setTempRadio] = useState("");
   const [tempTextAreaCount, setTempAreaCount] = useState(300);
@@ -82,12 +91,13 @@ function MyQnaEnrollModal(props: {
   };
 
   const handlePostQna = async () => {
-    if(await QnaUtils.postMyQna(token,qnaData)){
-      props.setQnaEnrollModal(false)
+    if (await QnaUtils.postMyQna(token, qnaData)) {
+      ToastUtils.success('문의 등록이 완료되었습니다.')
+      props.setQnaEnrollModal(false);
     } else {
-      props.setQnaEnrollModal(true)
+      props.setQnaEnrollModal(true);
     }
-  }
+  };
 
   return (
     <>
@@ -99,25 +109,25 @@ function MyQnaEnrollModal(props: {
           function_right={handlePostQna}
         />
 
-        <div style={{"paddingTop":"50px"}}>
+        <div style={{ paddingTop: "50px" }}>
           <h3>문의 유형을 선택해주세요</h3>
         </div>
 
-        {QNA_MENU.map((menu, idx) => {
+        {QNA_MENU_LIST.map((menu, idx) => {
           return (
             <label
               key={idx}
-              htmlFor={menu}
-              onClick={() => handleChangeTempRadio(menu)}
+              htmlFor={menu[1]}
+              onClick={() => handleChangeTempRadio(menu[1])}
             >
               <input
                 type="radio"
-                name={menu}
+                name={menu[1]}
                 value={menu}
-                checked={tempRadio === menu}
+                checked={tempRadio === menu[1]}
                 readOnly
               />
-              <p>{menu}</p>
+              <p>{menu[0]}</p>
             </label>
           );
         })}
@@ -129,7 +139,7 @@ function MyQnaEnrollModal(props: {
             value={qnaData.desc}
             onChange={(e) => handleOnChangeDescData(e)}
           ></textarea>
-          <p>{tempTextAreaCount}</p>
+          <p className="text_count">{tempTextAreaCount}</p>
         </div>
       </MyQnaEnrollModalStyle>
     </>

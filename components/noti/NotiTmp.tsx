@@ -3,11 +3,28 @@ import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { NotiUtils } from "../../lib/utils/NotiUtils";
 import { TokenState } from "../../states/recoil/TokenState";
+import { color } from "../../styles/theme";
+import QuestionMarkAtm from "../common/atm/QuestionMarkAtm";
 import NotiBoxMol from "./NotiBoxMol";
 
 const NotiTmpStyle = styled.div`
   padding-top: 50px;
   padding-bottom: 60px;
+
+  .no-data{
+    text-align: center;
+    margin-top: 30vh;
+    svg{
+      fill: ${color.p_gray_md};
+      width: 48px;
+      height: 48px;
+    }
+    p{
+      margin-top: 9px;
+      font-size: 0.875rem;
+      color: ${color.p_gray_md};
+    }
+  }
 `;
 
 function NotiTmp() {
@@ -21,6 +38,15 @@ function NotiTmp() {
   useEffect(() => {
     updateNotiData();
   }, []);
+
+  if (!notiData) {
+    return <NotiTmpStyle>
+      <div className="no-data">
+      <QuestionMarkAtm/>
+      <p>알림 내역이 없습니다.</p>
+      </div>
+      </NotiTmpStyle>;
+  }
 
   return (
     <NotiTmpStyle>

@@ -3,6 +3,7 @@ import PostCardMol from './PostCardMol'
 
 function PostContentsMol() {
   return (
+    // @ts-ignore 
     <PostCardMol/>
   )
 }

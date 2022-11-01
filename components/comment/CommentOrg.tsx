@@ -155,10 +155,8 @@ function CommentOrg(props: {
           </div>
         </div>
 
-        {userIdAtom !== undefined && userIdAtom === props.comment.userId ? (
+        {userIdAtom !== undefined && userIdAtom === props.comment.userId && (
           <CommentMyFuncMol commentId={commentId} setTempParent={setTempParent}/>
-        ) : (
-          <div>남의 댓글</div>
         )}
       </Slider>
     </CommentOrgStyle>

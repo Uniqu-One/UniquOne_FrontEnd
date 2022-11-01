@@ -55,7 +55,7 @@ function IntroMainTmp() {
   const router = useRouter();
 
   const handleKakaoLogin = () => {
-    router.push("http://10.10.10.27:8000/oauth2/authorization/kakao");
+    router.push("https://uniquone.shop/api/oauth2/authorization/kakao");
   };
 
   const handleNaverLogin = () => {

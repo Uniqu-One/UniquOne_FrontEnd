@@ -72,10 +72,11 @@ function PostCardMol(props: {
           <ThreeDotMol postId={postId} />
         </div>
       </PostCarTmpStyle>
-
+      {/* @ts-ignore */}
       <PostSliderMol postId={postId} />
 
       {/* 하트랑 유니스타랑 댓글 */}
+      {/* @ts-ignore */}
       <PostFuncBarMol postId={postId} />
     </>
   );

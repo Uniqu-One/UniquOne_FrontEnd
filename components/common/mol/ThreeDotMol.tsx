@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import { BottomSheet, BottomSheetRef } from "react-spring-bottom-sheet";
 import { useRecoilValue } from "recoil";
@@ -27,6 +28,34 @@ const ThreeDotMolStyle = styled.div`
       margin-top: 18px;
       margin-bottom: 18px;
     }
+  }
+
+  .btn_dk {
+    div {
+      background-color: ${color.p_gray_md};
+    }
+  }
+  
+`;
+
+const ReportStyle = styled.div`
+  .report_img {
+    text-align: center;
+  }
+
+  .report_p{
+    color: ${color.p_gray_md};
+    p{
+      margin-top: 9px;
+      margin-bottom: 9px;
+    }
+  }
+  .close{
+    div{
+      background-color: ${color.p_gray_md};
+    }
+    margin-top: 18px;
+    margin-bottom: 18px;
   }
 `;
 
@@ -72,11 +101,11 @@ function ThreeDotMol(props: { postId: string | number }) {
               <div onClick={() => setReportMenu(true)}>
                 <BtnTmp size="lg" value="신고하기" />
               </div>
-              <div>
+              <div className="btn_dk">
                 <BtnTmp size="lg" value="이 사용자 보지 않기" />
               </div>
 
-              <div onClick={() => setOpenModal(false)}>
+              <div className="btn_dk" onClick={() => setOpenModal(false)}>
                 <BtnTmp size="lg" value="취소" />
               </div>
             </>
@@ -92,13 +121,29 @@ function ThreeDotMol(props: { postId: string | number }) {
         )}
 
         {reportOk && (
-          <div>
-            신고 접수가 완료되었습니다. 신고 결과는 이후 알림으로 알려드릴게요 :
-            {`)`}
-            <div onClick={() => setOpenModal(false)}>
+          <ReportStyle>
+            <div className="report_img">
+              <div>
+                <Image
+                  src="/assets/images/report_corn.jpg"
+                  alt="신고하는 콘"
+                  width={240}
+                  height={240}
+                />
+              </div>
+              <div className="report_p">
+                <p>
+                  신고 접수가 완료되었습니다.<p>
+                    </p>신고 결과는 이후 알림으로
+                  알려드릴게요 :{`)`}
+                </p>
+              </div>
+            </div>
+
+            <div className="btn_dk close" onClick={() => setOpenModal(false)}>
               <BtnTmp value="닫기" size="lg" />
             </div>
-          </div>
+          </ReportStyle>
         )}
       </BottomSheet>
     </>

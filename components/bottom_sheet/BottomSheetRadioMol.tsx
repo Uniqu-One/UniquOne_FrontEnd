@@ -47,7 +47,6 @@ const BottomSheetRadioMolStyle = styled.div`
   }
 
   :last-of-type {
-    /* background-color: lightslategray; */
     margin-bottom: 12px;
   }
 

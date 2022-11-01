@@ -3,6 +3,9 @@ import Link from "next/link";
 import React from "react";
 import useEvaIcon from "../../lib/hooks/useEvaIcon";
 import { color } from "../../styles/theme";
+import { qnaListType } from "../../types/qna/qnaListType";
+
+import { QNA_MENU_LIST,QNA_KEY_VAL_LIST } from "../../public/assets/datas/qnaMenuList";
 
 const MyQnaMainBoxMolStyle = styled.div`
   display: flex;
@@ -45,12 +48,11 @@ const MyQnaMainBoxMolStyle = styled.div`
   }
 `;
 
-function MyQnaMainBoxMol() {
-  // TODO - 상담완료 내역
-
-  let answer;
+function MyQnaMainBoxMol(props: { qna: qnaListType }) {
+  const { isAnswer, qnaId, qregDate, question, questionType } = props.qna;
 
   useEvaIcon();
+
   return (
     <>
       <Link href="/my/qna/1">
@@ -58,13 +60,14 @@ function MyQnaMainBoxMol() {
           <MyQnaMainBoxMolStyle>
             <div className="left_box">
               <div className="title">
-                <h2>[문의 카테고리 이름] 문의 내용 N자 까지</h2>
+                {/* @ts-ignore */}
+                <h2>[{QNA_KEY_VAL_LIST[questionType]}] {question.slice(0,15)}...</h2>
               </div>
               <div className="date">
                 <p>
-                  2022년 9월 21일 10:36 ·{" "}
-                  <span className={answer && answer}>
-                    {answer ? "상담완료" : "상담대기"}
+                  {qregDate} ·{" "}
+                  <span >
+                    {isAnswer ? "상담완료" : "상담대기"}
                   </span>
                 </p>
               </div>

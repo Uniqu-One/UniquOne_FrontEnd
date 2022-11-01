@@ -15,8 +15,8 @@ export const QnaUtils = {
 
     const { data } = useQuery("getMyQna", fetchQnaData, {
       select: (data) => {
-        console.log(data);
-        return data;
+        
+        return data.data.data;
       },
     });
     return data;
@@ -43,4 +43,23 @@ export const QnaUtils = {
         return false;
       });
   },
+
+  getMyDetailQna: (token: string) => {
+    const fetchQnaData = () => {
+      return axios.get(`${process.env.NEXT_PUBLIC_URL_AWS}/qna`, {
+        headers: {
+          Authorization: token,
+        },
+      });
+    };
+
+    const { data } = useQuery("getMyQna", fetchQnaData, {
+      select: (data) => {
+        
+        return data.data.data;
+      },
+    });
+    return data;
+  },
+
 };

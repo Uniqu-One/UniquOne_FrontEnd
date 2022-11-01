@@ -34,7 +34,7 @@ function CommentTempParentModalMol(props: {
     <CommentTempParentModalMolStyle>
       <div>
         {tempParent === -1 ? (
-          <p>{tempParent}내 댓글 수정중</p>
+          <p>내 댓글 수정중</p>
         ) : (
           <p>{tempParent}님에게 답글 남기는 중</p>
         )}

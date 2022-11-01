@@ -56,6 +56,7 @@ function PostSingleBodyOrg(props: { userId: string, postDetailData:any }) {
         <p>{dsc}</p>
 
         <div>
+          {/* @ts-ignore */}
           {postTagList.map((tag, idx) => {
             return <PostSingleTagMol key={idx} tag={tag} />;
           })}

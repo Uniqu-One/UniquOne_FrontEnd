@@ -8,7 +8,7 @@ import { color } from "../../styles/theme";
 import QuestionMarkAtm from "../common/atm/QuestionMarkAtm";
 import PostMdOrg from "../common/org/PostMdOrg";
 
-const ProfileOtherContentTmpStyle = styled.div`
+const ProfileContentTmpStyle = styled.div`
   overflow: hidden;
 
   padding-bottom: 60px;
@@ -37,7 +37,7 @@ const ProfileOtherContentTmpStyle = styled.div`
     }
   }
 
-  .ProfileOtherContents {
+  .ProfileContents {
     :last-of-type {
       display: flex;
       flex-wrap: wrap;
@@ -69,7 +69,7 @@ const ProfileOtherContentTmpStyle = styled.div`
   }
 `;
 
-export const ProfileOtherContentsStyle = styled.div`
+export const ProfileContentsStyle = styled.div`
   display: flex;
   flex-wrap: wrap;
   div {
@@ -83,7 +83,7 @@ export const ProfileOtherContentsStyle = styled.div`
   }
 `;
 
-function ProfileOtherContentTmp() {
+function ProfileContentTmp() {
   const token = useRecoilValue(TokenState);
   const tabs = ["전체", "상품", "스타일"];
   const { cornId } = useRecoilValue(UserInfoState);
@@ -112,22 +112,22 @@ function ProfileOtherContentTmp() {
     }
   }, [tempTab]);
 
-  if (tempPostList === undefined) {
+  if (tempPostList[0] === undefined) {
     return (
-      <ProfileOtherContentTmpStyle>
+      <ProfileContentTmpStyle>
         <div className="question_mark">
           <QuestionMarkAtm />
           <p>업로드된 포스트가 없어요!</p>
         </div>
         
-      </ProfileOtherContentTmpStyle>
+      </ProfileContentTmpStyle>
     );
   }
 
   return (
     <>
       {cornId && (
-        <ProfileOtherContentTmpStyle>
+        <ProfileContentTmpStyle>
           <div className="ProfileTabs">
             {tabs.map((tab, idx) => (
               <div key={idx} onClick={() => setTempTab(idx)}>
@@ -135,17 +135,17 @@ function ProfileOtherContentTmp() {
               </div>
             ))}
           </div>
-          <ProfileOtherContentsStyle>
+          <ProfileContentsStyle>
             {tempPostList.map(
               (post: { postId: number; postImg: string; postType: string }) => {
                 return <PostMdOrg key={post.postId} post={post} />;
               }
             )}
-          </ProfileOtherContentsStyle>
-        </ProfileOtherContentTmpStyle>
+          </ProfileContentsStyle>
+        </ProfileContentTmpStyle>
       )}
     </>
   );
 }
 
-export default ProfileOtherContentTmp;
+export default ProfileContentTmp;

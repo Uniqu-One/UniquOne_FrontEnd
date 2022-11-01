@@ -26,9 +26,7 @@ function ProfileFollowTmp() {
   }
 
   useEffect(() => {
-    
-      handleUpdateFollow()
-
+      handleUpdateFollow();
   }, [tempTab]);
 
   return (

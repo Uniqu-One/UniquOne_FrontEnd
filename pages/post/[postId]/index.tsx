@@ -50,21 +50,25 @@ setPostDetailData(await PostUtils.getPostDetailData(token,postId))
     return <div>로딩중</div>
   }
 
-  console.log(postDetailData)
+  console.log(postDetailData,'here')
 
   return (
     <>
       <PostIntervalStyle>
         <TopTmp type="post"/>
+
         <PostCardTmp postId={postId} postDetailData={postDetailData}/>
+
         <PostSingleBodyOrg userId={"userID"} postDetailData={postDetailData}/>
 
-        <PostSingleDummyIntervalStyle/>
+              <PostSingleDummyIntervalStyle/>
 
         <PostSingleCornOrg/>
         
-        <PostSingleDummyIntervalStyle/>
+              <PostSingleDummyIntervalStyle/>
+
         <PostSingleFooterTmp postId={postId}/>
+
       </PostIntervalStyle>
     </>
   );

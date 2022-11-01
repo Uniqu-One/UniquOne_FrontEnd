@@ -15,6 +15,8 @@ const ProfileInterVal = styled.div`
 `
 
 function Index(props:{cornId:string}) {
+
+  const {cornId} = props
   return (
     <>
       <TopTmp text='userId'/>
@@ -23,7 +25,7 @@ function Index(props:{cornId:string}) {
     
     <ProfileInterVal/>
 
-    <ProfileOtherContentTmp/>
+    <ProfileOtherContentTmp cornId={cornId}/>
 
       <FooterTmp/>
     </>

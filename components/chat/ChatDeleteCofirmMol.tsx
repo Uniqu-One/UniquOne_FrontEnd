@@ -30,16 +30,18 @@ const ChatDeleteCofirmMolStyle = styled.div`
     justify-content: space-between;
     padding-bottom: 18px;
     div {
-      width: 132px;
+      
+
+      width: 148px;
       height: 42px;
       line-height: 42px;
-      background-color: red;
       text-align: center;
       border-radius: 9px;
     }
+    font-weight: 500;
     .cancel {
       background-color: white;
-      border: 0.5px solid ${color.p_gray_md};
+      border: 1px solid ${color.p_gray_md};
     }
     .out {
       background-color: ${color.p_pruple};

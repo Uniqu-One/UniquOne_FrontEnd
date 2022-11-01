@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import React from 'react'
 import { color } from '../../styles/theme'
-import { postMenuListData } from '../../public/assets/datas/postMenuListData'
+import { POST_MENU_LIST } from '../../public/assets/datas/postMenuList'
 import BottomSheetRoundBoxAtm from './BottomSheetRoundBoxAtm'
 import BottomSheetTopMol from './BottomSheetTopMol'
 
@@ -28,7 +28,7 @@ function BottomLookMol(props:{setOpen:Function}) {
     <BottomSheetTopMol type={"look"} setOpen={props.setOpen} tempSelect={[]}/>
     <LookStyle>
       <h4>2개까지 선택 가능합니다.</h4>
-    {postMenuListData.look.map((menu) => {
+    {POST_MENU_LIST.look.map((menu) => {
       return <BottomSheetRoundBoxAtm key={menu} menu={menu} tempSelect={[]} setTempSelect={()=>{}}/>
     })}
     </LookStyle>

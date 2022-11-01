@@ -44,21 +44,26 @@ export const QnaUtils = {
       });
   },
 
-  getMyDetailQna: (token: string) => {
+  getMyDetailQna: (token: string,qnaId:string) => {
     const fetchQnaData = () => {
-      return axios.get(`${process.env.NEXT_PUBLIC_URL_AWS}/qna`, {
+      return axios.get(`${process.env.NEXT_PUBLIC_URL_AWS}/qna/${qnaId}`, {
         headers: {
           Authorization: token,
         },
       });
     };
 
-    const { data } = useQuery("getMyQna", fetchQnaData, {
+    const { data,isLoading } = useQuery("getMyQna", fetchQnaData, {
       select: (data) => {
-        
+        console.log(data)
         return data.data.data;
       },
     });
+
+    if(isLoading){
+      return "isLoading"
+    }
+
     return data;
   },
 

@@ -79,14 +79,24 @@ function PostSliderMol(props: { postId: number | string; postImgUrlList: [] }) {
     <PostSliderMolStyle>
       {router.query.postId ? <ToastTmp /> : <></>}
       <Slider {...settings}>
-        {postImgUrlList.map((img, idx) => {
-          return (
-            <div key={idx}>
-              <Image src={img} alt="postdummy" width={1000} height={1000} />
-            </div>
-          );
-        })}
-        <div></div>
+        {postImgUrlList ? (
+          postImgUrlList.map((img, idx) => {
+            return (
+              <div key={idx}>
+                <Image src={img} alt="postdummy" width={1000} height={1000} />
+              </div>
+            );
+          })
+        ) : (
+          <div>
+            <Image
+              src="/assets/images/postImage.jpg"
+              alt="postdummy"
+              width={1000}
+              height={1000}
+            />
+          </div>
+        )}
       </Slider>
     </PostSliderMolStyle>
   );

@@ -59,10 +59,7 @@ export const ReviewUtils = {
 
     return data;
   },
-  getOtherReviewList: (token: string, cornId?: string) => {
-    if(!cornId){
-      return []
-    }
+  getOtherReviewList: (cornId?: string) => {
 
     const fetchOtherReviewListData = () => {
       return axios.get(

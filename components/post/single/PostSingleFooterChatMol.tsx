@@ -11,7 +11,10 @@ function PostSingleFooterChatMol(props:{postId:string|number}) {
   const router = useRouter()
 
   const handlePresentChat = async () => {
+    
     const chatRoomId = await ChatUtils.presentChat(token,postId)
+    console.log(chatRoomId,postId)
+    
     router.push(`/chat/${chatRoomId}`)
   }
 

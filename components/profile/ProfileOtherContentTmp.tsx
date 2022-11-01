@@ -83,36 +83,36 @@ export const ProfileContentsStyle = styled.div`
   }
 `;
 
-function ProfileContentTmp() {
-  const token = useRecoilValue(TokenState);
+function ProfileContentTmp(props:{cornId:string}) {
+
   const tabs = ["전체", "상품", "스타일"];
-  const { cornId } = useRecoilValue(UserInfoState);
+  const { cornId } = props;
   const [tempTab, setTempTab] = useState(0);
   const [tempPostList, setTempPostList] = useState([]);
 
-  const getMyAllPostData = async () => {
-    setTempPostList(await PostUtils.getMyPostList(token, 1));
+  const getOtherAllPostData = async () => {
+    setTempPostList(await PostUtils.getOtherPostList(cornId, 0));
   };
 
-  const getMySellData = async () => {
-    setTempPostList(await PostUtils.getMySellPostList(token, 1));
+  const getOtherSellData = async () => {
+    setTempPostList(await PostUtils.getOtherSellPostList(cornId, 0));
   };
 
-  const getMyStyleData = async () => {
-    setTempPostList(await PostUtils.getMyStylePostList(token, 1));
+  const getOtherStyleData = async () => {
+    setTempPostList(await PostUtils.getOtherStylePostList(cornId, 0));
   };
 
   useEffect(() => {
     if (tempTab === 0) {
-      getMyAllPostData();
+      getOtherAllPostData();
     } else if (tempTab === 1) {
-      getMySellData();
+      getOtherSellData();
     } else if (tempTab === 2) {
-      getMyStyleData();
+      getOtherStyleData();
     }
   }, [tempTab]);
 
-  if (tempPostList[0] === undefined) {
+  if (tempPostList === undefined) {
     return (
       <ProfileContentTmpStyle>
         <div className="question_mark">
@@ -123,6 +123,8 @@ function ProfileContentTmp() {
       </ProfileContentTmpStyle>
     );
   }
+
+  console.log(tempPostList)
 
   return (
     <>

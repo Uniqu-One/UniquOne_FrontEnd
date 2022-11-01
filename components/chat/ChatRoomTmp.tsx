@@ -35,7 +35,6 @@ function ChatRoomTmp(props:{roomId:string}) {
       ws.connect(
         {},
         () => {
-          console.error('suverr!!!')
           ws.subscribe(
             `/sub/chat/room/${roomId}`,
             (recMessage: { body: string }) => {

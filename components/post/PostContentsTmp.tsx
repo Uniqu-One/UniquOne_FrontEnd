@@ -40,7 +40,9 @@ function PostContentsTmp() {
 
     const fetchData = await PostUtils.getFollowingPostData(token)
 
-    if(fetchData[0] === undefined){
+    console.log(fetchData)
+
+    if(fetchData === undefined){
       setTempData(await PostUtils.getRecommendPostData(token));
     } else {
       setTempData(await PostUtils.getFollowingPostData(token));
@@ -52,7 +54,7 @@ function PostContentsTmp() {
     updatePostData();
   }, []);
 
-  if (tempData[0] === undefined) {
+  if (tempData === undefined) {
     return (
       <PostContentsTmpStyle>
         <div className="no_data">

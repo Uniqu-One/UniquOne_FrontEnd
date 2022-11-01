@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
 
 import { useRecoilState } from "recoil";
-import { postMenuListData } from "../../../public/assets/datas/postMenuListData";
+import { POST_MENU_LIST } from "../../../public/assets/datas/postMenuList";
 
 import { SearchFilterState } from "../../../states/recoil/SearchFilterState";
 import { color } from "../../../styles/theme";
@@ -43,7 +43,7 @@ function SearchBottomLookMol(props: { setOpen: Function }) {
         setTempSelect={setTempSelect}
       />
       <LookStyle>
-        {postMenuListData.look.map((menu) => {
+        {POST_MENU_LIST.look.map((menu) => {
           return (
             <BottomSheetRoundBoxAtm
               key={menu}

@@ -3,13 +3,14 @@ import React from "react";
 import ChatRoomTmp from "../../components/chat/ChatRoomTmp";
 import TopTmp from "../../components/common/tmp/TopTmp";
 
-function RoomId() {
+function RoomId(props:{roomId:string}) {
+
 
   return (
     <>
       <>
         <TopTmp text="Strong_Minsu" />
-        <ChatRoomTmp/>
+        <ChatRoomTmp roomId={props.roomId}/>
       </>
     </>
   );

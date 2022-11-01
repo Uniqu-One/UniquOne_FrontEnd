@@ -17,7 +17,9 @@ export type chatDataType = {
   date:string;
 };
 
-function ChatRoomTmp() {
+function ChatRoomTmp(props:{roomId:string}) {
+  const {roomId} = props
+  // console.log(roomId)
   let socket = new SockJS(process.env.NEXT_PUBLIC_URL_AWS + "/chat/ws-stomp");
   let reconnect = 0;
   const router = useRouter();
@@ -25,21 +27,20 @@ function ChatRoomTmp() {
   const userId = useRecoilValue(UserInfoState).userId;
 
   const [chatData, setChatData] = useState<chatDataType[]>([]);
-  const [roomId, setRoomId] = useState("");
   const [ws, setWs] = useState<CompatClient>();
   const scrollRef = useRef<null | HTMLDivElement>(null);
 
-  const connect = async () => {
+  const connect =  () => {
     if (ws !== undefined) {
       ws.connect(
         {},
         () => {
+          console.error('suverr!!!')
           ws.subscribe(
-            `/sub/chat/room/${router.query.roomId}`,
+            `/sub/chat/room/${roomId}`,
             (recMessage: { body: string }) => {
               let recv = JSON.parse(recMessage.body);
               const { senderId, message, date, regTime } = recv;
-
               setChatData((prev) => [
                 ...prev,
                 { senderId, message, date, regTime },
@@ -74,56 +75,54 @@ function ChatRoomTmp() {
     }
   };
 
-  useEffect(() => {
-    {
-      router.query.roomId &&
-        axios
-          .get(
-            `${process.env.NEXT_PUBLIC_URL_AWS}/chat/room/all/${router.query.roomId}`,
-            {
-              headers: {
-                Authorization: token,
-              },
-            }
-          )
-          .then((res) => {
-            return setChatData(res.data.data.chatResponseDtos);
-          })
-          .catch((err) => console.error(err));
-    }
-  }, [roomId]);
+
+  const handleStopmOver = () => {
+    setWs(Stomp.over(() => socket));
+  }
 
   useEffect(() => {
-    if (roomId !== "") {
+    handleStopmOver()
+  },[])
+
+  useEffect(() => {
+    
       connect();
-
+      
+      axios
+            .get(
+              `${process.env.NEXT_PUBLIC_URL_AWS}/chat/room/all/${roomId}`,
+              {
+                headers: {
+                  Authorization: token,
+                },
+              }
+            )
+            .then((res) => {
+              return setChatData(res.data.data.chatResponseDtos);
+            })
+            .catch((err) => console.error(err));
+  // test
       return () => {
         ws?.disconnect();
       };
-    }
-  }, [roomId]);
 
-  useEffect(() => {
-    const query = router.query;
-    if (typeof query.roomId === "string" && query.roomId !== "") {
-      setRoomId(query.roomId);
-      setWs(Stomp.over(() => socket));
-    }
-  }, [router.query.roomId]);
+  }, [ws]);
+
+
 
   useEffect(() => {
     scrollRef?.current?.scrollIntoView({ behavior: "smooth" });
 
     return () => {
-      if (roomId !== "" && chatData === undefined) {
+      if (chatData === undefined) {
         axios
           .post(`${process.env.NEXT_PUBLIC_URL_AWS}/chat/room/${roomId}`, {
             headers: {
               Authorization: token,
             },
           })
-          .then((res) => console.log(res.status))
-          .catch((err) => console.log(err));
+          // .then((res) => console.log(res.status))
+          // .catch((err) => console.log(err));
       }
     };
   }, [chatData]);
@@ -132,14 +131,13 @@ function ChatRoomTmp() {
     <>
       <ChatRoomItemBox />
 
-      <ChatRoomOneDayTmp chatData={chatData} setChatData={setChatData} />
+      <ChatRoomOneDayTmp chatData={chatData} />
       <div ref={scrollRef} />
 
-      <ChatRoomFooterTmp
-        setChatData={setChatData}
+      <ChatRoomFooterTmp 
         ws={ws}
         roomId={
-          typeof router.query.roomId === "string" ? router.query.roomId : ""
+          typeof roomId === "string" ? roomId : ""
         }
       />
     </>

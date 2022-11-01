@@ -40,7 +40,6 @@ const ChatRoomFooterTmpStyle = styled.div<{ sendStatus: boolean }>`
 function ChatRoomFooterTmp(props: {
   ws: any;
   roomId: string;
-  setChatData: Function;
 }) {
   useEvaIcon();
 

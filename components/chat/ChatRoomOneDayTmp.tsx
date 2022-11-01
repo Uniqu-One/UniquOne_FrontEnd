@@ -19,9 +19,8 @@ const ChatRoomOneDayTmpStyle = styled.div`
 
 function ChatRoomOneDayTmp(props: {
   chatData: chatDataType[];
-  setChatData: Function;
 }) {
-  const { chatData, setChatData } = props;
+  const { chatData } = props;
   const userId = useRecoilValue(UserInfoState).userId;
 
   return (

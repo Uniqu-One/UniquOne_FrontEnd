@@ -11,16 +11,11 @@ export default oAuthToken;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { query } = context;
-  const { token } = query;
-  const stringToken = JSON.stringify(token)
-  const toto = JSON.parse(stringToken)
   console.log(query)
-
-  console.log(toto)
 
   return {
     props: {
-      token,
+      // token,
     },
   };
 };

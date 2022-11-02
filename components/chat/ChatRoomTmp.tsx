@@ -19,7 +19,6 @@ export type chatDataType = {
 
 function ChatRoomTmp(props:{roomId:string}) {
   const {roomId} = props
-  // console.log(roomId)
   let socket = new SockJS(process.env.NEXT_PUBLIC_URL_AWS + "/chat/ws-stomp");
   let reconnect = 0;
   const router = useRouter();
@@ -27,6 +26,7 @@ function ChatRoomTmp(props:{roomId:string}) {
   const userId = useRecoilValue(UserInfoState).userId;
 
   const [chatData, setChatData] = useState<chatDataType[]>([]);
+  const [enter, setEnter] = useState(false)
   const [ws, setWs] = useState<CompatClient>();
   const scrollRef = useRef<null | HTMLDivElement>(null);
 
@@ -85,8 +85,8 @@ function ChatRoomTmp(props:{roomId:string}) {
 
   useEffect(() => {
     
+    if(ws!==undefined){ 
       connect();
-      
       axios
             .get(
               `${process.env.NEXT_PUBLIC_URL_AWS}/chat/room/all/${roomId}`,
@@ -97,13 +97,20 @@ function ChatRoomTmp(props:{roomId:string}) {
               }
             )
             .then((res) => {
+              
               return setChatData(res.data.data.chatResponseDtos);
             })
-            .catch((err) => console.error(err));
+            .catch((err) => {
+              console.error(err)
+              return [];
+            });
   // test
-      return () => {
-        ws?.disconnect();
-      };
+      // return () => {
+      //   ws?.disconnect();
+      // }; 
+
+    }
+
 
   }, [ws]);
 
@@ -111,10 +118,13 @@ function ChatRoomTmp(props:{roomId:string}) {
 
   useEffect(() => {
     scrollRef?.current?.scrollIntoView({ behavior: "smooth" });
-
+    setEnter(true)
     return () => {
-      if (chatData[0] === undefined) {
-        
+    console.log(chatData)
+    console.log(enter)      
+      if (chatData[0] === undefined && enter === true) {
+        console.log(chatData,'in')
+        console.log(1)
         axios
           .post(`${process.env.NEXT_PUBLIC_URL_AWS}/chat/room/${roomId}`, {
             headers: {

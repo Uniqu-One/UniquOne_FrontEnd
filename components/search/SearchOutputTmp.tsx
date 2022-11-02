@@ -39,15 +39,12 @@ function SearchOutputTmp(props: { keyword: string }) {
     const { hashTagList } = tempPostList;
     const { cornList } = tempPostList;
 
-    // console.log(cornList)
-    console.log(cornList?.result)
-
     return (
       <>
         <SearchOutputFilterMol tempMenu={tempMenu} setTempMenu={setTempMenu}/>
-        {postList && <SearchOutputContentsMol postList={postList?.result} type="상품"/>}
-        {hashTagList && <SearchOutputContentsMol postList={hashTagList?.result} type="태그"/>}
-        {cornList && <ProfileFollowCardBoxMol tempUserData={cornList?.result}/>}
+        {postList ? <SearchOutputContentsMol postList={postList?.result} type="상품"/> : <></>}
+        {hashTagList ? <SearchOutputContentsMol postList={hashTagList?.result} type="태그"/> : <></>}
+        {cornList ? <ProfileFollowCardBoxMol tempUserData={cornList?.result}/> : <></>}
         <SearchOutputUserCornMol/>
       </>
     );

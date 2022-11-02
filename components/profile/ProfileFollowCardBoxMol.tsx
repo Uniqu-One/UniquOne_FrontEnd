@@ -88,6 +88,8 @@ function ProfileFollowCardBoxMol(props: { tempUserData: followListType[] }) {
     
   }
 
+  console.log(tempUserData)
+
   if (tempUserData[0] === undefined) {
     return (
       <ProfileFollowCardBoxMolStyle>

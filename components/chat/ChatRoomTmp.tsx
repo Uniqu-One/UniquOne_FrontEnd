@@ -113,15 +113,16 @@ function ChatRoomTmp(props:{roomId:string}) {
     scrollRef?.current?.scrollIntoView({ behavior: "smooth" });
 
     return () => {
-      if (chatData === undefined) {
+      if (chatData[0] === undefined) {
+        
         axios
           .post(`${process.env.NEXT_PUBLIC_URL_AWS}/chat/room/${roomId}`, {
             headers: {
               Authorization: token,
             },
           })
-          // .then((res) => console.log(res.status))
-          // .catch((err) => console.log(err));
+          .then((res) => console.log(res.status))
+          .catch((err) => console.log(err));
       }
     };
   }, [chatData]);

@@ -1,21 +1,23 @@
 import axios from "axios";
 export const SearchUtils = {
-  getSearchAllList: (
+  getSearchAllList: async (
     token: string,
     keyword: string,
     page?: string | number,
     size?: string | number
   ) => {
-    axios
+    return await axios
       .get(`${process.env.NEXT_PUBLIC_URL_AWS}/search/all?keyword=${keyword}`, {
         headers: {
           Authorization: token,
         },
       })
-      .then((res) => console.log(res))
+      .then((res) => {
+        return res.data
+      })
       .catch((err) => console.log(err));
   },
-  getSearchPostList: (
+  getSearchPostList: async (
     token: string,
     keyword: string,
     filter?: {
@@ -33,24 +35,27 @@ export const SearchUtils = {
     // sort=regdt,dsc       (최신순),
     // sort=price,dsc (가격 ,내림차순),
     // sort=price,asc(가격, 오름차순)
-    axios
+    return await axios
       .get(`${process.env.NEXT_PUBLIC_URL_AWS}/search/post?keyword=${keyword}`, {
         headers: {
           Authorization: token,
         },
       })
-      .then((res) => console.log(res))
+      .then((res) => {
+        // console.log(res.data)
+        return res.data
+      })
       .catch((err) => console.log(err));
   },
-  getSearchHashTagList:(token:string,keyword:string,page?:number,size?:number)=>{
-    axios
+  getSearchHashTagList:async (token:string,keyword:string,page?:number,size?:number)=>{
+    return await axios
     .get(`${process.env.NEXT_PUBLIC_URL_AWS}/search/hashTag?keyword=${keyword}`, {
       headers: {
         Authorization: token,
       },
     })
     .then((res) => {
-      console.log(res)
+      return res.data
     })
     .catch((err) => console.log(err));
 

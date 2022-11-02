@@ -16,22 +16,23 @@ const SearchOutputMenuTopMolStyle = styled.div`
  
 function SearchOutputMenuTopMol(props: {
   menu: string[];
-  tempMenu: number;
+  tempMenu: string;
   setTempMenu: Function;
 }) {
 
   const {tempMenu, setTempMenu} = props
+  const menuList = props.menu
 
-  const handleChangeTempMenu = (idx:number) => {
-    setTempMenu(idx)
+  const handleChangeTempMenu = (menu:string) => {
+    setTempMenu(menu)
   }
 
   return (
     <SearchOutputMenuTopMolStyle>
       {props.menu.map((menu,idx) => {
         return (
-          <div key={idx} onClick={()=>handleChangeTempMenu(idx)}>
-            <SearchOutputMenuTopBtnAtm menu={menu} click={tempMenu===idx}/>
+          <div key={idx} onClick={()=>handleChangeTempMenu(menu)}>
+            <SearchOutputMenuTopBtnAtm menu={menu} click={menuList[idx]===tempMenu}/>
           </div>
         );
       })}

@@ -8,4 +8,5 @@ export type notiListType = {
   regDate:string
   typeId:number
   userCornImg:string
+  isFollow:null|boolean
 };

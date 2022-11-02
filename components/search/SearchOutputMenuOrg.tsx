@@ -3,13 +3,7 @@ import React, { useState } from "react";
 import SearchFilterMol from "./SearchFilterMol";
 import SearchOutputMenuTopMol from "./SearchOutputMenuTopMol";
 
-const SearchOutputMenuOrgOverFlowStyle = styled.div`
 
-  overflow: scroll;
-  ::-webkit-scrollbar{
-    display: none;
-  }
-`;
 
 function SearchOutputMenuOrg(props:{
   tempMenu:string,
@@ -26,9 +20,6 @@ function SearchOutputMenuOrg(props:{
         tempMenu={tempMenu}
         setTempMenu={setTempMenu}
       />
-      <SearchOutputMenuOrgOverFlowStyle>
-        {tempMenu === "상품" && <SearchFilterMol />}
-      </SearchOutputMenuOrgOverFlowStyle>
     </>
   );
 }

@@ -42,15 +42,16 @@ setPostDetailData(await PostUtils.getPostDetailData(token,postId))
   }
 
   useEffect(() => {
-    ToastUtils.success('N명의 유저가 이 게시물을 좋아해요!')
-    updateDetailPostData()
+    if(token && postId){
+      console.log(1)
+      ToastUtils.success('N명의 유저가 이 게시물을 좋아해요!')
+      updateDetailPostData()
+    }
   },[])
 
   if(postDetailData === undefined){
     return <div>로딩중</div>
   }
-
-  console.log(postDetailData,'here')
 
   return (
     <>

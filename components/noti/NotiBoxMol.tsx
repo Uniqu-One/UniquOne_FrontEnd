@@ -1,15 +1,17 @@
 import styled from "@emotion/styled";
 import Image from "next/image";
-import React from "react";
+import { useRouter } from "next/router";
+import React, { useState } from "react";
 import { color } from "../../styles/theme";
 import { notiListType } from "../../types/noti/notiListType";
+import FollowBtnAtm from "../common/atm/FollowBtnAtm";
 
 const NotiBoxMolStyle = styled.div`
   height: 90px;
   width: 100vw;
-  border: 0.5px solid ${color.p_gray_lt};
+  border-bottom: 0.5px solid ${color.p_gray_md};
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; 
 
   div {
     margin: auto 0;
@@ -36,21 +38,32 @@ const NotiBoxMolStyle = styled.div`
   }
 
   .box_contents {
-    width: calc(100vw - 178px);
+    width: calc(100vw - 196px);
     font-size: 0.875rem;
     color: ${color.p_gray_dk};
   }
 
-  .time{
+  .time {
     margin-top: 6px;
     color: ${color.p_gray_md};
+  }
+
+  .follow_btn{
+    h3{
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 12px 6px;
+    }
+    width: 60px;
+    margin-right: 24px;
   }
 `;
 
 // notiType : COOL, COMMENT, FOLLOW, QNA, // OFFER(오퍼 받았을 때), OFFER_REFUSE OFFER_ACCEPT
 
 function NotiBoxMol(props: { noti: notiListType }) {
-  const noti = props.noti;
+
+  const router = useRouter()
 
   const {
     dsc,
@@ -62,16 +75,17 @@ function NotiBoxMol(props: { noti: notiListType }) {
     regDate,
     typeId,
     userCornImg,
+    isFollow
   } = props.noti;
 
-  console.log(props.noti)
+
 
   return (
     <NotiBoxMolStyle>
       <div className="left">
         <div className="profile_img">
           <Image
-            src={userCornImg ? userCornImg :"/assets/images/sad_corn_img.jpg"}
+            src={userCornImg ? userCornImg : "/assets/images/sad_corn_img.jpg"}
             alt="profileImage"
             width={60}
             height={60}
@@ -80,22 +94,29 @@ function NotiBoxMol(props: { noti: notiListType }) {
 
         <div className="box_contents">
           <p>
-            {nickName} {dsc}
+            {nickName}
+            {dsc}
           </p>
-          <p className="time">
-            {regDate}
-          </p>
+          <p className="time">{regDate}</p>
         </div>
       </div>
 
-      <div className="right">
-        <Image
-          src={postImg? postImg: "/assets/images/postImage.jpg"}
-          alt="profileImage"
-          width={60}
-          height={60}
-        />
-      </div>
+      {notiType === "FOLLOW" && (
+        <div className="follow_btn">
+          <FollowBtnAtm follow={isFollow}/>
+        </div>
+      )}
+
+      {notiType === "OFFER_ACCEPT" && (
+        <div className="right">
+          <Image
+            src={postImg ? postImg : "/assets/images/postImage.jpg"}
+            alt="profileImage"
+            width={60}
+            height={60}
+          />
+        </div>
+      )}
     </NotiBoxMolStyle>
   );
 }

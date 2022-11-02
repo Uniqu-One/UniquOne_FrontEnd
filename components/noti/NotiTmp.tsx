@@ -8,7 +8,7 @@ import QuestionMarkAtm from "../common/atm/QuestionMarkAtm";
 import NotiBoxMol from "./NotiBoxMol";
 
 const NotiTmpStyle = styled.div`
-  padding-top: 50px;
+  padding-top: 48px;
   padding-bottom: 60px;
 
   .no-data{

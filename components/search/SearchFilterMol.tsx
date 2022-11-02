@@ -23,6 +23,7 @@ const SearchFilterMolStyle = styled.div`
 `;
 
 function SearchFilterMol() {
+  
   const FILTER_MENU = ["색상", "룩", "카테고리", "상태"];
 
   const [open, setOpen] = useState(false);
@@ -60,9 +61,7 @@ function SearchFilterMol() {
           <SearchBottomCategoryMol setOpen={setOpen} tempMenu={"category"} />
         )}
 
-        {tempMenu === "상태" && (
-          <SearchBottomConditionMol setOpen={setOpen}/>
-        )}
+        {tempMenu === "상태" && <SearchBottomConditionMol setOpen={setOpen} />}
       </BottomSheet>
     </>
   );

@@ -55,6 +55,7 @@ function SearchBarMol(props:{keyword?:string}) {
   }
 
   useEffect(() => {
+    {/* @ts-ignore */}
     setSearchWord(props.keyword)
   },[])
 

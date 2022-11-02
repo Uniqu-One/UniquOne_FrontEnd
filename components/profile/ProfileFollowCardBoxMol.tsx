@@ -112,13 +112,16 @@ function ProfileFollowCardBoxMol(props: { tempUserData: followListType[] }) {
                   <UserImgAtm width={48} height={48} url={user.cornImgUrl} />
                   <div>
                     <p>
+                      {/* @ts-ignore */}
                       {user.cornTitle ? user.cornTitle : user.cornTitleName}·{user.userName ? user.userName: user.userNickName}
                     </p>
                   </div>
                 </div>
               </a>
             </Link>
+            {/* @ts-ignore */}
             <div className={`follow_btn ${user.follow ? "check" : null}` } onClick={() => {handleUpdateFollow(user.cornId, user.follow)}}>
+              {/* @ts-ignore */}
               <p>{user.follow ? "팔로우" : "팔로잉"}</p>
             </div>
           </ProfileFollowCardBoxMolStyle>

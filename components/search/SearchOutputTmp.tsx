@@ -60,6 +60,7 @@ function SearchOutputTmp(props: { keyword: string }) {
     return (
       <>
         <SearchOutputFilterMol tempMenu={tempMenu} setTempMenu={setTempMenu}/>
+        {/* @ts-ignore */}
         <SearchOutputContentsMol postList={postList?.result} type="상품"/>
         <SearchOutputUserCornMol/>
       </>
@@ -73,6 +74,7 @@ function SearchOutputTmp(props: { keyword: string }) {
     return (
       <>
         <SearchOutputFilterMol tempMenu={tempMenu} setTempMenu={setTempMenu}/>
+        {/* @ts-ignore */}
         <SearchOutputContentsMol postList={hashTagList?.result} type="태그"/>
         <SearchOutputUserCornMol/>
       </>

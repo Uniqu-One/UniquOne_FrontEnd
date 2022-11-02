@@ -26,7 +26,7 @@ export const ChatUtils = {
         `${process.env.NEXT_PUBLIC_URL_AWS}/chat/room`,
         {
           postId,
-          receiverId: 1,
+          // receiverId: 1,
           chatType: "BUYER",
         },
         {

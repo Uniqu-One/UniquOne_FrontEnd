@@ -15,9 +15,7 @@ function KeyWord(props:{keyword:string}) {
   return (
     <KeyWordStyle>
     <SearchBarMol keyword={keyword}/>
-
     <SearchOutputTmp keyword={keyword}/>
-
     <FooterTmp />
   </KeyWordStyle>
   )

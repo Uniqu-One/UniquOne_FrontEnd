@@ -11,10 +11,13 @@ const SearchOutputMenuOrgOverFlowStyle = styled.div`
   }
 `;
 
-function SearchOutputMenuOrg() {
-  const SEARCH_MENU = ["전체", "상품", "해시태그", "스타일", "콘 유저"];
+function SearchOutputMenuOrg(props:{
+  tempMenu:string,
+  setTempMenu:Function
+}) {
+  const SEARCH_MENU = ["전체", "상품", "해시태그", "콘 유저"];
 
-  const [tempMenu, setTempMenu] = useState(0);
+  const {tempMenu, setTempMenu} = props;
 
   return (
     <>
@@ -24,7 +27,7 @@ function SearchOutputMenuOrg() {
         setTempMenu={setTempMenu}
       />
       <SearchOutputMenuOrgOverFlowStyle>
-        {tempMenu === 1 && <SearchFilterMol />}
+        {tempMenu === "상품" && <SearchFilterMol />}
       </SearchOutputMenuOrgOverFlowStyle>
     </>
   );

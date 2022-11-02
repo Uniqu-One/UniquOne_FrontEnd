@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import useEvaIcon from "../../lib/hooks/useEvaIcon";
 import { ToastUtils } from "../../lib/utils/ToastUtils";
@@ -53,6 +53,10 @@ function SearchBarMol(props:{keyword?:string}) {
       ToastUtils.error('검색어를 입력해주세요')
     }
   }
+
+  useEffect(() => {
+    setSearchWord(props.keyword)
+  },[])
 
   return (
     <>

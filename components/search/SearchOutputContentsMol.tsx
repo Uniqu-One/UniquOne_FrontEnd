@@ -1,64 +1,49 @@
 import styled from "@emotion/styled";
+import { useRouter } from "next/router";
 import React from "react";
 import { color } from "../../styles/theme";
+import { searchPostType } from "../../types/search/searchPostType";
 import PostTmp from "../common/tmp/PostTmp";
 
 const SearchOutputContentsMolStyle = styled.div`
   margin: 0px 18px;
+  .post_class{
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    color: ${color.p_gray_dk}
+  }
+
   .contents {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin-bottom: 54px;
     div {
       margin-bottom: 3px;
       width: calc((100vw - 40px) / 2);
     }
   }
-  .sort{
-    margin: 12px 0px;
-    font-size: 0.875rem;
-    color: ${color.p_gray_md};
-    display: flex;
-    justify-content: space-between;
-
-    .icon{
-      display: flex;
-    }
-    svg{
-      transform: rotate(90deg);
-    }
-  }
 `;
 
-function SearchOutputContentsMol() {
+function SearchOutputContentsMol(props: { postList: searchPostType[],type:string }) {
+  const postList = props.postList;
+  const type = props.type;
+  const router = useRouter()
+
   return (
     <>
       <SearchOutputContentsMolStyle>
-        <div className="sort">
-          <div>결과 247</div>
-          <div className="icon">
-            <p>추천순</p>
-            <i
-              data-eva="swap-outline"
-              data-eva-fill={color.p_gray_md}
-              data-eva-height={16}
-              data-eva-width={16}
-            ></i>
-          </div>
-        </div>
-
+        <div className="post_class">{type}</div>
         <div className="contents">
-          <PostTmp type="lg" />
-          <PostTmp type="lg" />
-          <PostTmp type="lg" />
-          <PostTmp type="lg" />
-          <PostTmp type="lg" />
-          <PostTmp type="lg" />
-          <PostTmp type="lg" />
-          <PostTmp type="lg" />
-          <PostTmp type="lg" />
-          <PostTmp type="lg" />
+          {postList &&
+            postList.map((post) => {
+              return (
+                <div key={post.postId} onClick={() => router.push(`/post/${post.postId}`)}>
+                  <PostTmp type="lg" imgUrl={post.imgUrl}/>
+                </div>
+              );
+            })}
         </div>
       </SearchOutputContentsMolStyle>
     </>

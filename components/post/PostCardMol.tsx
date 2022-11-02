@@ -29,55 +29,48 @@ function PostCardMol(props: {
 }) {
   const { postId, postDetailData, postListData } = props;
 
+  console.log(props.postListData)
+
   if (postListData) {
     const {
       cornId,
       cornTitle,
+      cornImgUrl,
       isCool,
       isFollow,
       postId,
       postImgUrlList,
       regDate,
       userId,
+      postImgUrl,
+      userNickName,
+      uniStar
     } = postListData;
+
+    // console.log(postImgUrlList,'here')
 
     return (
       <>
         <PostCarTmpStyle>
           <div>
-            <PostUserMol userName={cornTitle} />
+            <PostUserMol userName={userNickName} cornImg={cornImgUrl}/>
           </div>
           <div className="right">
-            <PostFollowMol postId={postId} />
+            <PostFollowMol postId={postId} isFollow={isFollow}/>
             <ThreeDotMol postId={postId} />
           </div>
         </PostCarTmpStyle>
 
-        <PostSliderMol postId={postId} postImgUrlList={postImgUrlList} />
+        <PostSliderMol postId={postId} postImgUrlList={postImgUrlList || postImgUrl} />
 
         {/* 하트랑 유니스타랑 댓글 */}
-        <PostFuncBarMol postId={postId} isCool={isCool} />
+        <PostFuncBarMol postId={postId} isCool={isCool} uniStar={uniStar}/>
       </>
     );
   }
 
   return (
     <>
-      <PostCarTmpStyle>
-        <div>
-          <PostUserMol userName={"strongMinsu"} />
-        </div>
-        <div className="right">
-          <PostFollowMol postId={postId} />
-          <ThreeDotMol postId={postId} />
-        </div>
-      </PostCarTmpStyle>
-      {/* @ts-ignore */}
-      <PostSliderMol postId={postId} />
-
-      {/* 하트랑 유니스타랑 댓글 */}
-      {/* @ts-ignore */}
-      <PostFuncBarMol postId={postId} />
     </>
   );
 }

@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import React from "react";
 import { color } from "../../styles/theme";
+import { chatRoomDetailDataType } from "../../types/chat/chatRoomDetailDataType";
 import ChatRoomButtonMol from "./ChatRoomButtonMol";
 
 const ChatRoomItemBoxStyle = styled.div`
@@ -52,16 +53,21 @@ const ChatRoomItemBoxStyle = styled.div`
 
 `;
 
-function ChatRoomItemBox() {
+function ChatRoomItemBox(props:{roomData:chatRoomDetailDataType}) {
+
+  const router = useRouter()
+
+  console.log(props.roomData)
+  const {receiverImg,postPrice,postType,postId,receiverId} = props.roomData
 
   return (
     <>
       <ChatRoomItemBoxStyle>
 
-          <div className="left">
+          <div className="left" onClick={() => router.push(`/post/${postId}`)}>
             <div>
               <Image
-                src="/assets/images/postImage.jpg"
+                src={receiverImg && receiverImg}
                 alt="dummy image"
                 width={42}
                 height={42}
@@ -70,13 +76,13 @@ function ChatRoomItemBox() {
             <div className="text">
               <h4>에스테틱 골저러스 페브라스</h4>
               <h4>
-                27,000원<span>(오퍼가능)</span>
+                {postPrice.toLocaleString()}원
               </h4>
             </div>
           </div>
 
           <div className="button">
-            <ChatRoomButtonMol />
+            <ChatRoomButtonMol postType={postType} postId={postId} receiverId={receiverId}/>
           </div>
       </ChatRoomItemBoxStyle>
     </>

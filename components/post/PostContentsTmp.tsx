@@ -36,11 +36,11 @@ function PostContentsTmp() {
   const token = useRecoilValue(TokenState).token;
   const [tempData, setTempData] = useState<{ postId: string | number }[]>([]);
 
+  console.log(tempData)
+
   const updatePostData = async () => {
 
     const fetchData = await PostUtils.getFollowingPostData(token)
-
-    console.log(fetchData)
 
     if(fetchData === undefined){
       setTempData(await PostUtils.getRecommendPostData(token));

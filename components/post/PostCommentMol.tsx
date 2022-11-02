@@ -2,11 +2,10 @@ import Link from "next/link";
 import React from "react";
 import PostCommentAtm from "./PostCommentAtm";
 
-function PostCommentMol() {
-  const postId = 1;
+function PostCommentMol(props:{postId:string|number}) {
   return (
     <>
-      <Link href={`/post/${postId}/comment`}>
+      <Link href={`/post/${props.postId}/comment`}>
         <a>
           <PostCommentAtm />
         </a>

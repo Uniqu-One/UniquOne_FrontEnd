@@ -5,9 +5,10 @@ import { ToastUtils } from "../../lib/utils/ToastUtils";
 import { TokenState } from "../../states/recoil/TokenState";
 import FollowBtnMol from "../common/mol/FollowBtnMol";
 
-function PostFollowMol(props:{postId:string|number}) {
+function PostFollowMol(props:{postId:string|number, isFollow:boolean|null}) {
   const token = useRecoilValue(TokenState).token
   const postId = props.postId
+  const isFollow = props.isFollow
   const [followStatus, setFollowStatus] = useState(true);
 
   const handleFollowStatus = async () => {
@@ -28,7 +29,7 @@ function PostFollowMol(props:{postId:string|number}) {
   return (
     <>
       <FollowBtnMol
-        followStatus={followStatus}
+        followStatus={isFollow}
         handleFollowStatus={handleFollowStatus}
       />
     </>

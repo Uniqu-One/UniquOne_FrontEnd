@@ -37,10 +37,10 @@ const PostFuncBarMolStyle = styled.div`
   }
 `;
 
-function PostFuncBarMol(props:{postId:number|string,isCool:boolean}) {
+function PostFuncBarMol(props:{postId:number|string,isCool:boolean,uniStar:null|number}) {
   const token = useRecoilValue(TokenState).token;
-  const {postId, isCool} = props
-  const [tempStar,setTempStar] = useState(0)
+  const {postId, isCool,uniStar} = props
+  const [tempStar,setTempStar] = useState(uniStar)
 
   const updateUniStar = async() => {
 
@@ -70,7 +70,7 @@ function PostFuncBarMol(props:{postId:number|string,isCool:boolean}) {
     <PostFuncBarMolStyle>
       <div className="icons">
         <PostHeartMol postId={props.postId} isCool={isCool}/>
-        <PostCommentMol />
+        <PostCommentMol postId={postId}/>
       </div>
 
       <div className="uni_star" onClick={() => updateUniStar()}>

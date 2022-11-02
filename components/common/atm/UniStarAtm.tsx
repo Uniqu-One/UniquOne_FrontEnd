@@ -8,7 +8,7 @@ const StarStyle = styled.i`
   height: 24px;
 `;
 
-function UniStarAtm(props: { count: number }) {
+function UniStarAtm(props: { count: null|number }) {
   useEvaIcon();
 
   switch (props.count) {

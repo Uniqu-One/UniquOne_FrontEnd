@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import React from 'react'
-import {mainCategoryDummy} from "../../public/assets/datas/mainCategoryDummy"
+import {mainCategoryDummy} from "../../public/assets/datas/mainCategoryDummyList"
 import MainCategoryMol from './MainCategoryMol'
 
 

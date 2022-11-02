@@ -49,6 +49,8 @@ setPostDetailData(await PostUtils.getPostDetailData(token,postId))
     }
   },[])
 
+  console.log(postDetailData)
+
   if(postDetailData === undefined){
     return <div>로딩중</div>
   }

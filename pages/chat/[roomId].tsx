@@ -9,7 +9,6 @@ function RoomId(props:{roomId:string}) {
   return (
     <>
       <>
-        <TopTmp text="Strong_Minsu" />
         <ChatRoomTmp roomId={props.roomId}/>
       </>
     </>

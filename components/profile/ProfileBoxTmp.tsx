@@ -60,7 +60,7 @@ function ProfileBoxTmp(props: { type: string; cornId?: string }) {
 
   useEffect(() => {
 
-    setFollowStatus(!profileBoxData.isFollow)
+    setFollowStatus(profileBoxData.isFollow)
 
   },[profileBoxData])
 

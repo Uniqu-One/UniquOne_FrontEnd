@@ -5,10 +5,11 @@ import ChatRoomOneDayTmp from "./ChatRoomOneDayTmp";
 import SockJS from "sockjs-client";
 import { CompatClient, Stomp } from "@stomp/stompjs";
 import axios from "axios";
-import { useRouter } from "next/router";
 import { useRecoilValue } from "recoil";
 import { TokenState } from "../../states/recoil/TokenState";
 import { UserInfoState } from "../../states/recoil/UserInfoState";
+import TopTmp from "../common/tmp/TopTmp";
+import { chatRoomDetailDataType } from "../../types/chat/chatRoomDetailDataType";
 
 export type chatDataType = {
   senderId: number | string;
@@ -21,10 +22,11 @@ function ChatRoomTmp(props:{roomId:string}) {
   const {roomId} = props
   let socket = new SockJS(process.env.NEXT_PUBLIC_URL_AWS + "/chat/ws-stomp");
   let reconnect = 0;
-  const router = useRouter();
+  
   const token = useRecoilValue(TokenState).token;
   const userId = useRecoilValue(UserInfoState).userId;
 
+  const [roomData, setRoomData] = useState<chatRoomDetailDataType>()
   const [chatData, setChatData] = useState<chatDataType[]>([]);
   const [enter, setEnter] = useState(false)
   const [ws, setWs] = useState<CompatClient>();
@@ -97,8 +99,9 @@ function ChatRoomTmp(props:{roomId:string}) {
               }
             )
             .then((res) => {
-              
-              return setChatData(res.data.data.chatResponseDtos);
+              setRoomData(res.data.data)
+              setChatData(res.data.data.chatResponseDtos);
+              return ;
             })
             .catch((err) => {
               console.error(err)
@@ -120,8 +123,6 @@ function ChatRoomTmp(props:{roomId:string}) {
     scrollRef?.current?.scrollIntoView({ behavior: "smooth" });
     setEnter(true)
     return () => {
-    console.log(chatData)
-    console.log(enter)      
       if (chatData[0] === undefined && enter === true) {
         console.log(chatData,'in')
         console.log(1)
@@ -139,17 +140,26 @@ function ChatRoomTmp(props:{roomId:string}) {
 
   return (
     <>
-      <ChatRoomItemBox />
+      <TopTmp text={roomData?.receiverName} />
 
+      {roomData ? 
+      <>
+      <ChatRoomItemBox roomData={roomData}/>
+  
       <ChatRoomOneDayTmp chatData={chatData} />
       <div ref={scrollRef} />
-
+  
       <ChatRoomFooterTmp 
         ws={ws}
         roomId={
           typeof roomId === "string" ? roomId : ""
         }
-      />
+        />
+        </>
+      : 
+      <>
+      </>
+    }
     </>
   );
 }

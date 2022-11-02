@@ -92,12 +92,11 @@ const Box = (props: { text: string }) => {
   return <BoxStyle>{props.text}</BoxStyle>;
 };
 
-export default function ChatRoomButtonMol() {
+export default function ChatRoomButtonMol(props:{postType:string,postId:number,receiverId:number}) {
   useEvaIcon();
+  const {postId, receiverId, postType} = props
   const token = useRecoilValue(TokenState).token
   const userId = useRecoilValue(UserInfoState).userId
-  const router = useRouter();
-  const { postId, receiverId } = router.query;
 
   const [tempMenu, setTempMenu] = useState(MENU[0]);
   const [isOpen, setIsOpen] = useState(false);

@@ -16,11 +16,6 @@ function LoginAuthStateTmp() {
 
   const updateUserInfo = async () => {
     const userInfo = await LoginUtils.getUserInfo(token);
-    if (userInfo === "expired") {
-      ToastUtils.error('다시 로그인이 필요합니다')
-      router.push("/login");
-    }
-
     setUserInfo(userInfo);
   };
 

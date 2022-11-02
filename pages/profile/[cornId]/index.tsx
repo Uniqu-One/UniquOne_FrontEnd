@@ -4,7 +4,6 @@ import React from 'react'
 import FooterTmp from '../../../components/common/tmp/FooterTmp'
 import TopTmp from '../../../components/common/tmp/TopTmp'
 import ProfileBoxTmp from '../../../components/profile/ProfileBoxTmp'
-import ProfileContentTmp from '../../../components/profile/ProfileContentTmp'
 import ProfileOtherContentTmp from '../../../components/profile/ProfileOtherContentTmp'
 import { color } from '../../../styles/theme'
 

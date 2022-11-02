@@ -3,8 +3,10 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
+import useEvaIcon from "../../lib/hooks/useEvaIcon";
 import { color } from "../../styles/theme";
 import ToastTmp from "../common/tmp/ToastTmp";
+import PostSliderNextMol from "./PostSliderNextMol";
 
 const PostSliderMolStyle = styled.div`
   .dots_custom {
@@ -41,6 +43,7 @@ const PostSliderMolStyle = styled.div`
 
 function PostSliderMol(props: { postId: number | string; postImgUrlList: [] }) {
   const router = useRouter();
+  useEvaIcon()
   const { postId, postImgUrlList } = props;
 
   const [settings, setSettings] = useState({
@@ -75,28 +78,38 @@ function PostSliderMol(props: { postId: number | string; postImgUrlList: [] }) {
     dotsClass: "dots_custom",
   });
 
-  return (
-    <PostSliderMolStyle>
-      {router.query.postId ? <ToastTmp /> : <></>}
-      <Slider {...settings}>
-        {postImgUrlList ? (
-          postImgUrlList.map((img, idx) => {
-            return (
-              <div key={idx}>
-                <Image src={img} alt="postdummy" width={1000} height={1000} />
-              </div>
-            );
-          })
-        ) : (
+
+  if (typeof postImgUrlList === "string") {
+    return (
+      <PostSliderMolStyle>
+        <Slider {...settings}>
           <div>
             <Image
-              src="/assets/images/postImage.jpg"
+              src={postImgUrlList}
               alt="postdummy"
               width={1000}
               height={1000}
             />
           </div>
-        )}
+          <div>
+            <PostSliderNextMol/>
+          </div>
+        </Slider>
+      </PostSliderMolStyle>
+    );
+  }
+
+  return (
+    <PostSliderMolStyle>
+      {router.query.postId ? <ToastTmp /> : <></>}
+      <Slider {...settings}>
+        {postImgUrlList && postImgUrlList.map((img, idx) => {
+          return (
+            <div key={idx}>
+              <Image src={img} alt="postdummy" width={1000} height={1000} />
+            </div>
+          );
+        })}
       </Slider>
     </PostSliderMolStyle>
   );

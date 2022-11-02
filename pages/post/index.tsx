@@ -17,6 +17,7 @@ function index() {
     <>
       <PostStyle>
         <TopTmp type="post" />
+        {/* 추천 팔로잉 글자 */}
         <PostTypeTmp type="rec" />  
         
         <PostContentsTmp/>

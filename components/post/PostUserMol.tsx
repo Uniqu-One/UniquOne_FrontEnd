@@ -20,11 +20,11 @@ const PostUserMolStyle = styled.div`
   }
 `;
 
-function PostUserMol(props: { userName: string }) {
+function PostUserMol(props: { userName: string,cornImg:string }) {
   return (
     <>
       <PostUserMolStyle>
-        <UserImgAtm width={42} height={42} />
+        <UserImgAtm width={42} height={42} url={props.cornImg}/>
         <p>{props.userName}</p>
         <GradeIconAtm width={20} heigth={20} />
       </PostUserMolStyle>

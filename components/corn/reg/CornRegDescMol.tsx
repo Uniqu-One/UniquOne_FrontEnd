@@ -11,6 +11,7 @@ function CornRegDescMol(props: CornInputTypes) {
 
 // TODO - text Area 처리
     <>
+    {/* @ts-ignore */}
       <InputFormMol
         show={true}
         onChangeValue={onChangeValue}

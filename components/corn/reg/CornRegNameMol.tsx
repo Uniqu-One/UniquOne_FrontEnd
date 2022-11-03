@@ -44,6 +44,7 @@ function CornRegNameMol(props: CornInputTypes) {
 
   return (
     <>
+    {/* @ts-ignore */}
       <InputFormMol
         show={true}
         onChangeValue={onChangeValue}

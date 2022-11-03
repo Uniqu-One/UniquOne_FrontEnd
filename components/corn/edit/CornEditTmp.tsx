@@ -75,7 +75,7 @@ function CornEditTmp() {
             cornImg={userData.imgUrl}
             setCornProfile={setCornProfile}
           />
-
+          {/* @ts-ignore */}
           <InputFormMol
             show={true}
             onChangeValue={onChangeValue}
@@ -85,7 +85,7 @@ function CornEditTmp() {
             text="콘 이름을 입력해주세요"
             value={cornProfile.cornName}
           />
-
+{/* @ts-ignore */}
           <InputFormMol
             show={true}
             onChangeValue={onChangeValue}
@@ -95,7 +95,7 @@ function CornEditTmp() {
             text="링크를 입력해주세요"
             value={cornProfile.link}
           />
-
+{/* @ts-ignore */}
           <InputFormMol
             show={true}
             onChangeValue={onChangeValue}

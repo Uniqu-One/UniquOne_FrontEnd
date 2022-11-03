@@ -100,6 +100,7 @@ function SearchOutputTmp(props: {
     return (
       <>
         <SearchOutPutTopBottomPaddingStyle>
+          {/* @ts-ignore */}
           <SearchOutputContentsMol postList={hashTagList?.result} type="태그" />
           <SearchOutputUserCornMol />
         </SearchOutPutTopBottomPaddingStyle>

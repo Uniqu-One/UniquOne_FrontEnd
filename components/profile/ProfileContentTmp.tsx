@@ -125,6 +125,8 @@ function ProfileContentTmp() {
   }
 
 
+  console.log(tempPostList,'123')
+
   return (
     <div>
       <ProfileContentTmpStyle>
@@ -137,7 +139,7 @@ function ProfileContentTmp() {
         </div>
 
         <ProfileContentsStyle>
-          {tempPostList.map(
+          {tempPostList && tempPostList.map(
             (post: { postId: number; postImg: string; postType: string }) => {
               return <PostMdOrg key={post.postId} post={post} />;
             }

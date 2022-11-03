@@ -20,7 +20,8 @@ export type chatDataType = {
 
 function ChatRoomTmp(props:{roomId:string}) {
   const {roomId} = props
-  let socket = new SockJS(process.env.NEXT_PUBLIC_URL_AWS + "/chat/ws-stomp");
+  const [socket, setSocket] = useState()
+  
   let reconnect = 0;
   
   const token = useRecoilValue(TokenState).token;
@@ -30,16 +31,20 @@ function ChatRoomTmp(props:{roomId:string}) {
   const [chatData, setChatData] = useState<chatDataType[]>([]);
   const [enter, setEnter] = useState(false)
   const [ws, setWs] = useState<CompatClient>();
+  const [isConnect, setIsConnect] = useState(false)
   const scrollRef = useRef<null | HTMLDivElement>(null);
 
   const connect =  () => {
-    if (ws !== undefined) {
+    if (ws !== undefined && isConnect===false) {
+      
       ws.connect(
         {},
         () => {
+          
           ws.subscribe(
             `/sub/chat/room/${roomId}`,
             (recMessage: { body: string }) => {
+              console.log('구독')
               let recv = JSON.parse(recMessage.body);
               const { senderId, message, date, regTime } = recv;
               setChatData((prev) => [
@@ -48,9 +53,9 @@ function ChatRoomTmp(props:{roomId:string}) {
               ]);
             }
           );
-
+            console.log(ws)
           ws.send(
-            "/pub/chat/message",
+            "/sub/chat/message",
             {
               Authorization: token,
             },
@@ -60,25 +65,28 @@ function ChatRoomTmp(props:{roomId:string}) {
               senderId: userId,
             })
           );
+
+          setIsConnect(true)
         },
-        (err: any) => {
-          if (reconnect++ <= 5) {
-            setTimeout(() => {
-              socket = new SockJS(
-                process.env.NEXT_PUBLIC_URL_AWS + "/chat/ws-stomp"
-              );
-              setWs(Stomp.over(socket));
-              connect();
-            }, 10 * 1000);
-          }
-        }
+        // (err: any) => {
+        //   if (reconnect++ <= 5) {
+        //     setTimeout(() => {
+        //       socket = new SockJS(
+        //         process.env.NEXT_PUBLIC_URL_AWS + "/chat/ws-stomp"
+        //       );
+        //       setWs(Stomp.over(socket));
+        //       connect();
+        //     }, 10 * 1000);
+        //   }
+        // }
       );
     }
   };
 
 
   const handleStopmOver = () => {
-    setWs(Stomp.over(() => socket));
+    
+    setWs(Stomp.over(() => SockJS(process.env.NEXT_PUBLIC_URL_AWS + "/chat/ws-stomp")));
   }
 
   useEffect(() => {
@@ -87,7 +95,8 @@ function ChatRoomTmp(props:{roomId:string}) {
 
   useEffect(() => {
     
-    if(ws!==undefined){ 
+    if(ws!==undefined && isConnect === false){ 
+      
       connect();
       axios
             .get(
@@ -107,7 +116,7 @@ function ChatRoomTmp(props:{roomId:string}) {
               console.error(err)
               return [];
             });
-  // test
+  
       // return () => {
       //   ws?.disconnect();
       // }; 

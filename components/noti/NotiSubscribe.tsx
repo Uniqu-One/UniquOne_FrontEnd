@@ -21,53 +21,52 @@ function NotiSubscribe() {
       setOnSub(true)
     }
   };
-
+ 
   const notiSend = () => {
     eventSource.addEventListener("sse", function (event: any) {
       if (event.data.split(" ")[0] === "EventStream") {
         return null;
       } else {
         console.log(JSON.parse(event.data))
-        setData(JSON.parse(event.data));
         ToastUtils.success('새로운 알림')
       }
     });
   };
 
-  const showNoti = async () => {
-    const showNotification = () => {
-      const notification = new Notification("유니크원 알림", {
-        icon: "https://uniquoneimg.s3.ap-northeast-2.amazonaws.com/img/KakaoTalk_20221017_114329237.png",
-        body: data.nickName + data.dsc,
-      });
+  // const showNoti = async () => {
+  //   const showNotification = () => {
+  //     const notification = new Notification("유니크원 알림", {
+  //       icon: "https://uniquoneimg.s3.ap-northeast-2.amazonaws.com/img/KakaoTalk_20221017_114329237.png",
+  //       body: data.nickName + data.dsc,
+  //     });
 
-      setTimeout(() => {
-        notification.close();
-      }, 10 * 1000);
-      notification.addEventListener("click", () => {
-        window.open(data.url, "_blank");
-      });
-    };
+  //     setTimeout(() => {
+  //       notification.close();
+  //     }, 10 * 1000);
+  //     notification.addEventListener("click", () => {
+  //       window.open(data.url, "_blank");
+  //     });
+  //   };
 
-    let granted = false;
+  //   let granted = false;
 
-    if (Notification.permission === "granted") {
-      granted = true;
-    } else if (Notification.permission !== "denied") {
-      let permission = await Notification.requestPermission();
-      granted = permission === "granted";
-    }
+  //   if (Notification.permission === "granted") {
+  //     granted = true;
+  //   } else if (Notification.permission !== "denied") {
+  //     let permission = await Notification.requestPermission();
+  //     granted = permission === "granted";
+  //   }
 
-    // 알림 보여주기
-    if (granted) {
-      showNotification();
-    }
-  };
+  //   // 알림 보여주기
+  //   if (granted) {
+  //     showNotification();
+  //   }
+  // };
 
   useEffect(() => {
-    if(userId){
+    if(userId && onSub === false){
       handleSub();
-      showNoti();
+      // showNoti();
     }
   }, [userId]);
 

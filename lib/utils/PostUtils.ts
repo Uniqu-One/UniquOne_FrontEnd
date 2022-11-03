@@ -344,7 +344,7 @@ export const PostUtils = {
       )
       .then((res) => {
         console.log(res)
-        return res.data.data.content[0];
+        return res.data.data.content;
       })
       .catch((err) => console.error(err));
   },
@@ -355,7 +355,7 @@ export const PostUtils = {
         
       )
       .then((res) => {
-        return res.data.data.content[0];
+        return res.data.data.content;
       })
       .catch((err) => console.error(err)); 
   },
@@ -369,7 +369,7 @@ export const PostUtils = {
       )
       .then((res) => {
         
-        return res.data.data.content[0];
+        return res.data.data.content;
       })
       .catch((err) => console.error(err));
   },

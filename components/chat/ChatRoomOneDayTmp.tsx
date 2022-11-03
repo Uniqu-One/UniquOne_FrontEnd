@@ -3,6 +3,7 @@ import React from "react";
 import { useRecoilValue } from "recoil";
 import { UserInfoState } from "../../states/recoil/UserInfoState";
 import { color } from "../../styles/theme";
+import { chatRoomDetailDataType } from "../../types/chat/chatRoomDetailDataType";
 import ChatRoomReceiveAtm from "./ChatRoomReceiveAtm";
 import ChatRoomSendAtm from "./ChatRoomSendAtm";
 import { chatDataType } from "./ChatRoomTmp";
@@ -19,8 +20,10 @@ const ChatRoomOneDayTmpStyle = styled.div`
 
 function ChatRoomOneDayTmp(props: {
   chatData: chatDataType[];
+  roomData:chatRoomDetailDataType
 }) {
   const { chatData } = props;
+  const {receiverImg} = props.roomData
   const userId = useRecoilValue(UserInfoState).userId;
 
   return (
@@ -30,10 +33,10 @@ function ChatRoomOneDayTmp(props: {
         {chatData !== undefined &&
           chatData.map((chat, idx) => {
             if (chat.senderId === userId) {
-              return <ChatRoomSendAtm key={idx} text={chat.message} regTime={chat.regTime}/>;
+              return <ChatRoomSendAtm key={idx} text={chat.message} regTime={chat.regTime} />;
             } else {
               {
-                return <ChatRoomReceiveAtm key={idx} text={chat.message} regTime={chat.regTime}/>;
+                return <ChatRoomReceiveAtm key={idx} text={chat.message} regTime={chat.regTime} receiverImg={receiverImg}/>;
               }
             }
           })}

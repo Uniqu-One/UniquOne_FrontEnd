@@ -92,9 +92,9 @@ const Box = (props: { text: string }) => {
   return <BoxStyle>{props.text}</BoxStyle>;
 };
 
-export default function ChatRoomButtonMol(props:{postType:string,postId:number,receiverId:number}) {
+export default function ChatRoomButtonMol(props:{postType:string,postId:number,receiverId:number, chatRoomType:string}) {
   useEvaIcon();
-  const {postId, receiverId, postType} = props
+  const {postId, receiverId, postType,chatRoomType} = props
   const token = useRecoilValue(TokenState).token
   const userId = useRecoilValue(UserInfoState).userId
 
@@ -106,7 +106,6 @@ export default function ChatRoomButtonMol(props:{postType:string,postId:number,r
     setIsOpen(false);
 
     if (menu === "거래완료" && postId && receiverId) {
-      //TODO - 리코일로 전역 Toast 만들어야함
       if (await TradeUtils.tradeOver(token,userId,+postId)) {
         ToastUtils.success('거래가 완료되었습니다.')
       } else {
@@ -114,6 +113,16 @@ export default function ChatRoomButtonMol(props:{postType:string,postId:number,r
       }
     }
   };
+
+  const handleOpen = () => {
+    if(chatRoomType === "SELLER"){
+      setIsOpen(!isOpen)
+    } else {
+      ToastUtils.error('판매자만 제품의 상태 변경이 가능합니다')
+    }
+    
+
+  }
 
   return (
     <>
@@ -125,7 +134,7 @@ export default function ChatRoomButtonMol(props:{postType:string,postId:number,r
         <ButtonStyle tempMenu={tempMenu}>
           <motion.div
             whileTap={{ scale: 0.95 }}
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={() => handleOpen()}
           >
             <div>
               <p>{tempMenu}</p>

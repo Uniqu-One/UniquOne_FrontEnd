@@ -8,7 +8,11 @@ import { SearchModalState } from "../../states/recoil/SearchModalState";
 import { color } from "../../styles/theme";
 
 const SearchBarMolStyle = styled.div`
-  padding: 0 18px;
+  background-color: white;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 8;
   display: flex;
   justify-content: space-between;
   height: 48px;
@@ -16,9 +20,11 @@ const SearchBarMolStyle = styled.div`
   fill: ${color.p_gray_dk};
   div {
     margin: auto 0;
+    margin-left: 18px;
   }
 
   input {
+    margin-right: 18px;
     height: 30px;
     background-color: ${color.p_gray_lt};
     border: none;
@@ -32,39 +38,53 @@ const SearchBarMolStyle = styled.div`
   }
   .search_icon {
     position: absolute;
-    right: 6px;
+    right: 30px;
     top: 6px;
     fill: ${color.p_gray_md};
   }
 `;
 
-function SearchBarMol(props:{keyword?:string}) {
-  const router = useRouter()
+function SearchBarMol(props: { keyword?: string }) {
+  const router = useRouter();
   useEvaIcon();
+
+  const { keyword } = props;
+
   const [modalState, setModalState] = useRecoilState(SearchModalState);
 
-  const [searchWord, setSearchWord] = useState("");
+  const [searchWord, setSearchWord] = useState<string|undefined>("");
 
   const handleChangeSearchPage = () => {
-    if(searchWord !== ""){
-      router.push(`/search/${searchWord}`)
-      setModalState(false)
+    if (searchWord !== "") {
+      router.push(`/search/${searchWord}`);
+      setModalState(false);
     } else {
-      ToastUtils.error('검색어를 입력해주세요')
+      ToastUtils.error("검색어를 입력해주세요");
     }
-  }
+  };
 
   useEffect(() => {
-    {/* @ts-ignore */}
-    setSearchWord(props.keyword)
-  },[])
+    {
+      /* @ts-ignore */
+    }
+    setSearchWord(keyword);
+  }, [keyword]);
 
   return (
     <>
       <SearchBarMolStyle>
-        <div onClick={() => setModalState(false)}>
-          <i data-eva="close-outline"></i>
-        </div>
+        {keyword ? (
+          <div onClick={() => {
+            setModalState(false)
+            router.back()
+            }}>
+            <i data-eva="arrow-ios-back-outline"></i>
+          </div>
+        ) : (
+          <div onClick={() => setModalState(false)}>
+            <i data-eva="close-outline"></i>
+          </div>
+        )}
 
         <div className="search_input">
           <input

@@ -39,13 +39,13 @@ const ChatRoomReceiveAtmStyle = styled.div`
 
 `;
 
-function ChatRoomReceiveAtm(props:{text:string, regTime:string}) {
+function ChatRoomReceiveAtm(props:{text:string, regTime:string, receiverImg:string}) {
   return (
     <>
       <ChatRoomReceiveAtmStyle>
         <div>
           <Image
-            src="/assets/images/dummyUserImg.jpg"
+            src={props.receiverImg ? props.receiverImg :"/assets/images/dummyUserImg.jpg"}
             alt="더미 유저 이미지"
             width={30}
             height={30}

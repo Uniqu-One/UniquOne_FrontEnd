@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { color } from "../../../styles/theme";
 
 export const TopBoxMol = styled.div`
   position: fixed;
@@ -9,4 +10,5 @@ export const TopBoxMol = styled.div`
   justify-content: space-between;
   background-color: white;
   z-index: 5;
+
 `;

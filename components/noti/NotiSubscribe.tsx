@@ -6,14 +6,20 @@ import { UserInfoState } from "../../states/recoil/UserInfoState";
 function NotiSubscribe() {
   const userId = useRecoilValue(UserInfoState).userId;
 
+  
+
   const [data, setData] = useState<any>("");
 
   const [eventSource, setEventSource] = useState<any>();
+  const [onSub, setOnSub] = useState(false)
 
   const handleSub = () => {
-    setEventSource(
-      new EventSource(`${process.env.NEXT_PUBLIC_URL_AWS}/noti/subscribe/` + userId)
-    );
+    if(userId && !onSub){
+      setEventSource(
+        new EventSource(`${process.env.NEXT_PUBLIC_URL_AWS}/noti/subscribe/` + userId)
+      );
+      setOnSub(true)
+    }
   };
 
   const notiSend = () => {

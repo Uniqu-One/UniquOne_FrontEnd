@@ -9,6 +9,7 @@ import { useRecoilState } from "recoil";
 import { LoginAuthState } from "../../states/recoil/LoginAuthState";
 import { TokenState } from "../../states/recoil/TokenState";
 import { UserInfoState } from "../../states/recoil/UserInfoState";
+import { ToastUtils } from "../../lib/utils/ToastUtils";
 
 const LoginFormTmpStyle = styled.div`
   padding-top: 60px;
@@ -27,6 +28,7 @@ function LoginFormTmp() {
   const [loginAuthState, setLoginAuthState] = useRecoilState(LoginAuthState);
   const [tokenState, setTokenState] = useRecoilState(TokenState);
   const [userInfo, setUserInfo] = useRecoilState(UserInfoState);
+
   const [inputs, setInputs] = useState({
     email: "",
     userPwd: "",
@@ -53,28 +55,46 @@ function LoginFormTmp() {
 
   const handleLogin = async () => {
     if (next) {
-      const userInfo = await LoginUtils.login(email, userPwd);
-      const userMiniInfo = await LoginUtils.getUserInfo(userInfo.token);
 
-      if (userInfo && userMiniInfo) {
-        setLoginAuthState(true);
-        setUserInfo({...{
-          userId: userMiniInfo.userId,
-          cornId: userMiniInfo.cornId,
-        }});
-        setTokenState({ token: userInfo.token });
+      const userInfo = await LoginUtils.login(email, userPwd);
+
+      if(userInfo){
+        
+      setTokenState({ token: userInfo.token });
+        ToastUtils.success('환영합니다 :>')
         router.replace({
           pathname: "/",
         });
+      
+      } else {
+        ToastUtils.error('로그인에 실패하였습니다.')
       }
+      
+
     }
   };
+
+  const handleUpdateUserInfo = async () => {
+    const userMiniInfo = await LoginUtils.getUserInfo(tokenState.token);
+    if (userInfo && userMiniInfo) {
+      setLoginAuthState(true);
+      setUserInfo({...{
+        userId: userMiniInfo.userId,
+        cornId: userMiniInfo.cornId,
+      }});
+      
+
+    }
+  }
+
+  
 
   return (
     <>
       <LoginFormTmpStyle>
         <div className="input_form">
           <InputFormMol
+            setInput={setInputs}
             show={true}
             onChangeValue={onChangeValue}
             name="email"
@@ -86,6 +106,7 @@ function LoginFormTmp() {
         </div>
         <div className="input_form">
           <InputFormMol
+            setInput={setInputs}
             show={true}
             onChangeValue={onChangeValue}
             name="userPwd"

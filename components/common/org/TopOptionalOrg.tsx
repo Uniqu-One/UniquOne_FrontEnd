@@ -14,10 +14,12 @@ export const TopOptionalOrg = (props: {
   function?: Function;
   status?: boolean;
   function_right?:Function
+  tempCnt?:number
 }) => {
   useEvaIcon();
   const router = useRouter();
-
+  const tempCnt = props.tempCnt
+  
   let tempFunc: Function;
 
   if (props.function) {
@@ -86,9 +88,20 @@ export const TopOptionalOrg = (props: {
       )}
 
       {props.right === "bell-outline" && (
-        <TopIconAtm>
-          <i data-eva={props.right}></i>
-        </TopIconAtm>
+                <div
+                style={{"margin":"auto 0", "position":"relative"}}
+      
+                className="noti_icon"
+                onClick={() => {
+                  console.log(1);
+                  router.push("/noti");
+                }}
+              >
+                {tempCnt!==0 && <div className="count_check"></div>}
+                <TopIconAtm>
+                  <i data-eva="bell-outline"></i>
+                </TopIconAtm>
+              </div>
       )}
 
       {props.right === "checkmark-outline" && (

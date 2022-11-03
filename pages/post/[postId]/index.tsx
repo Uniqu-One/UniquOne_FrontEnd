@@ -58,7 +58,7 @@ setPostDetailData(await PostUtils.getPostDetailData(token,postId))
   return (
     <>
       <PostIntervalStyle>
-        <TopTmp type="post"/>
+        <TopTmp type="postDetail"/>
 
         <PostCardTmp postId={postId} postDetailData={postDetailData}/>
 
@@ -66,6 +66,7 @@ setPostDetailData(await PostUtils.getPostDetailData(token,postId))
 
               <PostSingleDummyIntervalStyle/>
 
+        {/* 콘 부분 */}
         <PostSingleCornOrg/>
         
               <PostSingleDummyIntervalStyle/>

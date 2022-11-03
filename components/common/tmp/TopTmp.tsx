@@ -11,6 +11,7 @@ function TopTmp(props: {
   function?: Function;
   status?: boolean;
   function_right?: Function;
+  tempCnt?:number
 }) {
   switch (props.type) {
     case "main":
@@ -35,7 +36,7 @@ function TopTmp(props: {
 
     case "chat":
       return (
-        <TopOptionalOrg left="nt" text={props.text} right={"bell-outline"} />
+        <TopOptionalOrg left="nt" text={props.text} right={"bell-outline"} tempCnt={props.tempCnt}/>
       );
 
     case "postOffer":
@@ -70,6 +71,9 @@ function TopTmp(props: {
 
     case "post":
       return <TopPostOrg />;
+
+      case "postDetail":
+        return <TopPostOrg type="detail"/>;
 
     case "qna":
       return (

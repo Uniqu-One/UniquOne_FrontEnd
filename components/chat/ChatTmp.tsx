@@ -30,6 +30,7 @@ function ChatTmp() {
           },
         })
         .then((res) => {
+          console.log(res)
           return setChatRoomDatas([...res.data.data]);
         })
         .catch((err) => {

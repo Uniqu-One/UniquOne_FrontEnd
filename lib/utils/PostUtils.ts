@@ -294,7 +294,8 @@ export const PostUtils = {
         }
       )
       .then((res) => {
-        return res.data.data.content[0];
+        console.log(res.data.data.content)
+        return res.data.data.content;
       })
       .catch((err) => console.error(err));
   },
@@ -311,7 +312,7 @@ export const PostUtils = {
       )
       .then((res) => {
         
-        return res.data.data.content[0];
+        return res.data.data.content;
       })
       .catch((err) => console.error(err));
   },
@@ -328,7 +329,7 @@ export const PostUtils = {
       )
       .then((res) => {
         console.log(res)
-        return res.data.data.content[0];
+        return res.data.data.content;
       })
       .catch((err) => console.error(err));
   },
@@ -378,13 +379,16 @@ export const PostUtils = {
 
 
   getPostDetailData: async (token:string,postId:string|number) => {
+
+    console.log(token,postId)
+
     return await axios.get(`${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/detail/${postId}`,{
       headers:{
         Authorization:token
       }
     })
     .then(res => {
-  
+      console.log(res)
       return res.data.data
     })
     .catch(err => console.error(err))
@@ -420,7 +424,8 @@ export const PostUtils = {
         Authorization:token
       }
     }).then(res => {
-      return res.data.data
+      console.log(res.data.data.content,'follow')
+      return res.data.data.content
     })
       .catch(err =>console.error(err))
 
@@ -432,7 +437,7 @@ export const PostUtils = {
         Authorization:token
       }
     }).then(res => {
-      console.log(res.data.data.result)
+      // console.log(res.content,'rec')
       return res.data.data.result
     })
       .catch(err =>console.error(err))

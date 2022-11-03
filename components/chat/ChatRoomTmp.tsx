@@ -124,8 +124,6 @@ function ChatRoomTmp(props:{roomId:string}) {
     setEnter(true)
     return () => {
       if (chatData[0] === undefined && enter === true) {
-        console.log(chatData,'in')
-        console.log(1)
         axios
           .post(`${process.env.NEXT_PUBLIC_URL_AWS}/chat/room/${roomId}`, {
             headers: {
@@ -146,7 +144,7 @@ function ChatRoomTmp(props:{roomId:string}) {
       <>
       <ChatRoomItemBox roomData={roomData}/>
   
-      <ChatRoomOneDayTmp chatData={chatData} />
+      <ChatRoomOneDayTmp chatData={chatData} roomData={roomData}/>
       <div ref={scrollRef} />
   
       <ChatRoomFooterTmp 

@@ -8,7 +8,16 @@ import SearchBottomConditionMol from "./bottomSheet/SearchBottomConditionMol";
 import SearchBottomLookMol from "./bottomSheet/SearchBottomLookMol";
 import SearchFilterAtm from "./SearchFilterAtm";
 
+const SearchFilterMolContainerStyle = styled.div`
+  
+  overflow: scroll;
+  ::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}
+`
+
 const SearchFilterMolStyle = styled.div`
+  background-color: white;
   height: 48px;
   display: flex;
   padding-left: 18px;
@@ -22,8 +31,7 @@ const SearchFilterMolStyle = styled.div`
   }
 `;
 
-function SearchFilterMol() {
-  
+function SearchFilterMol(props: { tempMenu: string; setTempMenu: Function }) {
   const FILTER_MENU = ["색상", "룩", "카테고리", "상태"];
 
   const [open, setOpen] = useState(false);
@@ -36,21 +44,25 @@ function SearchFilterMol() {
   const [tempMenu, setTempMenu] = useState("");
 
   const handleSetTempMenu = (menu: string) => {
+    console.log(1);
+    console.log(menu);
     setTempMenu(menu);
     setOpen(true);
   };
 
   return (
     <>
-      <SearchFilterMolStyle>
-        {FILTER_MENU.map((filter, idx) => {
-          return (
-            <div onClick={() => handleSetTempMenu(filter)} key={idx}>
-              <SearchFilterAtm filter={filter} />
-            </div>
-          );
-        })}
-      </SearchFilterMolStyle>
+      <SearchFilterMolContainerStyle>
+        <SearchFilterMolStyle>
+          {FILTER_MENU.map((filter, idx) => {
+            return (
+              <div onClick={() => handleSetTempMenu(filter)} key={idx}>
+                <SearchFilterAtm filter={filter} />
+              </div>
+            );
+          })}
+        </SearchFilterMolStyle>
+      </SearchFilterMolContainerStyle>
 
       <BottomSheet open={open} onDismiss={() => setOpen(false)}>
         {tempMenu === "색상" && <SearchBottomColorMol setOpen={setOpen} />}

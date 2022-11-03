@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import { SignupFormRegexUtil } from "../../lib/utils/SignupFormRegexUtil";
 import { SignupUtils } from "../../lib/utils/SignupUtils";
 import { ToastUtils } from "../../lib/utils/ToastUtils";
+import { color } from "../../styles/theme";
 import SignupFormAnimation from "../animation/SignupFormAnimation";
 import InputFormMol from "../common/mol/InputFormMol";
 import BtnTmp from "../common/tmp/BtnTmp";
@@ -19,6 +20,13 @@ const SignupFormTmpStyle = styled.div`
     bottom: 0;
     width: 100vw;
     margin-bottom: 12px;
+  }
+  .valid_pwd{
+    display: flex;
+    justify-content: right;
+    margin-right: 18px;
+    font-size: 0.8rem;
+    color: ${color.p_pruple};
   }
 `;
 
@@ -85,6 +93,8 @@ function SignupFormTmp() {
       }
     }
 
+    
+
     if (tempLevel === "userPwd" && userPwd !== "") {
       SetSignUpStage((prev) => ({ ...prev, userPwd: true }));
       setTempLevel("nickName");
@@ -119,6 +129,8 @@ function SignupFormTmp() {
             {signUpStage.userPwd && (
               <SignupFormAnimation key={"nickName"}>
                 <InputFormMol
+                  signupInput={signupInput}
+                  setInput={setSignupInput}
                   key={"nickName"}
                   show={true}
                   onChangeValue={onChangeValue}
@@ -134,6 +146,8 @@ function SignupFormTmp() {
             {signUpStage.mailAuth && (
               <SignupFormAnimation key={"userPwd"}>
                 <InputFormMol
+                  signupInput={signupInput}
+                  setInput={setSignupInput}
                   key={"userPwd"}
                   show={true}
                   onChangeValue={onChangeValue}
@@ -143,12 +157,15 @@ function SignupFormTmp() {
                   text="비밀번호을 입력해주세요"
                   value={userPwd}
                 />
+                {userPwd.length < 8 && <div className="valid_pwd">대,소문자,숫자를 포함하여 8자 이상을 입력해주세요</div>}                
               </SignupFormAnimation>
             )}
 
             {signUpStage.mailSend && (
               <SignupFormAnimation key={"authNum"}>
                 <InputFormMol
+                  signupInput={signupInput}
+                  setInput={setSignupInput}
                   show={true}
                   onChangeValue={onChangeValue}
                   name="authNum"
@@ -157,10 +174,13 @@ function SignupFormTmp() {
                   text="인증번호을 입력해주세요"
                   value={authNum}
                 />
+                
               </SignupFormAnimation>
             )}
 
             <InputFormMol
+              signupInput={signupInput}
+              setInput={setSignupInput}
               show={true}
               onChangeValue={onChangeValue}
               name="email"

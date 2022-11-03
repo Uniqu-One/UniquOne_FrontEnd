@@ -7,6 +7,7 @@ import useEvaIcon from "../../lib/hooks/useEvaIcon";
 import { color } from "../../styles/theme";
 import ToastTmp from "../common/tmp/ToastTmp";
 import PostSliderNextMol from "./PostSliderNextMol";
+import PostSliderPrevMol from "./PostSliderPrevMol";
 
 const PostSliderMolStyle = styled.div`
   .dots_custom {
@@ -46,10 +47,20 @@ function PostSliderMol(props: { postId: number | string; postImgUrlList: [] }) {
   useEvaIcon()
   const { postId, postImgUrlList } = props;
 
+  const queryPostId = router.query.postId
+
   const [settings, setSettings] = useState({
     beforeChange: (e: number) => {
-      if (e === 0 && postId !== undefined) {
+      if (e === 0 && queryPostId === undefined) {
         router.push(`/post/${postId}`);
+      }
+
+    
+    },
+
+    afterChange: (e: number) => {
+      if (e === 0 && queryPostId !== undefined) {
+        router.back();
       }
     },
 
@@ -58,7 +69,7 @@ function PostSliderMol(props: { postId: number | string; postImgUrlList: [] }) {
     speed: 100,
     slidesToShow: 1,
     slidesToScroll: 1,
-    // initialSlide: postId ? 1 : 0,
+    initialSlide: queryPostId ? 1 : 0,
     appendDots: (dots: any) => {
       return (
         <div
@@ -103,6 +114,9 @@ function PostSliderMol(props: { postId: number | string; postImgUrlList: [] }) {
     <PostSliderMolStyle>
       {router.query.postId ? <ToastTmp /> : <></>}
       <Slider {...settings}>
+        <div>
+            <PostSliderPrevMol/>
+          </div>
         {postImgUrlList && postImgUrlList.map((img, idx) => {
           return (
             <div key={idx}>

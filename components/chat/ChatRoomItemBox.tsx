@@ -58,7 +58,7 @@ function ChatRoomItemBox(props:{roomData:chatRoomDetailDataType}) {
   const router = useRouter()
 
   console.log(props.roomData)
-  const {receiverImg,postPrice,postType,postId,receiverId} = props.roomData
+  const {postImg,postPrice,postType,postId,receiverId,postTitle,chatRoomType} = props.roomData
 
   return (
     <>
@@ -67,14 +67,14 @@ function ChatRoomItemBox(props:{roomData:chatRoomDetailDataType}) {
           <div className="left" onClick={() => router.push(`/post/${postId}`)}>
             <div>
               <Image
-                src={receiverImg && receiverImg}
+                src={postImg && postImg}
                 alt="dummy image"
                 width={42}
                 height={42}
               />
             </div>
             <div className="text">
-              <h4>에스테틱 골저러스 페브라스</h4>
+              <h4>{postTitle}</h4>
               <h4>
                 {postPrice.toLocaleString()}원
               </h4>
@@ -82,7 +82,7 @@ function ChatRoomItemBox(props:{roomData:chatRoomDetailDataType}) {
           </div>
 
           <div className="button">
-            <ChatRoomButtonMol postType={postType} postId={postId} receiverId={receiverId}/>
+            <ChatRoomButtonMol postType={postType} postId={postId} receiverId={receiverId} chatRoomType={chatRoomType}/>
           </div>
       </ChatRoomItemBoxStyle>
     </>

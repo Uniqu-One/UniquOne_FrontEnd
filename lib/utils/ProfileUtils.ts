@@ -15,49 +15,30 @@ export type ProfileDataType = {
 };
 
 export const ProfileUtils = {
-  getProfileData: (token: string, cornId?: string) => {
-
-    const fetchProfile = () => {
-
-      console.log(cornId)
-
-      if(cornId){
-        return axios.get(
-          `${process.env.NEXT_PUBLIC_URL_AWS}/posts/corns/${cornId}`,
-          {
-            headers: {
-              Authorization: token,
-            },
-          }
-        );
-      } else {
-        return axios.get(
-          `${process.env.NEXT_PUBLIC_URL_AWS}/posts/corns/`,
-          {
-            headers: {
-              Authorization: token,
-            },
-          }
-        );
-      }
-    };
-
-    const { isLoading, data } = useQuery("profileData", fetchProfile, {
-      staleTime: 5000,
-      refetchOnWindowFocus: false,
-      select: (data) => {
-        const userData = data.data.data;
-        return userData;
-      },
-    });
-
-
-    if (isLoading) {
-      return "Loading";
-    }
-
-    console.log(data)
-
-    return data;
+  getProfileData: async (token: string, cornId?: string) => {
+      return await axios
+        .get(`${process.env.NEXT_PUBLIC_URL_AWS}/posts/corns/${cornId}`, {
+          headers: {
+            Authorization: token,
+          },
+        })
+        .then((res) => {
+          console.log(res, "other");
+          return res.data.data;
+        });
   },
+
+  getMyProfileData: async (token:string) => {
+    return await axios
+      .get(`${process.env.NEXT_PUBLIC_URL_AWS}/posts/corns`, {
+        headers: {
+          Authorization: token,
+        },
+      })
+      .then((res) => {
+        return res.data.data;
+      })
+      .catch((err) => console.error(err));
+  }
+
 };

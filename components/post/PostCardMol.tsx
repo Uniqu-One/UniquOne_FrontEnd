@@ -10,7 +10,7 @@ const PostCarTmpStyle = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 12px 21px 0px 18px;
-  padding-top: 3px;
+  padding-top: 0px;
   .right {
     display: flex;
     > div {
@@ -29,7 +29,7 @@ function PostCardMol(props: {
 }) {
   const { postId, postDetailData, postListData } = props;
 
-  console.log(props.postListData)
+  
 
   if (postListData) {
     const {
@@ -44,10 +44,10 @@ function PostCardMol(props: {
       userId,
       postImgUrl,
       userNickName,
-      uniStar
+      uniStar,
+      imgUrlList
     } = postListData;
 
-    // console.log(postImgUrlList,'here')
 
     return (
       <>
@@ -61,13 +61,42 @@ function PostCardMol(props: {
           </div>
         </PostCarTmpStyle>
 
-        <PostSliderMol postId={postId} postImgUrlList={postImgUrlList || postImgUrl} />
+        <PostSliderMol postId={postId} postImgUrlList={imgUrlList || postImgUrl} />
 
         {/* 하트랑 유니스타랑 댓글 */}
         <PostFuncBarMol postId={postId} isCool={isCool} uniStar={uniStar}/>
       </>
     );
   }
+
+  if(postDetailData){
+
+
+ const {
+  imgUrlList
+    } = postDetailData;
+
+
+    return (
+      <>
+        <PostCarTmpStyle>
+          <div>
+            <PostUserMol userName={'유저'} cornImg={"/"}/>
+          </div>
+          <div className="right">
+            {/* <PostFollowMol postId={postId} isFollow={isFollow}/> */}
+            <ThreeDotMol postId={postId} />
+          </div>
+        </PostCarTmpStyle>
+
+        <PostSliderMol postId={postId} postImgUrlList={imgUrlList || imgUrlList} />
+
+        {/* 하트랑 유니스타랑 댓글 */}
+        {/* <PostFuncBarMol postId={postId} isCool={isCool} uniStar={uniStar}/> */}
+      </>
+    );
+  }
+
 
   return (
     <>

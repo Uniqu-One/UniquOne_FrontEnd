@@ -63,3 +63,6 @@ input{
 	letter-spacing: -0.03rem;
 }
 
+body::-webkit-scrollbar {
+	display: none;
+}

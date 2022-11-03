@@ -77,7 +77,6 @@ export const CornUtils = {
         },
       })
       .then((res) => {
-        
         return res.data.data.content[0];
       })
       .catch((err) => console.error(err));

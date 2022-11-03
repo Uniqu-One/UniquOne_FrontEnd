@@ -4,11 +4,9 @@ import { SearchUtils } from "../../lib/utils/SearchUtils";
 import { TokenState } from "../../states/recoil/TokenState";
 import { searchTotalListType } from "../../types/search/searchTotalListType";
 import SearchOutputContentsMol from "./SearchOutputContentsMol";
-import SearchOutputFilterMol from "./SearchOutputMenuOrg";
 import SearchOutputUserCornMol from "./SearchOutputUserCornMol";
 import ProfileFollowCardBoxMol from "../profile/ProfileFollowCardBoxMol";
 import styled from "@emotion/styled";
-import SearchFilterMol from "./SearchFilterMol";
 import { SearchFilterState } from "../../states/recoil/SearchFilterState";
 
 const SearchOutputMenuOrgOverFlowStyle = styled.div`
@@ -18,21 +16,32 @@ const SearchOutputMenuOrgOverFlowStyle = styled.div`
   }
 `;
 
-function SearchOutputTmp(props: { keyword: string }) {
+const SearchOutPutTopBottomPaddingStyle = styled.div`
+  padding-top: 112px;
+  padding-bottom: 60px;
+`;
+
+function SearchOutputTmp(props: {
+  keyword: string;
+  tempMenu: string;
+  setTempMenu: Function;
+}) {
   const keyword = props.keyword;
 
   const token = useRecoilValue(TokenState).token;
-  const [tempMenu, setTempMenu] = useState("전체");
+  const { tempMenu, setTempMenu } = props;
   const [tempPostList, setTempPostList] = useState<searchTotalListType>({});
 
-  const [searchFilterData,setSearchFilterData] = useRecoilState(SearchFilterState)
+  const [searchFilterData, setSearchFilterData] =
+    useRecoilState(SearchFilterState);
 
   const updateSearchOutputDataList = async () => {
     if (tempMenu === "전체") {
       setTempPostList(await SearchUtils.getSearchAllList(token, keyword));
     } else if (tempMenu === "상품") {
-      
-      setTempPostList(await SearchUtils.getSearchPostList(token, keyword, searchFilterData));
+      setTempPostList(
+        await SearchUtils.getSearchPostList(token, keyword, searchFilterData)
+      );
     } else if (tempMenu === "해시태그") {
       setTempPostList(await SearchUtils.getSearchHashTagList(token, keyword));
     } else if (tempMenu == "콘 유저") {
@@ -41,16 +50,17 @@ function SearchOutputTmp(props: { keyword: string }) {
 
   useEffect(() => {
     updateSearchOutputDataList();
-  }, [tempMenu,searchFilterData]);
+  }, [tempMenu, searchFilterData, keyword]);
 
   if (tempMenu === "전체") {
     const { postList } = tempPostList;
     const { hashTagList } = tempPostList;
     const { cornList } = tempPostList;
 
+    // console.log(cornList?.totalSearchCnt)
+
     return (
-      <>
-        <SearchOutputFilterMol tempMenu={tempMenu} setTempMenu={setTempMenu} />
+      <SearchOutPutTopBottomPaddingStyle>
         {postList ? (
           <SearchOutputContentsMol postList={postList?.result} type="상품" />
         ) : (
@@ -61,13 +71,13 @@ function SearchOutputTmp(props: { keyword: string }) {
         ) : (
           <></>
         )}
-        {cornList ? (
+        {cornList && cornList?.totalSearchCnt ? (
           <ProfileFollowCardBoxMol tempUserData={cornList?.result} />
         ) : (
           <></>
         )}
         <SearchOutputUserCornMol />
-      </>
+      </SearchOutPutTopBottomPaddingStyle>
     );
   }
 
@@ -76,14 +86,10 @@ function SearchOutputTmp(props: { keyword: string }) {
 
     return (
       <>
-        <SearchOutputFilterMol tempMenu={tempMenu} setTempMenu={setTempMenu} />
-        <SearchOutputMenuOrgOverFlowStyle>
-          {tempMenu === "상품" && (
-            <SearchFilterMol />
-          )}
-        </SearchOutputMenuOrgOverFlowStyle>
-        {/* @ts-ignore */}
-        <SearchOutputContentsMol postList={postList?.result} type="상품" />
+        <SearchOutPutTopBottomPaddingStyle>
+          {/* @ts-ignore */}
+          <SearchOutputContentsMol postList={postList?.result} type="상품" />
+        </SearchOutPutTopBottomPaddingStyle>
       </>
     );
   }
@@ -93,21 +99,20 @@ function SearchOutputTmp(props: { keyword: string }) {
 
     return (
       <>
-        <SearchOutputFilterMol tempMenu={tempMenu} setTempMenu={setTempMenu} />
-        {/* @ts-ignore */}
-        <SearchOutputContentsMol postList={hashTagList?.result} type="태그" />
-        <SearchOutputUserCornMol />
+        <SearchOutPutTopBottomPaddingStyle>
+          <SearchOutputContentsMol postList={hashTagList?.result} type="태그" />
+          <SearchOutputUserCornMol />
+        </SearchOutPutTopBottomPaddingStyle>
       </>
     );
   }
 
   if (tempMenu === "콘 유저") {
-
-
     return (
       <>
-        <SearchOutputFilterMol tempMenu={tempMenu} setTempMenu={setTempMenu} />
-        <SearchOutputUserCornMol />
+        <SearchOutPutTopBottomPaddingStyle>
+          <SearchOutputUserCornMol />
+        </SearchOutPutTopBottomPaddingStyle>
       </>
     );
   }

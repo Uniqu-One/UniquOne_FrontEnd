@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import useEvaIcon from "../../../lib/hooks/useEvaIcon";
 import { color } from "../../../styles/theme";
@@ -43,8 +42,16 @@ function InputFormMol(props: {
   text: string;
   value?: string;
   handleButtonClick?:Function
+  signupInput?:{}
+  setInput:Function
 }) {
   const [removeIcon, setRemoveIcon] = useState(false);
+
+  const {setInput,name} = props
+
+  const handleRemoveTempText = () => {
+    setInput((prev:any) => ({...prev,[name]:""}))
+  }
 
   useEvaIcon();
 
@@ -68,7 +75,7 @@ function InputFormMol(props: {
           value={props.value || ""}
         />
 
-        <span >
+        <span onClick={() => handleRemoveTempText()}>
           <i data-eva="close-circle-outline" data-eva-width="20px"></i>
         </span>
       </FormStyle>

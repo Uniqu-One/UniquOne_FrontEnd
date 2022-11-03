@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const LoginUtils = {
-  login: async (email: string, password: string) => {
+  login:  async (email: string, password: string) => {
     return await axios
       .post(`${process.env.NEXT_PUBLIC_URL_AWS}/login/oauth`, {
         email,
@@ -9,9 +9,7 @@ export const LoginUtils = {
       })
       .then((res) => {
         console.log(res)
-        if (res.status === 200) {
-          return res.data;
-        }
+        return res.data;
       })
       .catch((err) => console.error(err));
   },

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
+import QuestionMarkAtm from "../../components/common/atm/QuestionMarkAtm";
 import PostMdOrg from "../../components/common/org/PostMdOrg";
 import FooterTmp from "../../components/common/tmp/FooterTmp";
 import TopTmp from "../../components/common/tmp/TopTmp";
@@ -24,19 +25,30 @@ function UniStar() {
   return (
     <>
       <TopTmp type="setting" text="유니스타" />
-      <MyUniStarTmp />
+
       <ProfileContentsStyle>
-        {uniStar.map((contents) => {
-          let post = {};
-          // @ts-ignore
-          post.postId = contents.postId;
-          // @ts-ignore
-          post.postImg = contents.postImgUrl;
-          // @ts-ignore
-          post.uniStarLevel = contents.uniStarLevel;
-          // @ts-ignore
-          return <PostMdOrg key={contents.postId} post={post} />;
-        })}
+        {uniStar[0] === undefined && (
+          <div className="no-data">
+            <QuestionMarkAtm />
+          </div>
+        )}
+
+        {
+          <>
+            <MyUniStarTmp />
+            {uniStar.map((contents) => {
+              let post = {};
+              // @ts-ignore
+              post.postId = contents.postId;
+              // @ts-ignore
+              post.postImg = contents.postImgUrl;
+              // @ts-ignore
+              post.uniStarLevel = contents.uniStarLevel;
+              // @ts-ignore
+              return <PostMdOrg key={contents.postId} post={post} />;
+            })}
+          </>
+        }
       </ProfileContentsStyle>
 
       <FooterTmp />

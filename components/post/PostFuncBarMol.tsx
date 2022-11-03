@@ -44,7 +44,9 @@ function PostFuncBarMol(props:{postId:number|string,isCool:boolean,uniStar:null|
 
   const updateUniStar = async() => {
 
-    if(tempStar === 0){
+    console.log(tempStar)
+
+    if(tempStar === null || tempStar === 0){
       UniStarUtils.enrollUniStar(token,postId)
       setTempStar(1)
     }

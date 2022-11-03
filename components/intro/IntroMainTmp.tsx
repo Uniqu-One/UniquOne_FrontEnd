@@ -20,13 +20,24 @@ const IntroMainTmpStyle = styled(GradiantBack)`
   }
 
   .bottom_text {
-    margin-top: 12px;
+    margin-top: 18px;
 
     font-size: 0.875rem;
     color: ${color.p_gray_dk};
     p {
       margin-top: 9px;
       text-decoration: underline;
+    }
+
+    div{
+      
+      display: flex;
+      justify-content: center;
+      a{
+        color: ${color.p_gray_md};
+        margin-left: 9px;
+        margin-right: 9px;
+      }
     }
   }
 
@@ -59,11 +70,11 @@ function IntroMainTmp() {
   };
 
   const handleNaverLogin = () => {
-    router.push("http://10.10.10.27:8000/oauth2/authorization/naver");
+    router.push("https://uniquone.shop/api/oauth2/authorization/naver");
   };
 
   const handleGoogleLogin = () => {
-    router.push("http://10.10.10.27:8000/oauth2/authorization/google");
+    router.push("https://uniquone.shop/api/oauth2/authorization/google");
   };
 
   return (
@@ -93,11 +104,18 @@ function IntroMainTmp() {
 
       <div className="bottom_text">
         <h4>이미 계정을 소유하고 계신가요?</h4>
+        <div>
         <Link href="/login">
           <a>
             <p>로그인 하기</p>
           </a>
         </Link>
+        <Link href="/">
+          <a>
+            <p>홈페이지로 돌아가기</p>
+          </a>
+        </Link>
+      </div>
       </div>
     </IntroMainTmpStyle>
   );

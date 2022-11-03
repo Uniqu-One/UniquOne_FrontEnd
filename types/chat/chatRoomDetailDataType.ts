@@ -9,4 +9,6 @@ export type chatRoomDetailDataType = {
   receiverId: number;
   receiverImg: string;
   receiverName: string;
+  postImg:string;
+  postTitle:string;
 };

@@ -33,7 +33,7 @@ const PostSingleDummyIntervalStyle = styled.div`
 `
 
 function PostId(props:{postId:string}) {
-  const token = useRecoilValue(TokenState)
+  const token = useRecoilValue(TokenState).token
   const postId = props.postId
   const [postDetailData, setPostDetailData] = useState()
 
@@ -61,7 +61,7 @@ setPostDetailData(await PostUtils.getPostDetailData(token,postId))
         <TopTmp type="postDetail"/>
 
         <PostCardTmp postId={postId} postDetailData={postDetailData}/>
-
+          {/* @ts-ignore */}
         <PostSingleBodyOrg userId={postDetailData?.title} postDetailData={postDetailData}/>
 
               <PostSingleDummyIntervalStyle/>

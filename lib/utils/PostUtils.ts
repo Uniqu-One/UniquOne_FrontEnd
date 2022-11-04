@@ -379,8 +379,6 @@ export const PostUtils = {
 
   getPostDetailData: async (token:string,postId:string|number) => {
 
-    console.log(token,postId)
-
     return await axios.get(`${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/detail/${postId}`,{
       headers:{
         Authorization:token

@@ -39,13 +39,13 @@ function ChatRoomTmp(props:{roomId:string}) {
       
       ws.connect(
         {},
-        () => {
+        (frame:any) => {
           
           ws.subscribe(
             `/sub/chat/room/${roomId}`,
             (recMessage: { body: string }) => {
-              console.log('구독')
               let recv = JSON.parse(recMessage.body);
+
               const { senderId, message, date, regTime } = recv;
               setChatData((prev) => [
                 ...prev,
@@ -53,9 +53,9 @@ function ChatRoomTmp(props:{roomId:string}) {
               ]);
             }
           );
-            console.log(ws)
+
           ws.send(
-            "/sub/chat/message",
+            "/pub/chat/message",
             {
               Authorization: token,
             },
@@ -86,7 +86,7 @@ function ChatRoomTmp(props:{roomId:string}) {
 
   const handleStopmOver = () => {
     
-    setWs(Stomp.over(() => SockJS(process.env.NEXT_PUBLIC_URL_AWS + "/chat/ws-stomp")));
+    setWs(Stomp.over(() => (new SockJS(process.env.NEXT_PUBLIC_URL_AWS + "/chat/ws-stomp"))));
   }
 
   useEffect(() => {
@@ -96,7 +96,7 @@ function ChatRoomTmp(props:{roomId:string}) {
   useEffect(() => {
     
     if(ws!==undefined && isConnect === false){ 
-      
+      console.log('연결시도')
       connect();
       axios
             .get(
@@ -117,9 +117,10 @@ function ChatRoomTmp(props:{roomId:string}) {
               return [];
             });
   
-      // return () => {
-      //   ws?.disconnect();
-      // }; 
+      return () => {
+        console.error('끊')
+        ws?.disconnect();
+      }; 
 
     }
 

@@ -56,7 +56,12 @@ function ChatRoomFooterTmp(props: {
         "/pub/chat/message",
         {
           Authorization: token,
-        },
+        },{
+          type:'TALK',
+          chatRoomId:roomId,
+          senderId:userId,
+          message:tempChat
+         },
         JSON.stringify({
           type: "TALK",
           chatRoomId: roomId,

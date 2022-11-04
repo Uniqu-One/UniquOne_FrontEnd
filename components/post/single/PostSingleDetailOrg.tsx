@@ -38,7 +38,7 @@ function PostSingleDetailOrg(props:{postDetailData:any}) {
 
         
         {lookId.map((look:any) => {
-          return <SmBtnAtm color={"white"} text={POST_MENU_LIST.look[look]} key={look}/>
+          return <SmBtnAtm color={"white"} text={POST_MENU_LIST.look[look-1]} key={look}/>
         })}
         
 

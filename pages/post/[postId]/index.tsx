@@ -49,7 +49,7 @@ setPostDetailData(await PostUtils.getPostDetailData(token,postId))
     }
   },[])
 
-  console.log(postDetailData)
+  // console.log(postDetailData.title)
 
   if(postDetailData === undefined){
     return <div>로딩중</div>
@@ -62,7 +62,7 @@ setPostDetailData(await PostUtils.getPostDetailData(token,postId))
 
         <PostCardTmp postId={postId} postDetailData={postDetailData}/>
 
-        <PostSingleBodyOrg userId={"userID"} postDetailData={postDetailData}/>
+        <PostSingleBodyOrg userId={postDetailData?.title} postDetailData={postDetailData}/>
 
               <PostSingleDummyIntervalStyle/>
 

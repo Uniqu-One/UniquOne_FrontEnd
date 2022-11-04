@@ -35,14 +35,12 @@ const PostContentsTmpStyle = styled.div`
 function PostContentsTmp() {
   const token = useRecoilValue(TokenState).token;
   const [tempData, setTempData] = useState<{ postId: string | number }[]>([]);
-
   const updatePostData = async () => {
 
     const fetchData = await PostUtils.getFollowingPostData(token)
 
-    
-
-    if(fetchData === undefined){
+    if(fetchData?.[0] === undefined){
+      
       setTempData(await PostUtils.getRecommendPostData(token));
     } else {
       setTempData(fetchData);
@@ -54,7 +52,9 @@ function PostContentsTmp() {
     updatePostData();
   }, []);
 
-  if (tempData === undefined) {
+  
+
+  if (tempData?.[0] === undefined) {
     return (
       <PostContentsTmpStyle>
         <div className="no_data">

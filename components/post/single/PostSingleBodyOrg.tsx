@@ -43,13 +43,12 @@ function PostSingleBodyOrg(props: { userId: string, postDetailData:any }) {
     imgUrlList
   } = props.postDetailData;
 
-  console.log(imgUrlList)
+  console.log(props.postDetailData)
 
   return (
     <>
       <PostSingleBodyOrgStyle>
         <h2>{props.userId}</h2>
-        <h3>{title}</h3>
         <p>{dsc}</p>
 
         <div>

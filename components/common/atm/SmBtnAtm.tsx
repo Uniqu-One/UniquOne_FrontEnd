@@ -4,19 +4,22 @@ import { color, styleColor } from "../../../styles/theme";
 import { COLOR_CODE_LIST } from "../../../public/assets/datas/colorCodeList";
 import { StyleColor } from "../../../styles/emotion";
 
-
-
 const SmBtnAtmStyle = styled.div<{ color: string }>`
-
   display: inline-block;
-  
-  
+
   background-color: ${(props) => styleColor[props.color]};
-  
 
   color: ${(props) =>
-    props.color === "핑크" || props.color === "파랑" || props.color === "블랙"
-      ? "white"
+    props.color === "핑크" ||
+    props.color === "파랑" ||
+    props.color === "블랙" ||
+    props.color === "레드" ||
+    props.color === "초록" ||
+    props.color === "카키" ||
+    props.color === "살구" ||
+    props.color === "브라운" ||
+    props.color === "네이비"
+      ? color.p_gray_lt
       : color.p_gray_dk};
 
   border: 1px solid ${color.p_gray_lt};

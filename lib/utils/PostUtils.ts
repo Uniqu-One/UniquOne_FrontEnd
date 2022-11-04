@@ -78,7 +78,6 @@ export const PostUtils = {
       price,
     } = postUploadData;
 
-    console.log(postUploadData)
 
     const clearImgList: File[] = [];
     if (imgList !== null) {
@@ -432,13 +431,14 @@ export const PostUtils = {
   },
   getRecommendPostData: async (token:string) => {
 
+
     return await axios.get(`${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/cool`,{
       headers:{
         Authorization:token
       }
     }).then(res => {
-      // console.log(res.content,'rec')
-      return res.data.data.result
+      console.log(res.data.data.content,'rec')
+      return res.data.data.content
     })
       .catch(err =>console.error(err))
 

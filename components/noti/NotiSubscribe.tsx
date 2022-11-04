@@ -6,29 +6,23 @@ import { UserInfoState } from "../../states/recoil/UserInfoState";
 function NotiSubscribe() {
   const userId = useRecoilValue(UserInfoState).userId;
 
-  
-
   const [data, setData] = useState<any>("");
-
   const [eventSource, setEventSource] = useState<any>();
-  const [onSub, setOnSub] = useState(false)
 
   const handleSub = () => {
-    if(userId && !onSub){
-      setEventSource(
-        new EventSource(`${process.env.NEXT_PUBLIC_URL_AWS}/noti/subscribe/` + userId)
-      );
-      setOnSub(true)
-    }
+    setEventSource(
+      new EventSource(`http://10.10.10.143:8000/noti/subscribe/` + userId)
+    );
   };
- 
+
   const notiSend = () => {
     eventSource.addEventListener("sse", function (event: any) {
       if (event.data.split(" ")[0] === "EventStream") {
         return null;
       } else {
         console.log(JSON.parse(event.data))
-        ToastUtils.success('새로운 알림')
+        setData(JSON.parse(event.data));
+        ToastUtils.success("새로운 알림");
       }
     });
   };
@@ -64,7 +58,8 @@ function NotiSubscribe() {
   // };
 
   useEffect(() => {
-    if(userId && onSub === false){
+    if (userId) {
+      eventSource?.close();
       handleSub();
       // showNoti();
     }
@@ -72,6 +67,7 @@ function NotiSubscribe() {
 
   useEffect(() => {
     if (eventSource) {
+      
       notiSend();
     }
   }, [eventSource]);

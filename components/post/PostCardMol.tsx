@@ -63,7 +63,7 @@ function PostCardMol(props: {
 
         <PostSliderMol postId={postId} postImgUrlList={imgUrlList || postImgUrl} />
 
-        {/* 하트랑 유니스타랑 댓글 */}
+        {/* 하트랑 유니스타랑 댓글 */}        
         <PostFuncBarMol postId={postId} isCool={isCool} uniStar={uniStar}/>
       </>
     );
@@ -91,8 +91,8 @@ function PostCardMol(props: {
 
         <PostSliderMol postId={postId} postImgUrlList={imgUrlList || imgUrlList} />
 
-        {/* 하트랑 유니스타랑 댓글 */}
-        {/* <PostFuncBarMol postId={postId} isCool={isCool} uniStar={uniStar}/> */}
+        {/* 하트랑 유니스타랑 댓글 받아와야함*/}
+        <PostFuncBarMol postId={postId} isCool={false} uniStar={null}/>
       </>
     );
   }

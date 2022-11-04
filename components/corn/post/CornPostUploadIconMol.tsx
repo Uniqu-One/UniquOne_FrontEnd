@@ -50,9 +50,7 @@ function CornPostUploadIconMol() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   useEffect(() => {
     
-    if(postData.imgList[0] === null){
       setPostData((prev) => ({ ...prev, imgList: [...images] }));
-    } 
 
   }, [images]);
 

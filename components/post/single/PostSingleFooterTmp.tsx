@@ -47,11 +47,15 @@ const PostSingleFooterTmpStyle = styled.div`
   }
 `;
 
-function PostSingleFooterTmp(props:{postId:number|string}) {
+function PostSingleFooterTmp(props:{postId:number|string, postDetailData:{price:string|number}}) {
+
+  const {price} = props.postDetailData
+
+
   return (
     <>
       <PostSingleFooterTmpStyle>
-        <div className="price">142,000원</div>
+        <div className="price">{price.toLocaleString()} 원</div>
 
         <div className="btns">
           <PostSingleFooterOfferMol postId={props.postId}/>

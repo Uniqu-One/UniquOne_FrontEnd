@@ -6,9 +6,10 @@ import { POST_MENU_LIST } from "../../../public/assets/datas/postMenuList";
 import {COLOR_CODE_LIST} from "../../../public/assets/datas/colorCodeList"
 
 const PostSingleDetailBoxStyle = styled.div`
-  margin-top: 18px;
+  margin-top: 12px;
   margin-bottom: 12px;
   div {
+    margin-top: 6px;
     margin-right: 6px;
   }
 `;

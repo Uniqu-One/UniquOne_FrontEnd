@@ -6,7 +6,6 @@ import { UserInfoState } from "../../states/recoil/UserInfoState";
 function NotiSubscribe() {
   const userId = useRecoilValue(UserInfoState).userId;
 
-  const [data, setData] = useState<any>("");
   const [eventSource, setEventSource] = useState<any>();
 
   const handleSub = () => {
@@ -21,7 +20,6 @@ function NotiSubscribe() {
         return null;
       } else {
         console.log(JSON.parse(event.data))
-        setData(JSON.parse(event.data));
         ToastUtils.success("새로운 알림");
       }
     });
@@ -67,7 +65,6 @@ function NotiSubscribe() {
 
   useEffect(() => {
     if (eventSource) {
-      
       notiSend();
     }
   }, [eventSource]);

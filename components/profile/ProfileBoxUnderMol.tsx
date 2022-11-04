@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import { color } from "../../styles/theme";
 
 
 
@@ -14,11 +15,12 @@ function ProfileBoxUnderMol(props: { desc: string; link: string }) {
 
       <div>
         <Link href={`http://${link}`}>
-          <a>
+          <a style={{color:`${color.p_pruple}`}}>
             <span>{link}</span>
           </a>
         </Link>
       </div>
+      
     </>
   );
 }

@@ -49,6 +49,7 @@ function PostCardMol(props: {
     } = postListData;
 
 
+
     return (
       <>
         <PostCarTmpStyle>
@@ -56,7 +57,8 @@ function PostCardMol(props: {
             <PostUserMol userName={userNickName} cornImg={cornImgUrl}/>
           </div>
           <div className="right">
-            <PostFollowMol postId={postId} isFollow={isFollow}/>
+            
+            <PostFollowMol postId={postId} isFollow={isFollow} cornId={cornId}/>
             <ThreeDotMol postId={postId} />
           </div>
         </PostCarTmpStyle>
@@ -73,18 +75,26 @@ function PostCardMol(props: {
 
 
  const {
-  imgUrlList
+  imgUrlList,
+  cornImgUrl,
+  userNickName,
+  isCool,
+  uniStar,
+  isFollow,
+  cornId
     } = postDetailData;
+
+    console.log(postDetailData)
 
 
     return (
       <>
         <PostCarTmpStyle>
           <div>
-            <PostUserMol userName={'유저'} cornImg={"/"}/>
+            <PostUserMol userName={userNickName} cornImg={cornImgUrl}/>
           </div>
           <div className="right">
-            {/* <PostFollowMol postId={postId} isFollow={isFollow}/> */}
+            <PostFollowMol postId={postId} isFollow={isFollow} cornId={cornId}/>
             <ThreeDotMol postId={postId} />
           </div>
         </PostCarTmpStyle>
@@ -92,7 +102,7 @@ function PostCardMol(props: {
         <PostSliderMol postId={postId} postImgUrlList={imgUrlList || imgUrlList} />
 
         {/* 하트랑 유니스타랑 댓글 받아와야함*/}
-        <PostFuncBarMol postId={postId} isCool={false} uniStar={null}/>
+        <PostFuncBarMol postId={postId} isCool={isCool} uniStar={uniStar}/>
       </>
     );
   }

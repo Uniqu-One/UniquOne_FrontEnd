@@ -42,8 +42,7 @@ function PostFuncBarMol(props:{postId:number|string,isCool:boolean,uniStar:null|
   const {postId, isCool,uniStar} = props
   const [tempStar,setTempStar] = useState(uniStar)
 
-  console.log('렌더링')
-
+  
   const updateUniStar = async() => {
 
     

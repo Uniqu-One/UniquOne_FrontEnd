@@ -1,3 +1,4 @@
+import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import QuestionMarkAtm from "../../components/common/atm/QuestionMarkAtm";
@@ -8,6 +9,11 @@ import MyUniStarTmp from "../../components/my/MyUniStarTmp";
 import { ProfileContentsStyle } from "../../components/profile/ProfileContentTmp";
 import { UniStarUtils } from "../../lib/utils/UniStarUtils";
 import { TokenState } from "../../states/recoil/TokenState";
+
+const UniStarStyle = styled.div`
+  
+`
+
 
 function UniStar() {
   //TODO - default check 오류 해결
@@ -25,7 +31,7 @@ function UniStar() {
   return (
     <>
       <TopTmp type="setting" text="유니스타" />
-
+<UniStarStyle></UniStarStyle>
       <ProfileContentsStyle>
         {uniStar[0] === undefined && (
           <div className="no-data">

@@ -49,7 +49,7 @@ setPostDetailData(await PostUtils.getPostDetailData(token,postId))
     }
   },[])
 
-  // console.log(postDetailData.title)
+  console.log(postDetailData)
 
   if(postDetailData === undefined){
     return <div>로딩중</div>
@@ -71,7 +71,7 @@ setPostDetailData(await PostUtils.getPostDetailData(token,postId))
         
               <PostSingleDummyIntervalStyle/>
 
-        <PostSingleFooterTmp postId={postId}/>
+        <PostSingleFooterTmp postId={postId} postDetailData={postDetailData}/>
 
       </PostIntervalStyle>
     </>

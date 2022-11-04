@@ -54,6 +54,8 @@ function ChatRoomTmp(props:{roomId:string}) {
             }
           );
 
+            console.log('구독 완료')
+
           ws.send(
             "/pub/chat/message",
             {
@@ -85,7 +87,6 @@ function ChatRoomTmp(props:{roomId:string}) {
 
 
   const handleStopmOver = () => {
-    
     setWs(Stomp.over(() => (new SockJS(process.env.NEXT_PUBLIC_URL_AWS + "/chat/ws-stomp"))));
   }
 
@@ -96,7 +97,6 @@ function ChatRoomTmp(props:{roomId:string}) {
   useEffect(() => {
     
     if(ws!==undefined && isConnect === false){ 
-      console.log('연결시도')
       connect();
       axios
             .get(
@@ -108,8 +108,14 @@ function ChatRoomTmp(props:{roomId:string}) {
               }
             )
             .then((res) => {
+
+              let chatDatas = res.data.data.chatResponseDtos
+              if(chatDatas === null){
+                chatDatas = []
+              }
+
               setRoomData(res.data.data)
-              setChatData(res.data.data.chatResponseDtos);
+              setChatData(chatDatas);
               return ;
             })
             .catch((err) => {
@@ -118,7 +124,7 @@ function ChatRoomTmp(props:{roomId:string}) {
             });
   
       return () => {
-        console.error('끊')
+        console.error('채팅 끊어짐')
         ws?.disconnect();
       }; 
 
@@ -133,14 +139,17 @@ function ChatRoomTmp(props:{roomId:string}) {
     scrollRef?.current?.scrollIntoView({ behavior: "smooth" });
     setEnter(true)
     return () => {
-      if (chatData[0] === undefined && enter === true) {
+      if (chatData?.[0] === undefined && enter === true) {
         axios
           .post(`${process.env.NEXT_PUBLIC_URL_AWS}/chat/room/${roomId}`, {
             headers: {
               Authorization: token,
             },
           })
-          .then((res) => console.log(res.status))
+          .then((res) => {
+            console.log(res.status)
+            console.log('채팅방 삭제 완료')
+          })
           .catch((err) => console.log(err));
       }
     };

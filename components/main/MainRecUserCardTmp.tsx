@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { color } from "../../styles/theme";
 import MainContentTitleAtm from "./MainContentTitleAtm";
 import MainRecUserCardMol from "./MainRecUserCardMol";
-import { mainRecUserCardsDummy } from "../../public/assets/datas/mainRecUserCardsDummy";
 import { MainUtils } from "../../lib/utils/MainUtils";
 
 const MainRecUserCardContainerStyle = styled.div`
@@ -19,7 +18,7 @@ const MainRecUserCardContainerStyle = styled.div`
     > div {
       
       display: flex;
-      width: 170%;
+      width: 200%;
 
       div {
         margin-right: 12px;

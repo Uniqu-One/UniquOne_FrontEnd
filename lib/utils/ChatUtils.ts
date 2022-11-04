@@ -3,6 +3,7 @@ import axios from "axios";
 export const ChatUtils = {
   exitChatRoom: async (token: string, chatRoomId?: string) => {
     return await axios
+    
       .patch(
         `${process.env.NEXT_PUBLIC_URL_AWS}/chat/room`,
         { chatRoomId },
@@ -26,7 +27,6 @@ export const ChatUtils = {
         `${process.env.NEXT_PUBLIC_URL_AWS}/chat/room`,
         {
           postId,
-          // receiverId: 1,
           chatType: "BUYER",
         },
         {
@@ -36,7 +36,6 @@ export const ChatUtils = {
         }
       )
       .then((res) => {
-        console.log(res.data.data)
         return res.data.data.id
       })
       .catch((err) => console.error(err));

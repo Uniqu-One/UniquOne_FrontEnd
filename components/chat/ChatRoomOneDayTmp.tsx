@@ -30,7 +30,7 @@ function ChatRoomOneDayTmp(props: {
     <>
       <ChatRoomOneDayTmpStyle>
         <h2>22년 9월 17일</h2>
-        {chatData !== undefined &&
+        {chatData !== null &&
           chatData.map((chat, idx) => {
             if (chat.senderId === userId) {
               return <ChatRoomSendAtm key={idx} text={chat.message} regTime={chat.regTime} />;

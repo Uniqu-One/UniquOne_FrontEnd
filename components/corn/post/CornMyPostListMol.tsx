@@ -1,8 +1,5 @@
 import styled from "@emotion/styled";
-import axios from "axios";
-import { useInView } from "framer-motion";
 import Link from "next/link";
-
 import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { CornUtils } from "../../../lib/utils/CornUtils";
@@ -41,6 +38,8 @@ function CornMyPostListMol() {
     updateMyPostData();
   }, []);
 
+  console.log(tempMyPostList)
+
   return (
     <CornMyPostListMolStyle>
       <div className="box">
@@ -49,6 +48,8 @@ function CornMyPostListMol() {
             <LoadingSpinnerAtm />;
           </div>
         )}
+
+        
 
         {tempMyPostList !== undefined &&
           tempMyPostList.map((post: { postId: number; postImg: string }) => {

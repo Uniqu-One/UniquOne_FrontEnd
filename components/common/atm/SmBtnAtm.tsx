@@ -1,8 +1,6 @@
 import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
 import { color, styleColor } from "../../../styles/theme";
-import { COLOR_CODE_LIST } from "../../../public/assets/datas/colorCodeList";
-import { StyleColor } from "../../../styles/emotion";
 
 const SmBtnAtmStyle = styled.div<{ color: string }>`
   display: inline-block;
@@ -18,7 +16,8 @@ const SmBtnAtmStyle = styled.div<{ color: string }>`
     props.color === "카키" ||
     props.color === "살구" ||
     props.color === "브라운" ||
-    props.color === "네이비"
+    props.color === "네이비" ||
+    props.color === "와인"
       ? color.p_gray_lt
       : color.p_gray_dk};
 

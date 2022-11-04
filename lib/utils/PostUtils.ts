@@ -78,7 +78,6 @@ export const PostUtils = {
       price,
     } = postUploadData;
 
-
     const clearImgList: File[] = [];
     if (imgList !== null) {
       imgList.forEach((i) => {
@@ -95,7 +94,6 @@ export const PostUtils = {
 
     //TODO - any 수정 indexing 처리 해야함
     let engType: any = { 판매중: "SALE", 나눔: "SHARE", 스타일: "STYLE" };
-
 
     const postDatas = {
       title: title,
@@ -214,8 +212,6 @@ export const PostUtils = {
     postData: postDataType,
     postId?: string
   ) => {
-
-    
     let { desc, tags, postType, category, condition, look, color } = postData;
 
     let engType: any = { 판매중: "SALE", 나눔: "SHARE", 스타일: "STYLE" };
@@ -236,8 +232,7 @@ export const PostUtils = {
         newPostData,
         {
           headers: {
-            Authorization:
-              token,
+            Authorization: token,
           },
         }
       )
@@ -277,23 +272,18 @@ export const PostUtils = {
       });
   },
 
-
-
-
   getMyPostList: async (token: string, pageNum: number) => {
-
     return await axios
       .get(
         `${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/mylistall?page=${pageNum}`,
         {
           headers: {
-            Authorization:
-              token,
+            Authorization: token,
           },
         }
       )
       .then((res) => {
-        console.log(res.data.data.content)
+        console.log(res.data.data.content);
         return res.data.data.content;
       })
       .catch((err) => console.error(err));
@@ -304,13 +294,11 @@ export const PostUtils = {
         `${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/mylistproduct?page=${pageNum}`,
         {
           headers: {
-            Authorization:
-              token,
+            Authorization: token,
           },
         }
       )
       .then((res) => {
-        
         return res.data.data.content;
       })
       .catch((err) => console.error(err));
@@ -321,124 +309,114 @@ export const PostUtils = {
         `${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/myliststyle?page=${pageNum}`,
         {
           headers: {
-            Authorization:
-              token,
+            Authorization: token,
           },
         }
       )
       .then((res) => {
-        console.log(res)
+        console.log(res);
         return res.data.data.content;
       })
       .catch((err) => console.error(err));
   },
 
-
-  getOtherPostList: async (cornId:string, pageNum: number) => {
-
+  getOtherPostList: async (cornId: string, pageNum: number) => {
     return await axios
       .get(
-        `${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/listall/${cornId}?page=${pageNum}`,
-        
+        `${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/listall/${cornId}?page=${pageNum}`
       )
       .then((res) => {
-        console.log(res)
+        console.log(res);
         return res.data.data.content;
       })
       .catch((err) => console.error(err));
   },
-  getOtherSellPostList: async (cornId:string, pageNum: number) => {
+  getOtherSellPostList: async (cornId: string, pageNum: number) => {
     return await axios
       .get(
-        `${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/listproduct/${cornId}?page=${pageNum}`,
-        
+        `${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/listproduct/${cornId}?page=${pageNum}`
       )
       .then((res) => {
-        return res.data.data.content;
-      })
-      .catch((err) => console.error(err)); 
-  },
-
-
-  getOtherStylePostList: async (cornId:string, pageNum: number) => {
-    return await axios
-      .get(
-        `${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/liststyle/${cornId}?page=${pageNum}`,
-        
-      )
-      .then((res) => {
-        
         return res.data.data.content;
       })
       .catch((err) => console.error(err));
   },
 
+  getOtherStylePostList: async (cornId: string, pageNum: number) => {
+    return await axios
+      .get(
+        `${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/liststyle/${cornId}?page=${pageNum}`
+      )
+      .then((res) => {
+        return res.data.data.content;
+      })
+      .catch((err) => console.error(err));
+  },
 
+  getPostDetailData: async (token: string, postId: string | number) => {
+    return await axios
+      .get(`${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/detail/${postId}`, {
+        headers: {
+          Authorization: token,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        return res.data.data;
+      })
+      .catch((err) => console.error(err));
+  },
 
+  getRecPostData: async (token: string) => {
+    return await axios
+      .get(`${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/my/recommend`, {
+        headers: {
+          Authorization: token,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        return res.data.data;
+      })
+      .catch((err) => console.error(err));
+  },
 
+  getFollowingPostData: async (token: string) => {
+    return await axios
+      .get(
+        `${process.env.NEXT_PUBLIC_URL_AWS}/posts/main/search/contents/follow`,
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res.data.data.content, "follow");
+        return res.data.data.content;
+      })
+      .catch((err) => console.error(err));
+  },
+  getRecommendPostData: async (token: string) => {
+    return await axios
+      .get(`${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/cool`, {
+        headers: {
+          Authorization: token,
+        },
+      })
+      .then((res) => {
+        console.log(res.data.data.content, "rec");
+        return res.data.data.content;
+      })
+      .catch((err) => console.error(err));
+  },
 
-  getPostDetailData: async (token:string,postId:string|number) => {
-
-    return await axios.get(`${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/detail/${postId}`,{
-      headers:{
-        Authorization:token
-      }
-    })
-    .then(res => {
-      console.log(res)
+  getThisSeasonsData: async (seasons: string) => {
+    return await axios.get(
+      `${process.env.NEXT_PUBLIC_URL_AWS}/admin/thisSeason/${seasons}`
+    ).then(res => {
       return res.data.data
     })
-    .catch(err => console.error(err))
+      .catch(err => console.error(err))
   },
-
-
-
-
-
-
-
-  getRecPostData: async (token:string) => {
-
-    return await axios.get(`${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/my/recommend`,{
-      headers:{
-        Authorization:token
-      }
-    }).then(res => {
-      console.log(res)
-      return res.data.data
-    })
-      .catch(err =>console.error(err))
-
-  },
-
-
-
-
-  getFollowingPostData: async (token:string) => {
-
-    return await axios.get(`${process.env.NEXT_PUBLIC_URL_AWS}/posts/main/search/contents/follow`,{
-      headers:{
-        Authorization:token
-      }
-    }).then(res => {
-      console.log(res.data.data.content,'follow')
-      return res.data.data.content
-    })
-      .catch(err =>console.error(err))
-
-  },
-  getRecommendPostData: async (token:string) => {
-
-
-    return await axios.get(`${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/cool`,{
-      headers:{
-        Authorization:token
-      }
-    }).then(res => {
-      console.log(res.data.data.content,'rec')
-      return res.data.data.content
-    })
-      .catch(err =>console.error(err))
-
-  }
 };

@@ -7,6 +7,7 @@ import MainCategoryTmp from "../components/main/MainCategoryTmp";
 import MainRecContentTmp from "../components/main/MainRecContentTmp";
 import MainRecOneUserTmp from "../components/main/MainRecOneUserTmp";
 import MainRecStyleTmp from "../components/main/MainRecStyleTmp";
+import MainRecUserCardTmp from "../components/main/MainRecUserCardTmp";
 
 
 const IndexIntervalStyle = styled.div`
@@ -29,10 +30,10 @@ const Home: NextPage = () => {
 
         <MainCarouselTmp />
         <MainCategoryTmp />
-        {/* <MainRecUserCardTmp /> */}
-        <MainRecContentTmp title="이번 가을에는 이런 스타일은 어떠신가요? 🍂" />
+        <MainRecUserCardTmp />
+        <MainRecContentTmp title="이번 가을에는 이런 스타일은 어떠신가요? 🍂" type="FALL"/>
         <MainRecStyleTmp />
-        <MainRecContentTmp title="이번 여름에는 이런 스타일은 어떠신가요? 🐳" />
+        <MainRecContentTmp title="이번 여름에는 이런 스타일은 어떠신가요? 🐳" type="WINTER"/>
         <MainRecOneUserTmp />
 
         <FooterTmp />

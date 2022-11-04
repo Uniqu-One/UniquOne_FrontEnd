@@ -21,7 +21,9 @@ function index() {
         <PostTypeTmp type="rec" />  
         
         <PostContentsTmp/>
+
         <FooterTmp />
+        
       </PostStyle>
     </>
   );

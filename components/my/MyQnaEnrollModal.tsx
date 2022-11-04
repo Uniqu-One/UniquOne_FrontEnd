@@ -11,7 +11,7 @@ import { qnaDataType } from "./MyQnaMainTmp";
 import {QNA_MENU_LIST} from '../../public/assets/datas/qnaMenuList'
 
 const MyQnaEnrollModalStyle = styled.div`
-  z-index: 4;
+  z-index: 7;
   width: 100vw;
   position: fixed;
   top: 0;

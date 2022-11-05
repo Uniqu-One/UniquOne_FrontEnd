@@ -5,64 +5,60 @@ import { PostUtils } from "../../lib/utils/PostUtils";
 import { TokenState } from "../../states/recoil/TokenState";
 import { color } from "../../styles/theme";
 import QuestionMarkAtm from "../common/atm/QuestionMarkAtm";
+import { ToastUtils } from "../common/tmp/ToastTmp";
 import PostCardMol from "./PostCardMol";
 
 const PostContentsTmpStyle = styled.div`
   padding-top: 100px;
   padding-bottom: 60px;
 
-  .no_data{
-    margin-top: 30vh;    
+  .no_data {
+    margin-top: 30vh;
     text-align: center;
-    svg{
-        
+    svg {
       fill: ${color.p_gray_dk};
       width: 48px;
       height: 48px;
     }
   }
 
-  .no_data_text{
+  .no_data_text {
     text-align: center;
     font-size: 0.875rem;
     color: ${color.p_gray_md};
-    p{
+    p {
       margin-top: 9px;
     }
   }
 `;
 
-function PostContentsTmp() {
+function PostContentsTmp(props: { tempMenu: number; setTempMenu: Function }) {
   const token = useRecoilValue(TokenState).token;
+  const { tempMenu, setTempMenu } = props;
   const [tempData, setTempData] = useState<{ postId: string | number }[]>([]);
   const updatePostData = async () => {
+    
 
-    const fetchData = await PostUtils.getFollowingPostData(token)
-
-    if(fetchData?.[0] === undefined){
-      
+    if (tempMenu === 1) {
       setTempData(await PostUtils.getRecommendPostData(token));
     } else {
-      setTempData(fetchData);
+      setTempData(await PostUtils.getFollowingPostData(token));
     }
-    
   };
 
   useEffect(() => {
     updatePostData();
-  }, []);
-
-  
+  }, [tempMenu]);
 
   if (tempData?.[0] === undefined) {
     return (
       <PostContentsTmpStyle>
         <div className="no_data">
-        <QuestionMarkAtm/>
+          <QuestionMarkAtm />
         </div>
         <div className="no_data_text">
-        <p>현재 팔로우한 유저가 없습니다.</p>
-        <p>유저를 팔로우해 다양한 포스트를 구경하세요!</p>
+          <p>현재 팔로우한 유저가 없습니다.</p>
+          <p>유저를 팔로우해 다양한 포스트를 구경하세요!</p>
         </div>
       </PostContentsTmpStyle>
     );

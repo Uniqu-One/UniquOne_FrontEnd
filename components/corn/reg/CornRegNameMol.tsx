@@ -3,9 +3,10 @@ import axios from "axios";
 import React, { ReactElement, useState } from "react";
 import { toast } from "react-hot-toast";
 import { CornUtils } from "../../../lib/utils/CornUtils";
-import { ToastUtils } from "../../../lib/utils/ToastUtils";
+
 import InputFormMol from "../../common/mol/InputFormMol";
 import BtnTmp from "../../common/tmp/BtnTmp";
+import { ToastUtils } from "../../common/tmp/ToastTmp";
 import { CornInputTypes } from "./CornRegTmp";
 
 function CornRegNameMol(props: CornInputTypes) {

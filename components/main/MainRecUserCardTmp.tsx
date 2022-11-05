@@ -54,7 +54,7 @@ function MainRecUserCardTmp() {
         />
         <div className="container">
           <div>
-            {usersInfo.map(
+            {usersInfo && usersInfo.map(
               (user: {
                 cornId: string;
                 cornImgUrl: string;

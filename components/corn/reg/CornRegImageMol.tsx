@@ -3,10 +3,10 @@ import { useRouter } from "next/router";
 import React from "react";
 import { useRecoilValue } from "recoil";
 import { CornUtils } from "../../../lib/utils/CornUtils";
-import { ToastUtils } from "../../../lib/utils/ToastUtils";
 import { TokenState } from "../../../states/recoil/TokenState";
 import { UserInfoState } from "../../../states/recoil/UserInfoState";
 import BtnTmp from "../../common/tmp/BtnTmp";
+import { ToastUtils } from "../../common/tmp/ToastTmp";
 
 function CornRegImageMol(props: {
   inputs: { cornName: string; cornDesc: string };

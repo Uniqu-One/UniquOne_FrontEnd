@@ -4,8 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { FollowUtils } from "../../lib/utils/FollowUtils";
 import { ProfileUtils } from "../../lib/utils/ProfileUtils";
-import { ToastUtils } from "../../lib/utils/ToastUtils";
-import { TokenState } from "../../states/recoil/TokenState";
+import { ToastUtils } from "../common/tmp/ToastTmp";import { TokenState } from "../../states/recoil/TokenState";
 import { UserInfoState } from "../../states/recoil/UserInfoState";
 import { color, styleColor } from "../../styles/theme";
 import BtnTmp from "../common/tmp/BtnTmp";
@@ -104,8 +103,8 @@ function ProfileBoxTmp(props: { type: string; cornId?: string }) {
           <div onClick={() => handleFollowBtn()}>
             <BtnTmp
               size="lg"
-              value={followStatus ? "팔로우" : "팔로잉"}
-              status={followStatus}
+              value={!followStatus ? "팔로우" : "팔로잉"}
+              status={!followStatus}
             />
           </div>
         )}

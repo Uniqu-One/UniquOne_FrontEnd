@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { FollowUtils } from "../../lib/utils/FollowUtils";
-import { ToastUtils } from "../../lib/utils/ToastUtils";
-import { TokenState } from "../../states/recoil/TokenState";
+import { ToastUtils } from "../common/tmp/ToastTmp";import { TokenState } from "../../states/recoil/TokenState";
 import FollowBtnMol from "../common/mol/FollowBtnMol";
 
 function PostFollowMol(props:{postId:string|number, isFollow:boolean|null, cornId:number|string}) {

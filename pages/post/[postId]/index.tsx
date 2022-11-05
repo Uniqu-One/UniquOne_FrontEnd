@@ -2,15 +2,17 @@ import styled from "@emotion/styled";
 import { GetServerSideProps } from "next";
 import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
+import { ToastUtils } from "../../../components/common/tmp/ToastTmp";
 import TopTmp from "../../../components/common/tmp/TopTmp";
 import PostCardTmp from "../../../components/post/PostCardTmp";
 import PostSingleBodyOrg from "../../../components/post/single/PostSingleBodyOrg";
 import PostSingleCornOrg from "../../../components/post/single/PostSingleCornOrg";
 import PostSingleFooterTmp from "../../../components/post/single/PostSingleFooterTmp";
 import { PostUtils } from "../../../lib/utils/PostUtils";
-import { ToastUtils } from "../../../lib/utils/ToastUtils";
+
 import { TokenState } from "../../../states/recoil/TokenState";
 import { color } from "../../../styles/theme";
+
 
 const PostIntervalStyle = styled.div`
   width: 100vw;
@@ -43,8 +45,6 @@ setPostDetailData(await PostUtils.getPostDetailData(token,postId))
 
   useEffect(() => {
     if(token && postId){
-      console.log(1)
-      ToastUtils.success('N명의 유저가 이 게시물을 좋아해요!')
       updateDetailPostData()
     }
   },[])

@@ -2,13 +2,14 @@ import styled from "@emotion/styled";
 import React, { useState } from "react";
 import { useRecoilValue } from "recoil";
 import { QnaUtils } from "../../lib/utils/QnaUtils";
-import { ToastUtils } from "../../lib/utils/ToastUtils";
+
 import { TokenState } from "../../states/recoil/TokenState";
 import { color } from "../../styles/theme";
 import TopTmp from "../common/tmp/TopTmp";
 import { qnaDataType } from "./MyQnaMainTmp";
 
 import {QNA_MENU_LIST} from '../../public/assets/datas/qnaMenuList'
+import { ToastUtils } from "../common/tmp/ToastTmp";
 
 const MyQnaEnrollModalStyle = styled.div`
   z-index: 7;

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import React from "react";
+import React, { useState } from "react";
 import FooterTmp from "../../components/common/tmp/FooterTmp";
 import TopTmp from "../../components/common/tmp/TopTmp";
 import PostContentsTmp from "../../components/post/PostContentsTmp";
@@ -12,18 +12,16 @@ const PostStyle = styled.div`
 
 function index() {
 
+  const [tempMenu,setTempMenu] = useState(0)
 
   return ( 
     <>
       <PostStyle>
         <TopTmp type="post" />
         {/* 추천 팔로잉 글자 */}
-        <PostTypeTmp type="rec" />  
-        
-        <PostContentsTmp/>
-
+        <PostTypeTmp tempMenu={tempMenu} setTempMenu={setTempMenu}/>  
+        <PostContentsTmp tempMenu={tempMenu} setTempMenu={setTempMenu}/>
         <FooterTmp />
-        
       </PostStyle>
     </>
   );

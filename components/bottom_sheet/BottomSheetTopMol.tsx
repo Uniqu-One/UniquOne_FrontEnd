@@ -2,10 +2,11 @@ import styled from "@emotion/styled";
 import React from "react";
 import { useRecoilState } from "recoil";
 import useEvaIcon from "../../lib/hooks/useEvaIcon";
-import { ToastUtils } from "../../lib/utils/ToastUtils";
 import { CornPostState } from "../../states/recoil/CornPostState";
 import { SearchFilterState } from "../../states/recoil/SearchFilterState";
 import { color } from "../../styles/theme";
+import { ToastUtils } from "../common/tmp/ToastTmp";
+
 
 const BottomSheetTopMolStyle = styled.div`
   height: 48px;

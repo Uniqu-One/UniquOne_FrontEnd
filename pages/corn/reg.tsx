@@ -1,9 +1,10 @@
 import { useRouter } from "next/router";
 import React from "react";
 import { useRecoilValue } from "recoil";
+import { ToastUtils } from "../../components/common/tmp/ToastTmp";
 import TopTmp from "../../components/common/tmp/TopTmp";
 import CornRegTmp from "../../components/corn/reg/CornRegTmp";
-import { ToastUtils } from "../../lib/utils/ToastUtils";
+
 import { UserInfoState } from "../../states/recoil/UserInfoState";
 
 function reg() {

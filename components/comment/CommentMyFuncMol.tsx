@@ -3,8 +3,7 @@ import React from "react";
 import { useRecoilValue } from "recoil";
 import useEvaIcon from "../../lib/hooks/useEvaIcon";
 import { CommentUtils } from "../../lib/utils/CommentUtils";
-import { ToastUtils } from "../../lib/utils/ToastUtils";
-import { TokenState } from "../../states/recoil/TokenState";
+import { ToastUtils } from "../common/tmp/ToastTmp";import { TokenState } from "../../states/recoil/TokenState";
 import { color } from "../../styles/theme";
 
 const CommentMyFuncMolStyle = styled.div`

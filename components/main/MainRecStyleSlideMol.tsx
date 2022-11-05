@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { PostUtils } from '../../lib/utils/PostUtils'
 import PostLgOrg from '../common/org/PostLgOrg'
 import PostMdOrg from '../common/org/PostMdOrg'
 
@@ -22,14 +23,29 @@ const MainRecStyleSlideMolStyle = styled.div<{length:number}>`
 
 function MainRecStyleSlideMol() {
 
-  const dummy = [1,2,3,4]
+
+  const [tempData,setTempData] = useState([])
+
+  const handleUpdateData = async () => {
+    setTempData(await PostUtils.getThisSeasonsData("OTC_1"))
+  }
+
+  useEffect(() => {
+
+    handleUpdateData()
+
+  },[])
 
   return (
     <>
-    <MainRecStyleSlideMolStyle length={dummy.length}>
+    <MainRecStyleSlideMolStyle length={tempData.length}>
       <div>
-      {dummy.map((box,idx) => {
-      return <PostMdOrg key={idx}/>
+      {tempData && tempData.map((data,idx) => {
+        const post = {
+          postId:data.postId,
+          postImg:data.postImgUrl
+        }
+      return <PostMdOrg key={idx} post={post}/>
       })}
       </div>
     </MainRecStyleSlideMolStyle>

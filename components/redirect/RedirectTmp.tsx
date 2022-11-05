@@ -3,8 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect } from "react";
 import Confetti from "react-confetti";
-import { ToastUtils } from "../../lib/utils/ToastUtils";
-
+import { ToastUtils } from "../common/tmp/ToastTmp";
 import { color } from "../../styles/theme";
 import BtnTmp from "../common/tmp/BtnTmp";
 

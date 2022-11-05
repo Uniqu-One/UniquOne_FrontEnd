@@ -9,8 +9,7 @@ import { useRecoilState } from "recoil";
 import { LoginAuthState } from "../../states/recoil/LoginAuthState";
 import { TokenState } from "../../states/recoil/TokenState";
 import { UserInfoState } from "../../states/recoil/UserInfoState";
-import { ToastUtils } from "../../lib/utils/ToastUtils";
-
+import { ToastUtils } from "../common/tmp/ToastTmp";
 const LoginFormTmpStyle = styled.div`
   padding-top: 60px;
 

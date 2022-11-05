@@ -2,9 +2,10 @@ import styled from "@emotion/styled";
 import React from "react";
 import { useRecoilValue } from "recoil";
 import { OfferUtils } from "../../../lib/utils/OfferUtils";
-import { ToastUtils } from "../../../lib/utils/ToastUtils";
+
 import { TokenState } from "../../../states/recoil/TokenState";
 import { color } from "../../../styles/theme";
+import { ToastUtils } from "../../common/tmp/ToastTmp";
 
 const CornOfferSingleSelectMolStyle = styled.div`
   display: flex;

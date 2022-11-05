@@ -4,10 +4,11 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useRecoilValue } from "recoil";
 import { OfferUtils } from "../../../lib/utils/OfferUtils";
-import { ToastUtils } from "../../../lib/utils/ToastUtils";
+
 import { TokenState } from "../../../states/recoil/TokenState";
 import { color } from "../../../styles/theme";
 import BtnTmp from "../../common/tmp/BtnTmp";
+import { ToastUtils } from "../../common/tmp/ToastTmp";
 
 const PostBottomOfferMolStyle = styled.div`
   padding-top: 56px;

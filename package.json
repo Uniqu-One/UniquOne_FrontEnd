@@ -36,6 +36,7 @@
     "react-spring-bottom-sheet": "^3.4.1",
     "recoil": "^0.7.5",
     "recoil-persist": "^4.2.0",
+    "sharp": "^0.31.2",
     "socket.io": "^4.5.2",
     "socket.io-client": "^4.5.2",
     "sockjs-client": "^1.6.1",

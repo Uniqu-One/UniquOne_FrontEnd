@@ -23,11 +23,13 @@ const PostLgOrgStyle = styled.div`
   } */
 `;
 
-function PostLgOrg(props: { opt?: string; imgSrc?: string }) {
-  const { opt, imgSrc } = props;
+function PostLgOrg(props: { opt?: string; imgSrc?: string; postId?:string}) {
+  const {imgSrc } = props;
 
   return (
     <PostLgOrgStyle>
+      <Link href="/">
+      <a>
       <Image
         src={imgSrc ? imgSrc : "/assets/images/postImage.jpg"}
         alt="포스트 더미 이미지"
@@ -35,8 +37,8 @@ function PostLgOrg(props: { opt?: string; imgSrc?: string }) {
         height={400}
         // layout="fill"
       />
-      {/* @ts-ignore */}
-      {opt ? <UniStarMol /> : <span></span>}
+      </a>
+      </Link>
     </PostLgOrgStyle>
   );
 }

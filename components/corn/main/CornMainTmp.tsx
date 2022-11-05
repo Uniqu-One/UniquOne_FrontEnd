@@ -2,8 +2,9 @@ import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { toast } from "react-hot-toast";
 import { useRecoilValue } from "recoil";
-import { ToastUtils } from "../../../lib/utils/ToastUtils";
+
 import { UserInfoState } from "../../../states/recoil/UserInfoState";
+import { ToastUtils } from "../../common/tmp/ToastTmp";
 import CornMainBarMenuOrg from "./CornMainBarMenuOrg";
 import CornMainDashMol from "./CornMainDashMol";
 

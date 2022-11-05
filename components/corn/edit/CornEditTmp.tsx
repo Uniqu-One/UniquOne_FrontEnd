@@ -3,10 +3,11 @@ import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { CornUtils } from "../../../lib/utils/CornUtils";
 import { PostUtils } from "../../../lib/utils/PostUtils";
-import { ToastUtils } from "../../../lib/utils/ToastUtils";
+
 import { TokenState } from "../../../states/recoil/TokenState";
 
 import InputFormMol from "../../common/mol/InputFormMol";
+import { ToastUtils } from "../../common/tmp/ToastTmp";
 import TopTmp from "../../common/tmp/TopTmp";
 import CornImgChangeMol from "./CornImgChangeMol";
 

@@ -1,8 +1,7 @@
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import { ToastUtils } from "../../lib/utils/ToastUtils";
-import FooterTmp from "../common/tmp/FooterTmp";
+import { ToastUtils } from "../common/tmp/ToastTmp";import FooterTmp from "../common/tmp/FooterTmp";
 import PostTmp from "../common/tmp/PostTmp";
 
 const MyStyleSelectContentMolStyle = styled.div`

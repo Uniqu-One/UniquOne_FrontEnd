@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { PostUtils } from "../../lib/utils/PostUtils";
 import { color } from "../../styles/theme";
 import PostLgOrg from "../common/org/PostLgOrg";
 import MainRecOneUserMol from "./MainRecOneUserMol";
@@ -24,15 +25,28 @@ const MainRecOneUserTmpStyle = styled.div`
 `;
 
 function MainRecOneUserTmp() {
+
+  const [tempData,setTempData] = useState([])
+
+  const handleUpdateData = async () => {
+    setTempData(await PostUtils.getThisSeasonsData("OTC_1"))
+  }
+
+  useEffect(() => {
+
+    handleUpdateData()
+
+  },[])
+
   return (
     <>
       <MainRecOneUserTmpStyle>
         <MainRecOneUserMol />
         <div className="item_container">
-          <PostLgOrg />
-          <PostLgOrg />
-          <PostLgOrg />
-          <PostLgOrg />
+          {tempData && tempData.map(data => {
+            return <PostLgOrg postId={data.postId} imgSrc={data.postImgUrl}/>
+          })}
+          
         </div>
       </MainRecOneUserTmpStyle>
     </>

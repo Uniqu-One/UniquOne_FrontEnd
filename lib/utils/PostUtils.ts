@@ -413,7 +413,7 @@ export const PostUtils = {
 
   getThisSeasonsData: async (seasons: string) => {
     return await axios.get(
-      `${process.env.NEXT_PUBLIC_URL_AWS}/admin/thisSeason/${seasons}`
+      `${process.env.NEXT_PUBLIC_URL_AWS}/admin/thisSeason/${seasons}?size=4`
     ).then(res => {
       return res.data.data
     })

@@ -2,10 +2,10 @@ import { useRouter } from "next/router";
 import React from "react";
 import { useRecoilValue } from "recoil";
 import { PostUtils } from "../../../lib/utils/PostUtils";
-import { ToastUtils } from "../../../lib/utils/ToastUtils";
 import { CornPostState } from "../../../states/recoil/CornPostState";
 import { TokenState } from "../../../states/recoil/TokenState";
 import FooterTmp from "../../common/tmp/FooterTmp";
+import { ToastUtils } from "../../common/tmp/ToastTmp";
 
 function CornPostRegMol(props: { buttonStatus: boolean; postId?: string }) {
   const router = useRouter();

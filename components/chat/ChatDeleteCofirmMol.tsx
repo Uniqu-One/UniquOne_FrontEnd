@@ -2,8 +2,7 @@ import styled from "@emotion/styled";
 import React from "react";
 import { useRecoilValue } from "recoil";
 import { ChatUtils } from "../../lib/utils/ChatUtils";
-import { ToastUtils } from "../../lib/utils/ToastUtils";
-import { TokenState } from "../../states/recoil/TokenState";
+import { ToastUtils } from "../common/tmp/ToastTmp";import { TokenState } from "../../states/recoil/TokenState";
 import { color } from "../../styles/theme";
 
 const ChatDeleteCofirmMolStyle = styled.div`

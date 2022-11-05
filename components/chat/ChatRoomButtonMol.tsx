@@ -8,7 +8,7 @@ import { TradeUtils } from "../../lib/utils/TradeUtils";
 import { useRecoilValue } from "recoil";
 import { TokenState } from "../../states/recoil/TokenState";
 import { UserInfoState } from "../../states/recoil/UserInfoState";
-import { ToastUtils } from "../../lib/utils/ToastUtils";
+import { ToastUtils } from "../common/tmp/ToastTmp";
 
 const MENU = ["판매중", "거래중", "거래완료"];
 

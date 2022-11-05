@@ -3,8 +3,7 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import useEvaIcon from "../../lib/hooks/useEvaIcon";
-import { ToastUtils } from "../../lib/utils/ToastUtils";
-import { SearchModalState } from "../../states/recoil/SearchModalState";
+import { ToastUtils } from "../common/tmp/ToastTmp";import { SearchModalState } from "../../states/recoil/SearchModalState";
 import { color } from "../../styles/theme";
 
 const SearchBarMolStyle = styled.div`
@@ -90,7 +89,7 @@ function SearchBarMol(props: { keyword?: string }) {
           <input
             type="text"
             placeholder="검색어를 입력해주세요"
-            value={searchWord}
+            value={searchWord ? searchWord : ""}
             onChange={(e) => setSearchWord(e.target.value)}
           />
           <span onClick={() => handleChangeSearchPage()}>

@@ -11,7 +11,7 @@ const NotiBoxMolStyle = styled.div`
   width: 100vw;
   border-bottom: 0.5px solid ${color.p_gray_md};
   display: flex;
-  justify-content: space-between; 
+  justify-content: space-between;
 
   div {
     margin: auto 0;
@@ -48,8 +48,8 @@ const NotiBoxMolStyle = styled.div`
     color: ${color.p_gray_md};
   }
 
-  .follow_btn{
-    h3{
+  .follow_btn {
+    h3 {
       font-size: 0.8rem;
       font-weight: 500;
       padding: 12px 6px;
@@ -62,8 +62,7 @@ const NotiBoxMolStyle = styled.div`
 // notiType : COOL, COMMENT, FOLLOW, QNA, // OFFER(오퍼 받았을 때), OFFER_REFUSE OFFER_ACCEPT
 
 function NotiBoxMol(props: { noti: notiListType }) {
-
-  const router = useRouter()
+  const router = useRouter();
 
   const {
     dsc,
@@ -75,13 +74,17 @@ function NotiBoxMol(props: { noti: notiListType }) {
     regDate,
     typeId,
     userCornImg,
-    isFollow
+    isFollow,
   } = props.noti;
 
-
+  const handlePushChange = () => {
+    if (notiType === "COMMENT") {
+      router.push(`/post/${typeId}/comment`);
+    }
+  };
 
   return (
-    <NotiBoxMolStyle>
+    <NotiBoxMolStyle onClick={() => handlePushChange()}>
       <div className="left">
         <div className="profile_img">
           <Image
@@ -103,11 +106,22 @@ function NotiBoxMol(props: { noti: notiListType }) {
 
       {notiType === "FOLLOW" && (
         <div className="follow_btn">
-          <FollowBtnAtm follow={isFollow}/>
+          <FollowBtnAtm follow={isFollow} />
         </div>
       )}
 
       {notiType === "OFFER_ACCEPT" && (
+        <div className="right">
+          <Image
+            src={postImg ? postImg : "/assets/images/postImage.jpg"}
+            alt="profileImage"
+            width={60}
+            height={60}
+          />
+        </div>
+      )}
+
+      {notiType === "COMMENT" && (
         <div className="right">
           <Image
             src={postImg ? postImg : "/assets/images/postImage.jpg"}

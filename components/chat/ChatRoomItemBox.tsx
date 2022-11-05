@@ -57,7 +57,6 @@ function ChatRoomItemBox(props:{roomData:chatRoomDetailDataType}) {
 
   const router = useRouter()
 
-  console.log(props.roomData)
   const {postImg,postPrice,postType,postId,receiverId,postTitle,chatRoomType} = props.roomData
 
   return (

@@ -30,7 +30,7 @@ function ChatTmp() {
           },
         })
         .then((res) => {
-          console.log(res)
+          console.log(res,'ㅗㄷㄱㄷ')
           return setChatRoomDatas([...res.data.data]);
         })
         .catch((err) => {

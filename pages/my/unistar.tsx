@@ -31,7 +31,6 @@ function UniStar() {
   return (
     <>
       <TopTmp type="setting" text="유니스타" />
-<UniStarStyle></UniStarStyle>
       <ProfileContentsStyle>
         {uniStar[0] === undefined && (
           <div className="no-data">

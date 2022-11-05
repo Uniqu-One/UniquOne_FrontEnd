@@ -38,7 +38,7 @@ function MainRecStyleSlideMol() {
 
   return (
     <>
-    <MainRecStyleSlideMolStyle length={tempData.length}>
+    <MainRecStyleSlideMolStyle length={tempData && tempData.length}>
       <div>
       {tempData && tempData.map((data,idx) => {
         const post = {

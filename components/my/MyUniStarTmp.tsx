@@ -11,6 +11,7 @@ const MyUniStarTmpStyle = styled.div`
   padding-top: 50px;
   font-size: 0.875rem;
   height: 42px;
+  width: 100vw;
   display: flex;
   justify-content: right;
   line-height: 42px;

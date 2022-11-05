@@ -42,7 +42,9 @@ function MainRecStyleSlideMol() {
       <div>
       {tempData && tempData.map((data,idx) => {
         const post = {
+          //@ts-ignore
           postId:data.postId,
+          //@ts-ignore
           postImg:data.postImgUrl
         }
       return <PostMdOrg key={idx} post={post}/>

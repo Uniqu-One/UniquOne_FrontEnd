@@ -30,7 +30,7 @@ function Error() {
     <>
       <ErrorPageIntervalStyle>
         <div>
-          <Image
+          <Image loading="lazy"
             src="/assets/images/404.png"
             alt="잘못된 페이지"
             width={240}

@@ -97,7 +97,7 @@ function PostBottomOfferMol(props: { setComplete: Function }) {
         <div className="top">
           <div>
             <div>
-              <Image
+              <Image loading="lazy"
                 src="/assets/images/postImage.jpg"
                 alt="dummy post"
                 width={42}

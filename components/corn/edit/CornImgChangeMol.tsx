@@ -74,7 +74,7 @@ function CornImgChangeMol(props: {
   return (
     <CornImgChangeMolStyle>
       <div>
-        <Image
+        <Image loading="lazy"
           src={imageSrc ? imageSrc : "/assets/images/dummyUserImg.jpg"}
           alt="더미 유저"
           width={120}

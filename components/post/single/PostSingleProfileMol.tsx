@@ -29,7 +29,7 @@ div{
 function PostSingleProfileMol() {
   return (
     <PostSingleProfileMolStyle>
-    <div><Image src="/assets/images/dummyUserImg.jpg" alt="유저 더미 이미지" width={54} height={54}></Image></div>
+    <div><Image loading="lazy" src="/assets/images/dummyUserImg.jpg" alt="유저 더미 이미지" width={54} height={54}></Image></div>
     <div>
       <h3>샵 이름</h3>
       {/* TODO - 샵 설명 나중에 ... 바뀌도록 설정해야함*/}

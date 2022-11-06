@@ -9,10 +9,13 @@ z-index: 1;
 
 `
 
-function MyUniStarFilterMol(props:{setOpen:Function}) {
+function MyUniStarFilterMol(props:{setOpen:Function, tempFilter: number; setTempFilter: Function}) {
+  
+  const { tempFilter, setTempFilter } = props;
+
   return (
     <MyUniStarFilterMolStyle>
-      <BottomSheetRadioMol setOpen={props.setOpen}/>
+      <BottomSheetRadioMol setOpen={props.setOpen} tempFilter={tempFilter} setTempFilter={setTempFilter}/>
     </MyUniStarFilterMolStyle>
   )
 }

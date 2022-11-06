@@ -5,9 +5,7 @@ import { color } from "../../styles/theme";
 import { BottomSheet } from "react-spring-bottom-sheet";
 import MyUniStarFilterMol from "./MyUniStarFilterMol";
 
-
 const MyUniStarTmpStyle = styled.div`
-
   padding-top: 50px;
   font-size: 0.875rem;
   height: 42px;
@@ -24,21 +22,15 @@ const MyUniStarTmpStyle = styled.div`
   }
 `;
 
-
-function MyUniStarTmp() {
+function MyUniStarTmp(props: { tempFilter: number; setTempFilter: Function }) {
+  const { tempFilter, setTempFilter } = props;
+  
   useEvaIcon();
-
   const [open, setOpen] = useState(false);
 
-  // Ensure it animates in when loaded
   useEffect(() => {
     setOpen(false);
   }, []);
-
-  function onDismiss() {
-    setOpen(false);
-  }
-
 
   return (
     <>
@@ -56,13 +48,9 @@ function MyUniStarTmp() {
           ></i>
         </div>
       </MyUniStarTmpStyle>
-      
-      <BottomSheet
-        open={open}
-        onDismiss={() => setOpen(false)}
-        // snapPoints={}
-      >
-        <MyUniStarFilterMol setOpen={setOpen}/>
+
+      <BottomSheet open={open} onDismiss={() => setOpen(false)}>
+        <MyUniStarFilterMol setOpen={setOpen} tempFilter={tempFilter} setTempFilter={setTempFilter}/>
       </BottomSheet>
     </>
   );

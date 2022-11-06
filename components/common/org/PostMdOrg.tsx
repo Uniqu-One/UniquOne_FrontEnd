@@ -1,7 +1,11 @@
 import styled from "@emotion/styled";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useRecoilValue } from "recoil";
+import { UniStarUtils } from "../../../lib/utils/UniStarUtils";
+import { TokenState } from "../../../states/recoil/TokenState";
+import UniStarMol from "../mol/UniStarMol";
 
 const PostMdOrgStyle = styled.div`
   position: relative;
@@ -13,11 +17,14 @@ const PostMdOrgStyle = styled.div`
     border-radius: 9px;
   }
 
-  > span:last-child {
+.unistar_icon{
+  
     position: absolute;
-    right: 12px;
-    bottom: 12px;
-  }
+    bottom: 2px;
+    right: 1px;
+    z-index: 3;
+  
+}
 `;
 
 function PostMdOrg(props: {
@@ -30,12 +37,43 @@ function PostMdOrg(props: {
   };
 }) {
 
+  const [tempStar, setTempStar] = useState<number|null|string|undefined>(null)
+  const token =useRecoilValue(TokenState).token
+  const {postId} = props.post
+
+  const updateUniStar = async() => {
+
+    if(tempStar === null || tempStar === 0){
+      UniStarUtils.enrollUniStar(token,postId)
+      setTempStar(1)
+    }
+
+    if(tempStar === 1){
+      UniStarUtils.pathchUniStar(token,postId,2)
+      setTempStar(2)
+    }
+
+    if(tempStar === 2){
+      UniStarUtils.pathchUniStar(token,postId,3)
+      setTempStar(3)
+    }
+
+    if(tempStar ===3){
+      UniStarUtils.deleteUniStar(token,postId)
+      setTempStar(0)
+    }
+
+  }
+
+  useEffect(() => {
+    setTempStar(props.post?.uniStarLevel)
+  },[])
 
   return (
     <PostMdOrgStyle>
       <Link href={props.post ? `/post/${props.post.postId}` : "/"}>
         <a>
-          <Image
+          <Image loading="lazy"
             src={props.post ? props.post.postImg : "/assets/images/postImage.jpg"}
             alt="포스트 더미 이미지"
             width={300}
@@ -43,6 +81,9 @@ function PostMdOrg(props: {
           />
         </a>
       </Link>
+      <div className="unistar_icon" onClick={() => updateUniStar()}>
+        <UniStarMol tempStar={tempStar}/>
+      </div>
     </PostMdOrgStyle>
   );
 }

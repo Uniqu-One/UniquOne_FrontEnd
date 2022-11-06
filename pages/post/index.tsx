@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import FooterTmp from "../../components/common/tmp/FooterTmp";
 import TopTmp from "../../components/common/tmp/TopTmp";
 import PostContentsTmp from "../../components/post/PostContentsTmp";
@@ -13,6 +13,10 @@ const PostStyle = styled.div`
 function index() {
 
   const [tempMenu,setTempMenu] = useState(0)
+
+  useEffect(() => {
+    window.scroll({top:0, behavior:"smooth"})
+  },[tempMenu])
 
   return ( 
     <>

@@ -45,7 +45,21 @@ export const UniStarUtils = {
       .then((res) => console.log(res))
       .catch((err) => console.error(err));
   },
-  getMyUniStarList: async (token: string) => {
+  getMyUniStarList: async (token: string,level?:string|number) => {
+
+    return await axios
+      .get(`${process.env.NEXT_PUBLIC_URL_AWS}/unistar/all?level=${level}`, {
+        headers: {
+          Authorization: token,
+        },
+      })
+      .then((res) => {
+        return res.data.data.result
+      })
+      .catch((err) => console.error(err));
+  },
+  getMyUniStarAllList: async (token: string) => {
+
     return await axios
       .get(`${process.env.NEXT_PUBLIC_URL_AWS}/unistar/all`, {
         headers: {
@@ -57,4 +71,5 @@ export const UniStarUtils = {
       })
       .catch((err) => console.error(err));
   },
+  
 };

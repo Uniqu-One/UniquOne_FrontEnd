@@ -105,7 +105,7 @@ function CornPostUploadIconMol() {
                 layoutId={selectedId}
                 onClick={() => setSelectedId(null)}
               >
-                <Image
+                <Image loading="lazy"
                 // @ts-ignore
                   src={!router.query.postId ? preViewImg[+selectedId] : postData.imgList[+selectedId]}
                   alt="testImg"

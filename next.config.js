@@ -6,6 +6,7 @@ const nextConfig = {
     domains: ['uniquoneimg.s3.ap-northeast-2.amazonaws.com',"images.unsplash.com","media-photos.depop.com"],
     formats: ['image/avif', 'image/webp'],
   },
+  minimumCacheTTL: 60,
 }
 
 module.exports = nextConfig

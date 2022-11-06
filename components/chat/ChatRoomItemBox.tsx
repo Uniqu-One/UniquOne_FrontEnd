@@ -7,7 +7,7 @@ import { chatRoomDetailDataType } from "../../types/chat/chatRoomDetailDataType"
 import ChatRoomButtonMol from "./ChatRoomButtonMol";
 
 const ChatRoomItemBoxStyle = styled.div`
-  padding-top: 48px ;
+  padding-top: 48px;
 
   position: fixed;
   width: 100vw;
@@ -50,39 +50,48 @@ const ChatRoomItemBoxStyle = styled.div`
     z-index: 5;
     margin-top: 18px;
   }
-
 `;
 
-function ChatRoomItemBox(props:{roomData:chatRoomDetailDataType}) {
+function ChatRoomItemBox(props: { roomData: chatRoomDetailDataType }) {
+  const router = useRouter();
 
-  const router = useRouter()
-
-  const {postImg,postPrice,postType,postId,receiverId,postTitle,chatRoomType} = props.roomData
+  const {
+    postImg,
+    postPrice,
+    postType,
+    postId,
+    receiverId,
+    postTitle,
+    chatRoomType,
+  } = props.roomData;
 
   return (
     <>
       <ChatRoomItemBoxStyle>
-
-          <div className="left" onClick={() => router.push(`/post/${postId}`)}>
-            <div>
-              <Image
-                src={postImg && postImg}
-                alt="dummy image"
-                width={42}
-                height={42}
-              />
-            </div>
-            <div className="text">
-              <h4>{postTitle}</h4>
-              <h4>
-                {postPrice.toLocaleString()}원
-              </h4>
-            </div>
+        <div className="left" onClick={() => router.push(`/post/${postId}`)}>
+          <div>
+            <Image
+              loading="lazy"
+              src={postImg && postImg}
+              alt="dummy image"
+              width={42}
+              height={42}
+            />
           </div>
-
-          <div className="button">
-            <ChatRoomButtonMol postType={postType} postId={postId} receiverId={receiverId} chatRoomType={chatRoomType}/>
+          <div className="text">
+            <h4>{postTitle}</h4>
+            <h4>{postPrice.toLocaleString()}원</h4>
           </div>
+        </div>
+
+        <div className="button">
+          <ChatRoomButtonMol
+            postType={postType}
+            postId={postId}
+            receiverId={receiverId}
+            chatRoomType={chatRoomType}
+          />
+        </div>
       </ChatRoomItemBoxStyle>
     </>
   );

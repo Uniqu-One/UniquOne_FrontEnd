@@ -72,7 +72,7 @@ export const TopMainOrg = () => {
         <Link href="/">
           <a>
             <TopLogoAtm>
-              <Image
+              <Image loading="lazy"
                 src="/assets/icons/uniquOneLogoGradient.svg"
                 alt="logo"
                 width={30}

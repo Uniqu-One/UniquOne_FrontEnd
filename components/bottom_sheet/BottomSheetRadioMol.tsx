@@ -65,9 +65,13 @@ function BottomSheetRadioMol(props: {
   handleTempSelect?: Function;
   tempMenu?: string;
   functionPlus?: Function;
+  tempFilter?: number; 
+  setTempFilter?: Function
 }) {
   const [postData, setPostData] = useRecoilState(CornPostState);
   const { setOpen, functionPlus } = props;
+  //uni star
+  const {tempFilter, setTempFilter} = props
 
   const [tempIdx, setTempIdx] = useState(0);
 
@@ -79,6 +83,12 @@ function BottomSheetRadioMol(props: {
       setOpen(false);
     }
   };
+
+  const handleChangeUniFilter = (idx:number) => {
+    if(setTempFilter){
+    setTempFilter(idx)
+    setOpen(false)}
+  }
 
   
   const sizeList = ["S","M","L","XL","FR"]
@@ -284,13 +294,13 @@ function BottomSheetRadioMol(props: {
             <label
               key={idx}
               htmlFor={menu}
-              onClick={() => handleChangeIdx("", idx)}
+              onClick={() => handleChangeUniFilter(idx)}
             >
               <input
                 type="radio"
                 name={menu}
                 value={menu}
-                checked={tempIdx === idx ? true : false}
+                checked={tempFilter === idx ? true : false}
                 readOnly
               />
               <p>{menu}</p>

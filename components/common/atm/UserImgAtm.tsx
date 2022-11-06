@@ -14,7 +14,7 @@ function UserImgAtm(props: { width: number; height: number ; url?:string}) {
   return (
     <>
       <UserImgAtmStyle>
-        <Image
+        <Image loading="lazy"
           src={props.url ? props.url:"/assets/images/dummyUserImg.jpg"}
           alt="user dummy image"
           width={props.width}

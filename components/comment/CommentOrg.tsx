@@ -131,7 +131,7 @@ function CommentOrg(props: {
       <Slider ref={sliderRef} {...settings}>
         <div className="comment_box">
           <div className="img_circle">
-            <Image
+            <Image loading="lazy"
               src={cornImgUrl ? cornImgUrl : "/assets/images/dummyUserImg.jpg"}
               alt="user dummy"
               width="48px"

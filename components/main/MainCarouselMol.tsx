@@ -39,7 +39,7 @@ function MainCarouselMol(props: { title: string; subTitle: string; width:number,
           <h2>{title}</h2>
           <h3>{subTitle}</h3>
         </div>
-        <Image
+        <Image loading="lazy"
           src={imgSrc}
           alt="메인 슬라이더"
           width={"500%"}

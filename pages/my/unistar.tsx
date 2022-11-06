@@ -15,18 +15,29 @@ const UniStarStyle = styled.div`
 `
 
 
-function UniStar() {
-  //TODO - default check 오류 해결
+function UniStar() { 
 
   const token = useRecoilValue(TokenState).token;
   const [uniStar, setUniStar] = useState([]);
+  const [tempFilter,setTempFilter ] = useState(0)
+
 
   const updateUniStarData = async () => {
-    setUniStar(await UniStarUtils.getMyUniStarList(token));
+
+    if(tempFilter === 0){
+      setUniStar(await UniStarUtils.getMyUniStarAllList(token));
+    } else {
+      setUniStar(await UniStarUtils.getMyUniStarList(token,tempFilter));
+    }
+    
   };
+
   useEffect(() => {
     updateUniStarData();
-  }, []);
+  }, [tempFilter]);
+
+
+  console.log(uniStar)
 
   return (
     <>
@@ -40,7 +51,7 @@ function UniStar() {
 
         {
           <>
-            <MyUniStarTmp />
+            <MyUniStarTmp tempFilter={tempFilter} setTempFilter={setTempFilter}/>
             {uniStar.map((contents) => {
               let post = {};
               // @ts-ignore
@@ -50,7 +61,7 @@ function UniStar() {
               // @ts-ignore
               post.uniStarLevel = contents.uniStarLevel;
               // @ts-ignore
-              return <PostMdOrg key={contents.postId} post={post} />;
+              return <PostMdOrg key={contents.postId} post={post} opt="star"/>;
             })}
           </>
         }

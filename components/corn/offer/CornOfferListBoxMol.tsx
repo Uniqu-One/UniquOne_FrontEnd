@@ -77,7 +77,7 @@ function CornOfferListBoxMol(props: { offer: CornOfferType }) {
       <CornOfferListBoxMolStyled onClick={() => router.push(`/corn/offer/${postId}`)}>
         <div className="left">
           <div className="item_box">
-            <Image src={postImg} alt="dummy img" width={60} height={60} />
+            <Image loading="lazy" src={postImg} alt="dummy img" width={60} height={60} />
           </div>
           <div className="infos">
             <div className="title">

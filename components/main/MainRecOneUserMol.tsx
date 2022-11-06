@@ -37,7 +37,7 @@ function MainRecOneUserMol() {
     <>
       <MainRecOneUserMolStyle>
         <div>
-          <Image
+          <Image loading="lazy"
             src="/assets/images/dummyUserImg.jpg"
             alt="더미 유저 이미지"
             width={78}

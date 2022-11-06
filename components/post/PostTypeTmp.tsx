@@ -25,11 +25,11 @@ const PostTypeTmpStyle = styled.div<{ type: number }>`
   }
 
   .following {
-    color: ${(props) => props.type === 0 && color.p_pruple};
+    color: ${(props) => props.type === 0 ? color.p_pruple : color.p_gray_dk};
   }
 
   .rec {
-    color: ${(props) => props.type === 1 && color.p_pruple};
+    color: ${(props) => props.type === 1 ? color.p_pruple : color.p_gray_dk};
   }
 `;
 

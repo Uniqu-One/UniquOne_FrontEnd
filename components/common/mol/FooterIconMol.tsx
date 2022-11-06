@@ -66,7 +66,7 @@ function FooterIconMol() {
         <div className="iconBox">
           <Link href="/corn">
             <a>
-              <Image
+              <Image loading="lazy"
                 src="/assets/icons/uniquOneLogo.svg"
                 alt="logo"
                 width={24}

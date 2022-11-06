@@ -12,13 +12,22 @@ function MainCarouselTmp() {
   const settings = {
     dots: false,
     infinite: true,
-    speed: 400,
+    speed: 750,
     slidesToShow: 1,
     slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 1800,
   };
   return (
     <MainCarouselStyle>
       <Slider {...settings}>
+        <MainCarouselMol
+              type="first"
+              title={"하이"}
+              subTitle={"바이"}
+              width={1}
+              imgSrc={'/'}
+            />
         {mainCarouselDummy.map((slide) => {
           return (
             <MainCarouselMol

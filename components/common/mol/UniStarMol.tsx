@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import UniStarAtm from "../atm/UniStarAtm";
 import { AnimatePresence, motion } from "framer-motion";
 
-function UniStarMol(props:{tempStar:null|number,setTempStar?:Function}) {
+function UniStarMol(props:{tempStar:any,setTempStar?:Function}) {
   const {tempStar,setTempStar} = props
 
 

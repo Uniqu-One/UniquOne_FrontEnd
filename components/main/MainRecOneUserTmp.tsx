@@ -44,6 +44,7 @@ function MainRecOneUserTmp() {
         <MainRecOneUserMol />
         <div className="item_container">
           {tempData && tempData.map(data => {
+            // @ts-ignore
             return <PostLgOrg postId={data.postId} imgSrc={data.postImgUrl}/>
           })}
           

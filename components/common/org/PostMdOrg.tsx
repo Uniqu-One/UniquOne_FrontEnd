@@ -39,7 +39,9 @@ function PostMdOrg(props: {
 
   const [tempStar, setTempStar] = useState<number|null|string|undefined>(null)
   const token =useRecoilValue(TokenState).token
+  // @ts-ignore
   const {postId} = props.post
+  const {opt} = props
 
   const updateUniStar = async() => {
 
@@ -69,6 +71,8 @@ function PostMdOrg(props: {
     setTempStar(props.post?.uniStarLevel)
   },[])
 
+  
+
   return (
     <PostMdOrgStyle>
       <Link href={props.post ? `/post/${props.post.postId}` : "/"}>
@@ -81,9 +85,11 @@ function PostMdOrg(props: {
           />
         </a>
       </Link>
+      {opt === "star" &&
       <div className="unistar_icon" onClick={() => updateUniStar()}>
         <UniStarMol tempStar={tempStar}/>
       </div>
+    }
     </PostMdOrgStyle>
   );
 }

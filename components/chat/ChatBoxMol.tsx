@@ -72,7 +72,7 @@ const ChatBoxMolStyle = styled.div`
 
 function ChatBoxMol(props: { chatData: chatListDataType }) {
   const router = useRouter();
-  const { chatRoomId, message, msgRegDate, postId, receiverId,receiverName } =
+  const { chatRoomId, message, msgRegDate, postId, receiverId,receiverName,postImg,cornImg } =
     props.chatData;
 
   const handleEnterRoom = () => {
@@ -82,12 +82,14 @@ function ChatBoxMol(props: { chatData: chatListDataType }) {
     });
   };
 
+  console.log(props.chatData)
+
   return (
     <>
       <ChatBoxMolStyle>
         <div className="chatBox" onClick={() => handleEnterRoom()}>
           <div className="left">
-            <UserImgAtm width={54} height={54} />
+            <UserImgAtm width={54} height={54} url={cornImg}/>
 
             <div>
               <h4>
@@ -97,7 +99,7 @@ function ChatBoxMol(props: { chatData: chatListDataType }) {
             </div>
           </div>
           <div className="ItemBox">
-            <PostTmp type="sm" size={48} />
+            <PostTmp type="sm" size={48} imgUrl={postImg}/>
           </div>
         </div>
       </ChatBoxMolStyle>

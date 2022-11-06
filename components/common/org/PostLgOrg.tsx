@@ -28,8 +28,7 @@ function PostLgOrg(props: { opt?: string; imgSrc?: string; postId?:string}) {
 
   return (
     <PostLgOrgStyle>
-      <Link href="/">
-      <a>
+      
       <Image
         src={imgSrc ? imgSrc : "/assets/images/postImage.jpg"}
         alt="포스트 더미 이미지"
@@ -37,8 +36,7 @@ function PostLgOrg(props: { opt?: string; imgSrc?: string; postId?:string}) {
         height={400}
         // layout="fill"
       />
-      </a>
-      </Link>
+      
     </PostLgOrgStyle>
   );
 }

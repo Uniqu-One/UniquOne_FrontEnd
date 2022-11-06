@@ -33,7 +33,7 @@ function NotiSubscribe() {
   };
 
   useEffect(() => {
-    if (userId) {
+    if (userId && !eventSource) {
       eventSource?.close();
       handleSub();
     }

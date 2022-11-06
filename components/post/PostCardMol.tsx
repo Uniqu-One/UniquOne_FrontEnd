@@ -48,7 +48,7 @@ function PostCardMol(props: {
       imgUrlList
     } = postListData;
 
-
+    console.log(postListData)
 
     return (
       <>
@@ -64,7 +64,7 @@ function PostCardMol(props: {
         </PostCarTmpStyle>
 
         <PostSliderMol postId={postId} postImgUrlList={imgUrlList || postImgUrl} />
-
+ 
         {/* 하트랑 유니스타랑 댓글 */}        
         <PostFuncBarMol postId={postId} isCool={isCool} uniStar={uniStar}/>
       </>
@@ -83,8 +83,7 @@ function PostCardMol(props: {
   isFollow,
   cornId
     } = postDetailData;
-
-    console.log(postDetailData)
+ 
 
 
     return (

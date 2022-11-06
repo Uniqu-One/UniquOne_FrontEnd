@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import Image from "next/image";
 import React from "react";
+import Eco from "../eco/Eco";
 
 const MainCarouselCardStyle = styled.div`
   position: relative;
@@ -30,8 +31,27 @@ const MainCarouselCardStyle = styled.div`
   }
 `;
 
-function MainCarouselMol(props: { title: string; subTitle: string; width:number,imgSrc:string }) {
-  const { title, subTitle, width,imgSrc } = props;
+const MainCarouselFirsetCardStyle = styled.div``;
+
+function MainCarouselMol(props: {
+  title: string;
+  subTitle: string;
+  width: number;
+  imgSrc: string;
+  type?: string;
+}) {
+  const { title, subTitle, width, imgSrc, type } = props;
+
+  if (type === "first") {
+    return (
+      <MainCarouselFirsetCardStyle>
+        <MainCarouselCardStyle>
+          <Eco/>          
+          </MainCarouselCardStyle>
+      </MainCarouselFirsetCardStyle>
+    );
+  }
+
   return (
     <>
       <MainCarouselCardStyle>
@@ -39,7 +59,8 @@ function MainCarouselMol(props: { title: string; subTitle: string; width:number,
           <h2>{title}</h2>
           <h3>{subTitle}</h3>
         </div>
-        <Image loading="lazy"
+        <Image
+          loading="lazy"
           src={imgSrc}
           alt="메인 슬라이더"
           width={"500%"}

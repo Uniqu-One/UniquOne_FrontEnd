@@ -5,6 +5,6 @@ const { persistAtom } = recoilPersist({});
 
 export const TokenState = atom({
   key:"SubscribeState",
-  default:{},
+  default:false,
   effects_UNSTABLE:[persistAtom]
 })

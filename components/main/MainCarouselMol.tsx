@@ -59,7 +59,7 @@ function MainCarouselMol(props: {
           <h2>{title}</h2>
           <h3>{subTitle}</h3>
         </div>
-        <Image 
+        <img 
           
           src={imgSrc}
           alt="메인 슬라이더"

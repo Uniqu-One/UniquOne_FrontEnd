@@ -44,7 +44,7 @@ function ChatRoomReceiveAtm(props:{text:string, regTime:string, receiverImg:stri
     <>
       <ChatRoomReceiveAtmStyle>
         <div>
-          <Image  
+          <img  
             src={props.receiverImg ? props.receiverImg :"/assets/images/dummyUserImg.jpg"}
             alt="더미 유저 이미지"
             width={30}

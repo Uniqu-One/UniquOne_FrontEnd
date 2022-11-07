@@ -83,7 +83,7 @@ function CommentBarOrg(props: { postId: string,tempParent?:number,setTempParent:
   return (
     <CommentBarOrgStyle inputStatus={inputStatus}>
       <div>
-        <Image  
+        <img  
           src="/assets/images/dummyUserImg.jpg"
           alt="dummy user"
           width="42px"

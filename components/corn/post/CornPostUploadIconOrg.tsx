@@ -141,7 +141,7 @@ function CornPostUploadIconOrg(props: {
 
           {imageSrc !== "" && (
             <motion.div className="previeImg">
-              <Image  
+              <img  
                 onClick={() => setSelectedId(String(idx))}
                 src={imageSrc}
                 alt="dummy image"

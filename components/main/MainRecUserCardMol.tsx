@@ -57,7 +57,7 @@ function MainRecUserCardMol(props: {
     <>
       <MainRecUserCardStyle postImgUrl={postImgUrl} onClick={() => router.push(`/profile/${cornId}`)}>
         <MainRecUserInfoStyle>
-          <Image   src={cornImgUrl} alt="유저 이미지" width={30} height={30} />
+          <img   src={cornImgUrl} alt="유저 이미지" width={30} height={30} />
           <p>{userNickName}</p>
         </MainRecUserInfoStyle>
       </MainRecUserCardStyle>

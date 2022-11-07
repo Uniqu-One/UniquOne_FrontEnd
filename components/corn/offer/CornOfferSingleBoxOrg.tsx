@@ -89,12 +89,12 @@ function CornOfferSingleBoxOrg(props: { offer: offerDataType; type?: string }) {
         >
           {cornImg && (
             <div className="cornImg">
-              <Image   src={cornImg} alt="cornTitle" width={60} height={60} />
+              <img   src={cornImg} alt="cornTitle" width={60} height={60} />
             </div>
           )}
           {postImg && (
             <div className="itemImg">
-              <Image   src={postImg} alt="postTitle" width={60} height={60} />
+              <img   src={postImg} alt="postTitle" width={60} height={60} />
             </div>
           )}
 

@@ -29,7 +29,7 @@ function ProfileNothingMol() {
   return (
     <ProfileNothingMolStyle>
       <div>
-        <Image  
+        <img  
           src="/assets/images/sad_corn_img.jpg"
           alt="sad_corn"
           width={240}

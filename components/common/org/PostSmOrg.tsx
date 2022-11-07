@@ -18,7 +18,7 @@ function PostSmOrg(props: { size?: number, imgUrl?:string}) {
     <PostSmOrgStyle size={props.size ? props.size : undefined}>
       <Link href={"/"}>
         <a>
-          <Image  
+          <img  
             src={props.imgUrl ? props.imgUrl:"/assets/images/postImage.jpg"} 
             alt="포스트 더미 이미지"
             width={props.size}

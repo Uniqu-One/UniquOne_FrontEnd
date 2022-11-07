@@ -13,7 +13,7 @@ function GradeIconAtm(props: {
 }) {
   return (
     <GradeIconAtmStyle>
-      <Image  
+      <img  
         src="/assets/icons/uniquOneLogo.svg"
         alt="등급 아이콘"
         width={props.width}

@@ -87,7 +87,7 @@ function NotiBoxMol(props: { noti: notiListType }) {
     <NotiBoxMolStyle onClick={() => handlePushChange()}>
       <div className="left">
         <div className="profile_img">
-          <Image 
+          <Image priority={true} 
             src={userCornImg ? userCornImg : "/assets/images/sad_corn_img.jpg"}
             alt="profileImage"
             width={60}
@@ -112,7 +112,7 @@ function NotiBoxMol(props: { noti: notiListType }) {
 
       {notiType === "OFFER_ACCEPT" && (
         <div className="right">
-          <Image 
+          <Image priority={true} 
             src={postImg ? postImg : "/assets/images/postImage.jpg"}
             alt="profileImage"
             width={60}
@@ -123,7 +123,7 @@ function NotiBoxMol(props: { noti: notiListType }) {
 
       {notiType === "COMMENT" && (
         <div className="right">
-          <Image 
+          <Image priority={true} 
             src={postImg ? postImg : "/assets/images/postImage.jpg"}
             alt="profileImage"
             width={60}

@@ -31,7 +31,7 @@ function PostSingleProfileMol(props: { tempData: {} }) {
   return (
     <PostSingleProfileMolStyle>
       <div>
-        <Image
+        <Image priority={true}
           
           src={cornImgUrl ? cornImgUrl : "/assets/images/dummyUserImg.jpg"}
           alt="유저 더미 이미지"

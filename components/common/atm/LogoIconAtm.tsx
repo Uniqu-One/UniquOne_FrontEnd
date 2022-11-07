@@ -3,7 +3,7 @@ import React from 'react'
 
 function LogoIconAtm(props:{width:number, height:number, color?:'string'}) {
   return (
-    <Image  src="/assets/icons/logoIcon.svg" alt="logoIcon" width={props.width} height={props.height}/>
+    <Image priority={true}  src="/assets/icons/logoIcon.svg" alt="logoIcon" width={props.width} height={props.height}/>
   )
 }
 

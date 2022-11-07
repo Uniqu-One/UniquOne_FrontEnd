@@ -56,7 +56,7 @@ function RedirectTmp(props: { type: string }) {
             <p>지금부터 내 다양한 포스트를 통해</p>
             <p>다른 유저들에게 내 스타일을 소개해주세요!</p>
           </div>
-          <Image 
+          <Image priority={true} 
             src="/assets/images/congImage.png"
             alt="축하 이미지"
             width={270}
@@ -81,7 +81,7 @@ function RedirectTmp(props: { type: string }) {
             <p>지금 나의 스타일을 설정하시면</p>
             <p>스타일에 맞는 포스트들을 추천해드릴게요!</p>
           </div>
-          <Image 
+          <Image priority={true} 
             src="/assets/images/congImage.png"
             alt="축하 이미지"
             width={270}

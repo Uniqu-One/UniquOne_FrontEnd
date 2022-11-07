@@ -57,7 +57,7 @@ function CornEditTmp() {
 
   const handleEditCornInfo = async () => {
     if(await CornUtils.editMyCornInfo(token,cornProfile)){
-      ToastUtils.success('콘 수정이 완료되었습니다.')
+      ToastUtils.toast('콘 수정이 완료되었습니다.')
       router.replace('/corn')
     }
   }

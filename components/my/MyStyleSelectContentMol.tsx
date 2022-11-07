@@ -41,7 +41,7 @@ function MyStyleSelectContentMol() {
     if (btnStatus) {
       router.replace("/redirect/style");
     } else {
-      ToastUtils.error("최소한 하나의 스타일을 선택해주세요!");
+      ToastUtils.toast("최소한 하나의 스타일을 선택해주세요!");
     }
   };
 

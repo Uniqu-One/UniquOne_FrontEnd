@@ -21,7 +21,7 @@ function CornMainTmp() {
   useEffect(() => {
     if (cornId === null) {
       router.replace("/corn/reg");
-      ToastUtils.error("콘을 이용하기 위해선 콘 등록이 필요합니다.");
+      ToastUtils.toast("콘을 이용하기 위해선 콘 등록이 필요합니다.");
     }
   }, []);
 

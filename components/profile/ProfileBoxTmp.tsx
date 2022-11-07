@@ -11,6 +11,7 @@ import BtnTmp from "../common/tmp/BtnTmp";
 import ProfileBoxTopMol from "./ProfileBoxTopMol";
 import ProfileBoxUnderMol from "./ProfileBoxUnderMol";
 import ProfileNothingMol from "./ProfileNothingMol";
+import TopTmp from "../common/tmp/TopTmp";
 
 const ProfileBoxTmpStyle = styled.div`
   padding-top: 50px;
@@ -44,11 +45,11 @@ function ProfileBoxTmp(props: { type: string; cornId?: string }) {
   const handleFollowBtn = () => {
     if (followStatus === false) {
       FollowUtils.registerFollow(token,cornId)
-      ToastUtils.success("팔로우를 하였습니다.");
+      ToastUtils.toast("팔로우를 하였습니다.");
       setFollowStatus(true);
     } else {
       FollowUtils.cancelFollow(token,cornId)
-      ToastUtils.error("팔로우를 취소하였습니다.");
+      ToastUtils.toast("팔로우를 취소하였습니다.");
       setFollowStatus(false);
     }
   };
@@ -83,6 +84,7 @@ function ProfileBoxTmp(props: { type: string; cornId?: string }) {
   } else {
     return (
       <>
+      <TopTmp text='userId'/>
         <ProfileBoxTmpStyle>
           <ProfileBoxTopMol type={props.type} profileBoxData={profileBoxData} cornId={cornId}/>
           <ProfileBoxUnderMol
@@ -103,8 +105,8 @@ function ProfileBoxTmp(props: { type: string; cornId?: string }) {
           <div onClick={() => handleFollowBtn()}>
             <BtnTmp
               size="lg"
-              value={!followStatus ? "팔로우" : "팔로잉"}
-              status={!followStatus}
+              value={followStatus ? "팔로우" : "팔로잉"}
+              status={followStatus}
             />
           </div>
         )}

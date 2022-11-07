@@ -24,6 +24,9 @@ const TopBoxMolStyle = styled.div`
     top: -3px;
     border-radius: 100%;
   }
+  h1{
+    margin-left: 6px;
+  }
 `;
 
 export const TopMainOrg = () => {
@@ -75,8 +78,8 @@ export const TopMainOrg = () => {
               <Image loading="lazy"
                 src="/assets/icons/uniquOneLogoGradient.svg"
                 alt="logo"
-                width={30}
-                height={30}
+                width={15}
+                height={15}
               />
               <h1>UNIQUONE</h1>
             </TopLogoAtm>

@@ -48,7 +48,6 @@ function PostCardMol(props: {
       imgUrlList
     } = postListData;
 
-    console.log(postListData)
 
     return (
       <>

@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { useRouter } from "next/router";
 import React from "react";
 import { color } from "../../../styles/theme";
 
@@ -18,17 +19,26 @@ div{
 }
 `;
 
-function PostSingleCornDetailMol() {
+function PostSingleCornDetailMol(props:{tempData:{}}) {
+
+  console.log(props.tempData)
+
+  //@ts-ignore
+  const {cornId, postEA, reviewEA} = props.tempData
+
+
+  const router = useRouter()
+
   return (
     <>
       <PostSingleCornDetailMolStyle>
-        <div>
-          <p>모든 리뷰</p>
-          <p>120 <span>{'>'}</span></p>
+        <div onClick={() => router.push(`/profile/${cornId}`)}>
+          <p>포스트</p>
+          <p>{postEA}<span>{'>'}</span></p>
         </div>
-        <div>
-          <p>모든 리뷰</p>
-          <p>120 <span>{'>'}</span></p>
+        <div onClick={() => router.push(`/profile/${cornId}`)}>
+          <p>리뷰</p>
+          <p>{reviewEA}<span>{'>'}</span></p>
         </div>
       </PostSingleCornDetailMolStyle>
     </>

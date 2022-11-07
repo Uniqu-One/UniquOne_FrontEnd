@@ -13,7 +13,7 @@ function CornRegNameMol(props: CornInputTypes) {
   const { inputs, setInputs, onChangeValue, setCornPage } = props;
 
   const hanleMakeNewWord = async () => {
-    ToastUtils.success("콘네임이 자동생성완료되었습니다!")
+    ToastUtils.toast("콘네임이 자동생성완료되었습니다!")
 
     const newWords = await CornUtils.getRandomCornName()
     setInputs((prev: { cornName: string; cornDesc: string }) => {
@@ -34,7 +34,7 @@ function CornRegNameMol(props: CornInputTypes) {
           setCornPage("reg-2");
           return true;
         } else {
-          ToastUtils.error('중복된 콘 네임입니다.')
+          ToastUtils.toast('중복된 콘 네임입니다.')
           return false;
         }
       })

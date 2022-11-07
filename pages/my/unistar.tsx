@@ -11,9 +11,8 @@ import { UniStarUtils } from "../../lib/utils/UniStarUtils";
 import { TokenState } from "../../states/recoil/TokenState";
 
 const UniStarStyle = styled.div`
-  
+ 
 `
-
 
 function UniStar() { 
 

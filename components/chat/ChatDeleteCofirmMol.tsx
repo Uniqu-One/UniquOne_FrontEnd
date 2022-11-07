@@ -59,9 +59,9 @@ function ChatDeleteCofirmMol(props: {
 
   const handleExitChatRoom = async() => {
     if(await ChatUtils.exitChatRoom(token, selectedRoomId)){
-      ToastUtils.success('채팅방이 삭제되었습니다.')
+      ToastUtils.toast('채팅방이 삭제되었습니다.')
     } else {
-      ToastUtils.error('채팅방 나가기가 실패되었습니다.')
+      ToastUtils.toast('채팅방 나가기가 실패되었습니다.')
     }
   };
 

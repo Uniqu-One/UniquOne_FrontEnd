@@ -14,7 +14,7 @@ function reg() {
 
   if(cornId){
     
-    ToastUtils.error('이미 개설한 콘이 존재합니다.')
+    ToastUtils.toast('이미 개설한 콘이 존재합니다.')
     router.replace('/corn')
   }
 

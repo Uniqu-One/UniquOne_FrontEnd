@@ -18,21 +18,21 @@ function CornPostRegMol(props: { buttonStatus: boolean; postId?: string }) {
       router.replace({
         pathname: "/corn",
       });
-      ToastUtils.success("포스트 등록이 완료되었습니다.")
+      ToastUtils.toast("포스트 등록이 완료되었습니다.")
     } else {
-      ToastUtils.error("포스트 등록에 실패하였습니다.");
+      ToastUtils.toast("포스트 등록에 실패하였습니다.");
     }
   };
 
   const handleEditPost = async () => {
     if (await PostUtils.editPostData(token, postData, postId)) {
-      ToastUtils.success("포스트 수정이 완료되었습니다.");
+      ToastUtils.toast("포스트 수정이 완료되었습니다.");
 
       router.replace({
         pathname: "/corn",
       });
     } else {
-      ToastUtils.error("포스트 수정에 실패하였습니다.");
+      ToastUtils.toast("포스트 수정에 실패하였습니다.");
     }
   };
 

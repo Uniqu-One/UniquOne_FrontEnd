@@ -93,7 +93,7 @@ function MyQnaEnrollModal(props: {
 
   const handlePostQna = async () => {
     if (await QnaUtils.postMyQna(token, qnaData)) {
-      ToastUtils.success('문의 등록이 완료되었습니다.')
+      ToastUtils.toast('문의 등록이 완료되었습니다.')
       props.setQnaEnrollModal(false);
     } else {
       props.setQnaEnrollModal(true);

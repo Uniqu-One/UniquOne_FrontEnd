@@ -35,7 +35,7 @@ function BottomSheetTopMol(props: {
   setTempSelect?: Function;
 }) {
   useEvaIcon();
-  const notify = () => ToastUtils.error("선택한 옵션의 개수를 확인해주세요");
+  const notify = () => ToastUtils.toast("선택한 옵션의 개수를 확인해주세요");
   const [postData, setPostData] = useRecoilState(CornPostState);
   const [searchFilterData, setSearchFilterData] =
     useRecoilState(SearchFilterState);

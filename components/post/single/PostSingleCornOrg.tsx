@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { postDataType } from "../../../types/postDataType";
 import PostSingleCornDetailMol from "./PostSingleCornDetailMol";
 import PostSingleProfileMol from "./PostSingleProfileMol";
 
@@ -21,14 +23,33 @@ const PostSingleCornOrgStyle = styled.div`
   }
 `;
 
-function PostSingleCornOrg() {
+function PostSingleCornOrg(props:{postDetailData:postDataType}) {
+
+  const cornId = props.postDetailData.cornId
+
+  const [tempData,setTempData] = useState({})
+
+  useEffect(() => {
+
+    axios.get(`${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/detail/cornInfo/${cornId}`)
+    .then(res => setTempData(res.data.data))
+    .catch(err => console.error(err))
+
+  },[])
+
+// @ts-ignore
+  if(tempData.userId === undefined){
+    return <div>준비중</div>
+  }
+
   return (
     <PostSingleCornOrgStyle>
       <div>
-        <h3>누구누구님의 Corn</h3>
+      {/* @ts-ignore */}
+        <h3>{tempData.userNickName}님의 콘</h3>
       </div>
-      <PostSingleProfileMol />
-      <PostSingleCornDetailMol />
+      <PostSingleProfileMol tempData={tempData}/>
+      <PostSingleCornDetailMol tempData={tempData}/>
     </PostSingleCornOrgStyle>
   );
 }

@@ -71,14 +71,14 @@ function ProfileFollowCardBoxMol(props: { tempUserData: followListType[] }) {
     
     if(follow){
       if(await FollowUtils.cancelFollow(token,cornId)){
-        ToastUtils.success('유저를 팔로우 하였습니다.')
+        ToastUtils.toast('유저를 팔로우 하였습니다.')
       }
       
 
     }
     if(!follow){
       if(await FollowUtils.registerFollow(token,cornId)){
-        ToastUtils.success('유저를 팔로우 취소 하였습니다.')
+        ToastUtils.toast('유저를 팔로우 취소 하였습니다.')
       }
       
     }

@@ -84,9 +84,9 @@ function PostBottomOfferMol(props: { setComplete: Function }) {
     if (typeof postId === "string") {
       setComplete(true);
       if (await OfferUtils.postOffer(token, postId, offerPrice)) {
-        ToastUtils.success('오퍼 제안을 완료하였습니다.')
+        ToastUtils.toast('오퍼 제안을 완료하였습니다.')
       } else {
-        ToastUtils.error('오퍼 제안에 실패하였습니다.')
+        ToastUtils.toast('오퍼 제안에 실패하였습니다.')
       }
     }
   };

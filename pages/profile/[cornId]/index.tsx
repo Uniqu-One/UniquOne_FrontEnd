@@ -17,9 +17,7 @@ function Index(props:{cornId:string}) {
 
   const {cornId} = props
   return (
-    <>
-      <TopTmp text='userId'/>
-
+    <>      
       <ProfileBoxTmp type="other" cornId={props.cornId}/>
     
     <ProfileInterVal/>

@@ -38,13 +38,13 @@ function CornOfferSingleSelectMol(props: { offerId: string | number }) {
 
   const handleCheckAcceptCornOffer = async () => {
     if(await OfferUtils.checkCornOffer(token, offerId, "ACCEPT")){
-      ToastUtils.success('오퍼 수락이 완료되었습니다.')
+      ToastUtils.toast('오퍼 수락이 완료되었습니다.')
     }
   };
 
   const handleCheckRefuseCornOffer = async() => {
     if(await OfferUtils.checkCornOffer(token, offerId, "REFUSE")){
-      ToastUtils.success('오퍼 거절이 완료되었습니다.')
+      ToastUtils.toast('오퍼 거절이 완료되었습니다.')
     }
   };
 

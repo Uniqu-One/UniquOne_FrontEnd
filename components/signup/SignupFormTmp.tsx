@@ -67,7 +67,7 @@ function SignupFormTmp() {
   const handleButtonClick = async (tempLevel: string) => {
     if (tempLevel === "email" && email !== "") {
       if (!SignupFormRegexUtil.emailRegex(email)) {
-        ToastUtils.error("이메일을 정확히 입력해주세요 :(");
+        ToastUtils.toast("이메일을 정확히 입력해주세요 :(");
         return null;
       } else {
         const emailExistBool = await SignupUtils.checkOverlapEmail(email);
@@ -77,18 +77,18 @@ function SignupFormTmp() {
           SetSignUpStage((prev) => ({ ...prev, mailSend: true }));
           setTempLevel("authNum");
         } else {
-          ToastUtils.error("중복되는 이메일입니다. 가입여부를 확인해주세요!");
+          ToastUtils.toast("중복되는 이메일입니다. 가입여부를 확인해주세요!");
         }
       }
     }
 
     if (tempLevel === "authNum" && authNum !== "") {
       if (await SignupUtils.checkAuthCode(email, +authNum)) {
-        ToastUtils.success("인증번호가 확인되었습니다!");
+        ToastUtils.toast("인증번호가 확인되었습니다!");
         SetSignUpStage((prev) => ({ ...prev, mailAuth: true }));
         setTempLevel("userPwd");
       } else {
-        ToastUtils.error("인증번호를 확인해주세요!");
+        ToastUtils.toast("인증번호를 확인해주세요!");
       }
     }
 
@@ -102,17 +102,17 @@ function SignupFormTmp() {
     if (tempLevel === "nickName" && nickName === "") {
       const randomNick = await SignupUtils.makeRandomNickName();
       setSignupInput((prev) => ({ ...prev, nickName: randomNick }));
-      ToastUtils.success("닉네임이 자동생성 되었습니다 :>");
+      ToastUtils.toast("닉네임이 자동생성 되었습니다 :>");
     }
 
     if (tempLevel === "nickName" && nickName !== "") {
       if (await SignupUtils.checkOverlapNickName(nickName)) {
-        ToastUtils.error("중복되는 닉네임입니다 :(");
+        ToastUtils.toast("중복되는 닉네임입니다 :(");
       } else {
         if (await SignupUtils.signupAccount(signupInput)) {
           router.replace("/redirect/signup");
         } else {
-          ToastUtils.error(
+          ToastUtils.toast(
             "회원가입에 실패하였습니다. 입력 정보를 다시한번 확인해주세요"
           );
         }

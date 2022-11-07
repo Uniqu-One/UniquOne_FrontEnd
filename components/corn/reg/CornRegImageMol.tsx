@@ -36,7 +36,7 @@ function CornRegImageMol(props: {
       if(await CornUtils.postCornAccount(token,formData)){
         changeRegRedirectPage();
       } else {
-        ToastUtils.error('콘 등록에 실패하였습니다.')
+        ToastUtils.toast('콘 등록에 실패하였습니다.')
       }
     }
   };

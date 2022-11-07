@@ -40,7 +40,7 @@ function LoginAuthStateTmp() {
         ) {
           return;
         } else {
-          ToastUtils.error("로그인이 필요한 기능입니다.")
+          ToastUtils.toast("로그인이 필요한 기능입니다.")
           router.replace("/intro");
         }
       }

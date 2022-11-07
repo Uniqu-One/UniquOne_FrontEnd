@@ -32,9 +32,9 @@ function RedirectTmp(props: { type: string }) {
 
   useEffect(() => {
     if (type === "corn") {
-      ToastUtils.success("콘 개설이 완료되었습니다!");
+      ToastUtils.toast("콘 개설이 완료되었습니다!");
     } else {
-      ToastUtils.success("회원가입이 완료되었습니다!");
+      ToastUtils.toast("회원가입이 완료되었습니다!");
     }
   }, []);
 

@@ -107,9 +107,9 @@ export default function ChatRoomButtonMol(props:{postType:string,postId:number,r
 
     if (menu === "거래완료" && postId && receiverId) {
       if (await TradeUtils.tradeOver(token,userId,+postId)) {
-        ToastUtils.success('거래가 완료되었습니다.')
+        ToastUtils.toast('거래가 완료되었습니다.')
       } else {
-        ToastUtils.error('거래가 가능한 상태가 아닙니다.')
+        ToastUtils.toast('거래가 가능한 상태가 아닙니다.')
       }
     }
   };
@@ -118,7 +118,7 @@ export default function ChatRoomButtonMol(props:{postType:string,postId:number,r
     if(chatRoomType === "SELLER"){
       setIsOpen(!isOpen)
     } else {
-      ToastUtils.error('판매자만 제품의 상태 변경이 가능합니다')
+      ToastUtils.toast('판매자만 제품의 상태 변경이 가능합니다')
     }
     
 

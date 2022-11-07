@@ -58,7 +58,7 @@ function SearchBarMol(props: { keyword?: string }) {
       router.push(`/search/${searchWord}`);
       setModalState(false);
     } else {
-      ToastUtils.error("검색어를 입력해주세요");
+      ToastUtils.toast("검색어를 입력해주세요");
     }
   };
 

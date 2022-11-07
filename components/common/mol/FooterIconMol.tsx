@@ -32,6 +32,7 @@ const FooterIconMolStyle = styled.div`
       
     }
   }
+
 `;
 
 function FooterIconMol() {
@@ -50,6 +51,9 @@ function FooterIconMol() {
           {router.pathname.split("/")[1] === "" && (
             <motion.div className="point" layoutId="underline"></motion.div>
           )}
+          {router.pathname.split("/")[1] === "noti" && (
+            <motion.div className="point" layoutId="underline"></motion.div>
+          )}
         </div>
 
         <div className="iconBox">
@@ -61,11 +65,14 @@ function FooterIconMol() {
           {router.pathname.split("/")[1] === "post" && (
             <motion.div className="point" layoutId="underline"></motion.div>
           )}
+          {router.pathname.split("/")[1] === "profile" && (
+            <motion.div className="point" layoutId="underline"></motion.div>
+          )}
         </div>
 
         <div className="iconBox">
           <Link href="/corn">
-            <a>
+            <a className="cornIcon">
               <Image loading="lazy"
                 src="/assets/icons/uniquOneLogo.svg"
                 alt="logo"

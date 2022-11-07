@@ -60,13 +60,13 @@ function LoginFormTmp() {
       if(userInfo){
         
       setTokenState({ token: userInfo.token });
-        ToastUtils.success('환영합니다 :>')
+        ToastUtils.toast('🦄 환영합니다 :>')
         router.replace({
           pathname: "/",
         });
       
       } else {
-        ToastUtils.error('로그인에 실패하였습니다.')
+        ToastUtils.toast('로그인에 실패하였습니다. 정보를 확인해주세요!')
       }
       
 

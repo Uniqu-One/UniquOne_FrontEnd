@@ -60,12 +60,10 @@ function MainCarouselMol(props: {
           <h3>{subTitle}</h3>
         </div>
         <img 
-          
           src={imgSrc}
           alt="메인 슬라이더"
-          width={"500%"}
-          height={400}
-          // layout="fixed"
+          width="500%"
+          height="400px"
         />
       </MainCarouselCardStyle>
     </>

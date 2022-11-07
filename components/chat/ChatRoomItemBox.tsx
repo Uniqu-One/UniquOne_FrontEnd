@@ -73,8 +73,8 @@ function ChatRoomItemBox(props: { roomData: chatRoomDetailDataType }) {
             <img 
               src={postImg && postImg}
               alt="dummy image"
-              width={42}
-              height={42}
+              width="42px"
+              height="42px"
             />
           </div>
           <div className="text">

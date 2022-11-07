@@ -27,6 +27,10 @@ const TopBoxMolStyle = styled.div`
   h1{
     margin-left: 6px;
   }
+  .icon_img{
+    margin: auto;
+    
+  }
 `;
 
 export const TopMainOrg = () => {
@@ -75,11 +79,11 @@ export const TopMainOrg = () => {
         <Link href="/">
           <a>
             <TopLogoAtm>
-              <img  
+              <img className="icon_img"
                 src="/assets/icons/uniquOneLogoGradient.svg"
                 alt="logo"
-                width={15}
-                height={15}
+                width="18px"
+                height="18px"
               />
               <h1>UNIQUONE</h1>
             </TopLogoAtm>

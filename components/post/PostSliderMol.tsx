@@ -98,8 +98,8 @@ function PostSliderMol(props: { postId: number | string; postImgUrlList: [] }) {
             <img  
               src={postImgUrlList}
               alt="postdummy"
-              width={1000}
-              height={1000}
+              width="100%"
+              height="100%"
             />
           </div>
           <div>
@@ -120,7 +120,7 @@ function PostSliderMol(props: { postId: number | string; postImgUrlList: [] }) {
         {postImgUrlList && postImgUrlList.map((img, idx) => {
           return (
             <div key={idx}>
-              <img   src={img} alt="postdummy" width={1000} height={1000} />
+              <img   src={img} alt="postdummy" width="100%" height="100%" />
             </div>
           );
         })}

@@ -59,8 +59,8 @@ function RedirectTmp(props: { type: string }) {
           <img  
             src="/assets/images/congImage.png"
             alt="축하 이미지"
-            width={270}
-            height={270}
+            width="270px"
+            height="270px"
           />
           <Link href="/corn">
             <a>
@@ -84,8 +84,8 @@ function RedirectTmp(props: { type: string }) {
           <img  
             src="/assets/images/congImage.png"
             alt="축하 이미지"
-            width={270}
-            height={270}
+            width="270px"
+            height="270px"
           />
 
           <BtnTmp size="default" value="마이 스타일 설정하러 가기" />

@@ -145,6 +145,8 @@ function CornPostUploadIconOrg(props: {
                 onClick={() => setSelectedId(String(idx))}
                 src={imageSrc}
                 alt="dummy image"
+                width="48px"
+                height="48px"
                 // layout="fill"
               />
 

@@ -90,8 +90,8 @@ function NotiBoxMol(props: { noti: notiListType }) {
           <img  
             src={userCornImg ? userCornImg : "/assets/images/sad_corn_img.jpg"}
             alt="profileImage"
-            width={60}
-            height={60}
+            width="60px"
+            height="60px"
           />
         </div>
 
@@ -115,8 +115,8 @@ function NotiBoxMol(props: { noti: notiListType }) {
           <img  
             src={postImg ? postImg : "/assets/images/postImage.jpg"}
             alt="profileImage"
-            width={60}
-            height={60}
+            width="60px"
+            height="60px"
           />
         </div>
       )}
@@ -126,8 +126,8 @@ function NotiBoxMol(props: { noti: notiListType }) {
           <img  
             src={postImg ? postImg : "/assets/images/postImage.jpg"}
             alt="profileImage"
-            width={60}
-            height={60}
+            width="60px"
+            height="60px"
           />
         </div>
       )}

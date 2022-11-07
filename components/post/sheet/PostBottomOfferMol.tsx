@@ -105,8 +105,8 @@ function PostBottomOfferMol(props: { setComplete: Function, postData?:{price:str
               <img  
                 src={imgurl ? imgurl :"/assets/images/postImage.jpg"}
                 alt="dummy post"
-                width={42}
-                height={42}
+                width="42px"
+                height="42px"
               />
             </div>
             <div>

@@ -9,18 +9,14 @@ import UniStarMol from "../mol/UniStarMol";
 
 const PostLgOrgStyle = styled.div`
   position: relative;
-  border: 1px solid ${color.p_gray_lt};
+  
   border-radius: 9px;
   img {
+    border: 1px solid ${color.p_gray_lt};
     border-radius: 9px;
+    width: calc((100vw - 36px)/2);
   }
-  
-/* 
-  > span:last-child {
-    position: absolute;
-    right: 12px;
-    bottom: 12px;
-  } */
+
 `;
 
 function PostLgOrg(props: { opt?: string; imgSrc?: string; postId?:string}) {
@@ -29,11 +25,11 @@ function PostLgOrg(props: { opt?: string; imgSrc?: string; postId?:string}) {
   return (
     <PostLgOrgStyle>
       
-      <img  
+      <img 
         src={imgSrc ? imgSrc : "/assets/images/postImage.jpg"}
         alt="포스트 더미 이미지"
-        width={400}
-        height={400}
+        width={`calc(100% - 10px)`}
+        height="auto"
         // layout="fill"
       />
       

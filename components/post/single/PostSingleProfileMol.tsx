@@ -35,8 +35,8 @@ function PostSingleProfileMol(props: { tempData: {} }) {
           
           src={cornImgUrl ? cornImgUrl : "/assets/images/dummyUserImg.jpg"}
           alt="유저 더미 이미지"
-          width={54}
-          height={54}
+          width="54px"
+          height="54px"
         />
       </div>
       <div>

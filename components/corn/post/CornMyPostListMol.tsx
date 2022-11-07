@@ -12,6 +12,7 @@ const CornMyPostListMolStyle = styled.div`
   padding-top: 50px;
   padding-bottom: 60px;
   .box {
+    
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -19,7 +20,8 @@ const CornMyPostListMolStyle = styled.div`
     margin-right: 3px;
     margin-top: 3px;
     a {
-      width: 50%;
+      margin:6px;
+
     }
   }
 `;

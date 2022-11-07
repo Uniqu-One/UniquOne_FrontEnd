@@ -45,8 +45,8 @@ function MainRecStyleSelectMol() {
           <img  
             src="/assets/images/postImage.jpg"
             alt="더미 이미지"
-            width={134}
-            height={134}
+            width="134px"
+            height="134px"
           />
         </div>
         <h3>

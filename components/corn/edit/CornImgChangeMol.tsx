@@ -77,8 +77,8 @@ function CornImgChangeMol(props: {
         <img  
           src={imageSrc ? imageSrc : "/assets/images/dummyUserImg.jpg"}
           alt="더미 유저"
-          width={120}
-          height={120}
+          width="12px"
+          height="12px"
         />
       </div>
       <div>

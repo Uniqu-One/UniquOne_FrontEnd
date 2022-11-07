@@ -127,8 +127,8 @@ function ThreeDotMol(props: { postId: string | number }) {
                 <img  
                   src="/assets/images/report_corn.jpg"
                   alt="신고하는 콘"
-                  width={240}
-                  height={240}
+                  width="240px"
+                  height="240px"
                 />
               </div>
               <div className="report_p">

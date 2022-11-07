@@ -109,8 +109,8 @@ function CornPostUploadIconMol() {
                 // @ts-ignore
                   src={!router.query.postId ? preViewImg[+selectedId] : postData.imgList[+selectedId]}
                   alt="testImg"
-                  width={600}
-                  height={600}
+                  width="100%"
+                  height="100%"
                 />
               </motion.div>
             </>

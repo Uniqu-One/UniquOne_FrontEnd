@@ -40,8 +40,8 @@ function MainRecOneUserMol() {
           <img  
             src="/assets/images/dummyUserImg.jpg"
             alt="더미 유저 이미지"
-            width={78}
-            height={78}
+            width="78px"
+            height="78px"
           />
         </div>
 

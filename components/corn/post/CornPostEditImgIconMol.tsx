@@ -26,7 +26,8 @@ function CornPostEditImgIconMol(props: {
                 onClick={() => setSelectedId(String(idx))}
                 // @ts-ignore
                 src={image}
-                alt="dummy image"
+                width="54px"
+                height="54px"
                 // layout="fill"
               />
             </motion.div>

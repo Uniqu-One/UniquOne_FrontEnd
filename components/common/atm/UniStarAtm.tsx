@@ -18,8 +18,8 @@ function UniStarAtm(props: { count: null|number }) {
           <img  
             src="/assets/icons/oneStar.svg"
             alt="oneStar"
-            width={24}
-            height={24}
+            width="24px"
+            height="24px"
           />
         </StarStyle>
       );
@@ -30,8 +30,8 @@ function UniStarAtm(props: { count: null|number }) {
           <img  
             src="/assets/icons/twoStar.svg"
             alt="twoStar"
-            width={24}
-            height={24}
+            width="24px"
+            height="24px"
           />
         </StarStyle>
       );
@@ -41,8 +41,8 @@ function UniStarAtm(props: { count: null|number }) {
           <img  
             src="/assets/icons/threeStar.svg"
             alt="threeStar"
-            width={24}
-            height={24}
+            width="24px"
+            height="24px"
           />
         </StarStyle>
       );
@@ -53,8 +53,8 @@ function UniStarAtm(props: { count: null|number }) {
           <img  
             src="/assets/icons/zeroStar.svg"
             alt="threeStar"
-            width={24}
-            height={24}
+            width="24px"
+            height="24px"
           />
         </StarStyle>
       );

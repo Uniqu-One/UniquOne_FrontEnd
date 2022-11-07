@@ -30,8 +30,8 @@ function PostBottomCompleteMol() {
       <img  
         src="/assets/images/congImage.png"
         alt="happy corn"
-        width={240}
-        height={240}
+        width="240px"
+        height="240px"
       />
       <div onClick={() => router.push("/my/offer")}>
         <BtnTmp size="lg" value="내 가격 제안 보기" status={true} />

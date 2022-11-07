@@ -10,10 +10,10 @@ import UniStarMol from "../mol/UniStarMol";
 const PostMdOrgStyle = styled.div`
   position: relative;
 
-  width: calc((100vw - 6px) / 3);
-  height: calc((100vw - 6px) / 3);
+  
 
   img {
+    width: calc((100vw - 6px) / 3);
     border-radius: 9px;
   }
 
@@ -80,8 +80,8 @@ function PostMdOrg(props: {
           <img  
             src={props.post ? props.post.postImg : "/assets/images/postImage.jpg"}
             alt="포스트 더미 이미지"
-            width={300}
-            height={300}
+            // width="138px"
+            height="auto"
           />
         </a>
       </Link>

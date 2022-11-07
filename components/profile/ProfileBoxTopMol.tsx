@@ -68,8 +68,8 @@ function ProfileBoxTopMol(props: { type: string, profileBoxData:ProfileDataType,
               <img  
                 src="/assets/icons/uniquOneLogo.svg"
                 alt="logo icon"
-                width={20}
-                height={20}
+                width="20px"
+                height="20px"
               />
             </div>
             <div>

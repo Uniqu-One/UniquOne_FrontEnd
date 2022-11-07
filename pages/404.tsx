@@ -33,8 +33,8 @@ function Error() {
           <img  
             src="/assets/images/404.png"
             alt="잘못된 페이지"
-            width={240}
-            height={240}
+            width="240px"
+            height="240px"
           />
         </div>
 

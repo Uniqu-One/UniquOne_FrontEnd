@@ -32,8 +32,8 @@ function ProfileNothingMol() {
         <img  
           src="/assets/images/sad_corn_img.jpg"
           alt="sad_corn"
-          width={240}
-          height={240}
+          width="240px"
+          height="240px"
         />
       </div>
       <div>

@@ -4,7 +4,8 @@ import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { FollowUtils } from "../../lib/utils/FollowUtils";
 import { ProfileUtils } from "../../lib/utils/ProfileUtils";
-import { ToastUtils } from "../common/tmp/ToastTmp";import { TokenState } from "../../states/recoil/TokenState";
+import { ToastUtils } from "../common/tmp/ToastTmp";
+import { TokenState } from "../../states/recoil/TokenState";
 import { UserInfoState } from "../../states/recoil/UserInfoState";
 import { color, styleColor } from "../../styles/theme";
 import BtnTmp from "../common/tmp/BtnTmp";
@@ -38,55 +39,56 @@ const ProfileBoxTmpStyle = styled.div`
 `;
 
 function ProfileBoxTmp(props: { type: string; cornId?: string }) {
-
   const token = useRecoilValue(TokenState).token;
-  const {cornId} = props
-  const [followStatus, setFollowStatus] = useState<undefined|boolean>();
+  const { cornId } = props;
+  const [followStatus, setFollowStatus] = useState<undefined | boolean>();
   const handleFollowBtn = () => {
     if (followStatus === false) {
-      FollowUtils.registerFollow(token,cornId)
+      FollowUtils.registerFollow(token, cornId);
       ToastUtils.toast("팔로우를 하였습니다.");
       setFollowStatus(true);
     } else {
-      FollowUtils.cancelFollow(token,cornId)
+      FollowUtils.cancelFollow(token, cornId);
       ToastUtils.toast("팔로우를 취소하였습니다.");
       setFollowStatus(false);
     }
   };
 
-  const [profileBoxData, setProfileBoxData] = useState<any>([])
-  
+  const [profileBoxData, setProfileBoxData] = useState<any>([]);
+
   const handleUpdateProfileBoxData = async () => {
-    if(cornId){
+    if (cornId) {
       setProfileBoxData(await ProfileUtils.getProfileData(token, cornId));
     } else {
       setProfileBoxData(await ProfileUtils.getMyProfileData(token));
     }
-    
-  }
+  };
 
   useEffect(() => {
-    handleUpdateProfileBoxData()
-  },[])
+    handleUpdateProfileBoxData();
+  }, []);
 
   useEffect(() => {
-
-    if(cornId && profileBoxData){ 
-      setFollowStatus(profileBoxData.isFollow)
+    if (cornId && profileBoxData) {
+      setFollowStatus(profileBoxData.isFollow);
     }
-  },[profileBoxData])
+  }, [profileBoxData]);
 
-  console.log(profileBoxData)
-
+  console.log(profileBoxData);
 
   if (profileBoxData === undefined) {
     return <ProfileNothingMol />;
   } else {
     return (
       <>
-      <TopTmp text='userId'/>
+        {props.type === "my" ? <TopTmp type="my" /> : <TopTmp text="userId" />}
+
         <ProfileBoxTmpStyle>
-          <ProfileBoxTopMol type={props.type} profileBoxData={profileBoxData} cornId={cornId}/>
+          <ProfileBoxTopMol
+            type={props.type}
+            profileBoxData={profileBoxData}
+            cornId={cornId}
+          />
           <ProfileBoxUnderMol
             desc={profileBoxData?.dsc || ""}
             link={profileBoxData?.url || ""}

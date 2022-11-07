@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, Variants } from "framer-motion";
 import styled from "@emotion/styled";
 import useEvaIcon from "../../lib/hooks/useEvaIcon";
@@ -92,11 +92,16 @@ const Box = (props: { text: string }) => {
   return <BoxStyle>{props.text}</BoxStyle>;
 };
 
-export default function ChatRoomButtonMol(props:{postType:string,postId:number,receiverId:number, chatRoomType:string}) {
+export default function ChatRoomButtonMol(props: {
+  postType: string;
+  postId: number;
+  receiverId: number;
+  chatRoomType: string;
+}) {
   useEvaIcon();
-  const {postId, receiverId, postType,chatRoomType} = props
-  const token = useRecoilValue(TokenState).token
-  const userId = useRecoilValue(UserInfoState).userId
+  const { postId, receiverId, postType, chatRoomType } = props;
+  const token = useRecoilValue(TokenState).token;
+  const userId = useRecoilValue(UserInfoState).userId;
 
   const [tempMenu, setTempMenu] = useState(MENU[0]);
   const [isOpen, setIsOpen] = useState(false);
@@ -106,23 +111,37 @@ export default function ChatRoomButtonMol(props:{postType:string,postId:number,r
     setIsOpen(false);
 
     if (menu === "거래완료" && postId && receiverId) {
-      if (await TradeUtils.tradeOver(token,userId,+postId)) {
-        ToastUtils.toast('거래가 완료되었습니다.')
+      if (await TradeUtils.tradeOver(token, userId, +postId)) {
+        ToastUtils.toast("거래가 완료되었습니다.");
       } else {
-        ToastUtils.toast('거래가 가능한 상태가 아닙니다.')
+        ToastUtils.toast("거래가 가능한 상태가 아닙니다.");
       }
     }
   };
 
   const handleOpen = () => {
-    if(chatRoomType === "SELLER"){
-      setIsOpen(!isOpen)
-    } else {
-      ToastUtils.toast('판매자만 제품의 상태 변경이 가능합니다')
-    }
-    
+    if (chatRoomType === "SELLER") {
+      
+      if(tempMenu === "거래완료"){
+        ToastUtils.toast("거래완료 후에는 거래 상태 변경이 불가능합니다.");  
+      } else {
 
-  }
+        setIsOpen(!isOpen);
+      }
+      
+    } else {
+      ToastUtils.toast("판매자만 제품의 상태 변경이 가능합니다");
+    }
+  };
+
+  useEffect(() => {
+    if (postType === "SALE") {
+      setTempMenu(MENU[0]);
+    }
+    if (postType === "SOLD_OUT") {
+      setTempMenu(MENU[2]);
+    }
+  }, []);
 
   return (
     <>
@@ -132,10 +151,7 @@ export default function ChatRoomButtonMol(props:{postType:string,postId:number,r
         className="menu"
       >
         <ButtonStyle tempMenu={tempMenu}>
-          <motion.div
-            whileTap={{ scale: 0.95 }}
-            onClick={() => handleOpen()}
-          >
+          <motion.div whileTap={{ scale: 0.95 }} onClick={() => handleOpen()}>
             <div>
               <p>{tempMenu}</p>
             </div>

@@ -15,7 +15,6 @@ const ProfileInterVal = styled.div`
 function index() {
   return (
     <>
-    <TopTmp type='my'/>
 
     <ProfileBoxTmp type="my"/>
     

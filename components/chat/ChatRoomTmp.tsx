@@ -107,7 +107,6 @@ function ChatRoomTmp(props: { roomId: string }) {
           }
           setRoomData(res.data.data);
           setChatData(chatDatas);
-          setEnter(true) 
           return;
         })
         .catch((err) => {
@@ -124,12 +123,15 @@ function ChatRoomTmp(props: { roomId: string }) {
   useEffect(() => {
     scrollRef?.current?.scrollIntoView({ behavior: "smooth" });
 
+    console.log(enter, chatData[0])
+
     return () => {
       if(enter === true && chatData[0] === undefined){
         handleRemoveChatRoom()
       }
     }
   }, [chatData]);
+
 
   return (
     <>

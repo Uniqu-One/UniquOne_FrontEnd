@@ -11,6 +11,7 @@
   "dependencies": {
     "@emotion/styled": "^11.10.4",
     "@mui/styled-engine-sc": "^5.10.6",
+    "@next/bundle-analyzer": "^13.0.2",
     "@stomp/stompjs": "^6.1.2",
     "@types/react-helmet": "^6.1.5",
     "@types/react-slick": "^0.23.10",

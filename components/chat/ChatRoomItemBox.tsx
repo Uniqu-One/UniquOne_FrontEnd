@@ -70,7 +70,7 @@ function ChatRoomItemBox(props: { roomData: chatRoomDetailDataType }) {
       <ChatRoomItemBoxStyle>
         <div className="left" onClick={() => router.push(`/post/${postId}`)}>
           <div>
-            <Image priority={true}
+            <Image 
               
               src={postImg && postImg}
               alt="dummy image"

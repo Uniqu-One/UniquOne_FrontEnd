@@ -95,7 +95,7 @@ function PostSliderMol(props: { postId: number | string; postImgUrlList: [] }) {
       <PostSliderMolStyle>
         <Slider {...settings}>
           <div>
-            <Image priority={true} 
+            <Image  
               src={postImgUrlList}
               alt="postdummy"
               width={1000}
@@ -120,7 +120,7 @@ function PostSliderMol(props: { postId: number | string; postImgUrlList: [] }) {
         {postImgUrlList && postImgUrlList.map((img, idx) => {
           return (
             <div key={idx}>
-              <Image priority={true}  src={img} alt="postdummy" width={1000} height={1000} />
+              <Image   src={img} alt="postdummy" width={1000} height={1000} />
             </div>
           );
         })}

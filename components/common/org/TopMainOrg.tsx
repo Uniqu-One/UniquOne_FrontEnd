@@ -75,7 +75,7 @@ export const TopMainOrg = () => {
         <Link href="/">
           <a>
             <TopLogoAtm>
-              <Image priority={true} 
+              <Image  
                 src="/assets/icons/uniquOneLogoGradient.svg"
                 alt="logo"
                 width={15}

@@ -29,7 +29,7 @@ function PostLgOrg(props: { opt?: string; imgSrc?: string; postId?:string}) {
   return (
     <PostLgOrgStyle>
       
-      <Image priority={true} 
+      <Image  
         src={imgSrc ? imgSrc : "/assets/images/postImage.jpg"}
         alt="포스트 더미 이미지"
         width={400}

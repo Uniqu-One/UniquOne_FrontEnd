@@ -67,7 +67,7 @@ function MyTradeBoxMol(props: {
       <MyTradeBoxMolStyle>
         <div className="left">
           <div className="trade_img">
-            <Image priority={true} 
+            <Image  
               src={postImg}
               alt="더미 이미지"
               width={42}

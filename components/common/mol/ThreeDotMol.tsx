@@ -124,7 +124,7 @@ function ThreeDotMol(props: { postId: string | number }) {
           <ReportStyle>
             <div className="report_img">
               <div>
-                <Image priority={true} 
+                <Image  
                   src="/assets/images/report_corn.jpg"
                   alt="신고하는 콘"
                   width={240}

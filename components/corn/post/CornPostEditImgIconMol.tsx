@@ -22,7 +22,7 @@ function CornPostEditImgIconMol(props: {
 
           
             <motion.div className="previeImg">
-              <Image priority={true} 
+              <Image  
                 onClick={() => setSelectedId(String(idx))}
                 // @ts-ignore
                 src={image}

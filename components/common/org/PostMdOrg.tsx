@@ -77,7 +77,7 @@ function PostMdOrg(props: {
     <PostMdOrgStyle>
       <Link href={props.post ? `/post/${props.post.postId}` : "/"}>
         <a>
-          <Image priority={true} 
+          <Image  
             src={props.post ? props.post.postImg : "/assets/images/postImage.jpg"}
             alt="포스트 더미 이미지"
             width={300}

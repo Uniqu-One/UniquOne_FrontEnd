@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { SubscribeState } from "../../states/recoil/SubscribeState";
 
 import { UserInfoState } from "../../states/recoil/UserInfoState";
 import { ToastUtils } from "../common/tmp/ToastTmp";
@@ -8,11 +9,13 @@ function NotiSubscribe() {
   const userId = useRecoilValue(UserInfoState).userId;
 
   const [eventSource, setEventSource] = useState<any>();
+  const [subStats, setSubState] = useRecoilState(SubscribeState)
 
   const handleSub = () => {
     setEventSource(
       new EventSource(`${process.env.NEXT_PUBLIC_URL_AWS}/noti/subscribe/` + userId)
     );
+    setSubState(true)
   };
 
   const notiSend = () => {
@@ -33,7 +36,7 @@ function NotiSubscribe() {
   };
 
   useEffect(() => {
-    if (userId && !eventSource) {
+    if (userId && !eventSource && (subStats===false)) {
       eventSource?.close();
       handleSub();
     }

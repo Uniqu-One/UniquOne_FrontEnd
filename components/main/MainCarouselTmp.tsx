@@ -16,7 +16,7 @@ function MainCarouselTmp() {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 1800,
+    autoplaySpeed: 4200,
   };
   return (
     <MainCarouselStyle>

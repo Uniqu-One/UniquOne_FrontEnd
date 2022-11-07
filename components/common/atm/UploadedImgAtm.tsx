@@ -20,7 +20,9 @@ function UploadedImgAtm(props: { imgSrc: string }) {
     <>
       <UploadedImgAtmStyle>
         <div>
-          <img   src={props.imgSrc} alt="미리보기" layout="fill" objectFit="cover"/>
+          <img   src={props.imgSrc} alt="미리보기" 
+          // layout="fill" objectFit="cover"
+          />
         </div>
       </UploadedImgAtmStyle>
     </>

@@ -72,7 +72,7 @@ function MyTradeBoxMol(props: {
               alt="더미 이미지"
               width={42}
               height={42}
-            ></Image>
+            />
           </div>
           <div className="item_info">
             <div>

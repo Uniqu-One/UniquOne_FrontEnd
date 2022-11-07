@@ -145,8 +145,8 @@ function CornPostUploadIconOrg(props: {
                 onClick={() => setSelectedId(String(idx))}
                 src={imageSrc}
                 alt="dummy image"
-                layout="fill"
-              ></Image>
+                // layout="fill"
+              />
 
               <div onClick={() => handleRemoveImage()}>
                 <CornPostUploadRemoveIconMol />

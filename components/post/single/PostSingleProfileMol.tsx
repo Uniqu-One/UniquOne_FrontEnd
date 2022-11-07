@@ -37,7 +37,7 @@ function PostSingleProfileMol(props: { tempData: {} }) {
           alt="유저 더미 이미지"
           width={54}
           height={54}
-        ></Image>
+        />
       </div>
       <div>
         <h3>{cornTitle}</h3>

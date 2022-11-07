@@ -27,8 +27,8 @@ function CornPostEditImgIconMol(props: {
                 // @ts-ignore
                 src={image}
                 alt="dummy image"
-                layout="fill"
-              ></Image>
+                // layout="fill"
+              />
             </motion.div>
           
         </motion.div>

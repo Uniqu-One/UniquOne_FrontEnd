@@ -65,7 +65,7 @@ function MainCarouselMol(props: {
           alt="메인 슬라이더"
           width={"500%"}
           height={400}
-          layout="fixed"
+          // layout="fixed"
         />
       </MainCarouselCardStyle>
     </>

@@ -22,6 +22,7 @@ function PostSingleBottomSheetMol(props:{postData?:{}}) {
       {complete ? (
         <PostBottomCompleteMol/>
       ) : (
+        //@ts-ignore
         <PostBottomOfferMol setComplete={setComplete} postData={props.postData}/>
       )}
     </PostSingleBottomSheetMolStyle>

@@ -3,7 +3,8 @@ import { BottomSheet } from "react-spring-bottom-sheet";
 import TopTmp from "../../common/tmp/TopTmp";
 import PostSingleBottomSheetMol from "./PostSingleBottomSheetMol";
 
-function PostSingleFooterOfferMol(props: { postId: string | number }) {
+function PostSingleFooterOfferMol(props: { postId: string | number, postData?:{} }) {
+
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -22,7 +23,7 @@ function PostSingleFooterOfferMol(props: { postId: string | number }) {
 
       <BottomSheet open={open} onDismiss={() => setOpen(false)}>
         <TopTmp type="postOffer" function={setOpen} />
-        <PostSingleBottomSheetMol />
+        <PostSingleBottomSheetMol postData={props.postData}/>
       </BottomSheet>
     </div>
   );

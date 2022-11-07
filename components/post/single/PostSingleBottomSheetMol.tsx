@@ -12,10 +12,9 @@ const PostSingleBottomSheetMolStyle = styled.div`
 
 `;
 
-function PostSingleBottomSheetMol() {
+function PostSingleBottomSheetMol(props:{postData?:{}}) {
   
   const [complete, setComplete] = useState(false);
-
 
 
   return (
@@ -23,7 +22,7 @@ function PostSingleBottomSheetMol() {
       {complete ? (
         <PostBottomCompleteMol/>
       ) : (
-        <PostBottomOfferMol setComplete={setComplete}/>
+        <PostBottomOfferMol setComplete={setComplete} postData={props.postData}/>
       )}
     </PostSingleBottomSheetMolStyle>
   );

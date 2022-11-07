@@ -22,7 +22,6 @@ const MyTradeBoxMolStyle = styled.div`
 
   .item_info {
     display: flex;
-    /* background-color: red; */
     flex-direction: column;
     justify-content: space-between;
     padding: 3px 0;
@@ -57,17 +56,18 @@ function MyTradeBoxMol(props: {
   setReviewModal: Function;
   setTempTradeId: Function;
   setPostId:Function
+  type:string
 }) {
   useEvaIcon();
   const { postImg, postTitle, price,tradeId, postId } = props.data;
-  const { setReviewModal, setTempTradeId,setPostId } = props;
+  const { setReviewModal, setTempTradeId,setPostId,type } = props;
 
   return (
     <>
       <MyTradeBoxMolStyle>
         <div className="left">
           <div className="trade_img">
-            <Image loading="lazy"
+            <Image 
               src={postImg}
               alt="더미 이미지"
               width={42}
@@ -84,6 +84,8 @@ function MyTradeBoxMol(props: {
           </div>
         </div>
 
+        {type=== "buy" &&
+        
         <div
           className="btn"
           onClick={() => {
@@ -97,6 +99,9 @@ function MyTradeBoxMol(props: {
             <i data-eva="arrow-ios-forward-outline"></i>
           </div>
         </div>
+        }
+
+
       </MyTradeBoxMolStyle>
     </>
   );

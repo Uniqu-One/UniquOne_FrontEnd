@@ -32,7 +32,7 @@ function OfferId(props: { postId: string | number }) {
   const offerList = cornOfferDetailData.offerDetailIndividualOutDtos;
 
   console.log(cornOfferDetailData);
-  console.log(offerList);
+  // console.log(offerList);
 
   if (cornOfferDetailData === "Loading") {
     <LoadingSpinnerAtm />;
@@ -43,9 +43,10 @@ function OfferId(props: { postId: string | number }) {
       <TopTmp text="오퍼" />
       <div>''</div>
       {cornOfferDetailData === "Loading" && <LoadingSpinnerAtm />}
-      {/* <CornOfferListBoxMol offer={cornOfferDetailData}/> */}
       <OfferIdStyle>
         <h3>모든오퍼</h3>
+        <CornOfferListBoxMol offer={cornOfferDetailData} />
+
         {offerList &&
           offerList.map((offer: offerDataType) => {
             return <CornOfferSingleBoxOrg offer={offer} type="corn"/>;

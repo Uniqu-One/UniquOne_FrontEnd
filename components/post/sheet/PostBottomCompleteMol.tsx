@@ -27,7 +27,7 @@ function PostBottomCompleteMol() {
     <PostBottomCompleteMolStyle>
       <h3>제안을 전송하였습니다!</h3>
       <p>셀러가 제안을 볼 수 있도록 전달해드렸어요!</p>
-      <Image loading="lazy"
+      <Image 
         src="/assets/images/congImage.png"
         alt="happy corn"
         width={240}

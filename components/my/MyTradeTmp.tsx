@@ -32,7 +32,6 @@ function MyTradeTmp() {
 
   const [reviewModal, setReviewModal] = useState(false);
 
-
   const [tempTradeId, setTempTradeId] = useState("");
   const [postId, setPostId] = useState("");
 
@@ -43,6 +42,7 @@ function MyTradeTmp() {
       {tempTab === 0 &&
         purchaseDatas &&
         purchaseDatas.map((data: purchaseDataType) => {
+          console.log(data);
           return (
             <MyTradeBoxMol
               key={data.tradeId}
@@ -50,6 +50,7 @@ function MyTradeTmp() {
               setReviewModal={setReviewModal}
               setTempTradeId={setTempTradeId}
               setPostId={setPostId}
+              type="buy"
             />
           );
         })}
@@ -59,6 +60,7 @@ function MyTradeTmp() {
         sellDatas.map((data: purchaseDataType) => {
           return (
             <MyTradeBoxMol
+            type="sell"
               key={data.tradeId}
               data={data}
               setReviewModal={setReviewModal}
@@ -73,7 +75,6 @@ function MyTradeTmp() {
           tempTradeId={tempTradeId}
           postId={postId}
           setReviewModal={setReviewModal}
-
         />
       </BottomSheet>
     </MyTradeTmpStyle>

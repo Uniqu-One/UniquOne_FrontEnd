@@ -68,8 +68,15 @@ function CornOfferListBoxMol(props: { offer: CornOfferType }) {
   const router = useRouter();
   useEvaIcon();
 
-  const { acceptCount, postId, postImg, price, refuseCount, waitingCnt } =
+  //@ts-ignore
+  const { acceptCount, postId, postImg, price, postPrice, refuseCount, waitingCnt } =
     props.offer;
+
+  //@ts-ignore
+  if(props.offer === "Loading"){
+    return <></>
+  }
+
 
 
   return (
@@ -77,14 +84,22 @@ function CornOfferListBoxMol(props: { offer: CornOfferType }) {
       <CornOfferListBoxMolStyled onClick={() => router.push(`/corn/offer/${postId}`)}>
         <div className="left">
           <div className="item_box">
-            <Image loading="lazy" src={postImg} alt="dummy img" width={60} height={60} />
+            <Image  src={postImg} alt="dummy img" width={60} height={60} />
           </div>
           <div className="infos">
             <div className="title">
               <p>제목</p>
             </div>
             <div className="price">
-              <p>₩ {price.toLocaleString()}</p>
+              
+              <p>
+              ₩
+                {price === undefined && postPrice.toLocaleString()}
+                {postPrice===undefined && price.toLocaleString()}
+                원
+                
+                </p>
+
             </div>
             <div className="offers">
               <span className="offer">
@@ -99,7 +114,7 @@ function CornOfferListBoxMol(props: { offer: CornOfferType }) {
             </div>
           </div>
         </div>
-        {router.query.offerId ? (
+        {postPrice ? (
           <></>
         ) : (
           <div className="icon">

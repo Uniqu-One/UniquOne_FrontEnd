@@ -89,12 +89,12 @@ function CornOfferSingleBoxOrg(props: { offer: offerDataType; type?: string }) {
         >
           {cornImg && (
             <div className="cornImg">
-              <Image loading="lazy" src={cornImg} alt="cornTitle" width={60} height={60} />
+              <Image  src={cornImg} alt="cornTitle" width={60} height={60} />
             </div>
           )}
           {postImg && (
             <div className="itemImg">
-              <Image loading="lazy" src={postImg} alt="postTitle" width={60} height={60} />
+              <Image  src={postImg} alt="postTitle" width={60} height={60} />
             </div>
           )}
 
@@ -107,7 +107,7 @@ function CornOfferSingleBoxOrg(props: { offer: offerDataType; type?: string }) {
             {postPrice ? (
               <div className="price">
                 <span>₩{postPrice && postPrice.toLocaleString()}</span> ={">"} ₩
-                {offerPrice.toLocaleString()}
+                {offerPrice.toLocaleString()} 
               </div>
             ) : (
               <div className="deatil_price">

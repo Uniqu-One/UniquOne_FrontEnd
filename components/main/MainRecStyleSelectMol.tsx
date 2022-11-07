@@ -42,7 +42,7 @@ function MainRecStyleSelectMol() {
     <>
       <MainRecStyleSelectMolStyle>
         <div>
-          <Image loading="lazy"
+          <Image 
             src="/assets/images/postImage.jpg"
             alt="더미 이미지"
             width={134}

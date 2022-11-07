@@ -48,9 +48,7 @@ const PostSingleFooterTmpStyle = styled.div`
 `;
 
 function PostSingleFooterTmp(props:{postId:number|string, postDetailData:{price:string|number}}) {
-
   const {price} = props.postDetailData
-
 
   return (
     <>
@@ -58,7 +56,7 @@ function PostSingleFooterTmp(props:{postId:number|string, postDetailData:{price:
         <div className="price">{price.toLocaleString()} 원</div>
 
         <div className="btns">
-          <PostSingleFooterOfferMol postId={props.postId}/>
+          <PostSingleFooterOfferMol postId={props.postId} postData={props.postDetailData}/>
           <PostSingleFooterChatMol postId={props.postId}/>
         </div>
       </PostSingleFooterTmpStyle>

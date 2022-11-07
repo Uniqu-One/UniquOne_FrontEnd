@@ -111,7 +111,7 @@ export default function ChatRoomButtonMol(props: {
     setIsOpen(false);
 
     if (menu === "거래완료" && postId && receiverId) {
-      if (await TradeUtils.tradeOver(token, userId, +postId)) {
+      if (await TradeUtils.tradeOver(token, props.receiverId, +postId)) {
         ToastUtils.toast("거래가 완료되었습니다.");
       } else {
         ToastUtils.toast("거래가 가능한 상태가 아닙니다.");
@@ -121,7 +121,6 @@ export default function ChatRoomButtonMol(props: {
 
   const handleOpen = () => {
     if (chatRoomType === "SELLER") {
-      
       if(tempMenu === "거래완료"){
         ToastUtils.toast("거래완료 후에는 거래 상태 변경이 불가능합니다.");  
       } else {

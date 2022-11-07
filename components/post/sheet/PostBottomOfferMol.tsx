@@ -68,9 +68,14 @@ const PostBottomOfferMolStyle = styled.div`
   }
 `;
 
-function PostBottomOfferMol(props: { setComplete: Function }) {
+function PostBottomOfferMol(props: { setComplete: Function, postData?:{price:string,imgUrlList:string[],title:string} }) {
   const router = useRouter();
   const token = useRecoilValue(TokenState).token;
+  const postData = props.postData;
+  const price = postData?.price;
+  const imgurl = postData?.imgUrlList[0]
+  const title = postData?.title
+
   const [offerPrice, setOfferPrice] = useState("");
   const { setComplete } = props;
 
@@ -97,20 +102,20 @@ function PostBottomOfferMol(props: { setComplete: Function }) {
         <div className="top">
           <div>
             <div>
-              <Image loading="lazy"
-                src="/assets/images/postImage.jpg"
+              <Image 
+                src={imgurl ? imgurl :"/assets/images/postImage.jpg"}
                 alt="dummy post"
                 width={42}
                 height={42}
               />
             </div>
             <div>
-              <h3>글자글자 제목</h3>
+              <h3>{title}</h3>
             </div>
           </div>
           <div>
             <p>
-              <span>32,000</span> 원
+              <span>{price?.toLocaleString()}</span> 원
             </p>
           </div>
         </div>

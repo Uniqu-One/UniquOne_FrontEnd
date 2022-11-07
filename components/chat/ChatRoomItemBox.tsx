@@ -71,7 +71,7 @@ function ChatRoomItemBox(props: { roomData: chatRoomDetailDataType }) {
         <div className="left" onClick={() => router.push(`/post/${postId}`)}>
           <div>
             <Image
-              loading="lazy"
+              
               src={postImg && postImg}
               alt="dummy image"
               width={42}
@@ -92,6 +92,7 @@ function ChatRoomItemBox(props: { roomData: chatRoomDetailDataType }) {
             chatRoomType={chatRoomType}
           />
         </div>
+      
       </ChatRoomItemBoxStyle>
     </>
   );

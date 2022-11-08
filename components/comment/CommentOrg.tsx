@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import Slider from "react-slick";
 import { useRecoilValue } from "recoil";

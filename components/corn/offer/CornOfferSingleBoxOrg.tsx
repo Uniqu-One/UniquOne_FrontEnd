@@ -1,9 +1,7 @@
 import styled from "@emotion/styled";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import React from "react";
 import { color } from "../../../styles/theme";
-import UserImgAtm from "../../common/atm/UserImgAtm";
 import MyOfferCheckingMol from "../../my/MyOfferCheckingMol";
 import { offerDataType } from "../../my/MyOfferListMol";
 import CornOfferNoMol from "./CornOfferSingleNoMol";
@@ -87,11 +85,11 @@ function CornOfferSingleBoxOrg(props: { offer: offerDataType; type?: string }) {
             router.push(`/post/${postId}`);
           }}
         >
-          {cornImg && (
+          {cornImg ? (
             <div className="cornImg">
               <img   src={cornImg} alt="cornTitle" width="60px" height="60px" />
-            </div>
-          )}
+            </div> 
+          ): <img   src={"/assets/images/sad_corn_img.jpg"} alt="cornTitle" width="60px" height="60px" />}
           {postImg && (
             <div className="itemImg">
               <img   src={postImg} alt="postTitle" width="60px" height="60px" />

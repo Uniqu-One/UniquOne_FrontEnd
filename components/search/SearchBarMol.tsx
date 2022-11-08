@@ -5,6 +5,7 @@ import { useRecoilState } from "recoil";
 import useEvaIcon from "../../lib/hooks/useEvaIcon";
 import { ToastUtils } from "../common/tmp/ToastTmp";import { SearchModalState } from "../../states/recoil/SearchModalState";
 import { color } from "../../styles/theme";
+import { SearchModalWordState } from "../../states/recoil/SearchModalWordState";
 
 const SearchBarMolStyle = styled.div`
   background-color: white;
@@ -50,12 +51,15 @@ function SearchBarMol(props: { keyword?: string }) {
   const { keyword } = props;
 
   const [modalState, setModalState] = useRecoilState(SearchModalState);
-
+  const [prevKey, setPrevKey] = useRecoilState(SearchModalWordState);
   const [searchWord, setSearchWord] = useState<string|undefined>("");
 
   const handleChangeSearchPage = () => {
     if (searchWord !== "") {
       router.push(`/search/${searchWord}`);
+      if(prevKey.includes(searchWord) === false){
+        setPrevKey((prev:[]) => ([...prev,searchWord]))
+      }
       setModalState(false);
     } else {
       ToastUtils.toast("검색어를 입력해주세요");

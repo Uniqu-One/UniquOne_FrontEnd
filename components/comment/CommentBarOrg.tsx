@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { CommentUtils } from "../../lib/utils/CommentUtils";

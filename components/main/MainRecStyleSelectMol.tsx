@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import Image from "next/image";
 import React from "react";
 import { color } from "../../styles/theme";
 
@@ -7,7 +6,9 @@ const MainRecStyleSelectMolStyle = styled.div`
   border-radius: 9px;
   margin: 0px 18px 0px;
   height: 168px;
-  background-color: ${color.p_gray_md};
+  
+  background-color: white;
+  
 
   display: flex;
   justify-content: center;
@@ -41,9 +42,9 @@ function MainRecStyleSelectMol() {
   return (
     <>
       <MainRecStyleSelectMolStyle>
-        <div>
-          <img  
-            src="/assets/images/postImage.jpg"
+        <div className="back">
+          <img
+            src="https://uniquoneimg.s3.ap-northeast-2.amazonaws.com/img/909c97ac-5f4c-4fbd-8e84-9c6442d2da5fhome14292324-64b7-4bd7-b527-ff38c53186fb.jpg"
             alt="더미 이미지"
             width="134px"
             height="134px"

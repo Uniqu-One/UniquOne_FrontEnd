@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
@@ -48,9 +47,10 @@ function ProfileBoxTopMol(props: { type: string, profileBoxData:ProfileDataType,
   const router = useRouter();
   const {cornId} = props
 
+
   const {postEA, followerEA,followingEA,imgUrl,reviewEA,title} = props.profileBoxData 
 
-
+  
 
   return (
     <>

@@ -55,7 +55,7 @@ function MyQnaMainBoxMol(props: { qna: qnaListType }) {
 
   return (
     <>
-      <Link href="/my/qna/1">
+      <Link href={`/my/qna/${qnaId}`}>
         <a>
           <MyQnaMainBoxMolStyle>
             <div className="left_box">

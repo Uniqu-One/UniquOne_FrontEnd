@@ -25,7 +25,7 @@ function MainCategoryTmp() {
     <MainCategoryBoxStyle>
       <MainCategoryContainerStyle>
         {mainCategoryDummy.map(category => {
-          return <MainCategoryMol key={category.id} title={category.title}/>
+          return <MainCategoryMol key={category.id} title={category.title} src={category.src}/>
         })}
       </MainCategoryContainerStyle>
     </MainCategoryBoxStyle>

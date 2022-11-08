@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import Image from "next/image";
+
 import { useRouter } from "next/router";
 import React from "react";
 import { color } from "../../styles/theme";
@@ -70,7 +70,7 @@ function ChatRoomItemBox(props: { roomData: chatRoomDetailDataType }) {
       <ChatRoomItemBoxStyle>
         <div className="left" onClick={() => router.push(`/post/${postId}`)}>
           <div>
-            <img 
+            <img
               src={postImg && postImg}
               alt="dummy image"
               width="42px"
@@ -91,7 +91,6 @@ function ChatRoomItemBox(props: { roomData: chatRoomDetailDataType }) {
             chatRoomType={chatRoomType}
           />
         </div>
-      
       </ChatRoomItemBoxStyle>
     </>
   );

@@ -8,6 +8,7 @@ const CornMainDashBoxAtmStyle = styled.div`
   width: calc((100vw - 54px) / 4);
   border-radius: 9px;
   text-align: center;
+  
 
   >div{
     height: 100%;
@@ -22,6 +23,7 @@ const CornMainDashBoxAtmStyle = styled.div`
     h3{
       font-weight: 650;
       margin-bottom: 6px;
+      letter-spacing: 0.5px;
     }
     p{
       font-size: 0.875rem;
@@ -29,15 +31,13 @@ const CornMainDashBoxAtmStyle = styled.div`
   }
 `;
 
-function CornMainDashBoxAtm(props:{title:string}) {
-
-  // props - count / title
+function CornMainDashBoxAtm(props:{title:string, value:number}) {
 
   return (
     <CornMainDashBoxAtmStyle>
       <div>
         <div>
-          <h3>+17</h3>
+          <h3>+{props.value}</h3>
         </div>
         <div>
           <p>{props.title}</p>

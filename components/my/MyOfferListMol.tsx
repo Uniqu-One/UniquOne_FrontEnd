@@ -5,12 +5,26 @@ import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { OfferUtils } from "../../lib/utils/OfferUtils";
 import { TokenState } from "../../states/recoil/TokenState";
+import { color } from "../../styles/theme";
+import QuestionMarkAtm from "../common/atm/QuestionMarkAtm";
 import CornOfferSingleBoxOrg from "../corn/offer/CornOfferSingleBoxOrg";
 
 const MyOfferListMolStyle = styled.div`
   padding-top: 50px;
 `;
-
+const MyOfferListMolQStyle = styled.div`
+  padding-top: 36vh;
+  text-align: center;
+  color: ${color.p_gray_md};
+  svg{
+    fill: ${color.p_gray_md};
+    width: 72px;
+    height: 72px;
+  }
+  p{
+    margin-top: 9px;
+  }
+`;
 export type offerDataType = {
   postId: string | number;
   offerId: string | number;
@@ -37,24 +51,23 @@ function MyOfferListMol() {
     handleGetMyCornOfferList();
   }, []);
 
+  console.log(myOfferDataList)
+
   return (
     <>
-      {myOfferDataList[0] ? (
+      {myOfferDataList ? (
         <MyOfferListMolStyle>
           {myOfferDataList.map((offer: offerDataType) => {
             return <CornOfferSingleBoxOrg key={offer.postId} offer={offer} />;
           })}
         </MyOfferListMolStyle>
       ) : (
-        <>
-          <div>오퍼 내역이 없습니다.</div>
-          <div>오퍼 내역이 없습니다.</div>
-          <div>오퍼 내역이 없습니다.</div>
-          <div>오퍼 내역이 없습니다.</div>
-          <div>오퍼 내역이 없습니다.</div>
-          <div>오퍼 내역이 없습니다.</div>
-          <div>오퍼 내역이 없습니다.</div>
-        </>
+        <MyOfferListMolQStyle>
+          <div >
+            <QuestionMarkAtm/>
+            <p>내 오퍼 내역이 없습니다.</p>
+          </div>
+          </MyOfferListMolQStyle>
       )}
     </>
   );

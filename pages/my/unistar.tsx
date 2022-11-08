@@ -10,10 +10,6 @@ import { ProfileContentsStyle } from "../../components/profile/ProfileContentTmp
 import { UniStarUtils } from "../../lib/utils/UniStarUtils";
 import { TokenState } from "../../states/recoil/TokenState";
 
-const UniStarStyle = styled.div`
- 
-`
-
 function UniStar() { 
 
   const token = useRecoilValue(TokenState).token;
@@ -36,21 +32,26 @@ function UniStar() {
   }, [tempFilter]);
 
 
-  console.log(uniStar)
+  console.log(uniStar[0])
 
   return (
     <>
       <TopTmp type="setting" text="유니스타" />
       <ProfileContentsStyle>
+
+      <MyUniStarTmp tempFilter={tempFilter} setTempFilter={setTempFilter}/>
         {uniStar[0] === undefined && (
+          <>
+          
           <div className="no-data">
             <QuestionMarkAtm />
+            <p>현재 유니스타 레벨이 없습니다.</p>
           </div>
+          </>
         )}
 
         {
-          <>
-            <MyUniStarTmp tempFilter={tempFilter} setTempFilter={setTempFilter}/>
+          <div className="container">
             {uniStar.map((contents) => {
               let post = {};
               // @ts-ignore
@@ -62,7 +63,7 @@ function UniStar() {
               // @ts-ignore
               return <PostMdOrg key={contents.postId} post={post} opt="star"/>;
             })}
-          </>
+          </div>
         }
       </ProfileContentsStyle>
 

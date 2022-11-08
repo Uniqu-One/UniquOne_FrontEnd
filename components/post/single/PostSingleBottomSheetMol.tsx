@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { color } from "../../../styles/theme";
 import BtnTmp from "../../common/tmp/BtnTmp";

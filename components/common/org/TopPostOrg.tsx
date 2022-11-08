@@ -51,7 +51,7 @@ function TopPostOrg(props: { type?: string }) {
           )}
 
           <div>
-            <span>
+            <span onClick={() => router.push('/my/unistar')}>
               <i data-eva="star-outline"></i>
             </span>
             <span onClick={() => setModalState(true)}>

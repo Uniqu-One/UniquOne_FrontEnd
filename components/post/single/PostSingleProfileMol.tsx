@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import Image from "next/image";
 import React from "react";
 
 const PostSingleProfileMolStyle = styled.div`

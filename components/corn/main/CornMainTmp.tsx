@@ -1,3 +1,4 @@
+import styled from "@emotion/styled";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { toast } from "react-hot-toast";
@@ -13,6 +14,8 @@ export interface menuType {
   link: string;
   icon: string;
 }
+
+const CornMainTmpStyle = styled.div``
 
 function CornMainTmp() {
   const cornId = useRecoilValue(UserInfoState).cornId;

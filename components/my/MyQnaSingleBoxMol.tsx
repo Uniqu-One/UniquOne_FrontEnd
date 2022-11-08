@@ -26,22 +26,54 @@ const MyQnaSingleBoxMolStyle = styled.div`
   }
 `;
 
-function MyQnaSingleBoxMol() {
-  return (
-    <>
-      <MyQnaSingleBoxMolStyle>
-        <div>
-          <div className="img_circle">
-            <UserImgAtm width={48} height={48} />
+function MyQnaSingleBoxMol(props: { qnaDetailData: {}; type: string }) {
+  const {
+    //@ts-ignore
+    adminImg,answer,aregDate,cornImg,isAnswer,qnaId,qregDate,question,questionType,
+  } = props.qnaDetailData;
+
+  if (props.type === "question") {
+    return (
+      <>
+        <MyQnaSingleBoxMolStyle>
+          <div>
+            <div className="img_circle">
+              <UserImgAtm width={48} height={48} url={cornImg}/>
+            </div>
+            <div className="text_area">
+              <h4>
+                {question}
+              </h4>
+              <p>{qregDate}</p>
+            </div>
           </div>
-          <div className="text_area">
-            <h4>해설은 이렇게 계속해서 들어감. 우리는 운명같아요해설은 이렇게 계속해서 들어감. 우리는 운명같아요해설은 이렇게 계속해서 들어감. 우리는 운명같아요해설은 이렇게 계속해서 들어감. 우리는 운명같아요</h4>
-            <p>2022년 9월 21일 10:36</p>
+        </MyQnaSingleBoxMolStyle>
+      </>
+    );
+  }
+
+  if (props.type === "answer") {
+    return (
+      <>
+        <MyQnaSingleBoxMolStyle>
+          <div>
+            <div className="img_circle">
+              <UserImgAtm width={48} height={48} url={adminImg}/>
+            </div>
+            <div className="text_area">
+              <h4>
+                {answer}
+              </h4>
+              <p>{aregDate}</p>
+            </div>
           </div>
-        </div>
-      </MyQnaSingleBoxMolStyle>
-    </>
-  );
+        </MyQnaSingleBoxMolStyle>
+      </>
+    );
+  }
+
+
+  return <></>;
 }
 
 export default MyQnaSingleBoxMol;

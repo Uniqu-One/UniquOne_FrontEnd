@@ -4,6 +4,7 @@ export const UserInfoState = atom({
   key:"UserInfoState",
   default:{
     userId:undefined,
-    cornId:undefined
+    cornId:undefined,
+    cornImg:undefined
   }
 })

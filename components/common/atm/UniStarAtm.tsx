@@ -15,7 +15,7 @@ function UniStarAtm(props: { count: null|number }) {
     case 1:
       return (
         <StarStyle>
-          <img  
+          <Image  
             src="/assets/icons/oneStar.svg"
             alt="oneStar"
             width="24px"
@@ -27,7 +27,7 @@ function UniStarAtm(props: { count: null|number }) {
     case 2:
       return (
         <StarStyle>
-          <img  
+          <Image  
             src="/assets/icons/twoStar.svg"
             alt="twoStar"
             width="24px"
@@ -38,7 +38,7 @@ function UniStarAtm(props: { count: null|number }) {
     case 3:
       return (
         <StarStyle>
-          <img  
+          <Image  
             src="/assets/icons/threeStar.svg"
             alt="threeStar"
             width="24px"
@@ -50,7 +50,7 @@ function UniStarAtm(props: { count: null|number }) {
     default:
       return (
         <StarStyle>
-          <img  
+          <Image  
             src="/assets/icons/zeroStar.svg"
             alt="threeStar"
             width="24px"

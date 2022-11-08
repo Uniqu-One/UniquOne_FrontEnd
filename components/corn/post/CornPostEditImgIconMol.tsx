@@ -1,7 +1,6 @@
 import React from "react";
 import { CornPostUploadIconOrgStyle } from "./CornPostUploadIconOrg";
 import { motion } from "framer-motion";
-import Image from "next/image";
 
 function CornPostEditImgIconMol(props: {
   image: String | null;

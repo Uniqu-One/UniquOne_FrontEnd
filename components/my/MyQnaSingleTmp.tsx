@@ -25,12 +25,16 @@ function MyQnaSingleTmp(props: { qnaId: string }) {
     </div>
   }
 
-  console.log(qnaDetailData)
+  //admin
+  const {answer} = qnaDetailData;
+
 
   return (
     <MyQnaSingleTmpStyle>
-      <MyQnaSingleBoxMol />
-      <MyQnaSingleBoxMol />
+      <MyQnaSingleBoxMol qnaDetailData={qnaDetailData} type="question"/>
+      
+      {answer && <MyQnaSingleBoxMol qnaDetailData={qnaDetailData} type="answer"/>}
+      
     </MyQnaSingleTmpStyle>
   );
 }

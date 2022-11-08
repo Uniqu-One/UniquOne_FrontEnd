@@ -1,4 +1,3 @@
-import Image from "next/image";
 import React, { useEffect } from "react";
 import { toast, ToastBar, Toaster } from "react-hot-toast";
 

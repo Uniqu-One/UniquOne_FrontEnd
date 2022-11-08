@@ -9,6 +9,8 @@ import MainRecContentTmp from "../components/main/MainRecContentTmp";
 import MainRecOneUserTmp from "../components/main/MainRecOneUserTmp";
 import MainRecStyleTmp from "../components/main/MainRecStyleTmp";
 import MainRecUserCardTmp from "../components/main/MainRecUserCardTmp";
+import { motion, Variants } from "framer-motion";
+
 
 const IndexIntervalStyle = styled.div`
   width: 100vw;
@@ -25,7 +27,7 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Uniquone Shop</title>
+        <title>🦄 Uniquone Shop</title>
       </Head>
 
       <IndexIntervalStyle>
@@ -33,6 +35,8 @@ const Home: NextPage = () => {
 
         <MainCarouselTmp />
         <MainCategoryTmp />
+
+
         <MainRecUserCardTmp />
         <MainRecContentTmp
           title="이번 가을에는 이런 스타일은 어떠신가요? 🍂"

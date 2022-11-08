@@ -15,7 +15,7 @@ export const QnaUtils = {
 
     const { data } = useQuery("getMyQna", fetchQnaData, {
       select: (data) => {
-        
+        // console.log(data)
         return data.data.data;
       },
     });
@@ -36,6 +36,7 @@ export const QnaUtils = {
         },
       })
       .then((res) => {
+        
         return true;
       })
       .catch((err) => {

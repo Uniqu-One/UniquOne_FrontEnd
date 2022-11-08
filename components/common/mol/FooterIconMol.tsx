@@ -1,4 +1,3 @@
-import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import useEvaIcon from "../../../lib/hooks/useEvaIcon";
 import { FooterIconAtm } from "../atm/FooterIconAtm";

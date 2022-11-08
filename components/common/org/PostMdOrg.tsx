@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
@@ -9,19 +8,17 @@ import UniStarMol from "../mol/UniStarMol";
 
 const PostMdOrgStyle = styled.div`
   position: relative;
-
   
-
   img {
-    width: calc((100vw - 6px) / 3);
+    
+    width: calc((100vw - 9px) / 3);
     border-radius: 9px;
   }
 
 .unistar_icon{
-  
     position: absolute;
-    bottom: 2px;
-    right: 1px;
+    bottom: 3px;
+    right: 2px;
     z-index: 3;
   
 }

@@ -44,6 +44,7 @@ function CornPostDetailsOrg() {
       <h3>상세정보</h3>
 
       {DETAIL_MENU.slice(0, slice).map((menu) => {
+        //@ts-ignore
         return <CornPostMenuBarMol key={menu.title} menu={menu} />;
       })}
 

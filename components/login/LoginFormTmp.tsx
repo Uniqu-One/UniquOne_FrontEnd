@@ -77,6 +77,7 @@ function LoginFormTmp() {
     const userMiniInfo = await LoginUtils.getUserInfo(tokenState.token);
     if (userInfo && userMiniInfo) {
       setLoginAuthState(true);
+      //@ts-ignore
       setUserInfo({...{
         userId: userMiniInfo.userId,
         cornId: userMiniInfo.cornId,

@@ -15,6 +15,7 @@ const ProfileContentTmpStyle = styled.div`
   padding-bottom: 60px;
 
   .ProfileTabs {
+    
     margin-top: 12px;
     margin-bottom: 3px;
     height: 42px;
@@ -39,6 +40,7 @@ const ProfileContentTmpStyle = styled.div`
   }
 
   .ProfileContents {
+    
     :last-of-type {
       display: flex;
       flex-wrap: wrap;
@@ -71,8 +73,12 @@ const ProfileContentTmpStyle = styled.div`
 `;
 
 export const ProfileContentsStyle = styled.div`
+
+.container{
+  
   display: flex;
   flex-wrap: wrap;
+}
   div {
     margin-bottom: 3px;
     :nth-of-type(3n-2) {
@@ -81,6 +87,24 @@ export const ProfileContentsStyle = styled.div`
     :nth-of-type(3n-1) {
       margin-right: 3px;
     }
+  }
+  .no-data{
+    
+    
+    margin: auto;
+    text-align: center;
+    margin-top: 24vh;
+    color: ${color.p_gray_md};
+    font-size: 0.875rem;
+    svg{
+      width: 64px;
+      height: 64px;
+      fill: ${color.p_gray_md};
+    }
+    p{
+      margin-top: 6px;
+    }
+
   }
 `;
 
@@ -114,13 +138,14 @@ function ProfileContentTmp() {
   }, [tempTab]);
 
   if (tempPostList === undefined) {
-    return (
+    return (<>
       <ProfileContentTmpStyle>
         <div className="question_mark">
           <QuestionMarkAtm />
           <p>업로드된 포스트가 없어요!</p>
         </div>
       </ProfileContentTmpStyle>
+      </>
     );
   }
 
@@ -139,11 +164,13 @@ function ProfileContentTmp() {
         </div>
 
         <ProfileContentsStyle>
+          <div className="container">
           {tempPostList && tempPostList.map(
             (post: { postId: number; postImg: string; postType: string }) => {
               return <PostMdOrg key={post.postId} post={post} />;
             }
           )}
+          </div>
         </ProfileContentsStyle>
       </ProfileContentTmpStyle>
     </div>

@@ -3,12 +3,17 @@ import Link from "next/link";
 import React from "react";
 import { color } from "../../styles/theme";
 
-const MainCategoryBlockStyle = styled.div`
+const MainCategoryBlockStyle = styled.div<{src:string}>`
   width: 60px;
   height: 60px;
   border-radius: 9px;
-  background-color: ${color.p_gray_md};
+  background-color: ${color.p_gray_lt};
   margin-bottom: 9px;
+  background-image: url(${(props) => props.src});
+  background-size: 75%;
+  background-repeat: no-repeat;
+  background-position: center;
+  
 `;
 
 const MainCategoryBlockTitleStyle = styled.p`
@@ -18,11 +23,11 @@ const MainCategoryBlockTitleStyle = styled.p`
   
 `;
 
-function MainCategoryMol(props: { title: string }) {
+function MainCategoryMol(props: { title: string, src:string}) {
   return (
-    <Link href="/">
+    <Link href={`/search/${props.title}`}>
       <a>
-        <MainCategoryBlockStyle />
+      <MainCategoryBlockStyle src={props.src}/>
         <MainCategoryBlockTitleStyle>{props.title}</MainCategoryBlockTitleStyle>
       </a>
     </Link>

@@ -95,6 +95,13 @@ export const PostUtils = {
     //TODO - any 수정 indexing 처리 해야함
     let engType: any = { 판매중: "SALE", 나눔: "SHARE", 스타일: "STYLE" };
 
+    let productSizeChecked = null;
+
+    if(productSize !== ""){
+      productSizeChecked = productSize
+    }
+
+
     const postDatas = {
       title: title,
       dsc: desc,
@@ -104,7 +111,7 @@ export const PostUtils = {
       conditions: condition,
       lookLine: look.join(","),
       color: color.join(","),
-      productSize: productSize,
+      productSize: productSizeChecked,
       price: price,
     };
 
@@ -186,7 +193,15 @@ export const PostUtils = {
           newEditData.tags = editData.postTagNameList.join("");
           newEditData.title = editData.title;
           newEditData.price = editData.price;
-          newEditData.productSize = editData.productSize;
+          
+          if(editData.productSize === ""){
+            newEditData.productSize = null  
+          } else {
+            newEditData.productSize = editData.productSize;
+          }
+
+          console.log(newEditData.productSize)
+
 
           if (editData.postType === "SALE") {
             newEditData.postType = "판매중";

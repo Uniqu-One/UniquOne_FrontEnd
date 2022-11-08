@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import Image from "next/image";
 import React, { useRef, useState } from "react";
 import useEvaIcon from "../../../lib/hooks/useEvaIcon";
 import { color } from "../../../styles/theme";

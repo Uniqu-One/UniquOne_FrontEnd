@@ -36,7 +36,7 @@ function TopTmp(props: {
 
     case "chat":
       return (
-        <TopOptionalOrg left="nt" text={props.text} right={"bell-outline"} tempCnt={props.tempCnt}/>
+        <TopOptionalOrg left="nt" text={props.text} />
       );
 
     case "postOffer":

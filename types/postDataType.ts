@@ -8,7 +8,7 @@ export interface postDataType {
   category: string;
   condition: string;
   price:string;
-  productSize:string;
+  productSize:string|null;
 
   look: string[]|[];
   color: string[]|[];

@@ -40,12 +40,9 @@ function SearchFilterMol(props: { tempMenu: string; setTempMenu: Function }) {
     setOpen(false);
   }, []);
 
-  //클릭된 필터 메뉴 찾기 및 오픈
   const [tempMenu, setTempMenu] = useState("");
 
   const handleSetTempMenu = (menu: string) => {
-    console.log(1);
-    console.log(menu);
     setTempMenu(menu);
     setOpen(true);
   };

@@ -37,6 +37,10 @@ function RedirectTmp(props: { type: string }) {
     }
   }, []);
 
+  const handleChangePage = () => {
+    window.location.replace('/corn')
+  }
+
   return (
     <>
       <Confetti
@@ -61,11 +65,9 @@ function RedirectTmp(props: { type: string }) {
             width="270px"
             height="270px"
           />
-          <Link href="/corn">
-            <a>
+          <div onClick={() => handleChangePage()}>
               <BtnTmp size="default" value="나의 Corn으로 이동" />
-            </a>
-          </Link>
+              </div>
           <Link href="/">
             <p>홈으로 가기</p>
           </Link>

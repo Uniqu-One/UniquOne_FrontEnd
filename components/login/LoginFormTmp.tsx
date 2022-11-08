@@ -61,6 +61,7 @@ function LoginFormTmp() {
         
       setTokenState({ token: userInfo.token });
         ToastUtils.toast('🦄 환영합니다 :>')
+        setLoginAuthState(true);
         router.replace({
           pathname: "/",
         });

@@ -13,6 +13,7 @@ import ProfileBoxTopMol from "./ProfileBoxTopMol";
 import ProfileBoxUnderMol from "./ProfileBoxUnderMol";
 import ProfileNothingMol from "./ProfileNothingMol";
 import TopTmp from "../common/tmp/TopTmp";
+import CornPostTmp from "../corn/post/CornPostTmp";
 
 const ProfileBoxTmpStyle = styled.div`
   padding-top: 50px;
@@ -76,7 +77,7 @@ function ProfileBoxTmp(props: { type: string; cornId?: string }) {
 
   
 
-  if (profileBoxData === undefined && profileBoxData === null) {
+  if (profileBoxData === undefined || profileBoxData === null) {
     return <ProfileNothingMol />;
   } else {
     return (

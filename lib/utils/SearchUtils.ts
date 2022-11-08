@@ -36,9 +36,6 @@ export const SearchUtils = {
 
     const newLookList = searchFilterData.룩.map(look => POST_MENU_LIST.look.indexOf(look) + 1)
     const newCategoryList = searchFilterData.카테고리.map(category => POST_MENU_LIST.category.indexOf(category) +1 )
-    
-
-    // console.log(newCategoryList)
 
     const dataObj = {colors:"",looks:"",categoryId:""};
     dataObj.colors = searchFilterData.색상.join(',')

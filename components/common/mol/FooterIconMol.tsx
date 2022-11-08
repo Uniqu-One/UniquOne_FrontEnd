@@ -67,6 +67,9 @@ function FooterIconMol() {
           {router.pathname.split("/")[1] === "profile" && (
             <motion.div className="point" layoutId="underline"></motion.div>
           )}
+          {router.pathname.split("/")[1] === "search" && (
+            <motion.div className="point" layoutId="underline"></motion.div>
+          )}
         </div>
 
         <div className="iconBox">

@@ -36,7 +36,7 @@ export const ProfileUtils = {
         },
       })
       .then((res) => {
-        console.log(res)
+        console.log(res,'mydata')
         return res.data.data;
       })
       .catch((err) => console.error(err));

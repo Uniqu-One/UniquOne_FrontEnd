@@ -47,8 +47,7 @@ function ProfileBoxTopMol(props: { type: string, profileBoxData:ProfileDataType,
   const router = useRouter();
   const {cornId} = props
 
-
-  const {postEA, followerEA,followingEA,imgUrl,reviewEA,title} = props.profileBoxData 
+  const {postEA, followerEA,followingEA,imgUrl,reviewEA,title} = props.profileBoxData
 
   
 

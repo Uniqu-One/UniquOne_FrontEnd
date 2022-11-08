@@ -53,7 +53,7 @@ function PostSingleFooterTmp(props:{postId:number|string, postDetailData:{price:
   return (
     <>
       <PostSingleFooterTmpStyle>
-        <div className="price">{price.toLocaleString()} 원</div>
+        <div className="price">{price ? price.toLocaleString()+'원' : "Style"} </div>
 
         <div className="btns">
           <PostSingleFooterOfferMol postId={props.postId} postData={props.postDetailData}/>

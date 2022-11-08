@@ -89,9 +89,9 @@ function IntroMainTmp() {
           <BtnTmp size="kakao" />
         </div>
 
-        <div className="naver" onClick={() => handleNaverLogin()}>
+        {/* <div className="naver" onClick={() => handleNaverLogin()}>
           <BtnTmp size="naver" />
-        </div>
+        </div> */}
 
         <div className="google" onClick={() => handleGoogleLogin()}>
           <BtnTmp size="google" />

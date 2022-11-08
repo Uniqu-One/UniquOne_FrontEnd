@@ -33,7 +33,6 @@ function SearchRecentMol() {
     setPrevKey([...[]])
   }
 
-  console.log(prevKey)
   return (
     <>
       <SearchRecentMolStyle>

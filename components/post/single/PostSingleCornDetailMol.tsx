@@ -21,7 +21,7 @@ div{
 
 function PostSingleCornDetailMol(props:{tempData:{}}) {
 
-  console.log(props.tempData)
+
 
   //@ts-ignore
   const {cornId, postEA, reviewEA} = props.tempData

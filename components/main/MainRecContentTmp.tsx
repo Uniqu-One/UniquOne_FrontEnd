@@ -11,6 +11,9 @@ const MainRecContentStyle = styled.div`
   background-color: ${color.p_gray_lt};
   padding: 18px 18px 18px 18px;
 
+  border-radius: 0 0 12px 12px;
+  box-shadow: 1px 2px 2px 1px #00000030;
+
   h2 {
     margin-bottom: 12px;
   }

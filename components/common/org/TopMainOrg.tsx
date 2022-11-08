@@ -93,7 +93,6 @@ export const TopMainOrg = () => {
           style={{ margin: "auto 0", position: "relative" }}
           className="noti_icon"
           onClick={() => {
-            console.log(1);
             router.push("/noti");
           }}
         >

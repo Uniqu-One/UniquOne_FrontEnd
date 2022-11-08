@@ -17,9 +17,10 @@ function LoginAuthStateTmp() {
 
   const updateUserInfo = async () => {
     const userInfo = await LoginUtils.getUserInfo(token);
-    console.log(userInfo)
     setUserInfo(userInfo);
   };
+
+
 
   useEffect(() => {
     //login, / /post / profile

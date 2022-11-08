@@ -51,8 +51,6 @@ function MyOfferListMol() {
     handleGetMyCornOfferList();
   }, []);
 
-  console.log(myOfferDataList)
-
   return (
     <>
       {myOfferDataList ? (

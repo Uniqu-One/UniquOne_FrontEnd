@@ -42,7 +42,6 @@ function MyTradeTmp() {
       {tempTab === 0 &&
         purchaseDatas &&
         purchaseDatas.map((data: purchaseDataType) => {
-          console.log(data);
           return (
             <MyTradeBoxMol
               key={data.tradeId}

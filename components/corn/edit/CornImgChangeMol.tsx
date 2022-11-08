@@ -7,6 +7,7 @@ const CornImgChangeMolStyle = styled.div`
   padding-top: 50px;
   img {
     border-radius: 100%;
+    border: 1px solid ${color.p_gray_lt};
   }
 
   div {
@@ -76,8 +77,9 @@ function CornImgChangeMol(props: {
         <img  
           src={imageSrc ? imageSrc : "/assets/images/dummyUserImg.jpg"}
           alt="더미 유저"
-          width="12px"
-          height="12px"
+          width="136px"
+          height="136px"
+          
         />
       </div>
       <div>

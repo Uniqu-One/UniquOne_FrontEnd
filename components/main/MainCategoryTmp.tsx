@@ -7,14 +7,19 @@ import MainCategoryMol from './MainCategoryMol'
 const MainCategoryBoxStyle = styled.div`
   height: 120px;
   overflow-x: scroll;
+  ::-webkit-scrollbar{
+    display: none;
+  }
 `
 
 const MainCategoryContainerStyle = styled.div`
+
   margin-left: 18px;
   height: 120px;
   display: flex;
   justify-content: space-between;
-  a{
+
+  a{    
     margin: auto 18px auto 0px;
   }
 `

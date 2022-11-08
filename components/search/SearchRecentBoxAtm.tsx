@@ -46,7 +46,6 @@ function SearchRecentBoxAtm(props:{word:string}) {
     const prev = prevKey.slice(0,idx)
     const next = prevKey.slice(idx+1)
     const newArr = [...prev,...next]
-    console.log(newArr)
     setPrevKey([...newArr])
     //해당 인덱스까지 찢고, 뒤에 인덱스부터 찢기
     //두개 더해서 변경하기

@@ -32,7 +32,6 @@ function UniStar() {
   }, [tempFilter]);
 
 
-  console.log(uniStar[0])
 
   return (
     <>

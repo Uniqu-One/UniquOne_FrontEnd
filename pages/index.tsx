@@ -39,12 +39,12 @@ const Home: NextPage = () => {
 
         <MainRecUserCardTmp />
         <MainRecContentTmp
-          title="이번 가을에는 이런 스타일은 어떠신가요? 🍂"
+          title="유니크원이 추천하는 스타일은? 💎"
           type="FALL"
         />
         <MainRecStyleTmp />
         <MainRecContentTmp
-          title="이번 여름에는 이런 스타일은 어떠신가요? 🐳"
+          title="이번 겨울에는 이런 스타일은 어떠신가요? ❄️"
           type="WINTER"
         />
         <MainRecOneUserTmp />

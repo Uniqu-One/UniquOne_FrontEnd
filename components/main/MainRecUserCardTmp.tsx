@@ -7,7 +7,9 @@ import { MainUtils } from "../../lib/utils/MainUtils";
 
 const MainRecUserCardContainerStyle = styled.div`
   background-color: ${color.p_gray_lt};
-  padding: 18px 0px 18px 18px;
+  padding: 18px 0px 24px 18px;
+  border-radius: 0 0 12px 12px;
+  box-shadow: 1px 2px 2px 1px #00000030;
   > h2 {
     margin-bottom: 12px;
   }
@@ -44,7 +46,6 @@ function MainRecUserCardTmp() {
     hadleUpdateUsersInfo();
   }, []);
 
-  console.log(usersInfo);
 
   return (
     <>

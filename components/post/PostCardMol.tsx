@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { useRouter } from "next/router";
 import React from "react";
 import ThreeDotMol from "../common/mol/ThreeDotMol";
 import PostFollowMol from "./PostFollowMol";
@@ -29,8 +30,6 @@ function PostCardMol(props: {
 }) {
   const { postId, postDetailData, postListData } = props;
 
-  
-
   if (postListData) {
     const {
       cornId,
@@ -45,71 +44,82 @@ function PostCardMol(props: {
       postImgUrl,
       userNickName,
       uniStar,
-      imgUrlList
+      imgUrlList,
     } = postListData;
 
+    const router = useRouter();
 
     return (
       <>
         <PostCarTmpStyle>
           <div>
-            <PostUserMol userName={userNickName} cornImg={cornImgUrl}/>
+            <PostUserMol userName={userNickName} cornImg={cornImgUrl} />
           </div>
           <div className="right">
-            
-            <PostFollowMol postId={postId} isFollow={isFollow} cornId={cornId}/>
+            {router.query.postId ? (
+              <PostFollowMol
+                postId={postId}
+                isFollow={isFollow}
+                cornId={cornId}
+              />
+            ) : (
+              <></>
+            )}
+
             <ThreeDotMol postId={postId} />
           </div>
         </PostCarTmpStyle>
 
-        <PostSliderMol postId={postId} postImgUrlList={imgUrlList || postImgUrl} />
- 
-        {/* 하트랑 유니스타랑 댓글 */}        
-        <PostFuncBarMol postId={postId} isCool={isCool} uniStar={uniStar}/>
+        <PostSliderMol
+          postId={postId}
+          postImgUrlList={imgUrlList || postImgUrl}
+        />
+
+        {/* 하트랑 유니스타랑 댓글 */}
+        <PostFuncBarMol postId={postId} isCool={isCool} uniStar={uniStar} />
       </>
     );
   }
 
-  if(postDetailData){
-
-
- const {
-  imgUrlList,
-  cornImgUrl,
-  userNickName,
-  isCool,
-  uniStar,
-  isFollow,
-  cornId
+  if (postDetailData) {
+    const {
+      imgUrlList,
+      cornImgUrl,
+      userNickName,
+      isCool,
+      uniStar,
+      isFollow,
+      cornId,
     } = postDetailData;
- 
-
 
     return (
       <>
         <PostCarTmpStyle>
           <div>
-            <PostUserMol userName={userNickName} cornImg={cornImgUrl}/>
+            <PostUserMol userName={userNickName} cornImg={cornImgUrl} />
           </div>
           <div className="right">
-            <PostFollowMol postId={postId} isFollow={isFollow} cornId={cornId}/>
+            <PostFollowMol
+              postId={postId}
+              isFollow={isFollow}
+              cornId={cornId}
+            />
             <ThreeDotMol postId={postId} />
           </div>
         </PostCarTmpStyle>
 
-        <PostSliderMol postId={postId} postImgUrlList={imgUrlList || imgUrlList} />
+        <PostSliderMol
+          postId={postId}
+          postImgUrlList={imgUrlList || imgUrlList}
+        />
 
         {/* 하트랑 유니스타랑 댓글 받아와야함*/}
-        <PostFuncBarMol postId={postId} isCool={isCool} uniStar={uniStar}/>
+        <PostFuncBarMol postId={postId} isCool={isCool} uniStar={uniStar} />
       </>
     );
   }
 
-
-  return (
-    <>
-    </>
-  );
+  return <></>;
 }
 
 export default PostCardMol;

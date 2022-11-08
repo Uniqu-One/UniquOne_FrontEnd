@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { CommentUtils } from "../../lib/utils/CommentUtils";
 import { TokenState } from "../../states/recoil/TokenState";
+import { UserInfoState } from "../../states/recoil/UserInfoState";
 import { color } from "../../styles/theme";
 import CommentInputMol from "./CommentInputMol";
 
@@ -57,6 +58,7 @@ const CommentBarOrgStyle = styled.div<{ inputStatus: boolean }>`
 function CommentBarOrg(props: { postId: string,tempParent?:number,setTempParent:Function,setParentComment:Function }) {
   const token = useRecoilValue(TokenState).token;
   const { postId,tempParent,setTempParent,setParentComment } = props;
+  const userImg = useRecoilValue(UserInfoState).cornImg
 
   const [inputText, setInputText] = useState("");
   const [inputStatus, setInputStatus] = useState(false);
@@ -83,7 +85,7 @@ function CommentBarOrg(props: { postId: string,tempParent?:number,setTempParent:
     <CommentBarOrgStyle inputStatus={inputStatus}>
       <div>
         <img  
-          src="/assets/images/dummyUserImg.jpg"
+          src={userImg ? userImg :"/assets/images/dummyUserImg.jpg"}
           alt="dummy user"
           width="42px"
           height="42px"

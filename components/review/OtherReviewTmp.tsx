@@ -20,7 +20,6 @@ function OtherReviewTmp(props: { cornId?: string }) {
 
   const cornReviewList = ReviewUtils.getOtherReviewList(cornId);
 
-  console.log(cornReviewList);
 
   return (
     <>

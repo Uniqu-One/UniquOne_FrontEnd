@@ -10,7 +10,9 @@ const MainRecStyleSlideMolStyle = styled.div<{length:number}>`
   height: 148px;
   margin-left: 18px;
   margin-top: 12px;
-
+  ::-webkit-scrollbar{
+    display: none;
+  }
   > div{
     display: flex;
     justify-content: left;

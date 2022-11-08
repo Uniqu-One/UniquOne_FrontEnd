@@ -6,6 +6,10 @@ import TopTmp from "../components/common/tmp/TopTmp";
 import LoginFormTmp from "../components/login/LoginFormTmp";
 
 function login() {
+
+
+  
+
   return (
     <> 
       <TopTmp type="arrowText" text="로그인"/>

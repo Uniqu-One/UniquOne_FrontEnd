@@ -60,7 +60,7 @@ const CornOfferSingleBoxOrgStyle = styled.div`
 function CornOfferSingleBoxOrg(props: { offer: offerDataType; type?: string }) {
   const router = useRouter();
   const { type } = props;
-  // console.log(props.offer);
+
 
   const {
     postId,

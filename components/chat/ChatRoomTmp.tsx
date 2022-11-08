@@ -51,7 +51,7 @@ function ChatRoomTmp(props: { roomId: string }) {
         ws.subscribe(
           `/sub/chat/room/${roomId}`,
           (recMessage: { body: string }) => {
-            console.log(1);
+            
             let recv = JSON.parse(recMessage.body);
 
             const { senderId, message, date, regTime } = recv;
@@ -122,8 +122,6 @@ function ChatRoomTmp(props: { roomId: string }) {
 
   useEffect(() => {
     scrollRef?.current?.scrollIntoView({ behavior: "smooth" });
-
-    console.log(enter, chatData[0])
 
     return () => {
       if(enter === true && chatData[0] === undefined){

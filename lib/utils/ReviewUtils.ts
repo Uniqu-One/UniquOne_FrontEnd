@@ -87,7 +87,7 @@ export const ReviewUtils = {
     rating: number,
     text: string
   ) => {
-    console.log(token);
+    
 
     return await axios
       .post(

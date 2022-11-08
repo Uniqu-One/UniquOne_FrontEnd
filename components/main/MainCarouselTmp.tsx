@@ -23,8 +23,8 @@ function MainCarouselTmp() {
       <Slider {...settings}>
         <MainCarouselMol
               type="first"
-              title={"하이"}
-              subTitle={"바이"}
+              title={""}
+              subTitle={""}
               width={1}
               imgSrc={'/'}
             />

@@ -49,7 +49,7 @@ setPostDetailData(await PostUtils.getPostDetailData(token,postId))
     }
   },[])
 
-  console.log(postDetailData)
+
 
   if(postDetailData === undefined){
     return <div></div>

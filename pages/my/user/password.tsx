@@ -20,7 +20,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       body += chunk
     })
     context.req.on('end', () => {
-      console.log(body.slice(6));
   });
   }
   return { props: {} };

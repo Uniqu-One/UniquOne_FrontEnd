@@ -19,7 +19,10 @@ const CornMainTmpStyle = styled.div``
 
 function CornMainTmp() {
   const cornId = useRecoilValue(UserInfoState).cornId;
+  // console.log(useRecoilValue(UserInfoState))
   const router = useRouter();
+
+  
 
   useEffect(() => {
     if (cornId === null) {

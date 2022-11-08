@@ -43,7 +43,6 @@ function PostSingleBodyOrg(props: { userId: string, postDetailData:any }) {
     imgUrlList
   } = props.postDetailData;
 
-  console.log(props.postDetailData)
 
   return (
     <>

@@ -93,7 +93,6 @@ export const TopOptionalOrg = (props: {
       
                 className="noti_icon"
                 onClick={() => {
-                  console.log(1);
                   router.push("/noti");
                 }}
               >

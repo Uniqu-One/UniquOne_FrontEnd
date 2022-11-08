@@ -84,6 +84,7 @@ function CommentOrg(props: {
   const { setTempParent } = props;
   const userIdAtom = props.userId;
 
+
   const handleChangeTempParent = () => {
     setTempParent(commentId);
   };
@@ -103,7 +104,6 @@ function CommentOrg(props: {
   };
 
   useEffect(() => {
-    console.log(temp)
     if(temp > 0){
       setTempParent(-1)
     }

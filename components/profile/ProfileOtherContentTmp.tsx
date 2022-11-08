@@ -124,7 +124,6 @@ function ProfileContentTmp(props:{cornId:string}) {
     );
   }
 
-  console.log(tempPostList)
 
   if(!tempPostList){
     return <div></div>

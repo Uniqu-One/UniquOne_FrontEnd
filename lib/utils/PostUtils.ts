@@ -1,3 +1,4 @@
+import { ToastUtils } from './../../components/common/tmp/ToastTmp';
 import { useQuery } from "react-query";
 import axios from "axios";
 import { postDataType } from "./../../types/postDataType";
@@ -16,10 +17,35 @@ export const PostUtils = {
       color,
       productSize,
       price,
+      postType
     } = postUploadData;
+
+    console.log(postUploadData)
+
+    if (postType === "") {
+      return false;
+    }
 
     if (title === "") {
       return false;
+    }
+
+
+    if (category === "") {
+      return false;
+    }
+
+    if (look[0] === undefined) {
+      return false;
+    }
+
+    if (color[0] === undefined) {
+      return false;
+    }
+
+    
+    if(postType ==="스타일"){
+      return true;
     }
 
     if (productSize === "") {
@@ -41,25 +67,14 @@ export const PostUtils = {
       return false;
     }
 
-    if (type === "") {
-      return false;
-    }
 
-    if (category === "") {
-      return false;
-    }
+
 
     if (condition === "") {
       return false;
     }
 
-    if (look[0] === undefined) {
-      return false;
-    }
 
-    if (color[0] === undefined) {
-      return false;
-    }
 
     return true;
   },
@@ -77,6 +92,8 @@ export const PostUtils = {
       productSize,
       price,
     } = postUploadData;
+
+
 
     const clearImgList: File[] = [];
     if (imgList !== null) {
@@ -341,7 +358,7 @@ export const PostUtils = {
         `${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/listall/${cornId}?page=${pageNum}`
       )
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         return res.data.data.content;
       })
       .catch((err) => console.error(err));
@@ -407,7 +424,7 @@ export const PostUtils = {
         }
       )
       .then((res) => {
-        console.log(res.data.data.content, "follow");
+        
         return res.data.data.content;
       })
       .catch((err) => console.error(err));
@@ -420,7 +437,7 @@ export const PostUtils = {
         },
       })
       .then((res) => {
-        console.log(res.data.data.content, "rec");
+        
         return res.data.data.content;
       })
       .catch((err) => console.error(err));

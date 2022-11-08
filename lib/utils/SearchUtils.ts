@@ -19,7 +19,6 @@ export const SearchUtils = {
         }
       )
       .then((res) => {
-        console.log(res,'search')
         return res.data;
       })
       .catch((err) => console.log(err));

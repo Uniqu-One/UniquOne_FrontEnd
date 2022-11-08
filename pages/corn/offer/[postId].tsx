@@ -31,8 +31,7 @@ function OfferId(props: { postId: string | number }) {
   const cornOfferDetailData = OfferUtils.getMyDetailOffer(token, props.postId);
   const offerList = cornOfferDetailData.offerDetailIndividualOutDtos;
 
-  console.log(cornOfferDetailData);
-  // console.log(offerList);
+  
 
   if (cornOfferDetailData === "Loading") {
     <LoadingSpinnerAtm />;

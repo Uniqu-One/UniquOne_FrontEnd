@@ -50,7 +50,6 @@ function MainRecUserCardMol(props: {
 }) {
   const { cornId, cornImgUrl, postImgUrl, userNickName } = props.user;
   const router = useRouter()
-  console.log(postImgUrl);
 
   return (
     <>

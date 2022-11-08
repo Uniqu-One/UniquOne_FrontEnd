@@ -1,9 +1,11 @@
 import styled from '@emotion/styled'
 import React from 'react'
+import { useRecoilValue } from 'recoil'
 import FooterTmp from '../../components/common/tmp/FooterTmp'
 import TopTmp from '../../components/common/tmp/TopTmp'
 import ProfileBoxTmp from '../../components/profile/ProfileBoxTmp'
 import ProfileContentTmp from '../../components/profile/ProfileContentTmp'
+import { UserInfoState } from '../../states/recoil/UserInfoState'
 import { color } from '../../styles/theme'
 
 const ProfileInterVal = styled.div`
@@ -13,6 +15,13 @@ const ProfileInterVal = styled.div`
 `
 
 function index() {
+
+  const userId = useRecoilValue(UserInfoState).userId
+
+  if(userId === undefined){
+    return <div></div>
+  }
+
   return (
     <>
 

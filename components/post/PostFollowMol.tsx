@@ -11,18 +11,14 @@ function PostFollowMol(props:{postId:string|number, isFollow:boolean|null, cornI
   const [followStatus, setFollowStatus] = useState(false);
 
   const handleFollowStatus = async () => {
-    console.log(followStatus)
-    console.log(cornId)
 
     if (!followStatus ) {
-      console.log('팔로우를 안한 상태')
       if(await FollowUtils.registerFollow(token,cornId)){
         
         ToastUtils.toast("팔로잉에 성공하였습니다.");
         setFollowStatus(!followStatus);
       }
     } else {
-      console.log('팔로우를 한 상태')
       if(await FollowUtils.cancelFollow(token,cornId)){
       ToastUtils.toast("팔로잉을 취소하였습니다.");
       setFollowStatus(!followStatus);
@@ -32,7 +28,6 @@ function PostFollowMol(props:{postId:string|number, isFollow:boolean|null, cornI
 
     
   };
-  console.log(isFollow)
 
   useEffect(() => {
     // @ts-ignore

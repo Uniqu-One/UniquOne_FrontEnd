@@ -41,7 +41,6 @@ function CornMyPostListMol() {
     updateMyPostData();
   }, []);
 
-  console.log(tempMyPostList)
 
   return (
     <CornMyPostListMolStyle>

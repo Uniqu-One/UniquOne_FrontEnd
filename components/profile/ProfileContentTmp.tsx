@@ -150,7 +150,6 @@ function ProfileContentTmp() {
   }
 
 
-  console.log(tempPostList,'123')
 
   return (
     <div>

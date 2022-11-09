@@ -1,9 +1,11 @@
 import styled from "@emotion/styled";
+import Head from "next/head";
 import React, { useEffect, useState } from "react";
 import FooterTmp from "../../components/common/tmp/FooterTmp";
 import TopTmp from "../../components/common/tmp/TopTmp";
 import PostContentsTmp from "../../components/post/PostContentsTmp";
 import PostTypeTmp from "../../components/post/PostTypeTmp";
+import { HeadTitleList } from "../../public/assets/datas/headTitleList";
 
 const PostStyle = styled.div`
   width: 100vw;
@@ -20,6 +22,10 @@ function index() {
 
   return ( 
     <>
+      <Head>
+        <title>{HeadTitleList.post}</title>
+      </Head>
+
       <PostStyle>
         <TopTmp type="post" />
         {/* 추천 팔로잉 글자 */}

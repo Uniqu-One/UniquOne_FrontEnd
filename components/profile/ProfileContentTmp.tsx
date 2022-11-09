@@ -30,7 +30,7 @@ const ProfileContentTmpStyle = styled.div`
       text-align: center;
       font-weight: 600;
       h3 {
-        color: ${color.p_gray_dk};
+        color: ${color.p_pruple};
         font-weight: 750;
       }
       h4 {

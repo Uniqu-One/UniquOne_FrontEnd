@@ -36,7 +36,7 @@ function OAuthRedirectTmp(props:{token:string}) {
   useEffect(() => {
     if(loginAtuh){
       ToastUtils.toast("🦄 환영합니다 :)")
-      router.replace('/')
+      window.location.replace('/')
     }
 
   },[loginAtuh])

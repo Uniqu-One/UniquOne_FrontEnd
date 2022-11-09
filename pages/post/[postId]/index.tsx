@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { GetServerSideProps } from "next";
+import Head from "next/head";
 import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { ToastUtils } from "../../../components/common/tmp/ToastTmp";
@@ -9,6 +10,7 @@ import PostSingleBodyOrg from "../../../components/post/single/PostSingleBodyOrg
 import PostSingleCornOrg from "../../../components/post/single/PostSingleCornOrg";
 import PostSingleFooterTmp from "../../../components/post/single/PostSingleFooterTmp";
 import { PostUtils } from "../../../lib/utils/PostUtils";
+import { HeadTitleList } from "../../../public/assets/datas/headTitleList";
 
 import { TokenState } from "../../../states/recoil/TokenState";
 import { color } from "../../../styles/theme";
@@ -57,6 +59,9 @@ setPostDetailData(await PostUtils.getPostDetailData(token,postId))
 
   return (
     <>
+          <Head>
+        <title>{HeadTitleList.postDetail}</title>
+      </Head>
       <PostIntervalStyle>
         <TopTmp type="postDetail"/>
 

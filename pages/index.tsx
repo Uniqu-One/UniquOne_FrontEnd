@@ -10,7 +10,7 @@ import MainRecOneUserTmp from "../components/main/MainRecOneUserTmp";
 import MainRecStyleTmp from "../components/main/MainRecStyleTmp";
 import MainRecUserCardTmp from "../components/main/MainRecUserCardTmp";
 import { motion, Variants } from "framer-motion";
-
+import {HeadTitleList} from "../public/assets/datas/headTitleList"
 
 const IndexIntervalStyle = styled.div`
   width: 100vw;
@@ -27,7 +27,7 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>🦄 Uniquone Shop</title>
+        <title>{HeadTitleList.index}</title>
       </Head>
 
       <IndexIntervalStyle>

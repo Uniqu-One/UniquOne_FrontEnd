@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { PostUtils } from "../../lib/utils/PostUtils";
 import { color } from "../../styles/theme";
@@ -30,9 +31,9 @@ const MainRecContentStyle = styled.div`
   }
 `;
 
-function MainRecContentTmp(props: { title: string,type:string }) {
+function MainRecContentTmp(props: { title: string; type: string }) {
   const [tempData, setTempData] = useState([]);
-  const type = props.type
+  const type = props.type;
 
   const updateTempSeasonsData = async () => {
     setTempData(await PostUtils.getThisSeasonsData(type));
@@ -47,9 +48,10 @@ function MainRecContentTmp(props: { title: string,type:string }) {
       <MainRecContentStyle>
         <MainContentTitleAtm title={props.title} />
         <div className="item_container">
-          {tempData && tempData.map((data:{postImgUrl:string}, idx) => {
-            return <PostLgOrg key={idx} imgSrc={data.postImgUrl}/>;
-          })}
+          {tempData &&
+            tempData.map((data: { postImgUrl: string }, idx) => {
+              return <PostLgOrg key={idx} imgSrc={data.postImgUrl} />;
+            })}
         </div>
       </MainRecContentStyle>
     </>

@@ -100,6 +100,7 @@ function MyTradeBoxMol(props: {
   const [tempReview, setTempReview] = useState(false);
 
   useEffect(() => {
+    //@ts-ignore
     setTempReview(isReview);
   }, []);
 

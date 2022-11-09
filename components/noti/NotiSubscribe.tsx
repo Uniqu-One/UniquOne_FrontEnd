@@ -26,6 +26,7 @@ function NotiSubscribe() {
         const data = (JSON.parse(event.data))
         
         if(data.notiType === "COMMENT"){
+          //@ts-ignore
           ToastUtils.comment(`내 게시물에 댓글이 달렸습니다.`);
         }
 

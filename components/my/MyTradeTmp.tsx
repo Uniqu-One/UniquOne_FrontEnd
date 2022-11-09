@@ -81,6 +81,7 @@ function MyTradeTmp() {
           tempTradeId={tempTradeId}
           postId={postId}
           setReviewModal={setReviewModal}
+          //@ts-ignore
           purchaseDatas={purchaseDatas}
         />
       </BottomSheet>

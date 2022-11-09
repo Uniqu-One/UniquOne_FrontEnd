@@ -37,6 +37,7 @@ function ReviewWriteModalMol(props: {
   return (
     <ReviewWriteModalMolStyle>
       <TopTmp type="edit" text="리뷰 쓰기" function={handlePostMyReview} />
+      {/* @ts-ignore */}
       <ReviewWriteModalInsideMol
         setText={setText}
         text={text}

@@ -35,7 +35,9 @@ function LoginAuthStateTmp() {
           pathName === "intro" ||
           pathName === "signup"||
           pathName === "login" ||
-          pathName === "redirect" 
+          pathName === "redirect" ||
+          pathName === "video" 
+          
           
         ) {
           return;

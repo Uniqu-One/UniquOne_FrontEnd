@@ -10,7 +10,7 @@ function follow() {
     <>
     <TopTmp text='팔로우'/>
 
-    <ProfileFollowTmp/>
+    <ProfileFollowTmp type="my"/>
 
     <FooterTmp/>
     </>

@@ -8,6 +8,7 @@ import { color } from "../../styles/theme";
 import { followListType } from "../../types/follow/followListType";
 import QuestionMarkAtm from "../common/atm/QuestionMarkAtm";
 import UserImgAtm from "../common/atm/UserImgAtm";
+import ProfileFollowCardSingleMol from "./ProfileFollowCardSingleMol";
 
 const ProfileFollowCardBoxMolStyle = styled.div`
   margin-top: 6px;
@@ -35,7 +36,11 @@ const ProfileFollowCardBoxMolStyle = styled.div`
   }
 
   .follow_btn {
-    border: 0.5px solid ${color.p_gray_md};
+    p{
+      font-size: 0.875rem;
+    }
+    /* border: 0.5px solid ${color.p_gray_md}; */
+    background-color: ${color.p_gray_lt};
     padding: 9px 18px;
     border-radius: 9px;
     font-weight: 500;
@@ -61,31 +66,25 @@ const ProfileFollowCardBoxMolStyle = styled.div`
       font-size: 0.875rem;
     }
   }
+
+  .user_info{
+    p{
+    :first-of-type{
+    color: ${color.p_gray_dk};
+    font-weight: 500;
+    }
+    :last-of-type{
+      margin-top: 6px;
+      font-size: 0.875rem;
+      color: ${color.p_gray_md};
+    }
+  }  
+  }
 `;
 
 function ProfileFollowCardBoxMol(props: { tempUserData: followListType[] }) {
   const token = useRecoilValue(TokenState).token
   const { tempUserData } = props;
-
-  const handleUpdateFollow = async (cornId:string|number, follow:boolean) => {
-    
-    if(follow){
-      if(await FollowUtils.cancelFollow(token,cornId)){
-        ToastUtils.toast('유저를 팔로우 하였습니다.')
-      }
-      
-
-    }
-    if(!follow){
-      if(await FollowUtils.registerFollow(token,cornId)){
-        ToastUtils.toast('유저를 팔로우 취소 하였습니다.')
-      }
-      
-    }
-    
-    
-    
-  }
 
   if (tempUserData[0] === undefined) {
     return (
@@ -98,6 +97,7 @@ function ProfileFollowCardBoxMol(props: { tempUserData: followListType[] }) {
     );
   }
 
+
   return (
     <>
       {tempUserData.map((user, idx) => {
@@ -105,24 +105,7 @@ function ProfileFollowCardBoxMol(props: { tempUserData: followListType[] }) {
 
         return (
           <ProfileFollowCardBoxMolStyle key={idx}>
-            <Link href={`/profile/${user.cornId}`}>
-              <a>
-                <div className="corn_img_name">
-                  <UserImgAtm width={48} height={48} url={user.cornImgUrl} />
-                  <div>
-                    <p>
-                      {/* @ts-ignore */}
-                      {user.cornTitle ? user.cornTitle : user.cornTitleName}·{user.userName ? user.userName: user.userNickName}
-                    </p>
-                  </div>
-                </div>
-              </a>
-            </Link>
-            {/* @ts-ignore */}
-            <div className={`follow_btn ${user.follow ? "check" : null}` } onClick={() => {handleUpdateFollow(user.cornId, user.follow)}}>
-              {/* @ts-ignore */}
-              <p>{user.follow ? "팔로우" : "팔로잉"}</p>
-            </div>
+            <ProfileFollowCardSingleMol user={user}/>
           </ProfileFollowCardBoxMolStyle>
         );
       })}

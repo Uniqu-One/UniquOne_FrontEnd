@@ -9,9 +9,11 @@ import { TokenState } from "../../states/recoil/TokenState";
 
 //TODO - tapModal용 공통 컴포넌트 생성
 
-function ProfileFollowTmp() {
+function ProfileFollowTmp(props:{type:string, cornId?:number|string}) {
   const token = useRecoilValue(TokenState).token
   const route = useRouter();
+  const type = props.type;
+  const cornId = props.cornId;
 
   const tabs = ["팔로워", "팔로잉"];
   const [tempTab, setTempTab] = useState(0);
@@ -19,9 +21,21 @@ function ProfileFollowTmp() {
 
   const handleUpdateFollow = async() => {
     if(tempTab === 0){
-      setTempUserData(await FollowUtils.getMyFollowList(token))
+      if(type === "my"){
+        setTempUserData(await FollowUtils.getMyFollowList(token))
+      }
+      if(type ==="other"){
+        //@ts-ignore
+        setTempUserData(await FollowUtils.getOthersFollowList(token,cornId))
+      }
     } else {
-      setTempUserData(await FollowUtils.getMyFollowingList(token))
+      if(type==="my"){
+        setTempUserData(await FollowUtils.getMyFollowingList(token))
+      }
+      if(type === "other"){
+        //@ts-ignore
+        setTempUserData(await FollowUtils.getOthersFollowingList(token,cornId))
+      }
     }
   }
 
@@ -32,7 +46,6 @@ function ProfileFollowTmp() {
   return (
     <>
       <MyReviewTapMol tabs={tabs} tempTab={tempTab} setTempTab={setTempTab} />
-
       <ProfileFollowCardBoxMol tempUserData={tempUserData}/>
     </>
   );

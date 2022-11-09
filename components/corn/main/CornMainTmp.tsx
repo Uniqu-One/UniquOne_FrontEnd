@@ -57,11 +57,6 @@ function CornMainTmp() {
           link: "my/review",
           icon: "message-square-outline",
         },
-        {
-          title: "콘 디테일",
-          link: "corn/detail",
-          icon: "bar-chart-2-outline",
-        },
         { title: "콘 프로필 수정", link: "corn/edit", icon: "edit-2-outline" },
       ],
     },

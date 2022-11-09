@@ -9,9 +9,9 @@ import UniStarMol from "../mol/UniStarMol";
 const PostMdOrgStyle = styled.div`
   position: relative;
   
-  img {
-    
+  img { 
     width: calc((100vw - 9px) / 3);
+    height: calc((100vw - 9px) / 3);
     border-radius: 9px;
   }
 

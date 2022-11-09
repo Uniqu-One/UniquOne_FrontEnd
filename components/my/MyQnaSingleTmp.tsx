@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import { GetServerSideProps } from "next";
 import React from "react";
 import { useRecoilValue } from "recoil";
 import { QnaUtils } from "../../lib/utils/QnaUtils";

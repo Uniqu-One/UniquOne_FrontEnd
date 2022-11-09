@@ -92,6 +92,7 @@ function TopTmp(props: {
           left="back"
           text={props.text}
           function={props.function}
+        
         />
       );
   }

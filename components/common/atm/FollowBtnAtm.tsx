@@ -17,7 +17,7 @@ function FollowBtnAtm(props:{follow:boolean|null}) {
 
   return (
     <>
-      <FollowBtnAtmStyle follow={!props.follow}>
+      <FollowBtnAtmStyle follow={props.follow}>
         {props.follow ? "팔로잉" : "팔로우"}
       </FollowBtnAtmStyle>
     </>

@@ -44,7 +44,7 @@ export const FollowUtils = {
   },
 
   //팔로우 조회
-  getOthersFollow: async (token: string, cornId: string | number) => {
+  getOthersFollowList: async (token: string, cornId: string | number) => {
     return await axios
       .get(`${process.env.NEXT_PUBLIC_URL_AWS}/posts/otherfollower/${cornId}`, {
         headers: {
@@ -52,15 +52,15 @@ export const FollowUtils = {
         },
       })
       .then((res) => {
-        console.log(res);
-        return true;
+        // console.log(res);
+        return res.data.data;
       })
       .catch((err) => {
         console.error(err);
         return false;
       });
   },
-  getOthersFollowing: async (token: string, cornId: string | number) => {
+  getOthersFollowingList: async (token: string, cornId: string | number) => {
     return await axios
       .get(
         `${process.env.NEXT_PUBLIC_URL_AWS}/posts/otherfollowing/${cornId}`,
@@ -71,8 +71,8 @@ export const FollowUtils = {
         }
       )
       .then((res) => {
-        console.log(res);
-        return true;
+        console.log(res)
+        return res.data.data;
       })
       .catch((err) => {
         console.error(err);

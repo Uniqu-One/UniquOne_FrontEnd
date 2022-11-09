@@ -51,13 +51,13 @@ function SearchOutputTmp(props: {
   useEffect(() => {
     updateSearchOutputDataList();
   }, [tempMenu, searchFilterData, keyword]);
+  
 
-  if (tempMenu === "전체") {
-    const { postList } = tempPostList;
+  const { postList } = tempPostList;
     const { hashTagList } = tempPostList;
     const { cornList } = tempPostList;
 
-    // console.log(cornList?.totalSearchCnt)
+  if (tempMenu === "전체") {
 
     return (
       <SearchOutPutTopBottomPaddingStyle>
@@ -112,7 +112,11 @@ function SearchOutputTmp(props: {
     return (
       <>
         <SearchOutPutTopBottomPaddingStyle>
-          <SearchOutputUserCornMol />
+        {cornList && cornList?.totalSearchCnt ? (
+          <ProfileFollowCardBoxMol tempUserData={cornList?.result} />
+        ) : (
+          <></>
+        )}
         </SearchOutPutTopBottomPaddingStyle>
       </>
     );

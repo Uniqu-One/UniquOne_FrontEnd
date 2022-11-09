@@ -48,7 +48,10 @@ const PostSingleFooterTmpStyle = styled.div`
 `;
 
 function PostSingleFooterTmp(props:{postId:number|string, postDetailData:{price:string|number}}) {
-  const {price} = props.postDetailData
+  const {price} = props.postDetailData;
+  //@ts-ignore
+  const postCornId = props.postDetailData.cornId;
+  
 
   return (
     <>
@@ -57,7 +60,7 @@ function PostSingleFooterTmp(props:{postId:number|string, postDetailData:{price:
 
         <div className="btns">
           <PostSingleFooterOfferMol postId={props.postId} postData={props.postDetailData}/>
-          <PostSingleFooterChatMol postId={props.postId}/>
+          <PostSingleFooterChatMol postId={props.postId} postCornId={postCornId}/>
         </div>
       </PostSingleFooterTmpStyle>
     </>

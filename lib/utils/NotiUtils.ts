@@ -10,7 +10,7 @@ export const NotiUtils = {
         Authorization:token
       }
     }).then(res => {
-      console.log(res)
+      // console.log(res)
       return res.data.data
     })
       .catch(err => console.error(err))
@@ -23,7 +23,7 @@ export const NotiUtils = {
         Authorization:token
       }
     }).then(res => {
-      console.log(res.data.data)
+      // console.log(res.data.data)
       return res.data.data
     })
       .catch(err => console.error(err))

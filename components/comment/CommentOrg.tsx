@@ -148,7 +148,7 @@ function CommentOrg(props: {
               </p>
             </CommentUserStyle>
             <CommentAncorStyle>
-              <p>{regDate}시간 전 </p>
+              <p>{regDate}</p>
               <p onClick={() => handleChangeTempParent()}>답글달기</p>
             </CommentAncorStyle>
           </div>

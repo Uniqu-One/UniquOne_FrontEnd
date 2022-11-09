@@ -43,10 +43,10 @@ const EcoStyle = styled.div`
         :first-of-type{
           background-color: red;
           g{
-            :first-child{
+            :first-of-type{
               background-color: blue;
               g{
-                :first-child{
+                :first-of-type{
                   background-color: green;
                   opacity: 0;
                 }

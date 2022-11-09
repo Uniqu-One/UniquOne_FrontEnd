@@ -13,7 +13,6 @@ import ProfileBoxTopMol from "./ProfileBoxTopMol";
 import ProfileBoxUnderMol from "./ProfileBoxUnderMol";
 import ProfileNothingMol from "./ProfileNothingMol";
 import TopTmp from "../common/tmp/TopTmp";
-import CornPostTmp from "../corn/post/CornPostTmp";
 
 const ProfileBoxTmpStyle = styled.div`
   padding-top: 50px;
@@ -75,14 +74,14 @@ function ProfileBoxTmp(props: { type: string; cornId?: string }) {
     }
   }, [profileBoxData]);
 
-  
+
 
   if (profileBoxData === undefined || profileBoxData === null) {
     return <ProfileNothingMol />;
   } else {
     return (
       <>
-        {props.type === "my" ? <TopTmp type="my" /> : <TopTmp text="userId" />}
+        {props.type === "my" ? <TopTmp type="my" /> : <TopTmp text={profileBoxData.userNickName} />}
 
         <ProfileBoxTmpStyle>
           <ProfileBoxTopMol

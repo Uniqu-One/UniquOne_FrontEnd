@@ -1,6 +1,8 @@
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
 import React from "react";
+import { useRecoilValue } from "recoil";
+import { UserInfoState } from "../../states/recoil/UserInfoState";
 import ThreeDotMol from "../common/mol/ThreeDotMol";
 import PostFollowMol from "./PostFollowMol";
 import PostFuncBarMol from "./PostFuncBarMol";
@@ -29,6 +31,8 @@ function PostCardMol(props: {
   postListData?: any;
 }) {
   const { postId, postDetailData, postListData } = props;
+  const router = useRouter();
+  const userCornId = useRecoilValue(UserInfoState).cornId;
 
   if (postListData) {
     const {
@@ -47,12 +51,12 @@ function PostCardMol(props: {
       imgUrlList,
     } = postListData;
 
-    const router = useRouter();
+    console.log(postListData);
 
     return (
       <>
         <PostCarTmpStyle>
-          <div>
+          <div onClick={() => router.push(`/profile/${cornId}`)}>
             <PostUserMol userName={userNickName} cornImg={cornImgUrl} />
           </div>
           <div className="right">
@@ -95,15 +99,20 @@ function PostCardMol(props: {
     return (
       <>
         <PostCarTmpStyle>
-          <div>
+          <div onClick={() => router.push(`/profile/${cornId}`)}>
             <PostUserMol userName={userNickName} cornImg={cornImgUrl} />
           </div>
           <div className="right">
-            <PostFollowMol
-              postId={postId}
-              isFollow={isFollow}
-              cornId={cornId}
-            />
+            {userCornId === cornId ? (
+              <></>
+            ) : (
+              <PostFollowMol
+                postId={postId}
+                isFollow={isFollow}
+                cornId={cornId}
+              />
+            )}
+
             <ThreeDotMol postId={postId} />
           </div>
         </PostCarTmpStyle>

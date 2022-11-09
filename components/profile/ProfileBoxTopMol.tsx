@@ -35,27 +35,44 @@ const ProfileBoxTopMolStyle = styled.div`
 
     .userInfo_tail {
       span {
-        margin-left: 3px;
-        margin-right: 9px;
-        font-weight: 700;
+        .EA{
+          margin-left: 3px;
+          margin-right: 9px;
+          font-weight: 700;
+        }
       }
     }
   }
 `;
 
-function ProfileBoxTopMol(props: { type: string, profileBoxData:ProfileDataType,cornId?:string }) {
+function ProfileBoxTopMol(props: {
+  type: string;
+  profileBoxData: ProfileDataType;
+  cornId?: string;
+}) {
   const router = useRouter();
-  const {cornId} = props
+  const { cornId, type } = props;
 
-  const {postEA, followerEA,followingEA,imgUrl,reviewEA,title} = props.profileBoxData
+  const { postEA, followerEA, followingEA, imgUrl, reviewEA, title } =
+    props.profileBoxData;
 
-  
+  console.log(type);
+
+  const handleMoveFollowPage = () => {
+    if (type === "my") {
+      router.push("/my/follow");
+    }
+
+    if (type === "other") {
+      router.push(`/profile/${cornId}/follow`);
+    }
+  };
 
   return (
     <>
       <ProfileBoxTopMolStyle>
         <div>
-          <UserImgAtm width={78} height={78} url={imgUrl}/>
+          <UserImgAtm width={78} height={78} url={imgUrl} />
         </div>
 
         <div className="userInfo">
@@ -64,7 +81,7 @@ function ProfileBoxTopMol(props: { type: string, profileBoxData:ProfileDataType,
               <h3>{title}</h3>
             </div>
             <div>
-              <img  
+              <img
                 src="/assets/icons/uniquOneLogo.svg"
                 alt="logo icon"
                 width="20px"
@@ -80,29 +97,25 @@ function ProfileBoxTopMol(props: { type: string, profileBoxData:ProfileDataType,
                 }
               >
                 <a>
-                  <span>★★★★★</span>{'('}{reviewEA}{')'}
+                  <span>★★★★★</span>
+                  {"("}
+                  {reviewEA}
+                  {")"}
                 </a>
               </Link>
             </div>
           </div>
 
           <div className="userInfo_tail">
-            <p>
-              포스트<span>{postEA}</span>
-            </p>
-            <Link href={{
-              pathname : "/my/follow",
-              query : {click : "follow"}
-            }}>
-              <a>
-                팔로워<span>{followerEA}</span>
-              </a>
-            </Link>
-            <Link href={"/my/follow"}>
-              <a>
-                팔로잉<span>{followingEA}</span>
-              </a>
-            </Link>
+            <span>
+              포스트<span className="EA">{postEA===null ? 0 : postEA}</span>
+            </span>
+            <span onClick={() => handleMoveFollowPage()}>
+              팔로워<span className="EA">{followerEA}</span>
+            </span>
+            <span onClick={() => handleMoveFollowPage()}>
+              팔로잉<span className="EA">{followingEA}</span>
+            </span>
           </div>
         </div>
       </ProfileBoxTopMolStyle>

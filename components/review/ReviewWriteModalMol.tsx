@@ -15,19 +15,22 @@ function ReviewWriteModalMol(props: {
   tempTradeId: string;
   postId: string;
   setReviewModal:Function
+  data?:[]
+  tempIdx?:number
 
 }) {
   const token = useRecoilValue(TokenState).token;
   const [rating, setRating] = useState<number>(0);
   const [text, setText] = useState<string>("");
 
-  const { tempTradeId, postId,setReviewModal } = props;
+  const { tempTradeId, postId,setReviewModal, data,tempIdx } = props;
+
 
   const handlePostMyReview = async () => {
     if(await ReviewUtils.postReview(token, tempTradeId,postId, rating, text)){
       setReviewModal(false)
     } else {
-      alert('잘못됨')
+      return ;
     }
   };
 

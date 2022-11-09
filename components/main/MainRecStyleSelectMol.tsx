@@ -21,7 +21,8 @@ const MainRecStyleSelectMolStyle = styled.div`
   }
 
   h3 {
-    line-height: 1.3rem;
+    
+    line-height: 1.6rem;
     text-align: center;
     width: 186px;
     font-weight: 700;
@@ -38,7 +39,7 @@ const MainRecStyleSelectMolStyle = styled.div`
   }
 `;
 
-function MainRecStyleSelectMol() {
+function MainRecStyleSelectMol(props:{userNickName:string}) {
   return (
     <>
       <MainRecStyleSelectMolStyle>
@@ -51,9 +52,9 @@ function MainRecStyleSelectMol() {
           />
         </div>
         <h3>
-          UserName님이 선택한 포스트들을 바탕으로
-          <br />
-          스타일을 추천해드려요!
+          {props.userNickName}님께서 
+          <br/>
+          선택한 포스트들을 바탕으로스타일을 추천해드려요!
         </h3>
       </MainRecStyleSelectMolStyle>
     </>

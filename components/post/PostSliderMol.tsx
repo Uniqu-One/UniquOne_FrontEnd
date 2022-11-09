@@ -2,9 +2,11 @@ import styled from "@emotion/styled";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
+import { useRecoilValue } from "recoil";
 import useEvaIcon from "../../lib/hooks/useEvaIcon";
+import { UserInfoState } from "../../states/recoil/UserInfoState";
 import { color } from "../../styles/theme";
-import ToastTmp from "../common/tmp/ToastTmp";
+import ToastTmp, { ToastUtils } from "../common/tmp/ToastTmp";
 import PostSliderNextMol from "./PostSliderNextMol";
 import PostSliderPrevMol from "./PostSliderPrevMol";
 
@@ -45,12 +47,18 @@ function PostSliderMol(props: { postId: number | string; postImgUrlList: [] }) {
   const router = useRouter();
   useEvaIcon()
   const { postId, postImgUrlList } = props;
+  const userId = useRecoilValue(UserInfoState).userId
 
   const queryPostId = router.query.postId
 
   const [settings, setSettings] = useState({
     beforeChange: (e: number) => {
+
       if (e === 0 && queryPostId === undefined) {
+        if(userId === undefined){
+          ToastUtils.comment("디테일 확인은 로그인 후에 가능합니다. ","/intro")
+          return ;
+        }
         router.push(`/post/${postId}`);
       }
 
@@ -58,7 +66,11 @@ function PostSliderMol(props: { postId: number | string; postImgUrlList: [] }) {
     },
 
     afterChange: (e: number) => {
+      
       if (e === 0 && queryPostId !== undefined) {
+        if(userId === undefined){
+          return ;
+        }
         router.back();
       }
     },

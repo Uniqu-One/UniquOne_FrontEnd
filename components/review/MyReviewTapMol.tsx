@@ -22,7 +22,7 @@ padding-top: 50px;
         font-weight: 500;
       }
       .selected{
-        color: black;
+        color: ${color.p_pruple};
         font-weight: 650;
         }
       h4 {

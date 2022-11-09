@@ -34,6 +34,7 @@ function MyTradeTmp() {
 
   const [tempTradeId, setTempTradeId] = useState("");
   const [postId, setPostId] = useState("");
+  const [tempIdx, setTempIdx] = useState()
 
   return (
     <MyTradeTmpStyle>
@@ -41,7 +42,7 @@ function MyTradeTmp() {
 
       {tempTab === 0 &&
         purchaseDatas &&
-        purchaseDatas.map((data: purchaseDataType) => {
+        purchaseDatas.map((data: purchaseDataType,idx:number) => {
           return (
             <MyTradeBoxMol
               key={data.tradeId}
@@ -50,13 +51,15 @@ function MyTradeTmp() {
               setTempTradeId={setTempTradeId}
               setPostId={setPostId}
               type="buy"
+              setTempIdx={setTempIdx}
+              idx={idx}
             />
           );
         })}
 
       {tempTab === 1 &&
         sellDatas &&
-        sellDatas.map((data: purchaseDataType) => {
+        sellDatas.map((data: purchaseDataType,idx:number) => {
           return (
             <MyTradeBoxMol
             type="sell"
@@ -65,15 +68,20 @@ function MyTradeTmp() {
               setReviewModal={setReviewModal}
               setTempTradeId={setTempTradeId}
               setPostId={setPostId}
+              setTempIdx={setTempIdx}
+              idx={idx}
             />
           );
         })}
 
       <BottomSheet open={reviewModal} onDismiss={() => setReviewModal(false)}>
         <ReviewWriteModalMol
+          data={sellDatas}
+          tempIdx={tempIdx}
           tempTradeId={tempTradeId}
           postId={postId}
           setReviewModal={setReviewModal}
+          purchaseDatas={purchaseDatas}
         />
       </BottomSheet>
     </MyTradeTmpStyle>

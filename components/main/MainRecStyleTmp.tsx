@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
 import React from "react";
+import { useRecoilValue } from "recoil";
+import { UserInfoState } from "../../states/recoil/UserInfoState";
 import { color } from "../../styles/theme";
 import MainRecStyleSelectMol from "./MainRecStyleSelectMol";
 import MainRecStyleSlideMol from "./MainRecStyleSlideMol";
@@ -15,10 +17,17 @@ const MainRecStyleIntervalTmpStyle = styled.div`
 `;
 
 function MainRecStyleTmp() {
+
+  const userNickName = useRecoilValue(UserInfoState).userNickName
+
+  if(userNickName === undefined){
+    return <></>
+  }
+
   return (
     <>
       <MainRecStyleIntervalTmpStyle>
-        <MainRecStyleSelectMol />
+        <MainRecStyleSelectMol userNickName={userNickName}/>
         <MainRecStyleSlideMol />
       </MainRecStyleIntervalTmpStyle>
     </>

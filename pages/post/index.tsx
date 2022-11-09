@@ -1,11 +1,13 @@
 import styled from "@emotion/styled";
 import Head from "next/head";
 import React, { useEffect, useState } from "react";
+import { useRecoilValue } from "recoil";
 import FooterTmp from "../../components/common/tmp/FooterTmp";
 import TopTmp from "../../components/common/tmp/TopTmp";
 import PostContentsTmp from "../../components/post/PostContentsTmp";
 import PostTypeTmp from "../../components/post/PostTypeTmp";
 import { HeadTitleList } from "../../public/assets/datas/headTitleList";
+import { UserInfoState } from "../../states/recoil/UserInfoState";
 
 const PostStyle = styled.div`
   width: 100vw;
@@ -19,6 +21,9 @@ function index() {
   useEffect(() => {
     window.scroll({top:0, behavior:"smooth"})
   },[tempMenu])
+
+  console.log(1)
+  console.log(useRecoilValue(UserInfoState))
 
   return ( 
     <>

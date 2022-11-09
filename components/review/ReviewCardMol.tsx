@@ -13,6 +13,9 @@ const ReviewCardMolStyle = styled.div`
       display: flex;
       justify-content: space-between;
       .left {
+        h4{
+          color: ${color.p_gray_dk};
+        }
         display: flex;
         div {
           :first-of-type {

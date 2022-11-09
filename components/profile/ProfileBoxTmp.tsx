@@ -107,8 +107,8 @@ function ProfileBoxTmp(props: { type: string; cornId?: string }) {
           <div onClick={() => handleFollowBtn()}>
             <BtnTmp
               size="lg"
-              value={followStatus ? "팔로우" : "팔로잉"}
-              status={followStatus}
+              value={!followStatus ? "팔로우" : "팔로잉"}
+              status={!followStatus}
             />
           </div>
         )}

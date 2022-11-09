@@ -20,8 +20,6 @@ function LoginAuthStateTmp() {
     setUserInfo(userInfo);
   };
 
-
-
   useEffect(() => {
     //login, / /post / profile
     if (loginAuthState === false) {

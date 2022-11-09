@@ -1,7 +1,9 @@
 import styled from "@emotion/styled";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import useEvaIcon from "../../lib/hooks/useEvaIcon";
 import { color } from "../../styles/theme";
+import TradeArrowIcon from "../common/atm/TradeArrowIcon";
+import TradeCheckIcon from "../common/atm/TradeCheckIcon";
 import { purchaseDataType } from "./MyTradeTmp";
 
 const MyTradeBoxMolStyle = styled.div`
@@ -15,17 +17,26 @@ const MyTradeBoxMolStyle = styled.div`
   }
 
   .trade_img {
-    border: 1px solid ${color.p_gray_md};
-    border-radius: 6px;
+    img {
+      border-radius: 6px;
+      border: 1px solid ${color.p_gray_lt};
+    }
   }
 
   .item_info {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     padding: 3px 0;
     margin-left: 12px;
     font-weight: 500;
+
+    color: ${color.p_gray_dk};
+    font-size: 0.875rem;
+
+    h3 {
+      margin-bottom: 6px;
+    }
   }
 
   .btn {
@@ -36,6 +47,28 @@ const MyTradeBoxMolStyle = styled.div`
     padding: 6px 12px;
     border-radius: 9px;
     color: white;
+    font-size: 0.875rem;
+
+    svg {
+      padding-top: 2px;
+      padding-left: 2px;
+      fill: white;
+      width: 20px;
+      height: 20px;
+    }
+    div {
+      margin: auto;
+    }
+  }
+  .btnx{
+    margin: auto 0;
+    display: flex;
+    background-color: ${color.p_gray_md};
+    height: 100%;
+    padding: 6px 12px;
+    border-radius: 9px;
+    color: white;
+    font-size: 0.875rem;
 
     svg {
       padding-top: 2px;
@@ -54,24 +87,28 @@ function MyTradeBoxMol(props: {
   data: purchaseDataType;
   setReviewModal: Function;
   setTempTradeId: Function;
-  setPostId:Function
-  type:string
+  setPostId: Function;
+  type: string;
+  setTempIdx: Function;
+  idx: number;
 }) {
   useEvaIcon();
-  const { postImg, postTitle, price,tradeId, postId } = props.data;
-  const { setReviewModal, setTempTradeId,setPostId,type } = props;
+  const { postImg, postTitle, price, tradeId, postId, isReview } = props.data;
+  const { setReviewModal, setTempTradeId, setPostId, type, setTempIdx, idx } =
+    props;
+
+  const [tempReview, setTempReview] = useState(false);
+
+  useEffect(() => {
+    setTempReview(isReview);
+  }, []);
 
   return (
     <>
       <MyTradeBoxMolStyle>
         <div className="left">
           <div className="trade_img">
-            <img  
-              src={postImg}
-              alt="더미 이미지"
-              width="42px"
-              height="42px"
-            />
+            <img src={postImg} alt="더미 이미지" width="42px" height="42px" />
           </div>
           <div className="item_info">
             <div>
@@ -83,24 +120,32 @@ function MyTradeBoxMol(props: {
           </div>
         </div>
 
-        {type=== "buy" &&
-        
-        <div
-          className="btn"
-          onClick={() => {
-            setReviewModal(true);
-            setTempTradeId(tradeId);
-            setPostId(postId)
-          }}
-        >
-          <div>리뷰쓰기</div>
-          <div>
-            <i data-eva="arrow-ios-forward-outline"></i>
-          </div>
-        </div>
-        }
-
-
+        {type === "buy" &&
+          (tempReview ? (
+            <div
+              className="btnx"
+            >
+              <div className="can">작성완료</div>
+              <div>
+                <TradeCheckIcon/>
+              </div>
+            </div>
+          ) : (
+            <div
+              className="btn"
+              onClick={() => {
+                setReviewModal(true);
+                setTempTradeId(tradeId);
+                setPostId(postId);
+                setTempIdx(idx);
+              }}
+            >
+              <div className="can">리뷰쓰기</div>
+              <div>
+                <TradeArrowIcon/>
+              </div>
+            </div>
+          ))}
       </MyTradeBoxMolStyle>
     </>
   );

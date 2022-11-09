@@ -48,6 +48,7 @@ export const TradeUtils = {
       fetchPruchaseListData,
       {
         select: (data) => {
+          // console.log(data)
           return data.data.data;
         },
       }

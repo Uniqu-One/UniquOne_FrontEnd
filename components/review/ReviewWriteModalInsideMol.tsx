@@ -13,12 +13,14 @@ function ReviewWriteModalInsideMol(props: {
   setText: Function;
   setRating: Function;
   text: string;
+  tempData:{}
 }) {
   const { setText, text, setRating } = props;
 
   const handleRating = (rate: number) => {
     setRating(rate);
   };
+
   return (
     <ReviewWriteModalInsideMolStyle>
       <UserImgAtm width={84} height={84} />

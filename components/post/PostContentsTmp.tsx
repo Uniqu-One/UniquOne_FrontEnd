@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
-import React, { useEffect, useState } from "react";
+import { useInView } from "framer-motion";
+import React, { useEffect, useRef, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { PostUtils } from "../../lib/utils/PostUtils";
 import { TokenState } from "../../states/recoil/TokenState";
@@ -32,6 +33,12 @@ const PostContentsTmpStyle = styled.div`
   }
 `;
 
+const DummyHeight = styled.div`
+  width: 100vw;
+  height: 30px;
+  background-color: red;
+`
+
 function PostContentsTmp(props: { tempMenu: number; setTempMenu: Function }) {
   const token = useRecoilValue(TokenState).token;
   const { tempMenu, setTempMenu } = props;
@@ -46,8 +53,16 @@ function PostContentsTmp(props: { tempMenu: number; setTempMenu: Function }) {
     }
   };
 
+  const scrollRef = useRef(null)
+  const isInView = useInView(scrollRef)
+
   useEffect(() => {
-    updatePostData();
+    console.log("Element is in view: ", isInView)
+  }, [isInView])
+
+  useEffect(() => {
+    updatePostData(); 
+    console.log('변경됨')
   }, [tempMenu]);
 
   if (tempData?.[0] === undefined) {
@@ -65,6 +80,7 @@ function PostContentsTmp(props: { tempMenu: number; setTempMenu: Function }) {
   }
 
   return (
+    <>
     <PostContentsTmpStyle>
       {tempData.map((post) => {
         return (
@@ -73,7 +89,10 @@ function PostContentsTmp(props: { tempMenu: number; setTempMenu: Function }) {
           </div>
         );
       })}
+      {/* <div ref={scrollRef} style={{"width":"100wv", "height":"30px","backgroundColor":"blue"}}></div> */}
     </PostContentsTmpStyle>
+    {/* <DummyHeight/> */}
+    </>
   );
 }
 

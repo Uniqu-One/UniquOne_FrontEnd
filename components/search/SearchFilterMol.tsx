@@ -32,7 +32,9 @@ const SearchFilterMolStyle = styled.div`
 `;
 
 function SearchFilterMol(props: { tempMenu: string; setTempMenu: Function }) {
-  const FILTER_MENU = ["색상", "룩", "카테고리", "상태"];
+  const FILTER_MENU = ["색상", "룩", "카테고리"
+  // , "상태"
+];
 
   const [open, setOpen] = useState(false);
 

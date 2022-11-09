@@ -22,8 +22,6 @@ function index() {
     window.scroll({top:0, behavior:"smooth"})
   },[tempMenu])
 
-  console.log(1)
-  console.log(useRecoilValue(UserInfoState))
 
   return ( 
     <>

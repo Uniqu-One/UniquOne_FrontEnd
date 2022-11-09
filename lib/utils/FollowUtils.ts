@@ -15,7 +15,7 @@ export const FollowUtils = {
         }
       )
       .then((res) => {
-        console.log(res);
+        ;
         return true;
       })
       .catch((err) => {
@@ -34,7 +34,7 @@ export const FollowUtils = {
         }
       })
       .then((res) => {
-        console.log(res);
+        ;
         return true;
       })
       .catch((err) => {
@@ -52,7 +52,7 @@ export const FollowUtils = {
         },
       })
       .then((res) => {
-        // console.log(res);
+        // ;
         return res.data.data;
       })
       .catch((err) => {
@@ -71,7 +71,7 @@ export const FollowUtils = {
         }
       )
       .then((res) => {
-        console.log(res)
+        
         return res.data.data;
       })
       .catch((err) => {
@@ -87,7 +87,7 @@ export const FollowUtils = {
         },
       })
       .then((res) => {
-        console.log(res);
+        ;
         return res.data.data;
       })
       .catch((err) => {
@@ -106,7 +106,7 @@ export const FollowUtils = {
         }
       )
       .then((res) => {
-        console.log(res);
+        ;
         return res.data.data;
       })
       .catch((err) => {

@@ -62,7 +62,7 @@ export const CornUtils = {
       data: formData,
     })
       .then((res) => {
-        console.log(res);
+        ;
         return true;
       })
       .catch((err) => console.error(err));
@@ -77,7 +77,7 @@ export const CornUtils = {
         },
       })
       .then((res) => {
-        console.log(res)
+        
         return res.data.data.content;
       })
       .catch((err) => console.error(err));
@@ -95,7 +95,7 @@ export const CornUtils = {
       data: formData,
     })
       .then((res) => {
-        console.log(res);
+        ;
         return true;
       })
       .catch((err) => {

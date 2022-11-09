@@ -17,7 +17,7 @@ export const OfferUtils = {
         }
       )
       .then((res) => {
-        console.log(res);
+        ;
         return true;
       })
       .catch((err) => {
@@ -34,7 +34,7 @@ export const OfferUtils = {
         },
       })
       .then((res) => {
-        console.log(res);
+        ;
         return res.data.data;
       })
       .catch((err) => {
@@ -102,7 +102,7 @@ export const OfferUtils = {
         }
       )
       .then((res) => {
-        console.log(res)
+        
         return true;
       })
       .catch((err) => {

@@ -12,11 +12,11 @@ function MainCarouselTmp() {
   const settings = {
     dots: false,
     infinite: true,
-    speed: 750,
+    speed: 800,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 4200,
+    autoplaySpeed: 7600,
   };
   return (
     <MainCarouselStyle>

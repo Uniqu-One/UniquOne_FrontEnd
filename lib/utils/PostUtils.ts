@@ -153,7 +153,7 @@ export const PostUtils = {
       })
 
       .then((res) => {
-        console.log(res);
+        ;
         return true;
       })
       .catch((err) => {
@@ -270,7 +270,7 @@ export const PostUtils = {
       )
       .then((res) => {
         if (res.status === 200) {
-          console.log(res);
+          ;
           return true;
         }
       })
@@ -295,7 +295,7 @@ export const PostUtils = {
         }
       )
       .then((res) => {
-        console.log(res);
+        ;
         return true;
       })
       .catch((err) => {
@@ -346,7 +346,7 @@ export const PostUtils = {
         }
       )
       .then((res) => {
-        console.log(res);
+        ;
         return res.data.data.content;
       })
       .catch((err) => console.error(err));
@@ -358,7 +358,7 @@ export const PostUtils = {
         `${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/listall/${cornId}?page=${pageNum}`
       )
       .then((res) => {
-        // console.log(res);
+        // ;
         return res.data.data.content;
       })
       .catch((err) => console.error(err));
@@ -393,7 +393,7 @@ export const PostUtils = {
         },
       })
       .then((res) => {
-        console.log(res);
+        ;
         return res.data.data;
       })
       .catch((err) => console.error(err));
@@ -407,7 +407,7 @@ export const PostUtils = {
         },
       })
       .then((res) => {
-        console.log(res);
+        ;
         return res.data.data;
       })
       .catch((err) => console.error(err));

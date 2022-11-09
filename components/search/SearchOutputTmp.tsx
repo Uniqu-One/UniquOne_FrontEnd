@@ -8,17 +8,27 @@ import SearchOutputUserCornMol from "./SearchOutputUserCornMol";
 import ProfileFollowCardBoxMol from "../profile/ProfileFollowCardBoxMol";
 import styled from "@emotion/styled";
 import { SearchFilterState } from "../../states/recoil/SearchFilterState";
-
-const SearchOutputMenuOrgOverFlowStyle = styled.div`
-  overflow: scroll;
-  ::-webkit-scrollbar {
-    display: none;
-  }
-`;
+import QuestionMarkAtm from "../common/atm/QuestionMarkAtm";
+import { color } from "../../styles/theme";
 
 const SearchOutPutTopBottomPaddingStyle = styled.div`
   padding-top: 112px;
   padding-bottom: 60px;
+
+  .no-data {
+    text-align: center;
+    margin-top: 24vh;
+    color: ${color.p_gray_md};
+    svg {
+      width: 48px;
+      height: 48px;
+      fill: ${color.p_gray_md};
+    }
+    p {
+      margin-top: 6px;
+      font-size: 0.875rem;
+    }
+  }
 `;
 
 function SearchOutputTmp(props: {
@@ -35,6 +45,14 @@ function SearchOutputTmp(props: {
   const [searchFilterData, setSearchFilterData] =
     useRecoilState(SearchFilterState);
 
+  const { postList } = tempPostList;
+  const { hashTagList } = tempPostList;
+  const { cornList } = tempPostList;
+
+  useEffect(() => {
+    updateSearchOutputDataList();
+  }, [tempMenu, searchFilterData, keyword]);
+
   const updateSearchOutputDataList = async () => {
     if (tempMenu === "전체") {
       setTempPostList(await SearchUtils.getSearchAllList(token, keyword));
@@ -48,33 +66,48 @@ function SearchOutputTmp(props: {
     }
   };
 
-  useEffect(() => {
-    updateSearchOutputDataList();
-  }, [tempMenu, searchFilterData, keyword]);
-  
 
-  const { postList } = tempPostList;
-    const { hashTagList } = tempPostList;
-    const { cornList } = tempPostList;
 
   if (tempMenu === "전체") {
-
+//@ts-ignore
+    if (!postList?.result[0] && !hashTagList?.result[0] && !cornList?.result[0]) {
+      return (
+        <SearchOutPutTopBottomPaddingStyle>
+          <div className="no-data">
+            <QuestionMarkAtm />
+            <p>검색어에 대한 결과가 없습니다.</p>
+          </div>
+        </SearchOutPutTopBottomPaddingStyle>
+      );
+    }
     return (
       <SearchOutPutTopBottomPaddingStyle>
         {postList ? (
           <SearchOutputContentsMol postList={postList?.result} type="상품" />
         ) : (
-          <></>
+          <div className="no-data">
+          <QuestionMarkAtm />
+          <p>검색어에 대한 결과가 없습니다.</p>
+        </div>
         )}
         {hashTagList ? (
-          <SearchOutputContentsMol postList={hashTagList?.result} type="태그" />
+          <SearchOutputContentsMol
+            postList={hashTagList?.result}
+            type="해시태그"
+          />
         ) : (
-          <></>
+          <div className="no-data">
+          <QuestionMarkAtm />
+          <p>검색어에 대한 결과가 없습니다.</p>
+        </div>
         )}
         {cornList && cornList?.totalSearchCnt ? (
           <ProfileFollowCardBoxMol tempUserData={cornList?.result} />
         ) : (
-          <></>
+          <div className="no-data">
+          <QuestionMarkAtm />
+          <p>검색어에 대한 결과가 없습니다.</p>
+        </div>
         )}
         <SearchOutputUserCornMol />
       </SearchOutPutTopBottomPaddingStyle>
@@ -88,7 +121,12 @@ function SearchOutputTmp(props: {
       <>
         <SearchOutPutTopBottomPaddingStyle>
           {/* @ts-ignore */}
-          <SearchOutputContentsMol postList={postList?.result} type="상품" />
+          <SearchOutputContentsMol
+          //@ts-ignore
+            postList={postList?.result}
+            type="상품"
+            tap="on"
+          />
         </SearchOutPutTopBottomPaddingStyle>
       </>
     );
@@ -101,7 +139,11 @@ function SearchOutputTmp(props: {
       <>
         <SearchOutPutTopBottomPaddingStyle>
           {/* @ts-ignore */}
-          <SearchOutputContentsMol postList={hashTagList?.result} type="태그" />
+          <SearchOutputContentsMol
+          //@ts-ignore
+            postList={hashTagList?.result}
+            type="해시태그"
+          />
           <SearchOutputUserCornMol />
         </SearchOutPutTopBottomPaddingStyle>
       </>
@@ -112,11 +154,16 @@ function SearchOutputTmp(props: {
     return (
       <>
         <SearchOutPutTopBottomPaddingStyle>
-        {cornList && cornList?.totalSearchCnt ? (
-          <ProfileFollowCardBoxMol tempUserData={cornList?.result} />
-        ) : (
-          <></>
-        )}
+          {cornList && cornList?.totalSearchCnt ? (
+            <ProfileFollowCardBoxMol tempUserData={cornList?.result} />
+          ) : (
+            <>
+              <div className="no-data">
+                <QuestionMarkAtm />
+                <p>콘 또는 유저에 해당하는 결과가 없습니다.</p>
+              </div>
+            </>
+          )}
         </SearchOutPutTopBottomPaddingStyle>
       </>
     );

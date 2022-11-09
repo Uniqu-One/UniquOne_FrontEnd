@@ -24,9 +24,13 @@ const SearchOutputContentsMolStyle = styled.div`
       width: calc((100vw - 40px) / 2);
     }
   }
+
+  .tap_class{
+    padding-top: 36px;
+  }
 `;
 
-function SearchOutputContentsMol(props: { postList: searchPostType[],type:string }) {
+function SearchOutputContentsMol(props: { postList: searchPostType[],type:string, tap?:string }) {
   const postList = props.postList;
   const type = props.type;
   const router = useRouter()
@@ -34,6 +38,7 @@ function SearchOutputContentsMol(props: { postList: searchPostType[],type:string
   return (
     <>
       <SearchOutputContentsMolStyle>
+        {props.tap && <div className="tap_class"></div>}
         <div className="post_class">{type}</div>
         <div className="contents">
           {postList &&

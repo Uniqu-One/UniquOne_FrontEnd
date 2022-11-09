@@ -25,9 +25,19 @@ function NotiSubscribe() {
       } else {
         const data = (JSON.parse(event.data))
         
+        console.log(data)
         if(data.notiType === "COMMENT"){
           //@ts-ignore
           ToastUtils.comment(`내 게시물에 댓글이 달렸습니다.`);
+        }
+        if(data.notiType === "OFFER"){
+          //@ts-ignore
+          ToastUtils.comment(`새로운 가격 제안이 들어왔습니다. `,"/corn/offer");
+        }
+        
+        if(data.notiType === "OFFER_ACCEPT"){
+          //@ts-ignore
+          ToastUtils.comment(`내가 보낸 오퍼가 수락되었습니다. `,"/chat");
         }
 
         

@@ -137,7 +137,16 @@ function ProfileContentTmp() {
     }
   }, [tempTab]);
 
+
+
+
+
   if (tempPostList === undefined) {
+    
+    if(cornId === null){
+      return <div></div>
+    }
+    
     return (<>
       <ProfileContentTmpStyle>
         <div className="question_mark">
@@ -148,8 +157,6 @@ function ProfileContentTmp() {
       </>
     );
   }
-
-
 
   return (
     <div>

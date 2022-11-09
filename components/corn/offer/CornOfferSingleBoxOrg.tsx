@@ -54,12 +54,14 @@ const CornOfferSingleBoxOrgStyle = styled.div`
   }
   .right {
     margin: auto 0;
+    font-size: 0.875rem;
   }
 `;
 
-function CornOfferSingleBoxOrg(props: { offer: offerDataType; type?: string }) {
+function CornOfferSingleBoxOrg(props: { offer: offerDataType; type?: string, }) {
   const router = useRouter();
   const { type } = props;
+  
 
 
   const {
@@ -90,6 +92,7 @@ function CornOfferSingleBoxOrg(props: { offer: offerDataType; type?: string }) {
               <img   src={cornImg} alt="cornTitle" width="60px" height="60px" />
             </div> 
           ): <img   src={"/assets/images/sad_corn_img.jpg"} alt="cornTitle" width="60px" height="60px" />}
+          
           {postImg && (
             <div className="itemImg">
               <img   src={postImg} alt="postTitle" width="60px" height="60px" />

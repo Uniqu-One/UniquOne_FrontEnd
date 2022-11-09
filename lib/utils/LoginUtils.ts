@@ -8,7 +8,7 @@ export const LoginUtils = {
         password,
       })
       .then((res) => {
-        console.log(res)
+        
         return res.data;
       })
       .catch((err) => console.error(err));
@@ -21,7 +21,7 @@ export const LoginUtils = {
         }
       })
       .then((res) => {
-        console.log(res)
+        
         return res.data.data;
       })
       .catch((err) => {

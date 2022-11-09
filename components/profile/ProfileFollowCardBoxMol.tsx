@@ -82,7 +82,7 @@ const ProfileFollowCardBoxMolStyle = styled.div`
   }
 `;
 
-function ProfileFollowCardBoxMol(props: { tempUserData: followListType[] }) {
+function ProfileFollowCardBoxMol(props: { tempUserData: followListType[]}) {
   const token = useRecoilValue(TokenState).token
   const { tempUserData } = props;
 

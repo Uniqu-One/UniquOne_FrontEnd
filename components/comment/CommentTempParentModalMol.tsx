@@ -27,16 +27,19 @@ const CommentTempParentModalMolStyle = styled.div`
 function CommentTempParentModalMol(props: {
   setTempParent: Function;
   tempParent: number;
-}) {
+}) { 
+
+  
   useEvaIcon();
   const { setTempParent, tempParent } = props;
+  
   return (
     <CommentTempParentModalMolStyle>
       <div>
         {tempParent === -1 ? (
           <p>내 댓글 수정중</p>
         ) : (
-          <p>{tempParent}님에게 답글 남기는 중</p>
+          <p>답글 남기는 중</p>
         )}
       </div>
       <div onClick={() => setTempParent(0)}>

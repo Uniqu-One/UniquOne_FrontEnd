@@ -48,7 +48,7 @@ function OfferId(props: { postId: string | number }) {
 
         {offerList &&
           offerList.map((offer: offerDataType) => {
-            return <CornOfferSingleBoxOrg offer={offer} type="corn"/>;
+            return <CornOfferSingleBoxOrg offer={offer} type="corn" />;
           })}
       </OfferIdStyle>
       <FooterTmp />

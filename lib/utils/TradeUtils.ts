@@ -21,7 +21,7 @@ export const TradeUtils = {
         }
       )
       .then((res) => {
-        console.log(res);
+        ;
         if (res.status === 201) {
           return true;
         } else {

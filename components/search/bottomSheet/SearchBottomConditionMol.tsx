@@ -62,6 +62,8 @@ function SearchBottomConditionMol(props: { setOpen: Function }) {
   };
 
 
+  console.log(tempCheck)
+
   return (
     <>
       <BottomSheetTopMol
@@ -80,7 +82,7 @@ function SearchBottomConditionMol(props: { setOpen: Function }) {
                 onClick={() => handleSetConditionData(menu.title)}
               >
                 <input
-                  type="checkbox"
+                  type="radio"
                   name={menu.title}
                   value={menu.title}
                   checked={searchFilterData.상태.includes(menu.title)}

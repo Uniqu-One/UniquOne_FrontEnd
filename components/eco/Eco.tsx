@@ -66,7 +66,8 @@ const EcoStyle = styled.div`
       width: 100%;
       text-align: center;
       z-index: 2;
-      bottom: -12px;
+      bottom: -5%;
+      /* bottom: -12px; */
     }}
   }
 `;
@@ -81,9 +82,11 @@ function Eco() {
   const moveWater = useRef(null);
   const moveEco = useRef(null);
 
+  
+
   useEffect(() => {
     axios
-      .get(`${process.env.NEXT_PUBLIC_URL_AWS}/eco/all`)
+      .get(`${process.env.NEXT_PUBLIC_URL_AWS}/eco/allSum`)
       .then((res) => setData(res.data.data))
       .catch((err) => console.error(err));
 
@@ -125,13 +128,22 @@ function Eco() {
       });
   }, []);
 
+  let water,carbon,distance;
+  if(data){
+    //@ts-ignore
+    water = data.water;
+    //@ts-ignore
+    carbon = data.carbon;
+    //@ts-ignore
+    distance = data.distance
+  }
+
   return (
     <>
     
     <EcoStyle>
     <div className='title'>
       <p>지금껏 유니콘들이 지켜온 환경지수에요 :{')'}</p>
-      <p>22.11.07~22.11.13</p>
     </div>
     <div ref={moveEco}>
 
@@ -141,20 +153,20 @@ function Eco() {
       <div ref={moveCarbone}>
         
         <p>
-          CO2<br/>
-          <CountUp end={100} duration={2} />KG
+          탄소<br/>
+          <CountUp end={carbon} duration={2} />KG
         </p>
       </div>
       <div ref={moveDistance}>
         <p>
-        DISTANCE<br/>
-          <CountUp end={150} duration={2} />KM
+        거리<br/>
+          <CountUp end={distance} duration={6} />KM
         </p>
       </div>
       <div ref={moveWater}>
         <p>
-        WATER<br/>
-          <CountUp end={200} duration={2} />L
+        물<br/>
+          <CountUp end={water} duration={3} />L
         </p>
       </div>
       </div>

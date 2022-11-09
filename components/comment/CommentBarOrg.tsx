@@ -20,6 +20,7 @@ const CommentBarOrgStyle = styled.div<{ inputStatus: boolean }>`
 
   img {
     border-radius: 100%;
+    border: 1px solid ${color.p_gray_lt};
   }
 
   input {

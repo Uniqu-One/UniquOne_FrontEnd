@@ -33,7 +33,7 @@ export const ToastUtils = {
         style={{"textDecorationLine":"underline"}}>이동하기</p>
       </div>
     ), {
-      duration: 1500,
+      duration: 2000,
     });
   },
 };

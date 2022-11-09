@@ -77,7 +77,10 @@ function ProfileBoxTmp(props: { type: string; cornId?: string }) {
 
 
   if (profileBoxData === undefined || profileBoxData === null) {
-    return <ProfileNothingMol />;
+    return <>
+    <TopTmp type="my" />
+    <ProfileNothingMol />
+    </>
   } else {
     return (
       <>

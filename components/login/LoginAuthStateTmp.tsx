@@ -43,7 +43,7 @@ function LoginAuthStateTmp() {
           return;
         } else {
           ToastUtils.toast("로그인이 필요한 기능입니다.")
-          router.replace("/intro");
+          router.replace("/intro"); 
         }
       }
     }

@@ -31,7 +31,7 @@ function Error() {
         <div>
           <img  
             src="/assets/images/404.png"
-            alt="잘못된 페이지"
+            alt="잘못된 페이지 주소"
             width="240px"
             height="240px"
           />

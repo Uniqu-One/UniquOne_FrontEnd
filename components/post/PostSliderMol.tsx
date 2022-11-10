@@ -126,7 +126,7 @@ function PostSliderMol(props: { postId: number | string; postImgUrlList: [] }) {
               src={postImgUrlList}
               alt="postdummy"
               width="100%"
-              min-height="400vw"
+              height="380vw"
             />
           </div>
           <div>

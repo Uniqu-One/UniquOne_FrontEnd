@@ -38,8 +38,8 @@ function RedirectTmp(props: { type: string }) {
   }, []);
 
   const handleChangePage = () => {
-    window.location.replace('/corn')
-  }
+    window.location.replace("/corn");
+  };
 
   return (
     <>
@@ -59,15 +59,15 @@ function RedirectTmp(props: { type: string }) {
             <p>지금부터 내 다양한 포스트를 통해</p>
             <p>다른 유저들에게 내 스타일을 소개해주세요!</p>
           </div>
-          <img  
+          <img
             src="/assets/images/congImage.png"
             alt="축하 이미지"
             width="270px"
             height="270px"
           />
           <div onClick={() => handleChangePage()}>
-              <BtnTmp size="default" value="나의 Corn으로 이동" />
-              </div>
+            <BtnTmp size="default" value="나의 Corn으로 이동" />
+          </div>
           <Link href="/">
             <p>홈으로 가기</p>
           </Link>
@@ -79,20 +79,23 @@ function RedirectTmp(props: { type: string }) {
           <div>
             <p>회원가입을 해주셔서 감사합니다 🎉</p>
             <br />
-            <p>지금 나의 스타일을 설정하시면</p>
-            <p>스타일에 맞는 포스트들을 추천해드릴게요!</p>
+            <p>지금부터 유니콘의 서비스를 즐겨보세요!</p>
+            {/* <p>스타일에 맞는 포스트들을 추천해드릴게요!</p> */}
           </div>
-          <img  
+          <img
             src="/assets/images/congImage.png"
             alt="축하 이미지"
             width="270px"
             height="270px"
           />
-
-          <BtnTmp size="default" value="마이 스타일 설정하러 가기" />
           <Link href="/">
-            <p>나중에 설정하기</p>
+            <a>
+              <BtnTmp size="default" value="홈페이지로 이동" />
+            </a>
           </Link>
+          {/* <Link href="/">
+            <p>나중에 설정하기</p>
+          </Link> */}
         </RedirectTmpStyle>
       )}
     </>

@@ -11,6 +11,17 @@ import PostSliderNextMol from "./PostSliderNextMol";
 import PostSliderPrevMol from "./PostSliderPrevMol";
 
 const PostSliderMolStyle = styled.div`
+
+  
+  width: 100vw;
+  height: 100vw;
+  /* overflow:hidden; */
+
+  .slider_div{
+    background: ${color.p_gray_lt};
+    
+  }
+
   .dots_custom {
     display: inline-block;
     vertical-align: middle;
@@ -41,6 +52,9 @@ const PostSliderMolStyle = styled.div`
   .dots_custom li.slick-active button {
     background-color: ${color.p_pruple};
   }
+
+
+  
 `;
 
 function PostSliderMol(props: { postId: number | string; postImgUrlList: [] }) {
@@ -105,8 +119,9 @@ function PostSliderMol(props: { postId: number | string; postImgUrlList: [] }) {
     return (
       <PostSliderMolStyle>
         <Slider {...settings}>
-          <div>
+          <div >
             <img  
+              
               src={postImgUrlList}
               alt="postdummy"
               width="100%"
@@ -124,14 +139,14 @@ function PostSliderMol(props: { postId: number | string; postImgUrlList: [] }) {
   return (
     <PostSliderMolStyle>
       {router.query.postId ? <ToastTmp /> : <></>}
-      <Slider {...settings}>
-        <div>
+      <Slider {...settings} >
+        <div >
             <PostSliderPrevMol/>
-          </div>
+          </div >
         {postImgUrlList && postImgUrlList.map((img, idx) => {
           return (
-            <div key={idx}>
-              <img   src={img} alt="postdummy" width="100%" height="100%" />
+            <div key={idx} >
+              <img className="slider_div" src={img} alt="postdummy" width="100%" height={`${100*(postImgUrlList.length+1)}wv`} />
             </div>
           );
         })}

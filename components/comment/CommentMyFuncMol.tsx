@@ -24,7 +24,7 @@ function CommentMyFuncMol(props: {
   const token = useRecoilValue(TokenState).token;
   const { commentId, setTempParent } = props;
 
-  console.log(commentId)
+  // console.log(commentId)
 
   const handleDeleteComment = async () => {
     if (await CommentUtils.deleteMyComment(token, commentId)) {

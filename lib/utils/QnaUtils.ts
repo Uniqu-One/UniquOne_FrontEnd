@@ -56,7 +56,7 @@ export const QnaUtils = {
 
     const { data,isLoading } = useQuery("getMyQna", fetchQnaData, {
       select: (data) => {
-        console.log(data)
+        // console.log(data)
         return data.data.data;
       },
     });

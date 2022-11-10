@@ -68,7 +68,7 @@ function Test() {
       });
   }, []);
 
-  console.log(data);
+  // console.log(data);
 
   return (
     <>

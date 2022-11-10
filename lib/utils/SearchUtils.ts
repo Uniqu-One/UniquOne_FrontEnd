@@ -42,7 +42,7 @@ export const SearchUtils = {
     dataObj.looks = newLookList.join(',')
     dataObj.categoryId = newCategoryList.join('')
 
-    console.log(dataObj)
+    // console.log(dataObj)
 
     return await axios
       .get(

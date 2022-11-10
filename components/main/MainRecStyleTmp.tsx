@@ -20,7 +20,7 @@ function MainRecStyleTmp() {
 
   const userNickName = useRecoilValue(UserInfoState).userNickName
 
-  console.log(useRecoilValue(UserInfoState))
+  // console.log(useRecoilValue(UserInfoState))
 
   if(userNickName === undefined || userNickName === null){
     return <></>

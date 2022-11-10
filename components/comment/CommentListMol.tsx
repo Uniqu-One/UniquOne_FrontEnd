@@ -15,7 +15,7 @@ function CommentListMol(props: {
     <>
       {commentList &&
         commentList.map((comment: CommentType) => {
-          console.log(comment)
+          // console.log(comment)
           return (
             <div key={comment.commentId}>
               <CommentOrg

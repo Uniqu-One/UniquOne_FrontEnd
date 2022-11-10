@@ -30,7 +30,7 @@ function ProfileFollowCardSingleMol(props:{user:{}}) {
 
     }
     if(follow === true){
-      console.log(cornId)
+      // console.log(cornId)
       if(await FollowUtils.cancelFollow(token,cornId)){
         setFollow(false)
         ToastUtils.toast('유저를 팔로우 취소 하였습니다.')

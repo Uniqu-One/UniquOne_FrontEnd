@@ -57,12 +57,12 @@ function PostContentsTmp(props: { tempMenu: number; setTempMenu: Function }) {
   const isInView = useInView(scrollRef)
 
   useEffect(() => {
-    console.log("Element is in view: ", isInView)
+    // console.log("Element is in view: ", isInView)
   }, [isInView])
 
   useEffect(() => {
     updatePostData(); 
-    console.log('변경됨')
+    // console.log('변경됨')
   }, [tempMenu]);
 
   if (tempData?.[0] === undefined) {

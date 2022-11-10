@@ -38,7 +38,7 @@ export const OfferUtils = {
         return res.data.data;
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
         return [];
       });
   },
@@ -50,11 +50,11 @@ export const OfferUtils = {
         },
       })
       .then((res) => {
-        console.log(res.data.data);
+        // console.log(res.data.data);
         return res.data.data;
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
         return [];
       });
   },
@@ -87,7 +87,7 @@ export const OfferUtils = {
     offerType: string
   ) => {
 
-    console.log(token,offerId,offerType)
+    // console.log(token,offerId,offerType)
     return await axios
       .patch(
         `${process.env.NEXT_PUBLIC_URL_AWS}/offer`,

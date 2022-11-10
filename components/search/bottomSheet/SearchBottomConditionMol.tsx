@@ -62,7 +62,7 @@ function SearchBottomConditionMol(props: { setOpen: Function }) {
   };
 
 
-  console.log(tempCheck)
+  // console.log(tempCheck)
 
   return (
     <>

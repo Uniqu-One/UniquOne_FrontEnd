@@ -56,7 +56,7 @@ function ProfileBoxTopMol(props: {
   const { postEA, followerEA, followingEA, imgUrl, reviewEA, title } =
     props.profileBoxData;
 
-  console.log(type);
+  // console.log(type);
 
   const handleMoveFollowPage = () => {
     if (type === "my") {

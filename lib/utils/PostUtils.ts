@@ -20,7 +20,7 @@ export const PostUtils = {
       postType
     } = postUploadData;
 
-    console.log(postUploadData)
+    // console.log(postUploadData)
 
     if (postType === "") {
       return false;
@@ -138,11 +138,11 @@ export const PostUtils = {
 
     formData.append("postInputDto", blob);
 
-    console.log(postDatas);
+    // console.log(postDatas);
 
-    for (let i of formData) {
-      console.log(i);
-    }
+    // for (let i of formData) {
+    //   console.log(i);
+    // }
 
     return await axios
       .post(`${process.env.NEXT_PUBLIC_URL_AWS}/posts/posts/reg`, formData, {
@@ -157,7 +157,7 @@ export const PostUtils = {
         return true;
       })
       .catch((err) => {
-        console.log(formData);
+        // console.log(formData);
         console.error(err);
         return false;
       });
@@ -217,7 +217,7 @@ export const PostUtils = {
             newEditData.productSize = editData.productSize;
           }
 
-          console.log(newEditData.productSize)
+          // console.log(newEditData.productSize)
 
 
           if (editData.postType === "SALE") {
@@ -315,7 +315,7 @@ export const PostUtils = {
         }
       )
       .then((res) => {
-        console.log(res.data.data.content);
+        // console.log(res.data.data.content);
         return res.data.data.content;
       })
       .catch((err) => console.error(err));

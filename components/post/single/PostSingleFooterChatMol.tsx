@@ -13,7 +13,7 @@ function PostSingleFooterChatMol(props:{postId:string|number, postCornId:string|
   const {postId,postCornId} = props
   const router = useRouter()
 
-  console.log(props)
+  // console.log(props)
 
   const handlePresentChat = async () => {
     

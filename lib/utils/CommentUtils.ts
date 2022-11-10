@@ -64,6 +64,10 @@ export const CommentUtils = {
         },
       })
       .then((res) => {
+        console.log(commentId)
+        console.log(res)
+        if(res.data.data === null){return false}
+        
         return true
       })
       .catch((err) => {

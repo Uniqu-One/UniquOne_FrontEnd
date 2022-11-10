@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useRecoilState } from "recoil";
 import { CornPostState } from "../../../states/recoil/CornPostState";
 import { color } from "../../../styles/theme";
+import { ToastUtils } from "../../common/tmp/ToastTmp";
 
 
 const CornPostTagsInputMolStyle = styled.div`
@@ -30,6 +31,21 @@ function CornPostTagsInputMol() {
 
   const onChangeTextHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     //TODO - 글자 개수에 대한 유효성 검사 추가
+    let length = true;
+
+    e.target.value.split("#").map(value => {
+      
+      if(value.length > 9){
+        length = false;
+        return;
+      }
+    })
+//@ts-ignore
+    if(length === false){
+      ToastUtils.error('태그는 10자 이하로 작성해주세요!')
+      return ;
+    }
+
 
     if(e.target.value.split("#").length -1 < 6){
       let newData = {...postData};

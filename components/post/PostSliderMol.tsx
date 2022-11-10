@@ -12,14 +12,12 @@ import PostSliderPrevMol from "./PostSliderPrevMol";
 
 const PostSliderMolStyle = styled.div`
 
-  
   width: 100vw;
   height: 100vw;
   /* overflow:hidden; */
 
-  .slider_div{
+  .container{
     background: ${color.p_gray_lt};
-    
   }
 
   .dots_custom {
@@ -125,7 +123,7 @@ function PostSliderMol(props: { postId: number | string; postImgUrlList: [] }) {
               src={postImgUrlList}
               alt="postdummy"
               width="100%"
-              height="100%"
+              height="400vw"
             />
           </div>
           <div>
@@ -145,7 +143,7 @@ function PostSliderMol(props: { postId: number | string; postImgUrlList: [] }) {
           </div >
         {postImgUrlList && postImgUrlList.map((img, idx) => {
           return (
-            <div key={idx} >
+            <div key={idx} className="container">
               <img className="slider_div" src={img} alt="postdummy" width="100%" height={`${100*(postImgUrlList.length+1)}wv`} />
             </div>
           );

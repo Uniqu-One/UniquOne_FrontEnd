@@ -3,7 +3,9 @@ import React, { useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { UniStarUtils } from "../../lib/utils/UniStarUtils";
 import { TokenState } from "../../states/recoil/TokenState";
+import { UserInfoState } from "../../states/recoil/UserInfoState";
 import UniStarMol from "../common/mol/UniStarMol";
+import { ToastUtils } from "../common/tmp/ToastTmp";
 import PostCommentAtm from "./PostCommentAtm";
 import PostCommentMol from "./PostCommentMol";
 import PostHeartAtm from "./PostHeartAtm";
@@ -42,10 +44,15 @@ function PostFuncBarMol(props:{postId:number|string,isCool:boolean,uniStar:null|
   const {postId, isCool,uniStar} = props
   const [tempStar,setTempStar] = useState(uniStar)
 
+  const userId = useRecoilValue(UserInfoState).userId
   
   const updateUniStar = async() => {
 
-    
+    if(userId === undefined || userId === null){
+      ToastUtils.toast('로그인 후 이용 가능한 기능입니다.')
+      return;
+    }
+
 
     if(tempStar === null || tempStar === 0){
       UniStarUtils.enrollUniStar(token,postId)

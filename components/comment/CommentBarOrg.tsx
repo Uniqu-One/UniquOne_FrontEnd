@@ -56,9 +56,9 @@ const CommentBarOrgStyle = styled.div<{ inputStatus: boolean }>`
   }
 `;
 
-function CommentBarOrg(props: { postId: string,tempParent?:number,setTempParent:Function,setParentComment:Function }) {
+function CommentBarOrg(props: { postId: string,tempParent?:number,setTempParent:Function,setParentComment:Function,userId?:string|number }) {
   const token = useRecoilValue(TokenState).token;
-  const { postId,tempParent,setTempParent,setParentComment } = props;
+  const { postId,tempParent,setTempParent,setParentComment,userId } = props;
   const userImg = useRecoilValue(UserInfoState).cornImg
 
   const [inputText, setInputText] = useState("");
@@ -81,6 +81,11 @@ function CommentBarOrg(props: { postId: string,tempParent?:number,setTempParent:
 
     
   };
+
+  if(!userId){
+    return <></>
+  }
+
 
   return (
     <CommentBarOrgStyle inputStatus={inputStatus}>

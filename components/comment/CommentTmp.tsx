@@ -73,6 +73,7 @@ function CommentTmp(props: { postId: string }) {
           <p>등록된 댓글이 없습니다.</p>
         </div>
         <CommentBarOrg
+        userId = {userId.userId}
         postId={postId}
         tempParent={tempParent}
         setTempParent={setTempParent}
@@ -96,8 +97,8 @@ function CommentTmp(props: { postId: string }) {
           setTempParent={setTempParent}
         />
       )}
-
       <CommentBarOrg
+        userId = {userId.userId}
         postId={postId}
         tempParent={tempParent}
         setTempParent={setTempParent}

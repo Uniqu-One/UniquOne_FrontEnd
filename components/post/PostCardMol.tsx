@@ -30,6 +30,7 @@ function PostCardMol(props: {
   postDetailData?: any;
   postListData?: any;
 }) {
+  const tempUserId = useRecoilValue(UserInfoState).userId
   const { postId, postDetailData, postListData } = props;
   const router = useRouter();
   const userCornId = useRecoilValue(UserInfoState).cornId;

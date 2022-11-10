@@ -8,14 +8,23 @@ import HeartToggleAnimation from "../animation/HeartToggleAnimation";
 import { LikeUtils } from "../../lib/utils/LikeUtils";
 import { useRecoilValue } from "recoil";
 import { TokenState } from "../../states/recoil/TokenState";
+import { UserInfoState } from "../../states/recoil/UserInfoState";
+import { ToastUtils } from "../common/tmp/ToastTmp";
 
 function PostHeartMol(props: { postId: string | number, isCool:boolean }) {
   const {postId, isCool} = props
   const token = useRecoilValue(TokenState).token;
   const [tempHeart, setTempHeart] = useState(isCool);
 
+  const userId = useRecoilValue(UserInfoState).userId
 
   const handleChangeTempHeart = () => {
+
+    if(userId === undefined || userId === null){
+      ToastUtils.toast('로그인 후 이용 가능한 기능입니다.')
+      return;
+    }
+
     if (tempHeart) {
       LikeUtils.deleteLike(token, props.postId);
     } else {

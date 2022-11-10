@@ -16,11 +16,21 @@ const PostStyle = styled.div`
 
 function index() {
 
+  const userId = useRecoilValue(UserInfoState).userId
+
   const [tempMenu,setTempMenu] = useState(0)
 
   useEffect(() => {
     window.scroll({top:0, behavior:"smooth"})
   },[tempMenu])
+
+  useEffect(() => {
+
+    if(userId === undefined || userId === null){
+      setTempMenu(1)
+    }
+
+  },[])
 
 
   return ( 
